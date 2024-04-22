@@ -1259,34 +1259,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
-    <title>20230224-二分查找</title>
-    <url>/post/a5ba83c4.html</url>
-    <content><![CDATA[<p>##</p>
-<p>给定一个  n  个元素有序的（升序）整型数组  nums 和一个目标值  target  ，写一个函数搜索  nums  中的 target，如果目标值存在返回下标，否则返回 -1。</p>
-<p>示例 1:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 9<br>输出: 4<br>解释: 9 出现在 nums 中并且下标为 4<br>示例  2:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 2<br>输出: -1<br>解释: 2 不存在 nums 中因此返回 -1</p>
-<p>提示：</p>
-<p>你可以假设 nums  中的所有元素是不重复的。<br>n  将在  [1, 10000]之间。<br>nums  的每个元素都将在  [-9999, 9999]之间。</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="笨比版本"><a href="#笨比版本" class="headerlink" title="笨比版本"></a>笨比版本</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">search</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, target: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> nums.len() == <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> right = nums.len() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> mid = nums.len() / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> left &lt;= right &#123;</span><br><span class="line">            <span class="keyword">if</span> left == right &#123;</span><br><span class="line">                <span class="keyword">if</span> nums[left] == target &#123;</span><br><span class="line">                    <span class="keyword">return</span> left <span class="keyword">as</span> <span class="built_in">i32</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">let</span> c = *nums.get(mid).unwrap();</span><br><span class="line">            <span class="keyword">if</span> c == target &#123;</span><br><span class="line">                <span class="keyword">return</span> mid <span class="keyword">as</span> <span class="built_in">i32</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> c &lt; target &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">                mid = (left + right) / <span class="number">2</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">                mid = (left + right) / <span class="number">2</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        -<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="优化过后版本"><a href="#优化过后版本" class="headerlink" title="优化过后版本"></a>优化过后版本</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">search</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, target: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> left: <span class="built_in">usize</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> right: <span class="built_in">usize</span> = nums.len() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> left &lt; right &#123;</span><br><span class="line">            <span class="keyword">let</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> nums[mid] &lt; target &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &gt; target &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> mid <span class="keyword">as</span> <span class="built_in">i32</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        -<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最主要的困难点在于边界问题的处理</p>
-<p>以前一直有这个问题，不过是用的弱类型的语言，所以一直没啥问题</p>
-<p>这次用 rust 写，i32 跟 usize 一个有符号，一个无符号，导致在第一个版本的时候，写了很多冗余代码处理这个问题。</p>
-<p>然后发现边界处理，可以在循环外层解决，左闭右开的方式</p>
-<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
-<li>来源：力扣（LeetCode）</li>
-<li>链接：<a href="https://leetcode.cn/problems/binary-search" target="_blank" rel="noopener">https://leetcode.cn/problems/binary-search</a></li>
-<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
     <title>20230220-缺失数字</title>
     <url>/post/19a67249.html</url>
     <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个包含 [0, n]  中  n  个数的数组 nums ，找出 [0, n] 这个范围内没有出现在数组中的那个数。</p>
@@ -1312,6 +1284,34 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnj4mt/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnj4mt/</a></li>
 <li>来源：力扣（LeetCode）</li>
 <li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>20230224-二分查找</title>
+    <url>/post/a5ba83c4.html</url>
+    <content><![CDATA[<p>##</p>
+<p>给定一个  n  个元素有序的（升序）整型数组  nums 和一个目标值  target  ，写一个函数搜索  nums  中的 target，如果目标值存在返回下标，否则返回 -1。</p>
+<p>示例 1:</p>
+<p>输入: nums = [-1,0,3,5,9,12], target = 9<br>输出: 4<br>解释: 9 出现在 nums 中并且下标为 4<br>示例  2:</p>
+<p>输入: nums = [-1,0,3,5,9,12], target = 2<br>输出: -1<br>解释: 2 不存在 nums 中因此返回 -1</p>
+<p>提示：</p>
+<p>你可以假设 nums  中的所有元素是不重复的。<br>n  将在  [1, 10000]之间。<br>nums  的每个元素都将在  [-9999, 9999]之间。</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="笨比版本"><a href="#笨比版本" class="headerlink" title="笨比版本"></a>笨比版本</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">search</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, target: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> nums.len() == <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> right = nums.len() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> mid = nums.len() / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> left &lt;= right &#123;</span><br><span class="line">            <span class="keyword">if</span> left == right &#123;</span><br><span class="line">                <span class="keyword">if</span> nums[left] == target &#123;</span><br><span class="line">                    <span class="keyword">return</span> left <span class="keyword">as</span> <span class="built_in">i32</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">let</span> c = *nums.get(mid).unwrap();</span><br><span class="line">            <span class="keyword">if</span> c == target &#123;</span><br><span class="line">                <span class="keyword">return</span> mid <span class="keyword">as</span> <span class="built_in">i32</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> c &lt; target &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">                mid = (left + right) / <span class="number">2</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">                mid = (left + right) / <span class="number">2</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        -<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="优化过后版本"><a href="#优化过后版本" class="headerlink" title="优化过后版本"></a>优化过后版本</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">search</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, target: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> left: <span class="built_in">usize</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> right: <span class="built_in">usize</span> = nums.len() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> left &lt; right &#123;</span><br><span class="line">            <span class="keyword">let</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> nums[mid] &lt; target &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &gt; target &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> mid <span class="keyword">as</span> <span class="built_in">i32</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        -<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最主要的困难点在于边界问题的处理</p>
+<p>以前一直有这个问题，不过是用的弱类型的语言，所以一直没啥问题</p>
+<p>这次用 rust 写，i32 跟 usize 一个有符号，一个无符号，导致在第一个版本的时候，写了很多冗余代码处理这个问题。</p>
+<p>然后发现边界处理，可以在循环外层解决，左闭右开的方式</p>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a href="https://leetcode.cn/problems/binary-search" target="_blank" rel="noopener">https://leetcode.cn/problems/binary-search</a></li>
+<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1468,6 +1468,33 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>20230310-轮转数组</title>
+    <url>/post/34fcf8bc.html</url>
+    <content><![CDATA[<h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums，将数组中的元素向右轮转 k  个位置，其中  k  是非负数。</p>
+<p>示例 1:</p>
+<p>输入: nums = [1,2,3,4,5,6,7], k = 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右轮转 1 步: [7,1,2,3,4,5,6]<br>向右轮转 2 步: [6,7,1,2,3,4,5]<br>向右轮转 3 步: [5,6,7,1,2,3,4]<br>示例  2:</p>
+<p>输入：nums = [-1,-100,3,99], k = 2<br>输出：[3,99,-1,-100]<br>解释:<br>向右轮转 1 步: [99,-1,-100,3]<br>向右轮转 2 步: [3,99,-1,-100]</p>
+<p>提示：</p>
+<p>1 &lt;= nums.length &lt;= 105<br>-231 &lt;= nums[i] &lt;= 231 - 1<br>0 &lt;= k &lt;= 105</p>
+<p>进阶：</p>
+<p>尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。<br>你可以使用空间复杂度为  O(1) 的   原地   算法解决这个问题吗？</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="系统-api"><a href="#系统-api" class="headerlink" title="系统 api"></a>系统 api</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// rust api</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> len = nums.len();</span><br><span class="line">        nums.rotate_right(k <span class="keyword">as</span> <span class="built_in">usize</span> % len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="直觉实现，效率低到难以接受"><a href="#直觉实现，效率低到难以接受" class="headerlink" title="直觉实现，效率低到难以接受"></a>直觉实现，效率低到难以接受</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> _i <span class="keyword">in</span> <span class="number">0</span>..(k <span class="keyword">as</span> <span class="built_in">usize</span> % nums.len()) &#123;</span><br><span class="line">            <span class="keyword">let</span> v = nums.pop().unwrap();</span><br><span class="line">            nums.insert(<span class="number">0</span>, v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="优化后，仍效率不太高"><a href="#优化后，仍效率不太高" class="headerlink" title="优化后，仍效率不太高"></a>优化后，仍效率不太高</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> rotate_len = k <span class="keyword">as</span> <span class="built_in">usize</span>;</span><br><span class="line">        <span class="keyword">if</span> nums.len() &lt; rotate_len &#123;</span><br><span class="line">            rotate_len = rotate_len % nums.len();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, rotate_len);</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = nums.splice(<span class="number">0</span>..(nums.len() - rotate_len), <span class="built_in">vec!</span>[]).collect();</span><br><span class="line">        nums.append(&amp;<span class="keyword">mut</span> v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a href="https://leetcode.cn/problems/rotate-array" target="_blank" rel="noopener">https://leetcode.cn/problems/rotate-array</a></li>
+<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>20230309-有序数组的平方</title>
     <url>/post/9f3316ea.html</url>
     <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。</p>
@@ -1505,33 +1532,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
 <li>来源：力扣（LeetCode）</li>
 <li>链接：<a href="https://leetcode.cn/problems/squares-of-a-sorted-array" target="_blank" rel="noopener">https://leetcode.cn/problems/squares-of-a-sorted-array</a></li>
-<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>20230310-轮转数组</title>
-    <url>/post/34fcf8bc.html</url>
-    <content><![CDATA[<h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums，将数组中的元素向右轮转 k  个位置，其中  k  是非负数。</p>
-<p>示例 1:</p>
-<p>输入: nums = [1,2,3,4,5,6,7], k = 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右轮转 1 步: [7,1,2,3,4,5,6]<br>向右轮转 2 步: [6,7,1,2,3,4,5]<br>向右轮转 3 步: [5,6,7,1,2,3,4]<br>示例  2:</p>
-<p>输入：nums = [-1,-100,3,99], k = 2<br>输出：[3,99,-1,-100]<br>解释:<br>向右轮转 1 步: [99,-1,-100,3]<br>向右轮转 2 步: [3,99,-1,-100]</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 105<br>-231 &lt;= nums[i] &lt;= 231 - 1<br>0 &lt;= k &lt;= 105</p>
-<p>进阶：</p>
-<p>尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。<br>你可以使用空间复杂度为  O(1) 的   原地   算法解决这个问题吗？</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="系统-api"><a href="#系统-api" class="headerlink" title="系统 api"></a>系统 api</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// rust api</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> len = nums.len();</span><br><span class="line">        nums.rotate_right(k <span class="keyword">as</span> <span class="built_in">usize</span> % len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="直觉实现，效率低到难以接受"><a href="#直觉实现，效率低到难以接受" class="headerlink" title="直觉实现，效率低到难以接受"></a>直觉实现，效率低到难以接受</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> _i <span class="keyword">in</span> <span class="number">0</span>..(k <span class="keyword">as</span> <span class="built_in">usize</span> % nums.len()) &#123;</span><br><span class="line">            <span class="keyword">let</span> v = nums.pop().unwrap();</span><br><span class="line">            nums.insert(<span class="number">0</span>, v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="优化后，仍效率不太高"><a href="#优化后，仍效率不太高" class="headerlink" title="优化后，仍效率不太高"></a>优化后，仍效率不太高</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> rotate_len = k <span class="keyword">as</span> <span class="built_in">usize</span>;</span><br><span class="line">        <span class="keyword">if</span> nums.len() &lt; rotate_len &#123;</span><br><span class="line">            rotate_len = rotate_len % nums.len();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, rotate_len);</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = nums.splice(<span class="number">0</span>..(nums.len() - rotate_len), <span class="built_in">vec!</span>[]).collect();</span><br><span class="line">        nums.append(&amp;<span class="keyword">mut</span> v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
-<li>来源：力扣（LeetCode）</li>
-<li>链接：<a href="https://leetcode.cn/problems/rotate-array" target="_blank" rel="noopener">https://leetcode.cn/problems/rotate-array</a></li>
 <li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
 </ul>
 ]]></content>
@@ -1583,23 +1583,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>20240113</title>
-    <url>/post/bbb58779.html</url>
-    <content><![CDATA[<p>一个情绪崩溃的晚上</p>
-<p>茫然</p>
-<p>有些彷徨</p>
-<p>不知道该怎么办</p>
-<p>忍不住哭啊。</p>
-<p>哭啊</p>
-<p>嗯，又没忍住。。</p>
-<p>出去走走吧</p>
-<p>所以生命啊，它苦涩如歌</p>
-]]></content>
-      <categories>
-        <category>生活感想</category>
-      </categories>
-  </entry>
-  <entry>
     <title>20240129</title>
     <url>/post/704d3da4.html</url>
     <content><![CDATA[<p>这个周末去看望她了</p>
@@ -1636,6 +1619,23 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
+    <title>20240113</title>
+    <url>/post/bbb58779.html</url>
+    <content><![CDATA[<p>一个情绪崩溃的晚上</p>
+<p>茫然</p>
+<p>有些彷徨</p>
+<p>不知道该怎么办</p>
+<p>忍不住哭啊。</p>
+<p>哭啊</p>
+<p>嗯，又没忍住。。</p>
+<p>出去走走吧</p>
+<p>所以生命啊，它苦涩如歌</p>
+]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
+  </entry>
+  <entry>
     <title>20240224-truenas-安装日记</title>
     <url>/post/a80836a2.html</url>
     <content><![CDATA[<h1 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h1><ul>
@@ -1665,17 +1665,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <h1 id="安装nvidia驱动-可选"><a href="#安装nvidia驱动-可选" class="headerlink" title="安装nvidia驱动(可选)"></a>安装nvidia驱动(可选)</h1><ul>
 <li>不装了，可以直接用</li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>20240226-tauri安卓问题</title>
-    <url>/post/627b78.html</url>
-    <content><![CDATA[<p>1、安装rust git2 包<br>2、rust x86编译安卓aarch-linux-android 会报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/sh: 1: aarch64-linux-android-ranlib: not found</span><br></pre></td></tr></table></figure>
-<p>3、除了安装android-cmd-line包工具后，需要配置一系列环境变量，还叫将ndk的环境变量配置到PATH中去</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/aladdin/software/Android/ndk/26.2.11394342/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>
-<p>配置完毕后，不再报错。<br>啊，安卓开发好麻烦啊</p>
-<p>遇到问题再补充</p>
 ]]></content>
   </entry>
   <entry>
@@ -1711,6 +1700,26 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>20240226-tauri安卓问题</title>
+    <url>/post/627b78.html</url>
+    <content><![CDATA[<p>1、安装rust git2 包<br>2、rust x86编译安卓aarch-linux-android 会报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/sh: 1: aarch64-linux-android-ranlib: not found</span><br></pre></td></tr></table></figure>
+<p>3、除了安装android-cmd-line包工具后，需要配置一系列环境变量，还叫将ndk的环境变量配置到PATH中去</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/aladdin/software/Android/ndk/26.2.11394342/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>
+<p>配置完毕后，不再报错。<br>啊，安卓开发好麻烦啊</p>
+<p>遇到问题再补充</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hello</title>
+    <url>/post/3610a686.html</url>
+    <content><![CDATA[<p>hello</p>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>post</title>
     <url>/post/5a8a6c8d.html</url>
     <content><![CDATA[<p>心情不能平复</p>
@@ -1728,15 +1737,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <p>去吧，追寻自己想要的结果</p>
 <p>是时候了</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>hello</title>
-    <url>/post/3610a686.html</url>
-    <content><![CDATA[<p>hello</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
   </entry>
   <entry>
     <title>hello</title>
@@ -1813,6 +1813,19 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>230403-分治</title>
+    <url>/post/e18fcdf5.html</url>
+    <content><![CDATA[<h2 id="重要的两点"><a href="#重要的两点" class="headerlink" title="重要的两点"></a>重要的两点</h2><ul>
+<li>如何找出基线条件</li>
+<li>如何缩小计算规模</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的和</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [c, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> c + sum(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a =  sum([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayLength</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> + ArrayLength(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = ArrayLength([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 找出元素中的最大值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">maxNumber</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="literal">Infinity</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">let</span> max = maxNumber(rest);</span><br><span class="line">  <span class="keyword">return</span> i &gt; max ? i : max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = maxNumber([<span class="number">-1</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二分查找，分治方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">midSearch</span>(<span class="params">arr: <span class="built_in">number</span>[], search: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr[<span class="number">0</span>] === search) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> mid = (arr.length - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (arr[mid] &gt; search) &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(<span class="number">0</span>, mid), search);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(mid, arr.length), search);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 分治，二分查找，Rust版本</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">mid_search</span></span>(arr: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, search: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> arr[<span class="number">0</span>] == search &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> mid = (arr.len() - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> arr[mid] &gt; search &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[<span class="number">0</span>..mid].to_vec(), search);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[mid..arr.len()].to_vec(), search);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>230407-分治-快排</title>
     <url>/post/27259b04.html</url>
     <content><![CDATA[<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">q_srot</span></span>(arr: &amp;<span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() &lt; <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arr.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> base = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> small: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.into_iter().filter(|x| *x &lt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> bigger: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.iter().filter(|x| *x &gt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> result: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = q_srot(&amp;small)</span><br><span class="line">        .into_iter()</span><br><span class="line">        .chain(<span class="built_in">vec!</span>[base])</span><br><span class="line">        .chain(q_srot(&amp;bigger))</span><br><span class="line">        .collect();</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1827,19 +1840,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <p>草，写这个东西是真的很困难。</p>
 <p>还是需要在理解一下分治</p>
 ]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>230403-分治</title>
-    <url>/post/e18fcdf5.html</url>
-    <content><![CDATA[<h2 id="重要的两点"><a href="#重要的两点" class="headerlink" title="重要的两点"></a>重要的两点</h2><ul>
-<li>如何找出基线条件</li>
-<li>如何缩小计算规模</li>
-</ul>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的和</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [c, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> c + sum(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a =  sum([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayLength</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> + ArrayLength(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = ArrayLength([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 找出元素中的最大值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">maxNumber</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="literal">Infinity</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">let</span> max = maxNumber(rest);</span><br><span class="line">  <span class="keyword">return</span> i &gt; max ? i : max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = maxNumber([<span class="number">-1</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二分查找，分治方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">midSearch</span>(<span class="params">arr: <span class="built_in">number</span>[], search: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr[<span class="number">0</span>] === search) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> mid = (arr.length - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (arr[mid] &gt; search) &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(<span class="number">0</span>, mid), search);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(mid, arr.length), search);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 分治，二分查找，Rust版本</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">mid_search</span></span>(arr: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, search: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> arr[<span class="number">0</span>] == search &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> mid = (arr.len() - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> arr[mid] &gt; search &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[<span class="number">0</span>..mid].to_vec(), search);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[mid..arr.len()].to_vec(), search);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>开发技术</category>
       </categories>
@@ -1957,6 +1957,28 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <categories>
         <category>开发技术</category>
       </categories>
+  </entry>
+  <entry>
+    <title>JS-MAP问题</title>
+    <url>/post/284e9461.html</url>
+    <content><![CDATA[<h1 id="JS-MAP问题"><a href="#JS-MAP问题" class="headerlink" title="JS-MAP问题"></a>JS-MAP问题</h1><h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><ul>
+<li><p>定义了一个MAP,代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> QuestuibOptionHandlerMap = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="number">0</span>, getCommonOptions], <span class="comment">//单选题</span></span><br><span class="line">  [<span class="number">1</span>, getCommonOptions], <span class="comment">//多选题</span></span><br><span class="line">  [<span class="number">2</span>, () =&gt; &#123;&#125;], <span class="comment">//填空题</span></span><br><span class="line">  [<span class="number">3</span>, getCommonOptions], <span class="comment">//下拉题</span></span><br><span class="line">  [<span class="number">4</span>, () =&gt; &#123;&#125;], <span class="comment">//日期</span></span><br><span class="line">  [<span class="number">5</span>, () =&gt; &#123;&#125;], <span class="comment">//量表题</span></span><br><span class="line">  [<span class="number">6</span>, () =&gt; &#123;&#125;], <span class="comment">//AHP 题组</span></span><br><span class="line">  [<span class="number">7</span>, () =&gt; &#123;&#125;], <span class="comment">//图片上传题</span></span><br><span class="line">  [<span class="number">8</span>, () =&gt; &#123;&#125;], <span class="comment">//文件上传题</span></span><br><span class="line">  [<span class="number">9</span>, () =&gt; &#123;&#125;], <span class="comment">//城市</span></span><br><span class="line">  [<span class="number">1</span>, () =&gt; &#123;&#125;], <span class="comment">//车型</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出MAP</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(QuestuibOptionHandlerMap);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.wddv.com/www/article/20210115173433.png" alt="20210115173433"><br>然后输出的……..</p>
+</li>
+</ul>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题."></a>解决问题.</h2><p>以后多动动脑子,求你了.<br>卧槽啊啊啊啊啊啊!!!!!!<br>第二个,跟最后一个竟然重复了!!!!!!!!!<br>改行吧</p>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>JS基础</tag>
+        <tag>MAP</tag>
+      </tags>
   </entry>
   <entry>
     <title>csapp-p-26-1</title>
@@ -2095,28 +2117,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
       <tags>
         <tag>csapp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS-MAP问题</title>
-    <url>/post/284e9461.html</url>
-    <content><![CDATA[<h1 id="JS-MAP问题"><a href="#JS-MAP问题" class="headerlink" title="JS-MAP问题"></a>JS-MAP问题</h1><h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><ul>
-<li><p>定义了一个MAP,代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> QuestuibOptionHandlerMap = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="number">0</span>, getCommonOptions], <span class="comment">//单选题</span></span><br><span class="line">  [<span class="number">1</span>, getCommonOptions], <span class="comment">//多选题</span></span><br><span class="line">  [<span class="number">2</span>, () =&gt; &#123;&#125;], <span class="comment">//填空题</span></span><br><span class="line">  [<span class="number">3</span>, getCommonOptions], <span class="comment">//下拉题</span></span><br><span class="line">  [<span class="number">4</span>, () =&gt; &#123;&#125;], <span class="comment">//日期</span></span><br><span class="line">  [<span class="number">5</span>, () =&gt; &#123;&#125;], <span class="comment">//量表题</span></span><br><span class="line">  [<span class="number">6</span>, () =&gt; &#123;&#125;], <span class="comment">//AHP 题组</span></span><br><span class="line">  [<span class="number">7</span>, () =&gt; &#123;&#125;], <span class="comment">//图片上传题</span></span><br><span class="line">  [<span class="number">8</span>, () =&gt; &#123;&#125;], <span class="comment">//文件上传题</span></span><br><span class="line">  [<span class="number">9</span>, () =&gt; &#123;&#125;], <span class="comment">//城市</span></span><br><span class="line">  [<span class="number">1</span>, () =&gt; &#123;&#125;], <span class="comment">//车型</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>输出MAP</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(QuestuibOptionHandlerMap);</span><br></pre></td></tr></table></figure>
-<p><img src="https://oss.wddv.com/www/article/20210115173433.png" alt="20210115173433"><br>然后输出的……..</p>
-</li>
-</ul>
-<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题."></a>解决问题.</h2><p>以后多动动脑子,求你了.<br>卧槽啊啊啊啊啊啊!!!!!!<br>第二个,跟最后一个竟然重复了!!!!!!!!!<br>改行吧</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>JS基础</tag>
-        <tag>MAP</tag>
       </tags>
   </entry>
   <entry>
@@ -3444,6 +3444,14 @@ a++
 ]]></content>
   </entry>
   <entry>
+    <title>20230716-随便写写</title>
+    <url>/post/c49bbcbd.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
+  </entry>
+  <entry>
     <title>20231013-生日</title>
     <url>/post/fef49984.html</url>
     <content><![CDATA[<p>生日快乐！</p>
@@ -3453,13 +3461,5 @@ a++
 <p>永远年轻，永远热泪盈眶。</p>
 <p>Best wish for me.</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>20230716-随便写写</title>
-    <url>/post/c49bbcbd.html</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>生活感想</category>
-      </categories>
   </entry>
 </search>
