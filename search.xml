@@ -1742,6 +1742,18 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
+    <title>测试一下git2-rs 提交</title>
+    <url>/post/d131c0d2.html</url>
+    <content><![CDATA[<p>第一行<br>第二行<br>第三行测试<br>第四行<br>ok</p>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hello</title>
     <url>/post/3610a686.html</url>
     <content><![CDATA[<p>hello</p>

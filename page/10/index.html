@@ -218,6 +218,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/92bdb23a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/92bdb23a.html" class="post-title-link" itemprop="url">20200820题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-20 10:00:15" itemprop="dateCreated datePublished" datetime="2020-08-20T10:00:15+08:00">2020-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="异步笔试题"><a href="#异步笔试题" class="headerlink" title="异步笔试题"></a>异步笔试题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">    <span class="keyword">await</span> async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line">async1();</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="猜测"><a href="#猜测" class="headerlink" title="猜测"></a>猜测</h3><ul>
+<li>script start</li>
+<li>async1 start</li>
+<li>async2</li>
+<li>promise1</li>
+<li>script end</li>
+<li>promise2</li>
+<li>async1 end</li>
+<li>setTimeout</li>
+</ul>
+<h3 id="实际"><a href="#实际" class="headerlink" title="实际"></a>实际</h3><ul>
+<li>cript start</li>
+<li>async1 start</li>
+<li>async2</li>
+<li>promise1</li>
+<li>script end</li>
+<li>async1 end</li>
+<li>promise2</li>
+<li>setTimeout</li>
+</ul>
+<h3 id="错误的地方"><a href="#错误的地方" class="headerlink" title="错误的地方"></a>错误的地方</h3><ul>
+<li>微任务的顺序自己理解有问题,promise1 跟async1 end 这两个地方,我以为是应该先执行then里面的内容,但实际还是按照微任务的队列进行执行.</li>
+</ul>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ul>
+<li>js是单线程,会先执行script start</li>
+<li>settimeout 是宏任务,不会先执行,直接到async1(),输出async 1 start</li>
+<li>在async1 里面执行async2,输出async2,有await,让出线程</li>
+<li>执行new promise 输出 promise1</li>
+<li>then方法等待,输出 script end</li>
+<li>script宏任务队列清空,开始执行微任务,输出async1 end</li>
+<li>执行微任务队列,输出promise2</li>
+<li>微任务队列晴空,开始下一个宏任务 settimeout</li>
+</ul>
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><ul>
+<li><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/7" target="_blank" rel="noopener">第 10 题：常见异步笔试题，请写出代码的运行结果 #7</a></li>
+<li><a href="https://github.com/Mavericker-1996" target="_blank" rel="noopener">作者github</a></li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://es6.ruanyifeng.com/#docs/promise#Promise-resolve" target="_blank" rel="noopener">ECMAScript 6 入门</a><br><a href="https://github.com/dwqs/blog/issues/61" target="_blank" rel="noopener">从一道题浅说 JavaScript 的事件循环</a><br><a href="https://segmentfault.com/a/1190000011296839" target="_blank" rel="noopener">async/await 执行顺序详解</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/89aaf00a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +367,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -568,7 +686,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -684,7 +802,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -790,7 +908,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -892,7 +1010,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -992,7 +1110,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1095,7 +1213,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1204,7 +1322,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1316,7 +1434,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:25:15" itemprop="dateModified" datetime="2024-04-22T18:25:15+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1364,83 +1482,10 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/3d2ca5d9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/3d2ca5d9.html" class="post-title-link" itemprop="url">第一天，随便写写</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-27 11:16:10" itemprop="dateCreated datePublished" datetime="2020-07-27T11:16:10+08:00">2020-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="聊聊生活-写写技术"><a href="#聊聊生活-写写技术" class="headerlink" title="聊聊生活,写写技术."></a>聊聊生活,写写技术.</h1><h3 id="欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769"><a href="#欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769" class="headerlink" title="欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769"></a>欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1508,7 +1553,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
