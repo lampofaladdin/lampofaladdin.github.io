@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/global/apple-touch-icon-wen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/global/favicon-32x32-wen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/global/favicon-16x16-wen.png">
+  <link rel="mask-icon" href="/images/global/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wddv.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点个人题解 callback-&gt;promise-&gt;generator&#x2F;yield-&gt;async&#x2F;awaitcallback (最初的方案) 最开始使用的是callback,比如浏览器端的dom事件,ajax.node上的io事件等等,但是有定位问题困难,callback hell,异常处理等问题    12345678">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异步解决方案的发展历程以及优缺点。">
+<meta property="og:url" content="https://wddv.com/post/74ffa402.html">
+<meta property="og:site_name" content="灯的个人博客">
+<meta property="og:description" content="（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点个人题解 callback-&gt;promise-&gt;generator&#x2F;yield-&gt;async&#x2F;awaitcallback (最初的方案) 最开始使用的是callback,比如浏览器端的dom事件,ajax.node上的io事件等等,但是有定位问题困难,callback hell,异常处理等问题    12345678">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-24T03:58:29.000Z">
+<meta property="article:modified_time" content="2024-04-22T09:53:19.321Z">
+<meta property="article:author" content="aladdin">
+<meta property="article:tag" content="异步">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wddv.com/post/74ffa402.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>异步解决方案的发展历程以及优缺点。 | 灯的个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF61CEVEDP"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MF61CEVEDP');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4c10b4eeaaf8f221e2681c804ada3926";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">灯的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">forever young,forever weeping.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/lampofaladdin" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/74ffa402.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          异步解决方案的发展历程以及优缺点。
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 11:58:29" itemprop="dateCreated datePublished" datetime="2020-08-24T11:58:29+08:00">2020-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-22 17:53:19" itemprop="dateModified" datetime="2024-04-22T17:53:19+08:00">2024-04-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点"><a href="#（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点" class="headerlink" title="（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点"></a>（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
+<li>callback-&gt;promise-&gt;generator/yield-&gt;async/await<h3 id="callback-最初的方案"><a href="#callback-最初的方案" class="headerlink" title="callback (最初的方案)"></a>callback (最初的方案)</h3><blockquote>
+<p>最开始使用的是callback,比如浏览器端的dom事件,ajax.node上的io事件等等,但是有定位问题困难,callback hell,异常处理等问题</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器端</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// nodejs</span></span><br><span class="line">fs.readFile(<span class="string">'path'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><blockquote>
+<p>相比callback的回调写法,链式调用的写法更优雅,异常处理变得友好.</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">demo()</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// something</span></span><br><span class="line">    <span class="keyword">return</span> res + <span class="string">"then"</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"err"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err.message); <span class="comment">// err</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="generator-yield"><a href="#generator-yield" class="headerlink" title="generator/yield"></a>generator/yield</h3><blockquote>
+<p>用的不多,不做评价.emmm 打扰了</p>
+</blockquote>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><blockquote>
+<p>异步终极解决方案,generator/yield语法糖,基于promise,同步的写法,同步代码的异常捕获能力.强!无敌!</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> demo();</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// some</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"error"</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e); <span class="comment">// error</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><p>JS 异步已经告一段落了，这里来一波小总结</p>
+<h3 id="1-回调函数（callback）"><a href="#1-回调函数（callback）" class="headerlink" title="1. 回调函数（callback）"></a>1. 回调函数（callback）</h3><p>setTimeout(() =&gt; {<br>    // callback 函数体<br>}, 1000)<br>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</p>
+<p>回调地狱的根本问题在于：</p>
+<ul>
+<li>缺乏顺序性： 回调地狱导致的调试困难，和大脑的思维方式不符</li>
+<li>嵌套函数存在耦合性，一旦有所改动，就会牵一发而动全身，即（控制反转）</li>
+<li>嵌套函数过多的多话，很难处理错误<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// callback 函数体</span></span><br><span class="line">    ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// callback 函数体</span></span><br><span class="line">        ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;</span><br><span class="line">            <span class="comment">// callback 函数体</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+优点：解决了同步的问题（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。）</li>
+</ul>
+<h3 id="2-Promise"><a href="#2-Promise" class="headerlink" title="2. Promise"></a>2. Promise</h3><p>Promise就是为了解决callback的问题而产生的。</p>
+<p>Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被 Promise.resolve() 包装</p>
+<p>优点：解决了回调地狱的问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX2'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX3'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>缺点：无法取消 Promise ，错误需要通过回调函数来捕获</p>
+<h3 id="3-Generator"><a href="#3-Generator" class="headerlink" title="3. Generator"></a>3. Generator</h3><p>特点：可以控制函数的执行，可以配合 co 函数库使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">fetch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> it = fetch()</span><br><span class="line"><span class="keyword">let</span> result1 = it.next()</span><br><span class="line"><span class="keyword">let</span> result2 = it.next()</span><br><span class="line"><span class="keyword">let</span> result3 = it.next()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">### 4. Async/await</span></span><br><span class="line"><span class="string">async、await 是异步的终极解决方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">优点是：代码清晰，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 以下代码没有依赖性的话，完全可以使用 Promise.all 的方式</span></span><br><span class="line">  <span class="comment">// 如果有依赖性的话，其实就是解决回调地狱的例子了</span></span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX1'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX2'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX3'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="下面来看一个使用-await-的例子："><a href="#下面来看一个使用-await-的例子：" class="headerlink" title="下面来看一个使用 await 的例子："></a>下面来看一个使用 await 的例子：</h3><pre><code class="javascript"><span class="keyword">let</span> a = <span class="number">0</span>
+<span class="keyword">let</span> b = <span class="keyword">async</span> () =&gt; {
+  a = a + <span class="keyword">await</span> <span class="number">10</span>
+  <span class="built_in">console</span>.log(<span class="string">'2'</span>, a) <span class="comment">// -&gt; '2' 10</span>
+}
+b()
+a++
+<span class="built_in">console</span>.log(<span class="string">'1'</span>, a) <span class="comment">// -&gt; '1' 1</span></code></pre>
+<p>对于以上代码你可能会有疑惑，让我来解释下原因</p>
+<p>首先函数 b 先执行，在执行到 await 10 之前变量 a 还是 0，因为 await 内部实现了 generator ，generator 会保留堆栈中东西，所以这时候 a = 0 被保存了下来<br>因为 await 是异步操作，后来的表达式不返回 Promise 的话，就会包装成 Promise.reslove(返回值)，然后会去执行函数外的同步代码<br>同步代码执行完毕后开始执行异步代码，将保存下来的值拿出来使用，这时候 a = 0 + 10<br>上述解释中提到了 await 内部实现了 generator，其实 await 就是 generator 加上 Promise的语法糖，且内部实现了自动执行 generator。如果你熟悉 co 的话，其实自己就可以实现这样的语法糖。</p>
+<p>本文首发于我的博客：JS异步解决方案的发展历程以及优缺点</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/11" target="_blank" rel="noopener">文章链接</a><br><a href="https://github.com/sisterAn" target="_blank" rel="noopener">最高赞作者github</a><br><a href="https://github.com/sisterAn/blog/issues/29" target="_blank" rel="noopener">最高赞作者地址 JS异步解决方案的发展历程以及优缺点 </a><br><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="noopener">阮一峰 Javascript异步编程的4种方法</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"># 异步</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/1942942a.html" rel="prev" title="算法手写题">
+      <i class="fa fa-chevron-left"></i> 算法手写题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/post/520dd8d6.html" rel="next" title="emm">
+      emm <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点"><span class="nav-number">1.</span> <span class="nav-text">（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人题解"><span class="nav-number">1.1.</span> <span class="nav-text">个人题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#callback-最初的方案"><span class="nav-number">1.1.1.</span> <span class="nav-text">callback (最初的方案)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#promise"><span class="nav-number">1.1.2.</span> <span class="nav-text">promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generator-yield"><span class="nav-number">1.1.3.</span> <span class="nav-text">generator&#x2F;yield</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async-await"><span class="nav-number">1.1.4.</span> <span class="nav-text">async&#x2F;await</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最高赞题解"><span class="nav-number">1.2.</span> <span class="nav-text">最高赞题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-回调函数（callback）"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 回调函数（callback）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Promise"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Generator"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. Generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面来看一个使用-await-的例子："><span class="nav-number">1.2.4.</span> <span class="nav-text">下面来看一个使用 await 的例子：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">1.3.</span> <span class="nav-text">相关链接</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aladdin"
+      src="https://oss.wddv.com/www/assets/pic/avatar.png">
+  <p class="site-author-name" itemprop="name">aladdin</p>
+  <div class="site-description" itemprop="description">记录生活，前端技术</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lampofaladdin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lampofaladdin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d@wddv.com" title="E-Mail → mailto:d@wddv.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备17024143号-2 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aladdin</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '91a75e9a1fc9fd7df302',
+      clientSecret: 'ff120bf7925caa97693d5f77b10ca285845c291e',
+      repo        : 'blog-comment',
+      owner       : 'lampofaladdin',
+      admin       : ['lampofaladdin'],
+      id          : '02f6a550c3873b1c1ab7bfc12dfddd5b',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
