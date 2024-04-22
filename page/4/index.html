@@ -218,6 +218,184 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/97c01ff5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/97c01ff5.html" class="post-title-link" itemprop="url">csapp-p-40-1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-21 23:56:31" itemprop="dateCreated datePublished" datetime="2023-02-21T23:56:31+08:00">2023-02-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="x-0x66-y-0x39-计算下列值"><a href="#x-0x66-y-0x39-计算下列值" class="headerlink" title="x=0x66 y = 0x39 计算下列值"></a>x=0x66 y = 0x39 计算下列值</h2><table>
+<thead>
+<tr>
+<th>运算</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>x &amp;&amp; y</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>x || y</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>x &amp;&amp;~y</td>
+<td>0x01</td>
+</tr>
+</tbody></table>
+<h2 id="用位运算与逻辑运算，实现一-x-y"><a href="#用位运算与逻辑运算，实现一-x-y" class="headerlink" title="用位运算与逻辑运算，实现一 x==y"></a>用位运算与逻辑运算，实现一 x==y</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">equal_val</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(x ^ y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="位移运算，假设只有只有八位的位移情况"><a href="#位移运算，假设只有只有八位的位移情况" class="headerlink" title="位移运算，假设只有只有八位的位移情况"></a>位移运算，假设只有只有八位的位移情况</h2><table>
+<thead>
+<tr>
+<th>x</th>
+<th>x</th>
+<th>x &lt;&lt;3</th>
+<th>x &lt;&lt;3</th>
+<th>x &gt;&gt;2(逻辑的)</th>
+<th>x &gt;&gt;2(逻辑的)</th>
+<th>x &gt;&gt;2(算术的)</th>
+<th>x &gt;&gt;2(算术的)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>十六进制</td>
+<td>二进制</td>
+<td>二进制</td>
+<td>十六进制</td>
+<td>二进制</td>
+<td>十六进制</td>
+<td>二进制</td>
+<td>十六进制</td>
+</tr>
+<tr>
+<td>0xc3</td>
+<td>11000011</td>
+<td>00011000</td>
+<td>0x18</td>
+<td>00110000</td>
+<td>0x30</td>
+<td>11110000</td>
+<td>0xf0</td>
+</tr>
+<tr>
+<td>0x75</td>
+<td>01110101</td>
+<td>10101000</td>
+<td>0xA8</td>
+<td>00011101</td>
+<td>0x1d</td>
+<td>00011101</td>
+<td>0x1d</td>
+</tr>
+<tr>
+<td>0x87</td>
+<td>10000111</td>
+<td>00111000</td>
+<td>0x38</td>
+<td>00100001</td>
+<td>0x21</td>
+<td>11100001</td>
+<td>0xe1</td>
+</tr>
+<tr>
+<td>0x66</td>
+<td>01100110</td>
+<td>00110000</td>
+<td>0x30</td>
+<td>00011001</td>
+<td>0x19</td>
+<td>00011001</td>
+<td>0x19</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>正确性未确认</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e9a5bfe.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +427,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -358,7 +536,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -455,7 +633,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -560,7 +738,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -746,7 +924,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -952,7 +1130,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1174,7 +1352,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1279,7 +1457,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1354,7 +1532,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
+                <time title="修改时间：2024-04-22 18:22:36" itemprop="dateModified" datetime="2024-04-22T18:22:36+08:00">2024-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1408,139 +1586,6 @@
 
 <p>尝试优化代码</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">async</span> queue&lt;T, K&gt;<span class="function">(<span class="params">dataList: T[], callBack: (<span class="params">item: T, index: <span class="built_in">number</span></span>) =&gt; <span class="built_in">Promise</span>&lt;K&gt; | K, spliceLength = 5</span>): <span class="params">Promise</span>&lt;<span class="params">K</span>[]&gt; &#123;</span></span><br><span class="line"><span class="function">  <span class="params">if</span> (<span class="params">!dataList?.length</span>) &#123;</span></span><br><span class="line"><span class="function">    <span class="params">return</span> [];</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="params">const</span> <span class="params">list</span>: <span class="params">K</span>[] = [];</span></span><br><span class="line"><span class="function">  <span class="params">for</span> (<span class="params"><span class="keyword">let</span> i = 0; i &lt; dataList.length; i += spliceLength</span>) &#123;</span></span><br><span class="line"><span class="function">    <span class="params">const</span> <span class="params">step</span> = <span class="params">i</span> + <span class="params">spliceLength</span> &lt; <span class="params">dataList</span>.<span class="params">length</span> ? <span class="params">spliceLength</span> : <span class="params">dataList</span>.<span class="params">length</span> - <span class="params">i</span>;</span></span><br><span class="line"><span class="function">    <span class="params">const</span> <span class="params">promiseList</span> = <span class="params">new</span> <span class="params">Array</span>(<span class="params">step</span>).<span class="params">fill</span>(<span class="params">0</span>).<span class="params">map</span>(<span class="params">(<span class="params">_, index</span>) =&gt; callBack(<span class="params">dataList[i + index], i + index</span>)</span>);</span></span><br><span class="line"><span class="function">    <span class="params">const</span> <span class="params">result</span> = <span class="params">await</span> <span class="params">Promise</span>.<span class="params">all</span>(<span class="params">promiseList</span>);</span></span><br><span class="line"><span class="function">    <span class="params">list</span>.<span class="params">push</span>(<span class="params">...result</span>);</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="params">return</span> <span class="params">list</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6c526d3e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/6c526d3e.html" class="post-title-link" itemprop="url">20220722</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-22 10:58:02" itemprop="dateCreated datePublished" datetime="2022-07-22T10:58:02+08:00">2022-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-22 18:19:42" itemprop="dateModified" datetime="2024-04-22T18:19:42+08:00">2024-04-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JS-中的设计模式"><a href="#JS-中的设计模式" class="headerlink" title="JS 中的设计模式"></a>JS 中的设计模式</h1><p>解决一些特定问题的方法，并总结起来，给一个名字。</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在面向对象软件设计过程中针对特定的问题简洁而优雅的解决方案。</p>
-<h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><p>找出程序中变化的地方，并将变化封装起来</p>
-<h2 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h2><p>如果它走起路来像鸭子，叫起来也是鸭子，那么它就是鸭子。</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>同一操作作用于不同的对象上面，可以产生不同的解释和不同的执行结果。换句话说，给不同的对象发送同一个消息的时候，这些对象会根据这个消息分别给出不同的反馈。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chicken</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">const</span> makeSound = <span class="function"><span class="keyword">function</span> (<span class="params">animal</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (animal <span class="keyword">instanceof</span> Duck) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"嘎嘎嘎"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (animal <span class="keyword">instanceof</span> Chicken) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"咯咯咯"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span> (animal instansof Dog)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"汪汪汪"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">makeSound(<span class="keyword">new</span> Duck()); <span class="comment">// 嘎嘎嘎</span></span><br><span class="line">makeSound(<span class="keyword">new</span> Chicken()); <span class="comment">// 咯咯咯</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeSound = <span class="function"><span class="keyword">function</span> (<span class="params">animal: Animal</span>) </span>&#123;</span><br><span class="line">  animal.sound();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  sound() &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"不存在sound"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Duck <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  sound() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"嘎嘎嘎"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Chicken <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  sound() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"嘎嘎嘎"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Dog <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  sound()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"汪汪汪"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">makeSound(<span class="keyword">new</span> Duck()); <span class="comment">// 嘎嘎嘎</span></span><br><span class="line">makeSound(<span class="keyword">new</span> Chicken()); <span class="comment">// 咯咯咯</span></span><br><span class="line">makeSound(<span class="keyword">new</span> Dog()); <span class="comment">// 咯咯咯</span></span><br><span class="line"><span class="comment">// 更多...</span></span><br><span class="line"><span class="comment">// class Chicken extends Animal &#123;</span></span><br><span class="line"><span class="comment">//   sound() &#123;</span></span><br><span class="line"><span class="comment">// console.log("嘎嘎嘎");</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
-
-
-<p>多态最根本的作用就是通过把过程化的条件分支语句转化为对象的多态性，从而消除这些条件分支语句</p>
-<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>考虑你的设计中哪些地方可能变化，这种方式与关注会导致重新设计的原因相反。它不是考虑什么时候会迫使你的设计改变，而是考虑你怎样才能够在不重新设计的情况下进行改变。这里的关键在于封装发生变化的概念，这是许多设计模式的主题</p>
-<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>基于原型链</p>
-<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点</p>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>需要频繁实例化然后销毁的对象</li>
-<li>创建对象时耗时过多或者耗资源过多，但又经常用到的对象</li>
-<li>有状态的工具类对象</li>
-<li>繁访问数据库或文件的对象</li>
-</ul>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
-<li>window 对象</li>
-<li>日志文件</li>
-<li>应用配置</li>
-<li>线程池</li>
-</ul>
-<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>代理模式是为一个对象提供一个代替品或占位符，以便控制对他的访问</p>
-<h3 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>明星的经纪人</li>
-<li>生产数据库访问</li>
-<li>翻墙</li>
-</ul>
-<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><p>顺序访问一个聚合对象的元素，而不需要暴露对象的内部表示。</p>
-<p>基本不需要自己实现，大部分语言内置了迭代器</p>
-<h3 id="场景-2"><a href="#场景-2" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>Array.prototype.forEach</li>
-</ul>
-<h2 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>对象间的一对多的依赖关系，当一个对象的状态发生改变时，所以依赖于他的对象都能接受到通知</p>
-<h3 id="场景-3"><a href="#场景-3" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>JS 事件模型</li>
-</ul>
-<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h3 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h3><p>命令是对命令的封装，每一个命令都是一个操作，请求方发出请求，接收方接收请求，并执行操作。命令模式解耦了请求方和接收方，命令模式属于行为型模式</p>
-<h3 id="场景-4"><a href="#场景-4" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>处理一些功能，但是不知道请求的接收者是谁，操作是什么，希望以一种松耦合的方式来设计程序。</li>
-<li>JS 高阶函数</li>
-</ul>
-<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><h3 id="定义-6"><a href="#定义-6" class="headerlink" title="定义"></a>定义</h3><p>组合模式（Composite Pattern），又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结</p>
-<h3 id="场景-5"><a href="#场景-5" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>树形菜单</li>
-<li>文件</li>
-<li>文件夹的管理</li>
-</ul>
-<h2 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h2><h3 id="定义-7"><a href="#定义-7" class="headerlink" title="定义"></a>定义</h3><p>在模板模式（Template Pattern）中，一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。这种类型的设计模式属于行为型模式。</p>
-<h3 id="场景-6"><a href="#场景-6" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>造房子</li>
-<li>泡茶还是泡咖啡</li>
-</ul>
-<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。</p>
-<p>计算绩效</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> calculateBonus = <span class="function"><span class="keyword">function</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  performanceLevel: "S" | "A" | "B",</span></span></span><br><span class="line"><span class="function"><span class="params">  salary: <span class="built_in">number</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (performanceLevel === <span class="string">"S"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> salary * <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (performanceLevel === <span class="string">"A"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> salary * <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (performanceLevel === <span class="string">"B"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> salary * <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">calculateBonus(<span class="string">"B"</span>, <span class="number">20000</span>); <span class="comment">// 输出：40000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ts实现</span></span><br><span class="line"><span class="keyword">const</span> bounsMap = <span class="keyword">new</span> Map([</span><br><span class="line">  [<span class="string">"S"</span>, <span class="function">(<span class="params">salary: <span class="built_in">number</span></span>) =&gt;</span> salary * <span class="number">4</span>],</span><br><span class="line">  [<span class="string">"A"</span>, <span class="function">(<span class="params">salary: <span class="built_in">number</span></span>) =&gt;</span> salary * <span class="number">3</span>],</span><br><span class="line">  [<span class="string">"B"</span>, <span class="function">(<span class="params">salary: <span class="built_in">number</span></span>) =&gt;</span> salary * <span class="number">2</span>],</span><br><span class="line">]);</span><br><span class="line">bounsMap.get(<span class="string">"S"</span>)?.(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 完整实现</span></span><br><span class="line"><span class="keyword">enum</span> strategyEnum &#123;</span><br><span class="line">  S = <span class="string">"S"</span>,</span><br><span class="line">  A = <span class="string">"A"</span>,</span><br><span class="line">  B = <span class="string">"B"</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bounsMap = <span class="keyword">new</span> Map&lt;strategyEnum, &#123; times: <span class="built_in">number</span> &#125;&gt;([</span><br><span class="line">  [strategyEnum.S, &#123; times: <span class="number">4</span> &#125;],</span><br><span class="line">  [strategyEnum.B, &#123; times: <span class="number">3</span> &#125;],</span><br><span class="line">  [strategyEnum.B, &#123; times: <span class="number">2</span> &#125;],</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getBouns = <span class="function">(<span class="params">strategy: strategyEnum, salary: <span class="built_in">number</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> bouns = bounsMap.get(strategy);</span><br><span class="line">  <span class="keyword">if</span> (!bouns) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bouns.times * salary;</span><br><span class="line">&#125;;</span><br><span class="line">getBouns(strategyEnum.S, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1627,7 +1672,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-count">100</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

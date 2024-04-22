@@ -1468,33 +1468,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>20230310-轮转数组</title>
-    <url>/post/34fcf8bc.html</url>
-    <content><![CDATA[<h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums，将数组中的元素向右轮转 k  个位置，其中  k  是非负数。</p>
-<p>示例 1:</p>
-<p>输入: nums = [1,2,3,4,5,6,7], k = 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右轮转 1 步: [7,1,2,3,4,5,6]<br>向右轮转 2 步: [6,7,1,2,3,4,5]<br>向右轮转 3 步: [5,6,7,1,2,3,4]<br>示例  2:</p>
-<p>输入：nums = [-1,-100,3,99], k = 2<br>输出：[3,99,-1,-100]<br>解释:<br>向右轮转 1 步: [99,-1,-100,3]<br>向右轮转 2 步: [3,99,-1,-100]</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 105<br>-231 &lt;= nums[i] &lt;= 231 - 1<br>0 &lt;= k &lt;= 105</p>
-<p>进阶：</p>
-<p>尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。<br>你可以使用空间复杂度为  O(1) 的   原地   算法解决这个问题吗？</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="系统-api"><a href="#系统-api" class="headerlink" title="系统 api"></a>系统 api</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// rust api</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> len = nums.len();</span><br><span class="line">        nums.rotate_right(k <span class="keyword">as</span> <span class="built_in">usize</span> % len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="直觉实现，效率低到难以接受"><a href="#直觉实现，效率低到难以接受" class="headerlink" title="直觉实现，效率低到难以接受"></a>直觉实现，效率低到难以接受</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> _i <span class="keyword">in</span> <span class="number">0</span>..(k <span class="keyword">as</span> <span class="built_in">usize</span> % nums.len()) &#123;</span><br><span class="line">            <span class="keyword">let</span> v = nums.pop().unwrap();</span><br><span class="line">            nums.insert(<span class="number">0</span>, v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="优化后，仍效率不太高"><a href="#优化后，仍效率不太高" class="headerlink" title="优化后，仍效率不太高"></a>优化后，仍效率不太高</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> rotate_len = k <span class="keyword">as</span> <span class="built_in">usize</span>;</span><br><span class="line">        <span class="keyword">if</span> nums.len() &lt; rotate_len &#123;</span><br><span class="line">            rotate_len = rotate_len % nums.len();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, rotate_len);</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = nums.splice(<span class="number">0</span>..(nums.len() - rotate_len), <span class="built_in">vec!</span>[]).collect();</span><br><span class="line">        nums.append(&amp;<span class="keyword">mut</span> v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
-<li>来源：力扣（LeetCode）</li>
-<li>链接：<a href="https://leetcode.cn/problems/rotate-array" target="_blank" rel="noopener">https://leetcode.cn/problems/rotate-array</a></li>
-<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
     <title>20230309-有序数组的平方</title>
     <url>/post/9f3316ea.html</url>
     <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。</p>
@@ -1532,6 +1505,33 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
 <li>来源：力扣（LeetCode）</li>
 <li>链接：<a href="https://leetcode.cn/problems/squares-of-a-sorted-array" target="_blank" rel="noopener">https://leetcode.cn/problems/squares-of-a-sorted-array</a></li>
+<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>20230310-轮转数组</title>
+    <url>/post/34fcf8bc.html</url>
+    <content><![CDATA[<h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums，将数组中的元素向右轮转 k  个位置，其中  k  是非负数。</p>
+<p>示例 1:</p>
+<p>输入: nums = [1,2,3,4,5,6,7], k = 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右轮转 1 步: [7,1,2,3,4,5,6]<br>向右轮转 2 步: [6,7,1,2,3,4,5]<br>向右轮转 3 步: [5,6,7,1,2,3,4]<br>示例  2:</p>
+<p>输入：nums = [-1,-100,3,99], k = 2<br>输出：[3,99,-1,-100]<br>解释:<br>向右轮转 1 步: [99,-1,-100,3]<br>向右轮转 2 步: [3,99,-1,-100]</p>
+<p>提示：</p>
+<p>1 &lt;= nums.length &lt;= 105<br>-231 &lt;= nums[i] &lt;= 231 - 1<br>0 &lt;= k &lt;= 105</p>
+<p>进阶：</p>
+<p>尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。<br>你可以使用空间复杂度为  O(1) 的   原地   算法解决这个问题吗？</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="系统-api"><a href="#系统-api" class="headerlink" title="系统 api"></a>系统 api</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// rust api</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> len = nums.len();</span><br><span class="line">        nums.rotate_right(k <span class="keyword">as</span> <span class="built_in">usize</span> % len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="直觉实现，效率低到难以接受"><a href="#直觉实现，效率低到难以接受" class="headerlink" title="直觉实现，效率低到难以接受"></a>直觉实现，效率低到难以接受</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> _i <span class="keyword">in</span> <span class="number">0</span>..(k <span class="keyword">as</span> <span class="built_in">usize</span> % nums.len()) &#123;</span><br><span class="line">            <span class="keyword">let</span> v = nums.pop().unwrap();</span><br><span class="line">            nums.insert(<span class="number">0</span>, v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="优化后，仍效率不太高"><a href="#优化后，仍效率不太高" class="headerlink" title="优化后，仍效率不太高"></a>优化后，仍效率不太高</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> rotate_len = k <span class="keyword">as</span> <span class="built_in">usize</span>;</span><br><span class="line">        <span class="keyword">if</span> nums.len() &lt; rotate_len &#123;</span><br><span class="line">            rotate_len = rotate_len % nums.len();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, rotate_len);</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = nums.splice(<span class="number">0</span>..(nums.len() - rotate_len), <span class="built_in">vec!</span>[]).collect();</span><br><span class="line">        nums.append(&amp;<span class="keyword">mut</span> v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a href="https://leetcode.cn/problems/rotate-array" target="_blank" rel="noopener">https://leetcode.cn/problems/rotate-array</a></li>
 <li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
 </ul>
 ]]></content>
@@ -1583,6 +1583,23 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>20240113</title>
+    <url>/post/bbb58779.html</url>
+    <content><![CDATA[<p>一个情绪崩溃的晚上</p>
+<p>茫然</p>
+<p>有些彷徨</p>
+<p>不知道该怎么办</p>
+<p>忍不住哭啊。</p>
+<p>哭啊</p>
+<p>嗯，又没忍住。。</p>
+<p>出去走走吧</p>
+<p>所以生命啊，它苦涩如歌</p>
+]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
+  </entry>
+  <entry>
     <title>20240129</title>
     <url>/post/704d3da4.html</url>
     <content><![CDATA[<p>这个周末去看望她了</p>
@@ -1619,23 +1636,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>20240113</title>
-    <url>/post/bbb58779.html</url>
-    <content><![CDATA[<p>一个情绪崩溃的晚上</p>
-<p>茫然</p>
-<p>有些彷徨</p>
-<p>不知道该怎么办</p>
-<p>忍不住哭啊。</p>
-<p>哭啊</p>
-<p>嗯，又没忍住。。</p>
-<p>出去走走吧</p>
-<p>所以生命啊，它苦涩如歌</p>
-]]></content>
-      <categories>
-        <category>生活感想</category>
-      </categories>
-  </entry>
-  <entry>
     <title>20240224-truenas-安装日记</title>
     <url>/post/a80836a2.html</url>
     <content><![CDATA[<h1 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h1><ul>
@@ -1665,6 +1665,17 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <h1 id="安装nvidia驱动-可选"><a href="#安装nvidia驱动-可选" class="headerlink" title="安装nvidia驱动(可选)"></a>安装nvidia驱动(可选)</h1><ul>
 <li>不装了，可以直接用</li>
 </ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>20240226-tauri安卓问题</title>
+    <url>/post/627b78.html</url>
+    <content><![CDATA[<p>1、安装rust git2 包<br>2、rust x86编译安卓aarch-linux-android 会报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/sh: 1: aarch64-linux-android-ranlib: not found</span><br></pre></td></tr></table></figure>
+<p>3、除了安装android-cmd-line包工具后，需要配置一系列环境变量，还叫将ndk的环境变量配置到PATH中去</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/aladdin/software/Android/ndk/26.2.11394342/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>
+<p>配置完毕后，不再报错。<br>啊，安卓开发好麻烦啊</p>
+<p>遇到问题再补充</p>
 ]]></content>
   </entry>
   <entry>
@@ -1700,26 +1711,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>20240226-tauri安卓问题</title>
-    <url>/post/627b78.html</url>
-    <content><![CDATA[<p>1、安装rust git2 包<br>2、rust x86编译安卓aarch-linux-android 会报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/sh: 1: aarch64-linux-android-ranlib: not found</span><br></pre></td></tr></table></figure>
-<p>3、除了安装android-cmd-line包工具后，需要配置一系列环境变量，还叫将ndk的环境变量配置到PATH中去</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/aladdin/software/Android/ndk/26.2.11394342/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>
-<p>配置完毕后，不再报错。<br>啊，安卓开发好麻烦啊</p>
-<p>遇到问题再补充</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>hello</title>
-    <url>/post/3610a686.html</url>
-    <content><![CDATA[<p>hello</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
     <title>post</title>
     <url>/post/5a8a6c8d.html</url>
     <content><![CDATA[<p>心情不能平复</p>
@@ -1737,6 +1728,27 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <p>去吧，追寻自己想要的结果</p>
 <p>是时候了</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>测试一下git2-rs 提交</title>
+    <url>/post/d131c0d2.html</url>
+    <content><![CDATA[<p>第一行<br>第二行<br>第三行测试<br>第四行</p>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hello</title>
+    <url>/post/3610a686.html</url>
+    <content><![CDATA[<p>hello</p>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
   </entry>
   <entry>
     <title>hello</title>
