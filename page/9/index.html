@@ -218,6 +218,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1fa17b1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1fa17b1.html" class="post-title-link" itemprop="url">记一次nuxt引入videojs的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-11 16:17:37" itemprop="dateCreated datePublished" datetime="2020-11-11T16:17:37+08:00">2020-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="记一次nuxt引入videojs排查问题经历"><a href="#记一次nuxt引入videojs排查问题经历" class="headerlink" title="记一次nuxt引入videojs排查问题经历"></a>记一次nuxt引入videojs排查问题经历</h1><h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>开发的项目是基于nuxt框架,项目中需要使用videojs,在开发阶段没有问题,使用与样式展示都没有问题.</p>
+<p>在打包之后运行,发现videojs的样式不能正确展示.样式错误,发现样式没有被打包.</p>
+<h2 id="解决问题-阶段1"><a href="#解决问题-阶段1" class="headerlink" title="解决问题(阶段1)"></a>解决问题(阶段1)</h2><p>发现nuxt.config.js里面有一个配置<code>extractCSS</code>是用来提取css的,把css提取到一个文件里面,把这个配置设置为<code>false</code>就可以解决这个问题.</p>
+<p>但是有了新的问题,因为没有提取css,nuxt在服务端渲染的时候,会把所有的样式在html页面返回,导致html的文件比较大.</p>
+<p>当时花了一些时间,只找到这个解决办法,而且项目比较赶,暂时这样解决</p>
+<h2 id="解决问题-阶段2"><a href="#解决问题-阶段2" class="headerlink" title="解决问题(阶段2)"></a>解决问题(阶段2)</h2><p>网页需要seo,因为样式全在html里面,不相关内容太多,权重比较低.seo大佬建议去掉这些样式.</p>
+<p>找了好久,发现是因为用了<code>tailwindcss</code>这个ui框架,<code>tailwindcss</code>建议使用<code>purgecss</code>这个库来去除不需要的css,不然打包后的文件会比较大.</p>
+<p>videojs是在客户端使用js动态添加的class,导致<code>purgecss</code>匹配不到这些样式.所以就从打包后的css内删除.导致样式展示错误.</p>
+<p>去看官方文档,看到有一个safelist可以保留这些样式于是在nuxt.config.js内增加如下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS:&#123;</span><br><span class="line">        safelist: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现不起作用,各种尝试,<code>safelist.deep</code>,<code>safelist.standard</code>属性,不使用正则等…还是不行,直到看到了一个tip</p>
+<p><img src="https://oss.wddv.com/www/article/20201111164002.png" alt="20201111164002"></p>
+<p>对比了一下自己的安装的依赖,发现nuxt使用的是老版本的purgecss,找到的相关的配置,代码如下.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS: &#123;</span><br><span class="line">        whitelistPatterns: [<span class="regexp">/vjs/</span>, /video/],</span><br><span class="line">        whitelistPatternsChildren: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题解决.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>使用tailwindcss样式库,而且用到purgecss这个插件,要注意打包过后的样式是否正确,这个插件会删除不用的css(就是在页面中,没有匹配到相应的class名).</li>
+<li>在如上前提下,出现新引入的框架样式展示不正确,考虑在nuxt.config.js里面添加相应的配置.</li>
+<li>purgecss 3.0版本以上添加 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS:&#123;</span><br><span class="line">        safelist: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>purgecss 2.x 版本添加<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS: &#123;</span><br><span class="line">        whitelistPatterns: [<span class="regexp">/vjs/</span>, /video/],</span><br><span class="line">        whitelistPatternsChildren: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>发现问题要及时解决.不能有 <code>又不是不能用</code> 这个心态…55555.</li>
+</ul>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://purgecss.com/safelisting.html#specific-selectors" target="_blank" rel="noopener">purgecss 最新文档</a></li>
+<li><a href="https://github.com/FullHuman/purgecss/tree/5314e41edf328e2ad2639549e1587b82a964a42e/docs" target="_blank" rel="noopener">purgecss 老版本文档</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/nuxt/" rel="tag"><i class="fa fa-tag"></i> nuxt</a>
+            
+              <a href="/tags/videoJs/" rel="tag"><i class="fa fa-tag"></i> videoJs</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/89251c68.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +355,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -326,7 +432,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -413,7 +519,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -491,7 +597,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -571,7 +677,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -652,7 +758,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -738,7 +844,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -816,7 +922,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -898,7 +1004,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -934,104 +1040,6 @@
     
     
       <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/fda03b62.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/fda03b62.html" class="post-title-link" itemprop="url">如何实现一个 new</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-01 10:23:19" itemprop="dateCreated datePublished" datetime="2020-09-01T10:23:19+08:00">2020-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="如何实现一个new"><a href="#如何实现一个new" class="headerlink" title="如何实现一个new"></a>如何实现一个new</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Demo</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = a;</span><br><span class="line">  <span class="keyword">this</span>.b = b;</span><br><span class="line">&#125;</span><br><span class="line">Demo.prototype.test = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newConstructor</span>(<span class="params">cons</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">    cons.apply(result, <span class="built_in">arguments</span>);</span><br><span class="line">    result.__proto__ = cons.prototype;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newDemo = newConstructor(Demo);</span><br><span class="line"><span class="keyword">let</span> a = newDemo(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">a.test();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>试了好一会试出来的</li>
-<li>一直用prototype方法不行,挠头….</li>
-<li><strong>proto</strong> 这个方法记得不是标准写法</li>
-<li>标准写法是contructor prototype?看答案吧</li>
-</ul>
-<h3 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_new</span>(<span class="params">fn, ...arg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(fn.prototype);</span><br><span class="line">    <span class="keyword">const</span> ret = fn.apply(obj, arg);</span><br><span class="line">    <span class="keyword">return</span> ret <span class="keyword">instanceof</span> <span class="built_in">Object</span> ? ret : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="先理清楚-new-关键字调用函数都的具体过程，那么写出来就很清楚了"><a href="#先理清楚-new-关键字调用函数都的具体过程，那么写出来就很清楚了" class="headerlink" title="先理清楚 new 关键字调用函数都的具体过程，那么写出来就很清楚了"></a>先理清楚 new 关键字调用函数都的具体过程，那么写出来就很清楚了</h4><ul>
-<li>首先创建一个空的对象，空对象的<strong>proto</strong>属性指向构造函数的原型对象</li>
-<li>把上面创建的空对象赋值构造函数内部的this，用构造函数内部的方法修改空对象</li>
-<li>如果构造函数返回一个非基本类型的值，则返回这个值，否则上面创建的对象</li>
-</ul>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
-<li><strong>proto</strong> 不是标准对象,使用<code>Object.create(fn.prototye)</code>创建原型对象</li>
-<li>需要判断传入的对象是不是null或者undefined来判断是否返回实例对象</li>
-<li>不需要使用必包的方式进行返回(单例模式或许可以)</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/12" target="_blank" rel="noopener">如何实现一个new</a><br><a href="https://github.com/zwmmm" target="_blank" rel="noopener">最高赞作者github</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
-            
-          </div>
         
       </footer>
   </article>
@@ -1110,7 +1118,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -218,6 +218,155 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6570235f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/6570235f.html" class="post-title-link" itemprop="url">20220622 JS中数据结构的一些想法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 10:59:38" itemprop="dateCreated datePublished" datetime="2022-06-22T10:59:38+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS-中的数据结构"><a href="#JS-中的数据结构" class="headerlink" title="JS 中的数据结构"></a>JS 中的数据结构</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>原型方法较多，可以比较方便的实现各种功能</li>
+<li>JSON 支持</li>
+<li>相比 java，数组的长度不是固定的，不存在越界问题</li>
+<li>兼容性好</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>没有获取到索引的情况下，查询效率相对低，时间复杂度为 O(n)</li>
+<li>插入数据效率低O(n)</li>
+<li>删除数据效率O(n)</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>绝大部分数据处理</li>
+<li>JSON 支持，可以直接在接口中返回</li>
+<li>前端列表渲染</li>
+</ul>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>兼容性好</li>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>JSON 支持</li>
+<li>相对 Map 可以继承原型链上的属性</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>相对 MAP 键值只能是 string</li>
+<li>相对 MAP 顺序不确定</li>
+<li>相对 MAP 没有迭代属性</li>
+</ul>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>通用场景</li>
+<li>需要一个固定 key 来做区分数据内容</li>
+</ul>
+<h2 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h2><h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>相对对象这种结构，数据更清晰，效率更高</li>
+<li>相对 OBJECT，语义化更好，支持功能多</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>原型方法没有数组多</li>
+<li>JSON 不支持，如果作为接口数据返回，需要重新转换为数组或对象</li>
+</ul>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>需要一个固定格式的 key value</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>插入性能比数组高 O(1)</li>
+<li>删除性能比数组高 O(1)</li>
+</ul>
+<h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>索引效率低 O(n)</li>
+<li>原生不支持，需要自己实现链表结构</li>
+</ul>
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>动态插入与删除比较多的场景</li>
+</ul>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进后出</li>
+<li>JS 执行顺序</li>
+</ul>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进先出</li>
+<li>排队场景</li>
+<li>性能瓶颈的时候，使用队列，排队处理数据</li>
+</ul>
+<h2 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h2><h3 id="应用场景-6"><a href="#应用场景-6" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>打标签的场景</li>
+</ul>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="应用场景-7"><a href="#应用场景-7" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>DOM 树、CSS 树</li>
+<li>多层JSON</li>
+<li>级联菜单</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c1c2f028.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +398,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,7 +474,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -402,7 +551,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -486,7 +635,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -618,7 +767,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -718,7 +867,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -822,7 +971,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -939,7 +1088,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1035,7 +1184,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 01:49:02" itemprop="dateModified" datetime="2024-05-11T01:49:02+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1086,97 +1235,6 @@
     
     
       <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/acd5828c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/acd5828c.html" class="post-title-link" itemprop="url">看到了以前写的项目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-13 00:22:56" itemprop="dateCreated datePublished" datetime="2021-08-13T00:22:56+08:00">2021-08-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 18:14:16" itemprop="dateModified" datetime="2024-05-10T18:14:16+08:00">2024-05-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>啊，年轻时候的我，写的代码还挺规范的嘛。</p>
-<p>原来以为那个项目已经挂掉了，没想到现在还在运行。</p>
-<p>嗨，从16年开始学前端到现在。。快六年了。真特么快啊。。</p>
-<p>擦，刚找自己写的第一个项目竟然没有备案，挂掉了卧槽。</p>
-<p>没法装逼，可惜了。</p>
-<p>年轻真好…</p>
-<p>又想到了以前的很多事情，一个不到20平米的隔断间，住了四个人。</p>
-<p>床上睡不下，把床掀了大家一起打地铺。</p>
-<p>每天九点上班，五点九下班，下班就去网吧嗨。。</p>
-<p>租了一个两室一厅的房子，一个月1200？三个月交一次房租，结果三个月到了，我们没钱交房租了，emmm，直到现在我都不敢一次性交三个月房租。。</p>
-<p>啊，那时候是真穷啊。。</p>
-<p>不过真的挺快乐。</p>
-<p>几个吊毛，天天嗷嗷叫，一起看片，网吧通宵，真刺激</p>
-<p>回不去了。。</p>
-<p>还是有些对不住的人。。</p>
-<p>一时间想起来，有点难过。</p>
-<p>emmmm</p>
-<p>做的那些事情有用吗。</p>
-<p>二十岁的时候，买了十岁买不起的玩具，有什么意义吗</p>
-<p>终归是让自己心里好过一点</p>
-<p>好多事情，忍不住泪目</p>
-<p>果然，晚上不适合瞎J8想。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" rel="tag"><i class="fa fa-tag"></i> 生活感想</a>
-            
-          </div>
         
       </footer>
   </article>
@@ -1255,7 +1313,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
