@@ -218,782 +218,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/50bdca19.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/50bdca19.html" class="post-title-link" itemprop="url">简单讲解一下http2的多路复用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-02 09:56:32" itemprop="dateCreated datePublished" datetime="2020-09-02T09:56:32+08:00">2020-09-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简单讲解一下http2的多路复用"><a href="#简单讲解一下http2的多路复用" class="headerlink" title="简单讲解一下http2的多路复用"></a>简单讲解一下http2的多路复用</h1><h2 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h2><p>不会</p>
-<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><p>在 HTTP/1 中，每次请求都会建立一次HTTP连接，也就是我们常说的3次握手4次挥手，这个过程在一次请求过程中占用了相当长的时间，即使开启了 Keep-Alive ，解决了多次连接的问题，但是依然有两个效率上的问题：</p>
-<p>第一个：串行的文件传输。当请求a文件时，b文件只能等待，等待a连接到服务器、服务器处理文件、服务器返回文件，这三个步骤。我们假设这三步用时都是1秒，那么a文件用时为3秒，b文件传输完成用时为6秒，依此类推。（注：此项计算有一个前提条件，就是浏览器和服务器是单通道传输）<br>第二个：连接数过多。我们假设Apache设置了最大并发数为300，因为浏览器限制，浏览器发起的最大请求数为6，也就是服务器能承载的最高并发为50，当第51个人访问时，就需要等待前面某个请求处理完成。<br>HTTP/2的多路复用就是为了解决上述的两个性能问题。<br>在 HTTP/2 中，有两个非常重要的概念，分别是帧（frame）和流（stream）。<br>帧代表着最小的数据单位，每个帧会标识出该帧属于哪个流，流也就是多个帧组成的数据流。<br>多路复用，就是在一个 TCP 连接中可以存在多条流。换句话说，也就是可以发送多个请求，对端可以通过帧中的标识知道属于哪个请求。通过这个技术，可以避免 HTTP 旧版本中的队头阻塞问题，极大的提高传输性能。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>不会</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/14" target="_blank" rel="noopener">第 15 题：简单讲解一下 http2 的多路复用 #14</a><br><a href="https://http2.akamai.com/demo" target="_blank" rel="noopener">http1.1 与 http2 对比</a><br><a href="https://www.zhihu.com/question/34074946" target="_blank" rel="noopener">HTTP/2 相比 1.0 有哪些重大改进？</a><br><a href="https://imququ.com/post/http2-resource.html" target="_blank" rel="noopener">HTTP/2 资料汇总</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/fda03b62.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/fda03b62.html" class="post-title-link" itemprop="url">如何实现一个 new</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-01 10:23:19" itemprop="dateCreated datePublished" datetime="2020-09-01T10:23:19+08:00">2020-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="如何实现一个new"><a href="#如何实现一个new" class="headerlink" title="如何实现一个new"></a>如何实现一个new</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Demo</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = a;</span><br><span class="line">  <span class="keyword">this</span>.b = b;</span><br><span class="line">&#125;</span><br><span class="line">Demo.prototype.test = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newConstructor</span>(<span class="params">cons</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">    cons.apply(result, <span class="built_in">arguments</span>);</span><br><span class="line">    result.__proto__ = cons.prototype;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newDemo = newConstructor(Demo);</span><br><span class="line"><span class="keyword">let</span> a = newDemo(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">a.test();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>试了好一会试出来的</li>
-<li>一直用prototype方法不行,挠头….</li>
-<li><strong>proto</strong> 这个方法记得不是标准写法</li>
-<li>标准写法是contructor prototype?看答案吧</li>
-</ul>
-<h3 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_new</span>(<span class="params">fn, ...arg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(fn.prototype);</span><br><span class="line">    <span class="keyword">const</span> ret = fn.apply(obj, arg);</span><br><span class="line">    <span class="keyword">return</span> ret <span class="keyword">instanceof</span> <span class="built_in">Object</span> ? ret : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="先理清楚-new-关键字调用函数都的具体过程，那么写出来就很清楚了"><a href="#先理清楚-new-关键字调用函数都的具体过程，那么写出来就很清楚了" class="headerlink" title="先理清楚 new 关键字调用函数都的具体过程，那么写出来就很清楚了"></a>先理清楚 new 关键字调用函数都的具体过程，那么写出来就很清楚了</h4><ul>
-<li>首先创建一个空的对象，空对象的<strong>proto</strong>属性指向构造函数的原型对象</li>
-<li>把上面创建的空对象赋值构造函数内部的this，用构造函数内部的方法修改空对象</li>
-<li>如果构造函数返回一个非基本类型的值，则返回这个值，否则上面创建的对象</li>
-</ul>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
-<li><strong>proto</strong> 不是标准对象,使用<code>Object.create(fn.prototye)</code>创建原型对象</li>
-<li>需要判断传入的对象是不是null或者undefined来判断是否返回实例对象</li>
-<li>不需要使用必包的方式进行返回(单例模式或许可以)</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/12" target="_blank" rel="noopener">如何实现一个new</a><br><a href="https://github.com/zwmmm" target="_blank" rel="noopener">最高赞作者github</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c680a8e9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/c680a8e9.html" class="post-title-link" itemprop="url">斐波那契额数列第n位</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-27 10:33:26" itemprop="dateCreated datePublished" datetime="2020-08-27T10:33:26+08:00">2020-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="斐波那契额数列第n位-算法题"><a href="#斐波那契额数列第n位-算法题" class="headerlink" title="斐波那契额数列第n位 算法题"></a>斐波那契额数列第n位 算法题</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="递归的方式"><a href="#递归的方式" class="headerlink" title="递归的方式"></a>递归的方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">40</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="结论"><a href="#结论" class="headerlink" title="结论:"></a>结论:</h4><ul>
-<li>运行时间为1360ms左右,性能比较差</li>
-<li>到45位的时候计算时间已经是15s</li>
-</ul>
-<h3 id="递归的方式-加一层缓存"><a href="#递归的方式-加一层缓存" class="headerlink" title="递归的方式,加一层缓存"></a>递归的方式,加一层缓存</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n, cache</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!cache) &#123;</span><br><span class="line">    cache = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (cache[n]) &#123;</span><br><span class="line">    <span class="keyword">return</span> cache[n];</span><br><span class="line">  &#125;</span><br><span class="line">  cache[n] = fibonacci(n - <span class="number">1</span>, cache) + fibonacci(n - <span class="number">2</span>, cache);</span><br><span class="line">  <span class="keyword">return</span> cache[n];</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">40</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="结论-1"><a href="#结论-1" class="headerlink" title="结论:"></a>结论:</h4><ul>
-<li>第5000位的时候是9ms,此时数值已经是超过js最大数值,为Infinity</li>
-<li>9000位左右递归栈会爆掉</li>
-</ul>
-<h3 id="循环的方式"><a href="#循环的方式" class="headerlink" title="循环的方式"></a>循环的方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arr = [<span class="number">0</span>, <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    arr.push(arr[arr.length - <span class="number">1</span>] + arr[arr.length - <span class="number">2</span>]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr[n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="结论-2"><a href="#结论-2" class="headerlink" title="结论:"></a>结论:</h4><ul>
-<li>性能最佳,5000位约7毫秒</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>递归一般情况下性能比普通循环要低</li>
-<li>递归可能会爆栈</li>
-<li>除非必须要递归的方式、其他方案成本过高、能确定递归次数较少,不然不建议用递归</li>
-<li>某些文档提到尾递归可以提高性能,但是这个斐波那契额数列,没有找到使用尾递归的方式,单独开一篇尾递归的内容</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6fa7f909.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/6fa7f909.html" class="post-title-link" itemprop="url">Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-26 10:44:47" itemprop="dateCreated datePublished" datetime="2020-08-26T10:44:47+08:00">2020-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？"><a href="#Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？" class="headerlink" title="Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？"></a>Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><blockquote>
-<p>构造函数是同步执行,then的时候是异步</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">reslove, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">    reslove(<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">demo().then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1 3 2</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/19" target="_blank" rel="noopener">第 13 题：Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？ #19</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/520dd8d6.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/520dd8d6.html" class="post-title-link" itemprop="url">emm</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-24 21:59:35" itemprop="dateCreated datePublished" datetime="2020-08-24T21:59:35+08:00">2020-08-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一开始底牌尽处的人,注定是输家.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/74ffa402.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/74ffa402.html" class="post-title-link" itemprop="url">异步解决方案的发展历程以及优缺点。</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-24 11:58:29" itemprop="dateCreated datePublished" datetime="2020-08-24T11:58:29+08:00">2020-08-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点"><a href="#（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点" class="headerlink" title="（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点"></a>（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
-<li>callback-&gt;promise-&gt;generator/yield-&gt;async/await<h3 id="callback-最初的方案"><a href="#callback-最初的方案" class="headerlink" title="callback (最初的方案)"></a>callback (最初的方案)</h3><blockquote>
-<p>最开始使用的是callback,比如浏览器端的dom事件,ajax.node上的io事件等等,但是有定位问题困难,callback hell,异常处理等问题</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器端</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// nodejs</span></span><br><span class="line">fs.readFile(<span class="string">'path'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><blockquote>
-<p>相比callback的回调写法,链式调用的写法更优雅,异常处理变得友好.</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">demo()</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// something</span></span><br><span class="line">    <span class="keyword">return</span> res + <span class="string">"then"</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"err"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err.message); <span class="comment">// err</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="generator-yield"><a href="#generator-yield" class="headerlink" title="generator/yield"></a>generator/yield</h3><blockquote>
-<p>用的不多,不做评价.emmm 打扰了</p>
-</blockquote>
-<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><blockquote>
-<p>异步终极解决方案,generator/yield语法糖,基于promise,同步的写法,同步代码的异常捕获能力.强!无敌!</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> demo();</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// some</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"error"</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e); <span class="comment">// error</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
-
-<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><p>JS 异步已经告一段落了，这里来一波小总结</p>
-<h3 id="1-回调函数（callback）"><a href="#1-回调函数（callback）" class="headerlink" title="1. 回调函数（callback）"></a>1. 回调函数（callback）</h3><p>setTimeout(() =&gt; {<br>    // callback 函数体<br>}, 1000)<br>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</p>
-<p>回调地狱的根本问题在于：</p>
-<ul>
-<li>缺乏顺序性： 回调地狱导致的调试困难，和大脑的思维方式不符</li>
-<li>嵌套函数存在耦合性，一旦有所改动，就会牵一发而动全身，即（控制反转）</li>
-<li>嵌套函数过多的多话，很难处理错误<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// callback 函数体</span></span><br><span class="line">    ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// callback 函数体</span></span><br><span class="line">        ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;</span><br><span class="line">            <span class="comment">// callback 函数体</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-优点：解决了同步的问题（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。）</li>
-</ul>
-<h3 id="2-Promise"><a href="#2-Promise" class="headerlink" title="2. Promise"></a>2. Promise</h3><p>Promise就是为了解决callback的问题而产生的。</p>
-<p>Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被 Promise.resolve() 包装</p>
-<p>优点：解决了回调地狱的问题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX2'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX3'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<p>缺点：无法取消 Promise ，错误需要通过回调函数来捕获</p>
-<h3 id="3-Generator"><a href="#3-Generator" class="headerlink" title="3. Generator"></a>3. Generator</h3><p>特点：可以控制函数的执行，可以配合 co 函数库使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">fetch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> it = fetch()</span><br><span class="line"><span class="keyword">let</span> result1 = it.next()</span><br><span class="line"><span class="keyword">let</span> result2 = it.next()</span><br><span class="line"><span class="keyword">let</span> result3 = it.next()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">### 4. Async/await</span></span><br><span class="line"><span class="string">async、await 是异步的终极解决方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">优点是：代码清晰，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 以下代码没有依赖性的话，完全可以使用 Promise.all 的方式</span></span><br><span class="line">  <span class="comment">// 如果有依赖性的话，其实就是解决回调地狱的例子了</span></span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX1'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX2'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX3'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="下面来看一个使用-await-的例子："><a href="#下面来看一个使用-await-的例子：" class="headerlink" title="下面来看一个使用 await 的例子："></a>下面来看一个使用 await 的例子：</h3><pre><code class="javascript"><span class="keyword">let</span> a = <span class="number">0</span>
-<span class="keyword">let</span> b = <span class="keyword">async</span> () =&gt; {
-  a = a + <span class="keyword">await</span> <span class="number">10</span>
-  <span class="built_in">console</span>.log(<span class="string">'2'</span>, a) <span class="comment">// -&gt; '2' 10</span>
-}
-b()
-a++
-<span class="built_in">console</span>.log(<span class="string">'1'</span>, a) <span class="comment">// -&gt; '1' 1</span></code></pre>
-<p>对于以上代码你可能会有疑惑，让我来解释下原因</p>
-<p>首先函数 b 先执行，在执行到 await 10 之前变量 a 还是 0，因为 await 内部实现了 generator ，generator 会保留堆栈中东西，所以这时候 a = 0 被保存了下来<br>因为 await 是异步操作，后来的表达式不返回 Promise 的话，就会包装成 Promise.reslove(返回值)，然后会去执行函数外的同步代码<br>同步代码执行完毕后开始执行异步代码，将保存下来的值拿出来使用，这时候 a = 0 + 10<br>上述解释中提到了 await 内部实现了 generator，其实 await 就是 generator 加上 Promise的语法糖，且内部实现了自动执行 generator。如果你熟悉 co 的话，其实自己就可以实现这样的语法糖。</p>
-<p>本文首发于我的博客：JS异步解决方案的发展历程以及优缺点</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/11" target="_blank" rel="noopener">文章链接</a><br><a href="https://github.com/sisterAn" target="_blank" rel="noopener">最高赞作者github</a><br><a href="https://github.com/sisterAn/blog/issues/29" target="_blank" rel="noopener">最高赞作者地址 JS异步解决方案的发展历程以及优缺点 </a><br><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="noopener">阮一峰 Javascript异步编程的4种方法</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1942942a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/1942942a.html" class="post-title-link" itemprop="url">算法手写题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-21 10:16:45" itemprop="dateCreated datePublished" datetime="2020-08-21T10:16:45+08:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>已知如下数组：<br>var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];<br>编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组</p>
-</blockquote>
-<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
-<li><p>递归;</p>
-<blockquote>
-<p>不想写</p>
-</blockquote>
-</li>
-<li><p>while循环遍历</p>
-<blockquote>
-<p>不想写</p>
-</blockquote>
-</li>
-<li><p>Array.prototype.flat</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayFlat</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr.flat(<span class="literal">Infinity</span>))).sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123; <span class="keyword">return</span> a-b&#125;);</span><br><span class="line">&#125;</span><br><span class="line">arrayFlat(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>骚操作</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saocaozuo</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [...new <span class="built_in">Set</span>(arr.toString().split(<span class="string">","</span>))].sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">&#125;</span><br><span class="line">saocaozuo(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/8" target="_blank" rel="noopener">第 11 题：将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/flat" target="_blank" rel="noopener">Array.prototype.flat() MDN</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/92bdb23a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/92bdb23a.html" class="post-title-link" itemprop="url">20200820题目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-20 10:00:15" itemprop="dateCreated datePublished" datetime="2020-08-20T10:00:15+08:00">2020-08-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="异步笔试题"><a href="#异步笔试题" class="headerlink" title="异步笔试题"></a>异步笔试题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">    <span class="keyword">await</span> async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line">async1();</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="猜测"><a href="#猜测" class="headerlink" title="猜测"></a>猜测</h3><ul>
-<li>script start</li>
-<li>async1 start</li>
-<li>async2</li>
-<li>promise1</li>
-<li>script end</li>
-<li>promise2</li>
-<li>async1 end</li>
-<li>setTimeout</li>
-</ul>
-<h3 id="实际"><a href="#实际" class="headerlink" title="实际"></a>实际</h3><ul>
-<li>cript start</li>
-<li>async1 start</li>
-<li>async2</li>
-<li>promise1</li>
-<li>script end</li>
-<li>async1 end</li>
-<li>promise2</li>
-<li>setTimeout</li>
-</ul>
-<h3 id="错误的地方"><a href="#错误的地方" class="headerlink" title="错误的地方"></a>错误的地方</h3><ul>
-<li>微任务的顺序自己理解有问题,promise1 跟async1 end 这两个地方,我以为是应该先执行then里面的内容,但实际还是按照微任务的队列进行执行.</li>
-</ul>
-<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ul>
-<li>js是单线程,会先执行script start</li>
-<li>settimeout 是宏任务,不会先执行,直接到async1(),输出async 1 start</li>
-<li>在async1 里面执行async2,输出async2,有await,让出线程</li>
-<li>执行new promise 输出 promise1</li>
-<li>then方法等待,输出 script end</li>
-<li>script宏任务队列清空,开始执行微任务,输出async1 end</li>
-<li>执行微任务队列,输出promise2</li>
-<li>微任务队列晴空,开始下一个宏任务 settimeout</li>
-</ul>
-<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><ul>
-<li><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/7" target="_blank" rel="noopener">第 10 题：常见异步笔试题，请写出代码的运行结果 #7</a></li>
-<li><a href="https://github.com/Mavericker-1996" target="_blank" rel="noopener">作者github</a></li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://es6.ruanyifeng.com/#docs/promise#Promise-resolve" target="_blank" rel="noopener">ECMAScript 6 入门</a><br><a href="https://github.com/dwqs/blog/issues/61" target="_blank" rel="noopener">从一道题浅说 JavaScript 的事件循环</a><br><a href="https://segmentfault.com/a/1190000011296839" target="_blank" rel="noopener">async/await 执行顺序详解</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/89aaf00a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1025,7 +249,7 @@ a++
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1344,7 +568,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1425,10 +649,798 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d9958b57.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/d9958b57.html" class="post-title-link" itemprop="url">20200817题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-17 10:53:43" itemprop="dateCreated datePublished" datetime="2020-08-17T10:53:43+08:00">2020-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ES5-ES6-的继承除了写法以外还有什么区别？"><a href="#ES5-ES6-的继承除了写法以外还有什么区别？" class="headerlink" title="ES5/ES6 的继承除了写法以外还有什么区别？"></a>ES5/ES6 的继承除了写法以外还有什么区别？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><p>都是基于原型链的写法,别的不知道.</p>
+<h2 id="最高题解"><a href="#最高题解" class="headerlink" title="最高题解"></a>最高题解</h2><h3 id="class-声明会提升，但不会初始化赋值。Foo-进入暂时性死区，类似于-let、const-声明变量。-没有变量提升"><a href="#class-声明会提升，但不会初始化赋值。Foo-进入暂时性死区，类似于-let、const-声明变量。-没有变量提升" class="headerlink" title="class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。(没有变量提升)"></a>class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。(没有变量提升)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar(); <span class="comment">// it's ok</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo(); <span class="comment">// ReferenceError: Foo is not defined</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="class-声明内部会启用严格模式。"><a href="#class-声明内部会启用严格模式。" class="headerlink" title="class 声明内部会启用严格模式。"></a>class 声明内部会启用严格模式。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用一个未声明的变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  baz = <span class="number">42</span>; <span class="comment">// it's ok</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    fol = <span class="number">42</span>; <span class="comment">// ReferenceError: fol is not defined</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+
+<h3 id="class-的所有方法（包括静态方法和实例方法）都是不可枚举的。"><a href="#class-的所有方法（包括静态方法和实例方法）都是不可枚举的。" class="headerlink" title="class 的所有方法（包括静态方法和实例方法）都是不可枚举的。"></a>class 的所有方法（包括静态方法和实例方法）都是不可枚举的。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用一个未声明的变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line">Bar.answer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Bar.prototype.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> barKeys = <span class="built_in">Object</span>.keys(Bar); <span class="comment">// ['answer']</span></span><br><span class="line"><span class="keyword">const</span> barProtoKeys = <span class="built_in">Object</span>.keys(Bar.prototype); <span class="comment">// ['print']</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> answer() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> fooKeys = <span class="built_in">Object</span>.keys(Foo); <span class="comment">// []</span></span><br><span class="line"><span class="keyword">const</span> fooProtoKeys = <span class="built_in">Object</span>.keys(Foo.prototype); <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="class-的所有方法（包括静态方法和实例方法）都没有原型对象-prototype，所以也没有-construct-，不能使用-new-来调用。"><a href="#class-的所有方法（包括静态方法和实例方法）都没有原型对象-prototype，所以也没有-construct-，不能使用-new-来调用。" class="headerlink" title="class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[[construct]]，不能使用 new 来调用。"></a>class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[[construct]]，不能使用 new 来调用。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line">Bar.prototype.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();</span><br><span class="line"><span class="keyword">const</span> barPrint = <span class="keyword">new</span> bar.print(); <span class="comment">// it's ok</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="keyword">const</span> fooPrint = <span class="keyword">new</span> foo.print(); <span class="comment">// TypeError: foo.print is not a constructor</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="必须使用-new-调用-class。"><a href="#必须使用-new-调用-class。" class="headerlink" title="必须使用 new 调用 class。"></a>必须使用 new 调用 class。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = Bar(); <span class="comment">// it's ok</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = Foo(); <span class="comment">// TypeError: Class constructor Foo cannot be invoked without 'new'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="class-内部无法重写类名。"><a href="#class-内部无法重写类名。" class="headerlink" title="class 内部无法重写类名。"></a>class 内部无法重写类名。</h3><pre><code class="javascript"> <span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>{
+  Bar = <span class="string">'Baz'</span>; <span class="comment">// it's ok</span>
+  <span class="keyword">this</span>.bar = <span class="number">42</span>;
+}
+<span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();
+<span class="comment">// Bar: 'Baz'</span>
+<span class="comment">// bar: Bar {bar: 42}  </span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>{
+  <span class="keyword">constructor</span>() {
+    <span class="keyword">this</span>.foo = <span class="number">42</span>;
+    Foo = <span class="string">'Fol'</span>; <span class="comment">// TypeError: Assignment to constant variable</span>
+  }
+}
+<span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();
+Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span></code></pre>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/20" target="_blank" rel="noopener">第 7 期：ES5/ES6 的继承除了写法以外还有什么区别？ #20</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/946ca0ec.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/946ca0ec.html" class="post-title-link" itemprop="url">20200806每日一题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-07 11:41:44" itemprop="dateCreated datePublished" datetime="2020-08-07T11:41:44+08:00">2020-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="介绍下深度优先遍历和广度优先遍历，如何实现？"><a href="#介绍下深度优先遍历和广度优先遍历，如何实现？" class="headerlink" title="介绍下深度优先遍历和广度优先遍历，如何实现？"></a>介绍下深度优先遍历和广度优先遍历，如何实现？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><blockquote>
+<p>没有做过相关的内容,猜测</p>
+</blockquote>
+<h3 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><blockquote>
+<p>先找到一个节点, 遍历到当前节点最深的目录</p>
+</blockquote>
+<h3 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><blockquote>
+<p>优先遍历当前一级的节点,然后再遍历下一层节点</p>
+</blockquote>
+<h2 id="最高赞题"><a href="#最高赞题" class="headerlink" title="最高赞题"></a>最高赞题</h2><ul>
+<li>第五题问的是深度优先遍历和广度优先遍历，我是从dom节点的遍历来理解这个问题的</li>
+<li>html代码</li>
+<li><img src="https://oss.wddv.com/www/article/20200807134451.png" alt="20200807134451"></li>
+<li>我将用深度优先遍历和广度优先遍历对这个dom树进行查找</li>
+</ul>
+<h3 id="深度优先遍历-1"><a href="#深度优先遍历-1" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><hr>
+<p>深度优先遍历DFS 与树的先序遍历比较类似。<br>假设初始状态是图中所有顶点均未被访问，则从某个顶点v出发，首先访问该顶点然后依次从它的各个未被访问的邻接点出发深度优先搜索遍历图，直至图中所有和v有路径相通的顶点都被访问到。若此时尚有其他顶点未被访问到，则另选一个未被访问的顶点作起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*深度优先遍历三种方式*&#x2F;</span><br><span class="line">let deepTraversal1 &#x3D; (node, nodeList &#x3D; []) &#x3D;&gt; &#123;</span><br><span class="line">  if (node !&#x3D;&#x3D; null) &#123;</span><br><span class="line">    nodeList.push(node)</span><br><span class="line">    let children &#x3D; node.children</span><br><span class="line">    for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">      deepTraversal1(children[i], nodeList)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodeList</span><br><span class="line">&#125;</span><br><span class="line">let deepTraversal2 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">    let nodes &#x3D; []</span><br><span class="line">    if (node !&#x3D;&#x3D; null) &#123;</span><br><span class="line">      nodes.push(node)</span><br><span class="line">      let children &#x3D; node.children</span><br><span class="line">      for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        nodes &#x3D; nodes.concat(deepTraversal2(children[i]))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nodes</span><br><span class="line">  &#125;</span><br><span class="line">&#x2F;&#x2F; 非递归</span><br><span class="line">let deepTraversal3 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">  let stack &#x3D; []</span><br><span class="line">  let nodes &#x3D; []</span><br><span class="line">  if (node) &#123;</span><br><span class="line">    &#x2F;&#x2F; 推入当前处理的node</span><br><span class="line">    stack.push(node)</span><br><span class="line">    while (stack.length) &#123;</span><br><span class="line">      let item &#x3D; stack.pop()</span><br><span class="line">      let children &#x3D; item.children</span><br><span class="line">      nodes.push(item)</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [] stack &#x3D; [parent]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent] stack &#x3D; [child3,child2,child1]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent, child1] stack &#x3D; [child3,child2,child1-2,child1-1]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent, child1-1] stack &#x3D; [child3,child2,child1-2]</span><br><span class="line">      for (let i &#x3D; children.length - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">        stack.push(children[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><p><img src="https://oss.wddv.com/www/article/20200807134542.png" alt="20200807134542"></p>
+<h3 id="广度优先遍历-1"><a href="#广度优先遍历-1" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><hr>
+<p>广度优先遍历 BFS<br>从图中某顶点v出发，在访问了v之后依次访问v的各个未曾访问过的邻接点，然后分别从这些邻接点出发依次访问它们的邻接点，并使得“先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，直至图中所有已被访问的顶点的邻接点都被访问到。 如果此时图中尚有顶点未被访问，则需要另选一个未曾被访问过的顶点作为新的起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let widthTraversal2 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">  let nodes &#x3D; []</span><br><span class="line">  let stack &#x3D; []</span><br><span class="line">  if (node) &#123;</span><br><span class="line">    stack.push(node)</span><br><span class="line">    while (stack.length) &#123;</span><br><span class="line">      let item &#x3D; stack.shift()</span><br><span class="line">      let children &#x3D; item.children</span><br><span class="line">      nodes.push(item)</span><br><span class="line">        &#x2F;&#x2F; 队列，先进先出</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [] stack &#x3D; [parent]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent] stack &#x3D; [child1,child2,child3]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent, child1] stack &#x3D; [child2,child3,child1-1,child1-2]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent,child1,child2]</span><br><span class="line">      for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        stack.push(children[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="输出结果-1"><a href="#输出结果-1" class="headerlink" title="输出结果"></a>输出结果</h4><p><img src="https://oss.wddv.com/www/20200807134554.png" alt="20200807134554"></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/9" target="_blank" rel="noopener">第 5 题：介绍下深度优先遍历和广度优先遍历，如何实现？ #9</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 编程题</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/a85052ac.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/a85052ac.html" class="post-title-link" itemprop="url">介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-06 11:28:43" itemprop="dateCreated datePublished" datetime="2020-08-06T11:28:43+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="介绍下-Set、Map、WeakSet-和-WeakMap-的区别？"><a href="#介绍下-Set、Map、WeakSet-和-WeakMap-的区别？" class="headerlink" title="介绍下 Set、Map、WeakSet 和 WeakMap 的区别？"></a>介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><blockquote>
+<p>目前用到Set的功能,是用来去重</p>
+</blockquote>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><blockquote>
+<p>跟object很像,比object多了一些实用的操作方法,object的key只能是字符串,这个的key值可以是对象,数字等</p>
+</blockquote>
+<h3 id="WeakSet-和-WeakMap"><a href="#WeakSet-和-WeakMap" class="headerlink" title="WeakSet 和 WeakMap"></a>WeakSet 和 WeakMap</h3><blockquote>
+<p>没用过</p>
+</blockquote>
+<h1 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h1><h3 id="Set-1"><a href="#Set-1" class="headerlink" title="Set"></a>Set</h3><ol>
+<li>成员不能重复</li>
+<li>只有健值，没有健名，有点类似数组。</li>
+<li>可以遍历，方法有add, delete,has</li>
+</ol>
+<h3 id="weakSet"><a href="#weakSet" class="headerlink" title="weakSet"></a>weakSet</h3><p>成员都是对象<br>成员都是弱引用，随时可以消失。 可以用来保存DOM节点，不容易造成内存泄漏<br>不能遍历，方法有add, delete,has</p>
+<h3 id="Map-1"><a href="#Map-1" class="headerlink" title="Map"></a>Map</h3><p>本质上是健值对的集合，类似集合<br>可以遍历，方法很多，可以干跟各种数据格式转换</p>
+<h3 id="weakMap"><a href="#weakMap" class="headerlink" title="weakMap"></a>weakMap</h3><ol>
+<li>直接受对象作为健名（null除外），不接受其他类型的值作为健名</li>
+<li>健名所指向的对象，不计入垃圾回收机制</li>
+<li>不能遍历，方法同get,set,has,delete</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/6" target="_blank" rel="noopener">第 4 题：介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</a><br><a href="https://es6.ruanyifeng.com/#docs/set-map" target="_blank" rel="noopener">ECMAScript 6 入门 – Set 和 Map 数据结构</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/54e1476d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/54e1476d.html" class="post-title-link" itemprop="url">每日一题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-05 10:15:02" itemprop="dateCreated datePublished" datetime="2020-08-05T10:15:02+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什么是防抖和节流？有什么区别？如何实现？"><a href="#什么是防抖和节流？有什么区别？如何实现？" class="headerlink" title="什么是防抖和节流？有什么区别？如何实现？"></a>什么是防抖和节流？有什么区别？如何实现？</h2><h3 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h3><h4 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h4><blockquote>
+<p>在一个时间段内,如果有触发多次,只执行一次.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const debonce &#x3D; (fn, timer) &#x3D;&gt; &#123;</span><br><span class="line">  let loop &#x3D; null;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    if (loop) &#123;</span><br><span class="line">      clearTimeout(loop);</span><br><span class="line">    &#125;</span><br><span class="line">    loop &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      fn.apply(this, arguments);</span><br><span class="line">    &#125;, timer);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function demo(arg1, arg2) &#123;</span><br><span class="line">  console.log(arg1, arg2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let debonceDemo &#x3D; debonce(demo, 1000);</span><br><span class="line">let i &#x3D; 0;</span><br><span class="line">let test &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">  debonceDemo(1, 2);</span><br><span class="line">  if (++i &gt; 100) &#123;</span><br><span class="line">    clearInterval(test);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 10);</span><br></pre></td></tr></table></figure>
+<h4 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h4><blockquote>
+<p>不论执行速度有多快,固定时间内执行的次数只有一次</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const throttle &#x3D; (fn, timer) &#x3D;&gt; &#123;</span><br><span class="line">  let loop &#x3D; true;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    if (!loop) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    loop &#x3D; false;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      fn.apply(this, arguments);</span><br><span class="line">      loop &#x3D; true;</span><br><span class="line">    &#125;, timer);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function demo(arg1, arg2) &#123;</span><br><span class="line">  console.log(arg1, arg2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let throttleDemo &#x3D; throttle(demo, 1000);</span><br><span class="line">let i &#x3D; 0;</span><br><span class="line">let test &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">  throttleDemo(1, 2);</span><br><span class="line">  if (++i &gt; 100) &#123;</span><br><span class="line">    clearInterval(test);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 100);</span><br></pre></td></tr></table></figure>
+
+<h3 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h3><h4 id="防抖-1"><a href="#防抖-1" class="headerlink" title="防抖"></a>防抖</h4><blockquote>
+<p>触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</p>
+</blockquote>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><blockquote>
+<p>每次触发事件时都取消之前的延时调用方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn) &#123;</span><br><span class="line">      let timeout &#x3D; null; &#x2F;&#x2F; 创建一个标记用来存放定时器的返回值</span><br><span class="line">      return function () &#123;</span><br><span class="line">        clearTimeout(timeout); &#x2F;&#x2F; 每当用户输入的时候把前一个 setTimeout clear 掉</span><br><span class="line">        timeout &#x3D; setTimeout(() &#x3D;&gt; &#123; &#x2F;&#x2F; 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span><br><span class="line">          fn.apply(this, arguments);</span><br><span class="line">        &#125;, 500);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    function sayHi() &#123;</span><br><span class="line">      console.log(&#39;防抖成功&#39;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var inp &#x3D; document.getElementById(&#39;inp&#39;);</span><br><span class="line">    inp.addEventListener(&#39;input&#39;, debounce(sayHi)); &#x2F;&#x2F; 防抖</span><br></pre></td></tr></table></figure>
+<h4 id="节流-1"><a href="#节流-1" class="headerlink" title="节流"></a>节流</h4><blockquote>
+<p>高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p>
+</blockquote>
+<h5 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h5><blockquote>
+<p>每次触发事件时都判断当前是否有等待执行的延时函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function throttle(fn) &#123;</span><br><span class="line">      let canRun &#x3D; true; &#x2F;&#x2F; 通过闭包保存一个标记</span><br><span class="line">      return function () &#123;</span><br><span class="line">        if (!canRun) return; &#x2F;&#x2F; 在函数开头判断标记是否为true，不为true则return</span><br><span class="line">        canRun &#x3D; false; &#x2F;&#x2F; 立即设置为false</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123; &#x2F;&#x2F; 将外部传入的函数的执行放在setTimeout中</span><br><span class="line">          fn.apply(this, arguments);</span><br><span class="line">          &#x2F;&#x2F; 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span><br><span class="line">          canRun &#x3D; true;</span><br><span class="line">        &#125;, 500);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    function sayHi(e) &#123;</span><br><span class="line">      console.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">    &#125;</span><br><span class="line">    window.addEventListener(&#39;resize&#39;, throttle(sayHi));</span><br></pre></td></tr></table></figure>
+
+<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5" target="_blank" rel="noopener">第 3 题：什么是防抖和节流？有什么区别？如何实现？</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1cd2722b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1cd2722b.html" class="post-title-link" itemprop="url">面试题 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-29 11:36:33" itemprop="dateCreated datePublished" datetime="2020-07-29T11:36:33+08:00">2020-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><a href="#React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？" class="headerlink" title="React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？"></a>React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</h2><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
+<p>个人猜想是diff算法的优化办法，固定key以后，如果更新数据，可以确定需要替换的数据，减少dom替换的开销</p>
+</blockquote>
+<h3 id="赞同最高题解"><a href="#赞同最高题解" class="headerlink" title="赞同最高题解"></a>赞同最高题解</h3><p>受楼下答案的一些特殊情况影响，导致很多人都认为key不能”提高”diff速度。在此继续重新梳理一下答案。</p>
+<p>在楼下的答案中，部分讨论都是基于没有key的情况diff速度会更快。确实，这种观点并没有错。没有绑定key的情况下，并且在遍历模板简单的情况下，会导致虚拟新旧节点对比更快，节点也会复用。而这种复用是就地复用，一种鸭子辩型的复用。以下为简单的例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for&#x3D;&quot;i in dataList&quot;&gt;&#123;&#123; i &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#app&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    dataList: [1, 2, 3, 4, 5]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>以上的例子，v-for的内容会生成以下的dom节点数组，我们给每一个节点标记一个身份id：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#39;&lt;div&gt;1&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id： A</span><br><span class="line">  &#39;&lt;div&gt;2&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  B</span><br><span class="line">  &#39;&lt;div&gt;3&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  C</span><br><span class="line">  &#39;&lt;div&gt;4&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  D</span><br><span class="line">  &#39;&lt;div&gt;5&lt;&#x2F;div&gt;&#39;  &#x2F;&#x2F; id:  E</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>改变dataList数据，进行数据位置替换，对比改变后的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vm.dataList &#x3D; [4, 1, 3, 5, 2] &#x2F;&#x2F; 数据位置替换</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 没有key的情况， 节点位置不变，但是节点innerText内容更新了</span><br><span class="line"> [</span><br><span class="line">   &#39;&lt;div&gt;4&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id： A</span><br><span class="line">   &#39;&lt;div&gt;1&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  B</span><br><span class="line">   &#39;&lt;div&gt;3&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  C</span><br><span class="line">   &#39;&lt;div&gt;5&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  D</span><br><span class="line">   &#39;&lt;div&gt;2&lt;&#x2F;div&gt;&#39;  &#x2F;&#x2F; id:  E</span><br><span class="line"> ]</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; 有key的情况，dom节点位置进行了交换，但是内容没有更新</span><br><span class="line"> &#x2F;&#x2F; &lt;div v-for&#x3D;&quot;i in dataList&quot; :key&#x3D;&#39;i&#39;&gt;&#123;&#123; i &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line"> [</span><br><span class="line">   &#39;&lt;div&gt;4&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id： D</span><br><span class="line">   &#39;&lt;div&gt;1&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  A</span><br><span class="line">   &#39;&lt;div&gt;3&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  C</span><br><span class="line">   &#39;&lt;div&gt;5&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  E</span><br><span class="line">   &#39;&lt;div&gt;2&lt;&#x2F;div&gt;&#39;  &#x2F;&#x2F; id:  B</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+<p>增删dataList列表项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vm.dataList &#x3D; [3, 4, 5, 6, 7] &#x2F;&#x2F; 数据进行增删</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 1. 没有key的情况， 节点位置不变，内容也更新了</span><br><span class="line">[</span><br><span class="line">  &#39;&lt;div&gt;3&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id： A</span><br><span class="line">  &#39;&lt;div&gt;4&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  B</span><br><span class="line">  &#39;&lt;div&gt;5&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  C</span><br><span class="line">  &#39;&lt;div&gt;6&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  D</span><br><span class="line">  &#39;&lt;div&gt;7&lt;&#x2F;div&gt;&#39;  &#x2F;&#x2F; id:  E</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2. 有key的情况， 节点删除了 A, B 节点，新增了 F, G 节点</span><br><span class="line">&#x2F;&#x2F; &lt;div v-for&#x3D;&quot;i in dataList&quot; :key&#x3D;&#39;i&#39;&gt;&#123;&#123; i &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">[</span><br><span class="line">  &#39;&lt;div&gt;3&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id： C</span><br><span class="line">  &#39;&lt;div&gt;4&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  D</span><br><span class="line">  &#39;&lt;div&gt;5&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  E</span><br><span class="line">  &#39;&lt;div&gt;6&lt;&#x2F;div&gt;&#39;, &#x2F;&#x2F; id:  F</span><br><span class="line">  &#39;&lt;div&gt;7&lt;&#x2F;div&gt;&#39;  &#x2F;&#x2F; id:  G</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>从以上来看，不带有key，并且使用简单的模板，基于这个前提下，可以更有效的复用节点，diff速度来看也是不带key更加快速的，因为带key在增删节点上有耗时。这就是vue文档所说的默认模式。但是这个并不是key作用，而是没有key的情况下可以对节点就地复用，提高性能。</p>
+<p>这种模式会带来一些隐藏的副作用，比如可能不会产生过渡效果，或者在某些节点有绑定数据（表单）状态，会出现状态错位。VUE文档也说明了 这个默认的模式是高效的，但是只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出</p>
+<p>楼下 @yeild 也提到，在不带key的情况下，对于简单列表页渲染来说diff节点更快是没有错误的。但是这并不是key的作用呀。</p>
+<p>但是key的作用是什么？<br>我重新梳理了一下文字，可能这样子会更好理解一些。</p>
+<p>key是给每一个vnode的唯一id,可以依靠key,更准确, 更快的拿到oldVnode中对应的vnode节点。</p>
+<ol>
+<li><p>更准确<br>因为带key就不是就地复用了，在sameNode函数 a.key === b.key对比中可以避免就地复用的情况。所以会更加准确。</p>
+</li>
+<li><p>更快<br>利用key的唯一性生成map对象来获取对应节点，比遍历方式更快。(这个观点，就是我最初的那个观点。从这个角度看，map会比遍历更快。)</p>
+</li>
+</ol>
+<h4 id="原答案-———————–"><a href="#原答案-———————–" class="headerlink" title="原答案 ———————–"></a>原答案 ———————–</h4><p>vue和react都是采用diff算法来对比新旧虚拟节点，从而更新节点。在vue的diff函数中（建议先了解一下diff算法过程）。<br>在交叉对比中，当新节点跟旧节点头尾交叉对比没有结果时，会根据新节点的key去对比旧节点数组中的key，从而找到相应旧节点（这里对应的是一个key =&gt; index 的map映射）。如果没找到就认为是一个新增节点。而如果没有key，那么就会采用遍历查找的方式去找到对应的旧节点。一种一个map映射，另一种是遍历查找。相比而言。map映射的速度更快。<br>vue部分源码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; vue项目  src&#x2F;core&#x2F;vdom&#x2F;patch.js  -488行</span><br><span class="line">&#x2F;&#x2F; 以下是为了阅读性进行格式化后的代码</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; oldCh 是一个旧虚拟节点数组</span><br><span class="line">if (isUndef(oldKeyToIdx)) &#123;</span><br><span class="line">  oldKeyToIdx &#x3D; createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)</span><br><span class="line">&#125;</span><br><span class="line">if(isDef(newStartVnode.key)) &#123;</span><br><span class="line">  &#x2F;&#x2F; map 方式获取</span><br><span class="line">  idxInOld &#x3D; oldKeyToIdx[newStartVnode.key]</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  &#x2F;&#x2F; 遍历方式获取</span><br><span class="line">  idxInOld &#x3D; findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建map函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function createKeyToOldIdx (children, beginIdx, endIdx) &#123;</span><br><span class="line">  let i, key</span><br><span class="line">  const map &#x3D; &#123;&#125;</span><br><span class="line">  for (i &#x3D; beginIdx; i &lt;&#x3D; endIdx; ++i) &#123;</span><br><span class="line">    key &#x3D; children[i].key</span><br><span class="line">    if (isDef(key)) map[key] &#x3D; i</span><br><span class="line">  &#125;</span><br><span class="line">  return map</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历寻找</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; sameVnode 是对比新旧节点是否相同的函数</span><br><span class="line"> function findIdxInOld (node, oldCh, start, end) &#123;</span><br><span class="line">    for (let i &#x3D; start; i &lt; end; i++) &#123;</span><br><span class="line">      const c &#x3D; oldCh[i]</span><br><span class="line">      </span><br><span class="line">      if (isDef(c) &amp;&amp; sameVnode(node, c)) return i</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>  <a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/1" target="_blank" rel="noopener">写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 面试题</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/9dd65578.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/9dd65578.html" class="post-title-link" itemprop="url">使用hexo创建自己的个人博客</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-27 22:33:02" itemprop="dateCreated datePublished" datetime="2020-07-27T22:33:02+08:00">2020-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>mac电脑可能需要使用sudo权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h2 id="初始化项目，安装依赖"><a href="#初始化项目，安装依赖" class="headerlink" title="初始化项目，安装依赖"></a>初始化项目，安装依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>各类配置项参考<a href="https://hexo.bootcss.com/docs/configuration.html" target="_blank" rel="noopener">hexo中文文档</a></p>
+</blockquote>
+<h2 id="发布到github-pages"><a href="#发布到github-pages" class="headerlink" title="发布到github pages"></a>发布到github pages</h2><ol>
+<li>创建一个github仓库&lt;yourname&gt;.github.com，比如我的lampofaladdin.github.io</li>
+<li>在_config.yml中增加配置项<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> type: git</span><br><span class="line"> repo: &lt;github git地址&gt;</span><br><span class="line"> # 例如git@github.com:lampofaladdin&#x2F;lampofaladdin.github.io.git</span><br></pre></td></tr></table></figure></li>
+<li>发布到github <code>hexo deploy</code></li>
+</ol>
+<h2 id="使用阿里云oss静态页关联自己域名"><a href="#使用阿里云oss静态页关联自己域名" class="headerlink" title="使用阿里云oss静态页关联自己域名"></a>使用阿里云oss静态页关联自己域名</h2><ol>
+<li>创建阿里云Bucket,不开通版本控制，读写为公共读，其他默认</li>
+<li>创建ram用户，给用户oss的控制权限</li>
+<li>创建ram用户的AccessKey，获取到AccessKeyID，AccessKeySecret</li>
+<li>进入bucket,基础设置，静态页面，默认首页为<strong>index.html</strong>,子目录首页开通</li>
+<li>传输管理，绑定你已经购买备案好的域名。</li>
+<li>安装hexo-deployer-ali-oss，<code>npm i hexo-deployer-ali-oss --save</code></li>
+<li>在_config.yml中增加配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: ali-oss</span><br><span class="line">  region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">  accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">  accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">  bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure></li>
+<li><code>npm deploy</code></li>
+</ol>
+<h2 id="同时发布在githubPage-与-阿里云oss"><a href="#同时发布在githubPage-与-阿里云oss" class="headerlink" title="同时发布在githubPage 与 阿里云oss"></a>同时发布在githubPage 与 阿里云oss</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">-  type: git</span><br><span class="line">   repo: &lt;github git地址&gt;</span><br><span class="line">-  type: ali-oss</span><br><span class="line">   region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">   accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">   accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">   bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li>git push的时候depoly</li>
+<li>标签分类怎么做</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="https://hexo.bootcss.com/" target="_blank" rel="noopener">hexo官方文档</a></li>
+<li><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo主题 hexo-theme-next</a></li>
+<li><a href="https://github.com/wertycn/hexo-deployer-ali-oss" target="_blank" rel="noopener">阿里云上传插件 hexo-deployer-ali-oss </a></li>
+<li><a href="https://blog.csdn.net/youlin/article/details/107313287" target="_blank" rel="noopener">在gitpush的时候 depoly</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d89c3838.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/d89c3838.html" class="post-title-link" itemprop="url">20200729题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-27 11:16:10" itemprop="dateCreated datePublished" datetime="2020-07-27T11:16:10+08:00">2020-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="第-160-题：输出以下代码运行结果，为什么？如果希望每隔-1s-输出一个结果，应该如何改造？注意不可改动-square-方法"><a href="#第-160-题：输出以下代码运行结果，为什么？如果希望每隔-1s-输出一个结果，应该如何改造？注意不可改动-square-方法" class="headerlink" title="第 160 题：输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法"></a>第 160 题：输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const list &#x3D; [1, 2, 3]</span><br><span class="line">const square &#x3D; num &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      resolve(num * num)</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function test() &#123;</span><br><span class="line">  list.forEach(async x&#x3D;&gt; &#123;</span><br><span class="line">    const res &#x3D; await square(x)</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
+
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
+<p>因为foreach是并行执行的,并不支持异步，需要改成for或者 for of </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">async function test() &#123;</span><br><span class="line">    for(let i &#x3D; 0 ;i &lt; list.length ; i++)&#123;</span><br><span class="line">        const res &#x3D; await square(list[i])</span><br><span class="line">        console.log(res)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function test() &#123;</span><br><span class="line">    for(let i of list)&#123;</span><br><span class="line">        let res &#x3D; await square(i)</span><br><span class="line">        console.log(res)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/3d2ca5d9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/3d2ca5d9.html" class="post-title-link" itemprop="url">第一天，随便写写</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-27 11:16:10" itemprop="dateCreated datePublished" datetime="2020-07-27T11:16:10+08:00">2020-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="聊聊生活-写写技术"><a href="#聊聊生活-写写技术" class="headerlink" title="聊聊生活,写写技术."></a>聊聊生活,写写技术.</h1><h3 id="欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769"><a href="#欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769" class="headerlink" title="欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769"></a>欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
   </nav>
 
 
@@ -1496,7 +1508,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">100</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1509,7 +1521,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1730,60 +1730,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>测试一下git2-rs 提交</title>
-    <url>/post/d131c0d2.html</url>
-    <content><![CDATA[<p>第一行<br>第二行<br>第三行测试<br>第四行</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>测试一下git2-rs 提交</title>
-    <url>/post/d131c0d2.html</url>
-    <content><![CDATA[<p>第一行<br>第二行<br>第三行测试<br>第四行<br>ok</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>尝试用网页提交内容</title>
-    <url>/post/18ffee74.html</url>
-    <content><![CDATA[<p>尝试用网页提交内容adfadsf&#x20;</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>工程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>测试一下docker提交</title>
-    <url>/post/7564fb17.html</url>
-    <content><![CDATA[<p>测试一下docker 提交</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>测试Dibian bookworm-slim 提交</title>
-    <url>/post/decc5d2a.html</url>
-    <content><![CDATA[<p>测试Dibian bookworm-slim 提交</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>随便写点东西</title>
-    <url>/post/8315a296.html</url>
-    <content><![CDATA[<p>试试这个怎么样？能否正常提交</p>
-]]></content>
-  </entry>
-  <entry>
     <title>特么，又是蛋疼的一天。。</title>
     <url>/post/122ea145.html</url>
     <content><![CDATA[<p>明天还要上班啊，法克。。</p>
@@ -1813,18 +1759,16 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>hello</title>
-    <url>/post/3610a686.html</url>
-    <content><![CDATA[<p>hello</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>hello</title>
-    <url>/post/3610a686.html</url>
-    <content><![CDATA[<p>hello</p>
+    <title>20240527-youtube-dl</title>
+    <url>/post/3dc2f85d.html</url>
+    <content><![CDATA[<h1 id="youtube-dl-最新地址"><a href="#youtube-dl-最新地址" class="headerlink" title="youtube-dl 最新地址"></a>youtube-dl 最新地址</h1><p>因为违反了一些协议，所以不能在官方网站上下载地址，APT还有官网下载的都是老版本，无法使用。</p>
+<p>使用下面的地址</p>
+<p><a href="https://github.com/ytdl-org/ytdl-nightly/releases/" target="_blank" rel="noopener">下载地址</a></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>找到命令行工具 </p>
+<p>就是 youtube-dl</p>
+<p>点击下载</p>
+<p>下载的链接大概是下面这个样子<br> <a href="https://objects.githubusercontent.com/github-production-release-asset-2e65be/661290495/8f2110dc-9005-4c88-8b83-e3950cb32f7f?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=releaseassetproduction%2F20240527%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240527T104040Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=23f814aed43bc16a8799862fba5b299ef1d4aeed29998a94c913be45a4311de8&amp;X-Amz-SignedHeaders=host&amp;actor_id=26974584&amp;key_id=0&amp;repo_id=661290495&amp;response-content-disposition=attachment%3B%20filename%3Dyoutube-dl&amp;response-content-type=application%2Foctet-stream" target="_blank" rel="noopener">https://objects.githubusercontent.com/github-production-release-asset-2e65be/661290495/8f2110dc-9005-4c88-8b83-e3950cb32f7f?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=releaseassetproduction%2F20240527%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240527T104040Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=23f814aed43bc16a8799862fba5b299ef1d4aeed29998a94c913be45a4311de8&amp;X-Amz-SignedHeaders=host&amp;actor_id=26974584&amp;key_id=0&amp;repo_id=661290495&amp;response-content-disposition=attachment%3B%20filename%3Dyoutube-dl&amp;response-content-type=application%2Foctet-stream</a></p>
+<p>sudo curl -L {上面的链接} -o /usr/local/bin/youtube-dl<br>sudo chmod a+rx /usr/local/bin/youtube-dl</p>
 ]]></content>
       <categories>
         <category>开发技术</category>
@@ -1934,14 +1878,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>创建一个队列，把离自己最近的一层放在队列内<br>队列出队，检查当前元素是否符合要求，符合终止查找<br>不符合，把该元素的子集放入队列<br>这样子，只要队列不为空，就能把所有的内容检查一遍，且依照离原点最近的距离检查。</p>
 ]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>230506-demo</title>
-    <url>/post/cf4e4d2a.html</url>
-    <content><![CDATA[]]></content>
       <categories>
         <category>开发技术</category>
       </categories>

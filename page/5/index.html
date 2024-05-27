@@ -218,1106 +218,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/19a67249.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/19a67249.html" class="post-title-link" itemprop="url">20230220-缺失数字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-20 10:58:48" itemprop="dateCreated datePublished" datetime="2023-02-20T10:58:48+08:00">2023-02-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个包含 [0, n]  中  n  个数的数组 nums ，找出 [0, n] 这个范围内没有出现在数组中的那个数。</p>
-<p>示例 1：</p>
-<p>输入：nums = [3,0,1]<br>输出：2<br>解释：n = 3，因为有 3 个数字，所以所有的数字都在范围 [0,3] 内。2 是丢失的数字，因为它没有出现在 nums 中。<br>示例 2：</p>
-<p>输入：nums = [0,1]<br>输出：2<br>解释：n = 2，因为有 2 个数字，所以所有的数字都在范围 [0,2] 内。2 是丢失的数字，因为它没有出现在 nums 中。<br>示例 3：</p>
-<p>输入：nums = [9,6,4,2,3,5,7,0,1]<br>输出：8<br>解释：n = 9，因为有 9 个数字，所以所有的数字都在范围 [0,9] 内。8 是丢失的数字，因为它没有出现在 nums 中。<br>示例 4：</p>
-<p>输入：nums = [0]<br>输出：1<br>解释：n = 1，因为有 1 个数字，所以所有的数字都在范围 [0,1] 内。1 是丢失的数字，因为它没有出现在 nums 中。</p>
-<p>提示：</p>
-<p>n == nums.length<br>1 &lt;= n &lt;= 104<br>0 &lt;= nums[i] &lt;= n<br>nums 中的所有数字都 独一无二</p>
-<p>进阶：你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>看到题目的时候靠直觉去写，就是循环 0-n，然后判断 n 在不在，不在就抛出，循环完后，还没找到，返回数组的长度</p>
-<p>时间复杂度 n^2</p>
-<p>发现可以用等差数列去做，计算等差数列的和，然后去掉数组内的数，最终的结果为缺失的数</p>
-<p>还一个是用异或的方案</p>
-<p>数组的数与0-n的数，全部进行异或，最终的数据为缺失的数</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="自己实现的"><a href="#自己实现的" class="headerlink" title="自己实现的"></a>自己实现的</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">missing_number</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..nums.len() <span class="keyword">as</span> <span class="built_in">i32</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> nums.contains(&amp;i) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        nums.len() <span class="keyword">as</span> <span class="built_in">i32</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="看到别人题解后优化"><a href="#看到别人题解后优化" class="headerlink" title="看到别人题解后优化"></a>看到别人题解后优化</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">missing_number</span></span>(nums: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> num_size: <span class="built_in">i32</span> = nums.len().try_into().unwrap();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> total = (<span class="number">1</span> + num_size) * num_size / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums.iter() &#123;</span><br><span class="line">            total -= i;</span><br><span class="line">        &#125;</span><br><span class="line">        total</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnj4mt/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnj4mt/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/9f15917b.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/9f15917b.html" class="post-title-link" itemprop="url">2023-02-17-xnbcaj</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-17 11:48:33" itemprop="dateCreated datePublished" datetime="2023-02-17T11:48:33+08:00">2023-02-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="有效的括号"><a href="#有效的括号" class="headerlink" title="有效的括号"></a>有效的括号</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’  的字符串 s ，判断字符串是否有效。</p>
-<p>有效字符串需满足：</p>
-<p>左括号必须用相同类型的右括号闭合。<br>左括号必须以正确的顺序闭合。<br>每个右括号都有一个对应的相同类型的左括号。</p>
-<p>示例 1：</p>
-<p>输入：s = “()”<br>输出：true<br>示例  2：</p>
-<p>输入：s = “()[]{}”<br>输出：true<br>示例  3：</p>
-<p>输入：s = “(]”<br>输出：false</p>
-<p>提示：</p>
-<p>1 &lt;= s.length &lt;= 104<br>s 仅由括号 ‘()[]{}’ 组成</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">is_valid</span></span>(s: <span class="built_in">String</span>) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> stack: <span class="built_in">Vec</span>&lt;<span class="built_in">char</span>&gt; = <span class="built_in">Vec</span>::new();</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s.chars() &#123;</span><br><span class="line">            <span class="keyword">if</span> c == <span class="string">'&#123;'</span> &#123;</span><br><span class="line">                stack.push(<span class="string">'&#125;'</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> c == <span class="string">'['</span> &#123;</span><br><span class="line">                stack.push(<span class="string">']'</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> c == <span class="string">'('</span> &#123;</span><br><span class="line">                stack.push(<span class="string">')'</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>(i) = stack.pop() &#123;</span><br><span class="line">                    <span class="keyword">if</span> i == c &#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stack.is_empty()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[allow(dead_code)]</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">is_valid</span></span>(s: <span class="built_in">String</span>) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> res: <span class="built_in">Vec</span>&lt;<span class="built_in">char</span>&gt; = <span class="built_in">Vec</span>::with_capacity(s.len());</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> pre: <span class="built_in">Option</span>&lt;&amp;<span class="built_in">char</span>&gt;;</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s.chars() &#123;</span><br><span class="line">            pre = res.last();</span><br><span class="line">            <span class="keyword">match</span> (pre, c) &#123;</span><br><span class="line">                (<span class="literal">Some</span>(<span class="string">'&#123;'</span>), <span class="string">'&#125;'</span>) | (<span class="literal">Some</span>(<span class="string">'['</span>), <span class="string">']'</span>) | (<span class="literal">Some</span>(<span class="string">'('</span>), <span class="string">')'</span>) =&gt; &#123;</span><br><span class="line">                    res.pop();</span><br><span class="line">                &#125;</span><br><span class="line">                _ =&gt; res.push(c),</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        res.is_empty()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>原本也没啥思路，就想着怎么处理字符串</p>
-<p>然后发现解答里面有关于栈的问题，看了别人的解体思路后，比较明朗</p>
-<p>匹配到左括号，向栈推入右括号</p>
-<p>如果匹配到右括号，就把栈顶的括号推出，判断是不是为当前的右括号，如果是，代表括号闭合，如果不是，直接失败</p>
-<p>匹配到右括号空栈也直接失败</p>
-<p>最后判断栈的长度是不是为 0，如果为 0，代表完全匹配</p>
-<p>emm</p>
-<p>示例的代码写的比较精简，感觉可以复现一次</p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnbcaj/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnbcaj/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/2f2f6d21.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/2f2f6d21.html" class="post-title-link" itemprop="url">csapp-p-26-2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 23:54:13" itemprop="dateCreated datePublished" datetime="2023-02-16T23:54:13+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <table>
-<thead>
-<tr>
-<th>n</th>
-<th>2^n 十进制</th>
-<th>2^n 十六进制</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>9</td>
-<td>512</td>
-<td>0x200</td>
-</tr>
-<tr>
-<td>19</td>
-<td>524288</td>
-<td>0x80000</td>
-</tr>
-<tr>
-<td>14</td>
-<td>16384</td>
-<td>0x4000</td>
-</tr>
-<tr>
-<td>16</td>
-<td>65535</td>
-<td>0x10000</td>
-</tr>
-<tr>
-<td>17</td>
-<td>131070</td>
-<td>0x20000</td>
-</tr>
-<tr>
-<td>5</td>
-<td>32</td>
-<td>0x20</td>
-</tr>
-<tr>
-<td>7</td>
-<td>128</td>
-<td>0x80</td>
-</tr>
-</tbody></table>
-<p>卧槽，算错那么多</p>
-<table>
-<thead>
-<tr>
-<th>十进制</th>
-<th>二进制</th>
-<th>十六进制</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0</td>
-<td>0000 0000</td>
-<td>0x00</td>
-</tr>
-<tr>
-<td>167</td>
-<td>1010 0111</td>
-<td>0xA7</td>
-</tr>
-<tr>
-<td>62</td>
-<td>0011 1110</td>
-<td>0x3E</td>
-</tr>
-<tr>
-<td>188</td>
-<td>10111100</td>
-<td>0xBC</td>
-</tr>
-<tr>
-<td>55</td>
-<td>00110111</td>
-<td>0x37</td>
-</tr>
-<tr>
-<td>136</td>
-<td>10001000</td>
-<td>0x88</td>
-</tr>
-<tr>
-<td>243</td>
-<td>11110011</td>
-<td>0xF3</td>
-</tr>
-<tr>
-<td>82</td>
-<td>01010010</td>
-<td>0x52</td>
-</tr>
-<tr>
-<td>172</td>
-<td>10101100</td>
-<td>0xAC</td>
-</tr>
-<tr>
-<td>231</td>
-<td>11100111</td>
-<td>0xE7</td>
-</tr>
-</tbody></table>
-<p>草，还是得用计算器？？？？</p>
-<ul>
-<li>0x503c + 0x8 = 0x5044</li>
-<li>0x503c - 0x40 = <del>0x50FC</del>(0x4FFC)</li>
-<li>0x503c + 64 = 0x507c</li>
-<li>0x50ea - 0x503c = <del>0x50Ae</del>(0xAE)</li>
-</ul>
-<p>别做卷子了，废物，这都能错俩，还特么检查，你有脸检查？？？</p>
-<p>完了，还是那么粗心。。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/b6263c9b.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/b6263c9b.html" class="post-title-link" itemprop="url">csapp-p-26-1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 01:55:23" itemprop="dateCreated datePublished" datetime="2023-02-16T01:55:23+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="p-26-1"><a href="#p-26-1" class="headerlink" title="p-26-1"></a>p-26-1</h2><h3 id="将-0x39A7F8-转换为二进制"><a href="#将-0x39A7F8-转换为二进制" class="headerlink" title="将 0x39A7F8 转换为二进制"></a>将 0x39A7F8 转换为二进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>3</td>
-<td>0011</td>
-</tr>
-<tr>
-<td>9</td>
-<td>1001</td>
-</tr>
-<tr>
-<td>A</td>
-<td>1010</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>F</td>
-<td>1111</td>
-</tr>
-<tr>
-<td>8</td>
-<td>1000</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>001110011010011111111000</p>
-</blockquote>
-<h3 id="将二进制-1100100101111011-转化为十六进制"><a href="#将二进制-1100100101111011-转化为十六进制" class="headerlink" title="将二进制 1100100101111011 转化为十六进制"></a>将二进制 1100100101111011 转化为十六进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>C</td>
-<td>1100</td>
-</tr>
-<tr>
-<td>9</td>
-<td>1001</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>B</td>
-<td>1011</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>0xC97b</p>
-</blockquote>
-<h3 id="将-0xD5E4C-转换为二进制"><a href="#将-0xD5E4C-转换为二进制" class="headerlink" title="将 0xD5E4C 转换为二进制"></a>将 0xD5E4C 转换为二进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>D</td>
-<td>1101</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0101</td>
-</tr>
-<tr>
-<td>E</td>
-<td>1110</td>
-</tr>
-<tr>
-<td>4</td>
-<td>0100</td>
-</tr>
-<tr>
-<td>C</td>
-<td>1100</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>11010101111001001011</p>
-</blockquote>
-<h3 id="将-1001101110011110110101-转化为十六进制"><a href="#将-1001101110011110110101-转化为十六进制" class="headerlink" title="将 1001101110011110110101 转化为十六进制"></a>将 1001101110011110110101 转化为十六进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2</td>
-<td>0010</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0110</td>
-</tr>
-<tr>
-<td>E</td>
-<td>1110</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>B</td>
-<td>1011</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0101</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>0x26e7B5</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/csapp/" rel="tag"><i class="fa fa-tag"></i> csapp</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/8696aaa8.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/8696aaa8.html" class="post-title-link" itemprop="url">20221104-积分设计</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-04 18:53:47" itemprop="dateCreated datePublished" datetime="2022-11-04T18:53:47+08:00">2022-11-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="积分表结构设计"><a href="#积分表结构设计" class="headerlink" title="积分表结构设计"></a>积分表结构设计</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
-<li>记录积分行为来源</li>
-<li>允许撤销用户积分</li>
-<li>个人中心有展示总积分</li>
-<li>未来积分可以兑换商品</li>
-<li>未来积分逐条过期机制</li>
-</ul>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="记录积分行为来源"><a href="#记录积分行为来源" class="headerlink" title="记录积分行为来源"></a>记录积分行为来源</h3><ul>
-<li>需要增加行为枚举类，并且记录该行为对应的表主键，比如发帖需要对应发帖的内容 id</li>
-<li>行为增加的分数，考虑到变动很少，可以放在代码中。如果后期确认该需求经常变动，需要建立对应的表结构，映射该枚举数据</li>
-</ul>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 积分枚举</span></span><br><span class="line"><span class="keyword">enum</span> ScoreSourceTypeEnum &#123;</span><br><span class="line">  LIKE = <span class="number">1</span>,</span><br><span class="line">  COMMENT = <span class="number">2</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 积分对应分数</span></span><br><span class="line"><span class="keyword">const</span> ScoreSourceTypeMap = <span class="keyword">new</span> Map(&#123;</span><br><span class="line">  [ScoreSourceTypeEnum.LIKE]: &#123; score: <span class="number">5</span>, title: <span class="string">"点赞"</span> &#125;,</span><br><span class="line">  [ScoreSourceTypeEnum.COMMENT]: &#123; score: <span class="number">10</span>, title: <span class="string">"评论"</span> &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="允许撤销用户积分"><a href="#允许撤销用户积分" class="headerlink" title="允许撤销用户积分"></a>允许撤销用户积分</h3><ul>
-<li>撤销用户积分不能修改原始数据，应增加一条新纪录记录该行为，积分记录表允许负值或新建一个表记录数据(先采用允许负值方案)</li>
-<li>撤销用户积分需要增加操作人，撤销的原因两个字段</li>
-<li>增加一个撤销用户积分的行为，行为对应的主键为对应的积分记录 ID</li>
-</ul>
-<h3 id="积分逐条过期机制"><a href="#积分逐条过期机制" class="headerlink" title="积分逐条过期机制"></a>积分逐条过期机制</h3><ul>
-<li>积分记录表增加剩余积分字段，默认等于当前积分</li>
-<li>用户消费积分时，判断剩余积分字段相加是否满足需求，如果满足，按时间倒序挨个去扣除剩余积分字段，直到扣除完毕</li>
-<li>统计用户积分时，SUM（剩余积分）</li>
-<li>每天跑一次定时任务，每次用户积分过期，剩余积分字段设置为 0</li>
-</ul>
-<h3 id="个人中心展示总积分"><a href="#个人中心展示总积分" class="headerlink" title="个人中心展示总积分"></a>个人中心展示总积分</h3><ul>
-<li>每次查询用户的积分数据，都需要 sum 方法，如果数据量多，性能会比较差</li>
-<li>是否需要直接统计用户的积分，每次插入或删除去修改该数据</li>
-<li>如果需要用户总积分，应独立于用户模块，新建一张表，统计用户总积分，以及用户积分相关数据</li>
-</ul>
-<h3 id="未来积分可以兑换商品"><a href="#未来积分可以兑换商品" class="headerlink" title="未来积分可以兑换商品"></a>未来积分可以兑换商品</h3><ul>
-<li>积分记录表增加商品兑换的行为，并记录订单 id</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li>并发问题（如果用户同时访问数据，一边增加一边消费，是否需要在数据库加锁，或使用单个消息队列来实现）</li>
-<li>积分异常（如果突然出现大批量积分发放，每天应有积分监控功能，每日发放积分、扣减积分，总积分数据）</li>
-</ul>
-<h2 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h2><h3 id="用户积分记录表"><a href="#用户积分记录表" class="headerlink" title="用户积分记录表"></a>用户积分记录表</h3><table>
-<thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>id</td>
-<td>primary key</td>
-<td>主键</td>
-</tr>
-<tr>
-<td>uid</td>
-<td>bigint</td>
-<td>用户 id</td>
-</tr>
-<tr>
-<td>source_type</td>
-<td>tinyint</td>
-<td>积分来源类型</td>
-</tr>
-<tr>
-<td>source_id</td>
-<td>int</td>
-<td>积分来源 id</td>
-</tr>
-<tr>
-<td>socre</td>
-<td>int</td>
-<td>分值</td>
-</tr>
-<tr>
-<td>rest_score</td>
-<td>datetime</td>
-<td>剩余积分</td>
-</tr>
-<tr>
-<td>action_uid</td>
-<td>bigint</td>
-<td>操作人</td>
-</tr>
-<tr>
-<td>reason</td>
-<td>varchar</td>
-<td>原因</td>
-</tr>
-<tr>
-<td>exprie_time</td>
-<td>datetime</td>
-<td>过期时间</td>
-</tr>
-<tr>
-<td>create_time</td>
-<td>datetime</td>
-<td>创建时间</td>
-</tr>
-<tr>
-<td>update_time</td>
-<td>datetime</td>
-<td>更新时间</td>
-</tr>
-<tr>
-<td>delete_time</td>
-<td>datetime</td>
-<td>删除时间</td>
-</tr>
-</tbody></table>
-<h3 id="用户积分表-暂时不使用，数据库无法支撑再考虑"><a href="#用户积分表-暂时不使用，数据库无法支撑再考虑" class="headerlink" title="用户积分表(暂时不使用，数据库无法支撑再考虑)"></a>用户积分表(暂时不使用，数据库无法支撑再考虑)</h3><table>
-<thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>id</td>
-<td>primary key</td>
-<td>主键</td>
-</tr>
-<tr>
-<td>uid</td>
-<td>bigint</td>
-<td>用户 id</td>
-</tr>
-<tr>
-<td>socre</td>
-<td>int</td>
-<td>分值</td>
-</tr>
-<tr>
-<td>create_time</td>
-<td>datetime</td>
-<td>创建时间</td>
-</tr>
-<tr>
-<td>update_time</td>
-<td>datetime</td>
-<td>更新时间</td>
-</tr>
-<tr>
-<td>delete_time</td>
-<td>datetime</td>
-<td>删除时间</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%A7%AF%E5%88%86/" rel="tag"><i class="fa fa-tag"></i> 积分</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/64e8dabe.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/64e8dabe.html" class="post-title-link" itemprop="url">20221015</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-15 23:24:48" itemprop="dateCreated datePublished" datetime="2022-10-15T23:24:48+08:00">2022-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>不知道应该写点什么。</p>
-<p>想到哪 写到哪吧。</p>
-<p>都会有一段令人铭记在心的记忆，随着时间的流逝，逐渐变淡</p>
-<p>已经感觉到了</p>
-<p>最开始</p>
-<p>后来</p>
-<p>现在</p>
-<p>嗯，这种情况也许不会持续很久。</p>
-<p>也许到了说再见的时候</p>
-<p>不知道是不是最坏的结果</p>
-<p>但应该不是最好的</p>
-<p>但</p>
-<p>总是有些东西，在夜深人静的时候会想起来</p>
-<p>想起来 就一阵难过</p>
-<p>为什么当时热恋的两个人</p>
-<p>到现在</p>
-<p>em，可能分离两地的结果就是这样子吧</p>
-<p>自己也没想着尝试改变什么</p>
-<p>按班就不</p>
-<p>一步步走到那个阶段</p>
-<p>是你自己选择的</p>
-<p>不应该埋怨什么</p>
-<p>你当时做这件事情的时候 已经预见到了结果</p>
-<p>这不是如你所愿</p>
-<p>感性吗</p>
-<p>不应该</p>
-<p>应该是活该</p>
-<p>晚上总是瞎J8想</p>
-<p>就这吧</p>
-<p>还有吗</p>
-<p>木有了，就这。</p>
-<p>希望她有更好的生活</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/ac0ffb95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/ac0ffb95.html" class="post-title-link" itemprop="url">20220925-router</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-25 11:55:37" itemprop="dateCreated datePublished" datetime="2022-09-25T11:55:37+08:00">2022-09-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="路由器梅林clash下载地址"><a href="#路由器梅林clash下载地址" class="headerlink" title="路由器梅林clash下载地址"></a>路由器梅林clash下载地址</h2><p><a href="https://github.com/zusterben/plan_c" target="_blank" rel="noopener">https://github.com/zusterben/plan_c</a></p>
-<h2 id="路由器关闭关键字检测"><a href="#路由器关闭关键字检测" class="headerlink" title="路由器关闭关键字检测"></a>路由器关闭关键字检测</h2><p>sed -i ‘s/\tdetect_package/\t# detect_package/g’ /jffs/softcenter/scripts/ks_tar_install.sh</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/4c254c82.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/4c254c82.html" class="post-title-link" itemprop="url">20220919服务进程停止原因</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-19 10:44:20" itemprop="dateCreated datePublished" datetime="2022-09-19T10:44:20+08:00">2022-09-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>原来服务是稳定运行的，加了一个子进程功能后，服务器经常无法访问。</p>
-<h3 id="具体情况"><a href="#具体情况" class="headerlink" title="具体情况"></a>具体情况</h3><ul>
-<li>除代码直接返回数据的接口，其他涉及到数据库 IO 的接口都无法访问</li>
-<li>内存占用正常</li>
-<li>CPU 占用正常(待定)</li>
-<li>抽风时间不固定</li>
-<li>同一套数据库，其他接口服务正常</li>
-<li></li>
-</ul>
-<h2 id="可能性猜测"><a href="#可能性猜测" class="headerlink" title="可能性猜测"></a>可能性猜测</h2><ul>
-<li>数据库连接池有问题</li>
-<li>子进程调用方式有问题</li>
-<li>定时任务有问题</li>
-</ul>
-<h2 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h2><h3 id="排查日志记录，确定抽风是不是有固定的模式，业务。"><a href="#排查日志记录，确定抽风是不是有固定的模式，业务。" class="headerlink" title="排查日志记录，确定抽风是不是有固定的模式，业务。"></a>排查日志记录，确定抽风是不是有固定的模式，业务。</h3><ul>
-<li>最近一次 2022-09-19 07:00:00.0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">85 [info] 2022-09-19 02:14:02.6 [ApiInterceptor] 126ms 61.165.44.200: 1184582: GET: &#x2F;api&#x2F;video: &#123;&quot;current&quot;:&quot;1&quot;,&quot;pageSize&quot;:&quot;20&quot;,&quot;orderBy&quot;:&quot;id&quot;,&quot;order&quot;:&quot;DESC&quot;,&quot;isProfessional&quot;:&quot;true&quot;,&quot;isFake&quot;:&quot;false&quot;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (K    HTML, like Gecko) Chrome&#x2F;104.0.0.0 Safari&#x2F;537.36</span><br><span class="line">86 [info] 2022-09-19 07:00:00.0 [DayReportCron] 数据日报开始发送，是否是生产环境：true</span><br><span class="line">87 [info] 2022-09-19 07:47:13.10 [ApiInterceptor] 30ms 180.162.130.187: -: GET: &#x2F;api&#x2F;sms: &#123;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;104.0.0.0 Safari&#x2F;537.36</span><br><span class="line">88 [info] 2022-09-19 07:47:19.3 [ApiInterceptor] 24ms 180.162.130.187: -: GET: &#x2F;api&#x2F;sms: &#123;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;104.0.0.0 Safari&#x2F;537.36</span><br><span class="line">89 [info] 2022-09-19 07:47:25.6 [ApiInterceptor] 22ms 180.162.130.187: -: GET: &#x2F;api&#x2F;sms: &#123;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;104.0.0.0 Safari&#x2F;537.36</span><br><span class="line">90 [info] 2022-09-19 09:47:21.8 [NestFactory] Starting Nest application...</span><br></pre></td></tr></table></figure></li>
-<li>倒第二次 2022-09-18 04:00:00.0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">328 [info] 2022-09-18 03:30:02.0 [KeywordMonitorCommunityCron] 收到close事件，子进程收到信号 256120</span><br><span class="line">329 [info] 2022-09-18 04:00:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">330 [info] 2022-09-18 04:30:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">331 [info] 2022-09-18 05:00:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">332 [info] 2022-09-18 05:30:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">333 [info] 2022-09-18 06:00:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">334 [info] 2022-09-18 06:30:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">335 [info] 2022-09-18 07:00:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">336 [info] 2022-09-18 07:00:00.0 [DayReportCron] 数据日报开始发送，是否是生产环境：true</span><br><span class="line">337 [info] 2022-09-18 07:30:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">338 [info] 2022-09-18 08:00:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">339 [info] 2022-09-18 08:30:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">340 [info] 2022-09-18 09:00:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">341 [info] 2022-09-18 09:30:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">342 [info] 2022-09-18 10:00:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">343 [warn] 2022-09-18 10:04:53.5 [exceptionLogger] ::ffff:127.0.0.1: -: GET: &#x2F;: &#123;&#125; A0002: 用户未登录</span><br><span class="line">344 [warn] 2022-09-18 10:05:36.3 [exceptionLogger] ::ffff:127.0.0.1: -: GET: &#x2F;: &#123;&#125; A0002: 用户未登录</span><br><span class="line">345 [info] 2022-09-18 10:05:43.10 [ApiInterceptor] 27ms 117.143.104.164: -: GET: &#x2F;api&#x2F;sms: &#123;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;104.0.0.0 Safari&#x2F;537.36</span><br><span class="line">346 [info] 2022-09-18 10:07:57.10 [ApiInterceptor] 30ms 117.143.104.164: -: GET: &#x2F;api&#x2F;sms: &#123;&#125;: Mozilla&#x2F;5.0 (Linux; Android 6.0; Nexus 5 Build&#x2F;MRA58N) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;104.0.0.0 Mobile Safari&#x2F;537.36</span><br><span class="line">347 [info] 2022-09-18 10:10:14.10 [ApiInterceptor] 31ms 117.143.104.164: -: GET: &#x2F;api&#x2F;sms: &#123;&#125;: Mozilla&#x2F;5.0 (Linux; Android 6.0; Nexus 5 Build&#x2F;MRA58N) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;104.0.0.0 Mobile Safari&#x2F;537.36</span><br><span class="line">348 [info] 2022-09-18 10:11:53.2 [ApiInterceptor] 0ms 117.143.104.164: -: GET: &#x2F;api: &#123;&#125;: apifox&#x2F;1.0.0 (https:&#x2F;&#x2F;www.apifox.cn)</span><br><span class="line">349 [warn] 2022-09-18 10:12:28.2 [exceptionLogger] ::1: 1288925: PATCH: &#x2F;api&#x2F;configuration&#x2F;fake-user: &#123;&#125; A0001: 请求参数错误：fakeUsers must be an array</span><br><span class="line">350 [info] 2022-09-18 10:14:21.3 [ApiInterceptor] 0ms 117.143.104.164: -: GET: &#x2F;api: &#123;&#125;: apifox&#x2F;1.0.0 (https:&#x2F;&#x2F;www.apifox.cn)</span><br><span class="line">351 [info] 2022-09-18 10:14:22.7 [ApiInterceptor] 0ms 117.143.104.164: -: GET: &#x2F;api: &#123;&#125;: apifox&#x2F;1.0.0 (https:&#x2F;&#x2F;www.apifox.cn)</span><br><span class="line">352 [info] 2022-09-18 10:14:23.6 [ApiInterceptor] 0ms 117.143.104.164: -: GET: &#x2F;api: &#123;&#125;: apifox&#x2F;1.0.0 (https:&#x2F;&#x2F;www.apifox.cn)</span><br><span class="line">353 [info] 2022-09-18 10:14:24.4 [ApiInterceptor] 1ms 117.143.104.164: -: GET: &#x2F;api: &#123;&#125;: apifox&#x2F;1.0.0 (https:&#x2F;&#x2F;www.apifox.cn)</span><br><span class="line">354 [info] 2022-09-18 10:16:33.2 [ApiInterceptor] 26ms 117.143.104.164: -: GET: &#x2F;api&#x2F;sms: &#123;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;104.0.0.0 Safari&#x2F;537.36</span><br><span class="line">355 [info] 2022-09-18 10:30:00.0 [KeywordMonitorCommunityCron] 社群关键字开始运行</span><br><span class="line">356 [info] 2022-09-18 10:37:32.3 [NestFactory] Starting Nest application...</span><br></pre></td></tr></table></figure></li>
-<li>倒第三次 2022-09-17 03:30:02.1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">94 [info] 2022-09-17 03:30:02.1 [KeywordMonitorCommunityCron] 收到close事件，子进程收到信号 145279</span><br><span class="line">95 [info] 2022-09-17 03:35:45.7 [ApiInterceptor] 160ms 61.173.30.240: 1221394: GET: &#x2F;api&#x2F;oss&#x2F;sts: &#123;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;105.0.0.0 Safari&#x2F;537.36</span><br><span class="line">96 [info] 2022-09-17 03:45:34.8 [ApiInterceptor] 141ms 61.173.30.240: 1221394: GET: &#x2F;api&#x2F;oss&#x2F;sts: &#123;&#125;: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;105.0.0.0 Safari&#x2F;537.36</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="日志没有特征，确认是否是定时任务-bug"><a href="#日志没有特征，确认是否是定时任务-bug" class="headerlink" title="日志没有特征，确认是否是定时任务 bug"></a>日志没有特征，确认是否是定时任务 bug</h3><p>没有发现问题</p>
-<h3 id="暂时定为是数据库连接池问题"><a href="#暂时定为是数据库连接池问题" class="headerlink" title="暂时定为是数据库连接池问题"></a>暂时定为是数据库连接池问题</h3><p>确认连接池问题</p>
-<h3 id="确认是否是连接池问题"><a href="#确认是否是连接池问题" class="headerlink" title="确认是否是连接池问题"></a>确认是否是连接池问题</h3><p>有一段代码循环使用 sql，导致连接池被用尽。</p>
-<h3 id="尝试复现-BUG"><a href="#尝试复现-BUG" class="headerlink" title="尝试复现 BUG"></a>尝试复现 BUG</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = <span class="keyword">await</span> PromiseTools.queue(list, <span class="keyword">async</span> (item) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> count = <span class="keyword">await</span> <span class="keyword">this</span>.labelCategoryDao.findV2LabelCount(item?.id);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    ...item,</span><br><span class="line">    count,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果 list 过多，会导致连接池全部使用完，无法释放。<br>PromiseTools.queue 代码逻辑有问题</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">async</span> queue&lt;T, K&gt;<span class="function">(<span class="params">dataList: T[], callBack: (<span class="params">item: T, index: <span class="built_in">number</span></span>) =&gt; <span class="built_in">Promise</span>&lt;K&gt; | K, spliceLength = 5</span>): <span class="params">Promise</span>&lt;<span class="params">K</span>[]&gt; &#123;</span></span><br><span class="line"><span class="function">  <span class="params">if</span> (<span class="params">!dataList?.length</span>) &#123;</span></span><br><span class="line"><span class="function">    <span class="params">return</span> [];</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="params">const</span> <span class="params">promiseList</span>: <span class="params">Array</span>&lt;<span class="params">Promise</span>&lt;<span class="params">K</span>&gt; | <span class="params">K</span>&gt; = [];</span></span><br><span class="line"><span class="function">  <span class="params">const</span> <span class="params">list</span>: <span class="params">K</span>[] = [];</span></span><br><span class="line"><span class="function">  <span class="params">for</span> (<span class="params"><span class="keyword">let</span> i = 0; i &lt; dataList.length; i++</span>) &#123;</span></span><br><span class="line"><span class="function">    <span class="params">promiseList</span>.<span class="params">push</span>(<span class="params">callBack(<span class="params">dataList[i], i</span>)</span>);</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="params">while</span> (<span class="params">promiseList.length</span>) &#123;</span></span><br><span class="line"><span class="function">    <span class="params">list</span>.<span class="params">push</span>(<span class="params">...(<span class="params"><span class="keyword">await</span> <span class="built_in">Promise</span>.all(<span class="params">promiseList.splice(<span class="params">0, spliceLength</span>)</span>)</span>)</span>);</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="params">return</span> <span class="params">list</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>尝试优化代码</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">async</span> queue&lt;T, K&gt;<span class="function">(<span class="params">dataList: T[], callBack: (<span class="params">item: T, index: <span class="built_in">number</span></span>) =&gt; <span class="built_in">Promise</span>&lt;K&gt; | K, spliceLength = 5</span>): <span class="params">Promise</span>&lt;<span class="params">K</span>[]&gt; &#123;</span></span><br><span class="line"><span class="function">  <span class="params">if</span> (<span class="params">!dataList?.length</span>) &#123;</span></span><br><span class="line"><span class="function">    <span class="params">return</span> [];</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="params">const</span> <span class="params">list</span>: <span class="params">K</span>[] = [];</span></span><br><span class="line"><span class="function">  <span class="params">for</span> (<span class="params"><span class="keyword">let</span> i = 0; i &lt; dataList.length; i += spliceLength</span>) &#123;</span></span><br><span class="line"><span class="function">    <span class="params">const</span> <span class="params">step</span> = <span class="params">i</span> + <span class="params">spliceLength</span> &lt; <span class="params">dataList</span>.<span class="params">length</span> ? <span class="params">spliceLength</span> : <span class="params">dataList</span>.<span class="params">length</span> - <span class="params">i</span>;</span></span><br><span class="line"><span class="function">    <span class="params">const</span> <span class="params">promiseList</span> = <span class="params">new</span> <span class="params">Array</span>(<span class="params">step</span>).<span class="params">fill</span>(<span class="params">0</span>).<span class="params">map</span>(<span class="params">(<span class="params">_, index</span>) =&gt; callBack(<span class="params">dataList[i + index], i + index</span>)</span>);</span></span><br><span class="line"><span class="function">    <span class="params">const</span> <span class="params">result</span> = <span class="params">await</span> <span class="params">Promise</span>.<span class="params">all</span>(<span class="params">promiseList</span>);</span></span><br><span class="line"><span class="function">    <span class="params">list</span>.<span class="params">push</span>(<span class="params">...result</span>);</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="params">return</span> <span class="params">list</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6c526d3e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1349,7 +249,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1482,7 +382,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-16 04:16:25" itemprop="dateModified" datetime="2024-05-16T04:16:25+08:00">2024-05-16</time>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1565,10 +465,843 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1dfaf386.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1dfaf386.html" class="post-title-link" itemprop="url">20220627</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-27 10:53:06" itemprop="dateCreated datePublished" datetime="2022-06-27T10:53:06+08:00">2022-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h1><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串  “”。</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：strs = [“flower”,”flow”,”flight”]</p>
+<p>输出：”fl”</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：strs = [“dog”,”racecar”,”car”]</p>
+<p>输出：””</p>
+<p>解释：输入不存在公共前缀。</p>
+</blockquote>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= strs.length &lt;= 200</li>
+<li>0 &lt;= strs[i].length &lt;= 200</li>
+<li>strs[i] 仅由小写英文字母组成</li>
+</ul>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">longest_common_prefix</span></span>(strs: <span class="built_in">Vec</span>&lt;<span class="built_in">String</span>&gt;) -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut</span> result = <span class="built_in">String</span>::from(<span class="string">""</span>);</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut</span> index = <span class="number">0</span>;</span><br><span class="line">            <span class="symbol">'looper</span>: <span class="keyword">loop</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> <span class="keyword">mut</span> _temp = <span class="string">""</span>;</span><br><span class="line">                <span class="keyword">for</span> <span class="built_in">str</span> <span class="keyword">in</span> &amp;strs &#123;</span><br><span class="line">                    <span class="keyword">if</span> <span class="built_in">str</span>.len() == <span class="number">0</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> index &gt;= <span class="built_in">str</span>.len() &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">let</span> c_val = &amp;<span class="built_in">str</span>[index..index + <span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> c_val == <span class="string">""</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> _temp == <span class="string">""</span> &#123;</span><br><span class="line">                        _temp = c_val;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> _temp != c_val &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    _temp = c_val;</span><br><span class="line">                &#125;</span><br><span class="line">                result.push_str(&amp;strs.get(<span class="number">0</span>).unwrap()[index..index + <span class="number">1</span>]);</span><br><span class="line">                index += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            result</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><ul>
+<li>找出所有字符串的第{index}个元素，判断是否全部相等。</li>
+<li>如果相等放入结果中，继续循环</li>
+<li>不相等跳出外层循环，返回结果</li>
+<li>0ms，2.1mb</li>
+</ul>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnmav1/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnmav1/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6570235f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/6570235f.html" class="post-title-link" itemprop="url">20220622 JS中数据结构的一些想法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 10:59:38" itemprop="dateCreated datePublished" datetime="2022-06-22T10:59:38+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS-中的数据结构"><a href="#JS-中的数据结构" class="headerlink" title="JS 中的数据结构"></a>JS 中的数据结构</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>原型方法较多，可以比较方便的实现各种功能</li>
+<li>JSON 支持</li>
+<li>相比 java，数组的长度不是固定的，不存在越界问题</li>
+<li>兼容性好</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>没有获取到索引的情况下，查询效率相对低，时间复杂度为 O(n)</li>
+<li>插入数据效率低O(n)</li>
+<li>删除数据效率O(n)</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>绝大部分数据处理</li>
+<li>JSON 支持，可以直接在接口中返回</li>
+<li>前端列表渲染</li>
+</ul>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>兼容性好</li>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>JSON 支持</li>
+<li>相对 Map 可以继承原型链上的属性</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>相对 MAP 键值只能是 string</li>
+<li>相对 MAP 顺序不确定</li>
+<li>相对 MAP 没有迭代属性</li>
+</ul>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>通用场景</li>
+<li>需要一个固定 key 来做区分数据内容</li>
+</ul>
+<h2 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h2><h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>相对对象这种结构，数据更清晰，效率更高</li>
+<li>相对 OBJECT，语义化更好，支持功能多</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>原型方法没有数组多</li>
+<li>JSON 不支持，如果作为接口数据返回，需要重新转换为数组或对象</li>
+</ul>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>需要一个固定格式的 key value</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>插入性能比数组高 O(1)</li>
+<li>删除性能比数组高 O(1)</li>
+</ul>
+<h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>索引效率低 O(n)</li>
+<li>原生不支持，需要自己实现链表结构</li>
+</ul>
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>动态插入与删除比较多的场景</li>
+</ul>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进后出</li>
+<li>JS 执行顺序</li>
+</ul>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进先出</li>
+<li>排队场景</li>
+<li>性能瓶颈的时候，使用队列，排队处理数据</li>
+</ul>
+<h2 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h2><h3 id="应用场景-6"><a href="#应用场景-6" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>打标签的场景</li>
+</ul>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="应用场景-7"><a href="#应用场景-7" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>DOM 树、CSS 树</li>
+<li>多层JSON</li>
+<li>级联菜单</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c1c2f028.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/c1c2f028.html" class="post-title-link" itemprop="url">20220605</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-05 20:02:58" itemprop="dateCreated datePublished" datetime="2022-06-05T20:02:58+08:00">2022-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>尝试着去分享更多的东西</p>
+<p>起码留下点什么</p>
+<p>加油</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/56e1d812.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/56e1d812.html" class="post-title-link" itemprop="url">20220427-daily</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-27 20:47:54" itemprop="dateCreated datePublished" datetime="2022-04-27T20:47:54+08:00">2022-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>为众人抱薪者，不可使其冻毙于风雪；</p>
+<p>为大众谋福利者，不可使其孤军奋战；</p>
+<p>为自由开路者，不可使其困顿于荆棘。</p>
+<p>如果天空是黑暗的，那就摸黑生存；如果发出声音是危险的，那就保持沉默；如果自觉无力发光，那就蜷伏于墙角。但是，不要习惯了黑暗就为黑暗辩护，也不要为自己的苟且而得意，不要嘲讽那些比自己更勇敢的人。我们可以卑微如尘土，但不可扭曲如蛆虫</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/5fc2094e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/5fc2094e.html" class="post-title-link" itemprop="url">20220206</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-06 02:07:55" itemprop="dateCreated datePublished" datetime="2022-02-06T02:07:55+08:00">2022-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原来，有你陪着已经这么开心<br>房间里，没有你，这么空旷<br>一边流泪，一边收拾衣服的感觉确实不好<br>有点怀疑，自己为什么会劝你回到哪里<br>我果然是个傻逼</p>
+<p>一直在身边的，才是最容易被忽视的。<br>有一天突然不见了。<br>原来是这么难受。</p>
+<p>嗯。</p>
+<p>有些不知所措</p>
+<p>跟自己想的那种情况 不太一样</p>
+<p>哭成了傻逼</p>
+<p>我以为我能很平静的接受这件事</p>
+<p>回到家里，看着熟悉的房间，总是感觉她在那里</p>
+<p>还没有离开</p>
+<p>一边写 一边哭</p>
+<p>不写了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e5758cc4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/e5758cc4.html" class="post-title-link" itemprop="url">20211230题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-30 12:07:33" itemprop="dateCreated datePublished" datetime="2021-12-30T12:07:33+08:00">2021-12-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="外观数列"><a href="#外观数列" class="headerlink" title="外观数列"></a>外观数列</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个正整数 n ，输出外观数列的第 n 项。</p>
+<p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。</p>
+<p>你可以将其视作是由递归公式定义的数字字符串序列：</p>
+<ul>
+<li>countAndSay(1) = “1”</li>
+<li>countAndSay(n) 是对 countAndSay(n-1) 的描述，然后转换成另一个数字字符串。<br>前五项如下：<blockquote>
+<ol>
+<li>1</li>
+<li>11</li>
+<li>21</li>
+<li>1211</li>
+<li>111221</li>
+</ol>
+<p>第一项是数字 1 </p>
+<p>描述前一项，这个数是 1 即 “ 一 个 1 ”，记作 “11”</p>
+<p>描述前一项，这个数是 11 即 “ 二 个 1 ” ，记作 “21”</p>
+<p>描述前一项，这个数是 21 即 “ 一 个 2 + 一 个 1 ” ，记作 “1211”</p>
+<p>描述前一项，这个数是 1211 即 “ 一 个 1 + 一 个 2 + 二 个 1 ” ，记作 “111221”</p>
+</blockquote>
+要 描述 一个数字字符串，首先要将字符串分割为 最小 数量的组，每个组都由连续的最多 相同字符 组成。然后对于每个组，先描述字符的数量，然后描述字符，形成一个描述组。要将描述转换为数字字符串，先将每组中的字符数量用数字替换，再将所有描述组连接起来。</li>
+</ul>
+<ul>
+<li>示例 1：</li>
+</ul>
+<blockquote>
+<p>输入：n = 1</p>
+<p>输出：”1”</p>
+<p>解释：这是一个基本样例。</p>
+</blockquote>
+<ul>
+<li>示例 2：</li>
+</ul>
+<blockquote>
+<p>输入：n = 4</p>
+<p>输出：”1211”</p>
+<p>解释：</p>
+<p>countAndSay(1) = “1”</p>
+<p>countAndSay(2) = 读 “1” = 一 个 1 = “11”</p>
+<p>countAndSay(3) = 读 “11” = 二 个 1 = “21”</p>
+<p>countAndSay(4) = 读 “21” = 一 个 2 + 一 个 1 = “12” + “11” = “1211”</p>
+</blockquote>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><ul>
+<li><p>普通做法</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countAndSay</span>(<span class="params">n: <span class="built_in">number</span></span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> getNextNum = <span class="function">(<span class="params">num: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">let</span> counter = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; num.length) &#123;</span><br><span class="line">      <span class="keyword">if</span> (num[i] === num[i + <span class="number">1</span>]) &#123;</span><br><span class="line">        counter++;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result += <span class="string">`<span class="subst">$&#123;counter&#125;</span><span class="subst">$&#123;num[i]&#125;</span>`</span>;</span><br><span class="line">        counter = <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">let</span> current = <span class="string">"1"</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">    current = getNextNum(current);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> current;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>递归做法</p>
+<p>感觉性能会比较差</p>
+</li>
+</ul>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnpvdm/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnpvdm/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1a30c23d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1a30c23d.html" class="post-title-link" itemprop="url">20211228题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-28 13:57:24" itemprop="dateCreated datePublished" datetime="2021-12-28T13:57:24+08:00">2021-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="实现-strStr-函数。"><a href="#实现-strStr-函数。" class="headerlink" title="实现 strStr() 函数。"></a>实现 strStr() 函数。</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回  -1 。</p>
+<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><p>当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。</p>
+<p>对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与 C 语言的 strstr() 以及 Java 的 indexOf() 定义相符。</p>
+<ul>
+<li>示例 1：</li>
+</ul>
+<blockquote>
+<p>输入：haystack = “hello”, needle = “ll”<br>输出：2<br>示例 2：</p>
+</blockquote>
+<blockquote>
+<p>输入：haystack = “aaaaa”, needle = “bba”<br>输出：-1<br>示例 3：</p>
+</blockquote>
+<blockquote>
+<p>输入：haystack = “”, needle = “”<br>输出：0</p>
+</blockquote>
+<h4 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h4><ul>
+<li>0 &lt;= haystack.length, needle.length &lt;= 5 * 104</li>
+<li>haystack 和 needle 仅由小写英文字符组成</li>
+</ul>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不使用字符串原型方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strStr</span>(<span class="params">haystack: <span class="built_in">string</span>, needle: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (needle.length &gt; haystack.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!needle.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; haystack.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haystack[i] !== needle[<span class="number">0</span>]) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; needle.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (haystack[j + i] !== needle[j]) &#123;</span><br><span class="line">        temp = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      temp = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (temp) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 原生方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strStr</span>(<span class="params">haystack: <span class="built_in">string</span>, needle: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> haystack.indexOf(needle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><p>作者：力扣 (LeetCode)<br>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnr003/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnr003/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/ec78b2d4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/ec78b2d4.html" class="post-title-link" itemprop="url">20211227题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-27 15:17:36" itemprop="dateCreated datePublished" datetime="2021-12-27T15:17:36+08:00">2021-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-27 18:43:50" itemprop="dateModified" datetime="2024-05-27T18:43:50+08:00">2024-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="验证回文数"><a href="#验证回文数" class="headerlink" title="验证回文数"></a>验证回文数</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。</p>
+<p>说明：本题中，我们将空字符串定义为有效的回文串。</p>
+<ul>
+<li>示例 1:</li>
+</ul>
+<blockquote>
+<p>输入: “A man, a plan, a canal: Panama”<br>输出: true<br>解释：”amanaplanacanalpanama” 是回文串</p>
+</blockquote>
+<ul>
+<li>示例 2:</li>
+</ul>
+<blockquote>
+<p>输入: “race a car”<br>输出: false<br>解释：”raceacar” 不是回文串</p>
+</blockquote>
+<h4 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h4><ul>
+<li>1 &lt;= s.length &lt;= 2 * 105</li>
+<li>字符串 s 由 ASCII 字符组成</li>
+</ul>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrome</span>(<span class="params">s: <span class="built_in">string</span></span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> leftIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> rightIndex = s.length - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> lowS = s.toLowerCase();</span><br><span class="line">  <span class="keyword">const</span> isSmaller = <span class="function">(<span class="params">s: <span class="built_in">string</span></span>) =&gt;</span></span><br><span class="line">    (s.charCodeAt(<span class="number">0</span>) &gt;= <span class="number">97</span> &amp;&amp; s.charCodeAt(<span class="number">0</span>) &lt;= <span class="number">122</span>) ||</span><br><span class="line">    (s.charCodeAt(<span class="number">0</span>) &gt;= <span class="number">48</span> &amp;&amp; s.charCodeAt(<span class="number">0</span>) &lt;= <span class="number">57</span>);</span><br><span class="line">  <span class="keyword">while</span> (leftIndex &lt; rightIndex) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isSmaller(lowS[leftIndex])) &#123;</span><br><span class="line">      leftIndex++;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!isSmaller(lowS[rightIndex])) &#123;</span><br><span class="line">      rightIndex--;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (lowS[leftIndex] !== lowS[rightIndex]) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      leftIndex++;</span><br><span class="line">      rightIndex--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xne8id/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xne8id/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1636,7 +1369,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">100</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1649,7 +1382,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
