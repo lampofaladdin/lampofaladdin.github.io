@@ -1668,15 +1668,12 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>20240226-tauri安卓问题</title>
-    <url>/post/627b78.html</url>
-    <content><![CDATA[<p>1、安装rust git2 包<br>2、rust x86编译安卓aarch-linux-android 会报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/sh: 1: aarch64-linux-android-ranlib: not found</span><br></pre></td></tr></table></figure>
-<p>3、除了安装android-cmd-line包工具后，需要配置一系列环境变量，还叫将ndk的环境变量配置到PATH中去</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/aladdin/software/Android/ndk/26.2.11394342/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>
-<p>配置完毕后，不再报错。<br>啊，安卓开发好麻烦啊</p>
-<p>遇到问题再补充</p>
-]]></content>
+    <title>20230716-随便写写</title>
+    <url>/post/c49bbcbd.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
   </entry>
   <entry>
     <title>20240311</title>
@@ -1759,6 +1756,17 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
+    <title>20240226-tauri安卓问题</title>
+    <url>/post/627b78.html</url>
+    <content><![CDATA[<p>1、安装rust git2 包<br>2、rust x86编译安卓aarch-linux-android 会报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/sh: 1: aarch64-linux-android-ranlib: not found</span><br></pre></td></tr></table></figure>
+<p>3、除了安装android-cmd-line包工具后，需要配置一系列环境变量，还叫将ndk的环境变量配置到PATH中去</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/aladdin/software/Android/ndk/26.2.11394342/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>
+<p>配置完毕后，不再报错。<br>啊，安卓开发好麻烦啊</p>
+<p>遇到问题再补充</p>
+]]></content>
+  </entry>
+  <entry>
     <title>20240527-youtube-dl</title>
     <url>/post/3dc2f85d.html</url>
     <content><![CDATA[<h1 id="youtube-dl-最新地址"><a href="#youtube-dl-最新地址" class="headerlink" title="youtube-dl 最新地址"></a>youtube-dl 最新地址</h1><p>因为违反了一些协议，所以不能在官方网站上下载地址，APT还有官网下载的都是老版本，无法使用。</p>
@@ -1773,6 +1781,18 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <categories>
         <category>开发技术</category>
       </categories>
+  </entry>
+  <entry>
+    <title>好累的一周啊</title>
+    <url>/post/127cf4e9.html</url>
+    <content><![CDATA[<p>人麻了</p>
+<p>我特么图个啥啊。。</p>
+<p>脑壳疼</p>
+<p>emmmm</p>
+<p>当个独立开发者？</p>
+<p>没什么好点子。。</p>
+<p>嗨</p>
+]]></content>
   </entry>
   <entry>
     <title>230323-用两个栈实现队列</title>
@@ -1853,23 +1873,37 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>230407-分治-快排</title>
-    <url>/post/27259b04.html</url>
-    <content><![CDATA[<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">q_srot</span></span>(arr: &amp;<span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() &lt; <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arr.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> base = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> small: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.into_iter().filter(|x| *x &lt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> bigger: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.iter().filter(|x| *x &gt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> result: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = q_srot(&amp;small)</span><br><span class="line">        .into_iter()</span><br><span class="line">        .chain(<span class="built_in">vec!</span>[base])</span><br><span class="line">        .chain(q_srot(&amp;bigger))</span><br><span class="line">        .collect();</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="理解思路"><a href="#理解思路" class="headerlink" title="理解思路"></a>理解思路</h2><p>分治，就是把问题不断的分解，这个问题的最小解就是问题的答案。不是所有的问题都可以使用分治</p>
-<p>递归是实现分治的方案</p>
-<p>递归实现的两个重要条件</p>
-<ul>
-<li>基准条件，满足此条件相当于找到最小解，可以结束递归</li>
-<li>递归条件，如何递归能得到结果</li>
+    <title>20231007-随便写写</title>
+    <url>/post/9a30b515.html</url>
+    <content><![CDATA[<p>emmm，这次尝试用不那么杂乱的方式去记录。</p>
+<p>遇到一个小姑娘，人挺好，脾气也挺大，不太清楚什么原因，我挺喜欢跟她混在一起。</p>
+<h3 id="她是一个什么样子的人？"><a href="#她是一个什么样子的人？" class="headerlink" title="她是一个什么样子的人？"></a>她是一个什么样子的人？</h3><ul>
+<li>第一反应是奇怪，很多想法跟我差距蛮大的，有些东西我甚至难以理解，是不是年龄差距大，有代沟了。</li>
+<li>脾气，不太好，应该生过好多次气，大部分都是打哈哈就过去了。不过有一次，我也很生气，一个月互相都没联系。</li>
+<li>怕冷场，努力的说话，就是为了场面不那么尴尬。可能这对她来说，是一个不太想回忆的场景？</li>
+<li>可能是一个内向的人吧，我们俩人格测试的结果差不多，她比我严重点。纠结、内耗、讨好型、I还是E型来着，记不清楚了。。</li>
+<li>喜欢唱歌，唱的也好听，上次晚上吃完饭，一起散步，路灯下，桂花旁，两个人，她唱着歌，我在她身边晃悠的走着。我很喜欢这种感觉，内心有一丝悸动。</li>
+<li>emmm，不知道算不算，跟她在一起会感到快乐。</li>
 </ul>
-<p>草，写这个东西是真的很困难。</p>
-<p>还是需要在理解一下分治</p>
+<h3 id="有想过追她吗"><a href="#有想过追她吗" class="headerlink" title="有想过追她吗"></a>有想过追她吗</h3><ul>
+<li>想过，但是每次都放弃了，很多原因</li>
+<li>我现在还没有结束，哪怕已经是这样子了，依然会有负罪感</li>
+<li>另外一个是自卑吧，年龄差距大，她也很受人喜欢，感觉我不太配</li>
+<li>另外的一些性格、尿性。感觉也不太适合。</li>
+<li>嗯，把上面这些写下来，感觉确实不应该追。</li>
+<li>总体来说，喜欢跟她在一起，但是种种原因又导致，不适合在一起。</li>
+</ul>
+<h3 id="她跟你的关系"><a href="#她跟你的关系" class="headerlink" title="她跟你的关系"></a>她跟你的关系</h3><ul>
+<li>她对我应该有些好感，类似大哥哥那种？或者大叔？我也是第一次遇到，很新奇的感觉</li>
+<li>不知道是不是喜欢，感觉像，又感觉不像。。。有人说过，当你有这种感觉的时候，那就不是。</li>
+</ul>
+<h3 id="你的打算"><a href="#你的打算" class="headerlink" title="你的打算"></a>你的打算</h3><p>维持现状吧，没有太多的想法，不要越界，享受现在拥有的，这对我来说已经够了。</p>
+<h3 id="随便写写"><a href="#随便写写" class="headerlink" title="随便写写"></a>随便写写</h3><p>感觉我自己是有点问题，太少与异性打交道了，导致稍微有一些好感，就会胡思乱想。</p>
+<p>需要调整一下这种心态，嗨，屌丝的命。。。</p>
+<p>挺羡慕朋友的风格，不管行不行，先去试试，万一成了呢</p>
+<p>考虑的太多，导致我不太愿意去改变，不想接受失败的后果，好吧，好像也没那么难以接受。。。性格使然吧</p>
+<p>就这。</p>
 ]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
   </entry>
   <entry>
     <title>230421-图-广度优先</title>
@@ -2000,143 +2034,15 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
-    <title>csapp-p-26-1</title>
-    <url>/post/b6263c9b.html</url>
-    <content><![CDATA[<h2 id="p-26-1"><a href="#p-26-1" class="headerlink" title="p-26-1"></a>p-26-1</h2><h3 id="将-0x39A7F8-转换为二进制"><a href="#将-0x39A7F8-转换为二进制" class="headerlink" title="将 0x39A7F8 转换为二进制"></a>将 0x39A7F8 转换为二进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>3</td>
-<td>0011</td>
-</tr>
-<tr>
-<td>9</td>
-<td>1001</td>
-</tr>
-<tr>
-<td>A</td>
-<td>1010</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>F</td>
-<td>1111</td>
-</tr>
-<tr>
-<td>8</td>
-<td>1000</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>001110011010011111111000</p>
-</blockquote>
-<h3 id="将二进制-1100100101111011-转化为十六进制"><a href="#将二进制-1100100101111011-转化为十六进制" class="headerlink" title="将二进制 1100100101111011 转化为十六进制"></a>将二进制 1100100101111011 转化为十六进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>C</td>
-<td>1100</td>
-</tr>
-<tr>
-<td>9</td>
-<td>1001</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>B</td>
-<td>1011</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>0xC97b</p>
-</blockquote>
-<h3 id="将-0xD5E4C-转换为二进制"><a href="#将-0xD5E4C-转换为二进制" class="headerlink" title="将 0xD5E4C 转换为二进制"></a>将 0xD5E4C 转换为二进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>D</td>
-<td>1101</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0101</td>
-</tr>
-<tr>
-<td>E</td>
-<td>1110</td>
-</tr>
-<tr>
-<td>4</td>
-<td>0100</td>
-</tr>
-<tr>
-<td>C</td>
-<td>1100</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>11010101111001001011</p>
-</blockquote>
-<h3 id="将-1001101110011110110101-转化为十六进制"><a href="#将-1001101110011110110101-转化为十六进制" class="headerlink" title="将 1001101110011110110101 转化为十六进制"></a>将 1001101110011110110101 转化为十六进制</h3><table>
-<thead>
-<tr>
-<th>16</th>
-<th>2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2</td>
-<td>0010</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0110</td>
-</tr>
-<tr>
-<td>E</td>
-<td>1110</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>B</td>
-<td>1011</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0101</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>0x26e7B5</p>
-</blockquote>
+    <title>20231013-生日</title>
+    <url>/post/fef49984.html</url>
+    <content><![CDATA[<p>生日快乐！</p>
+<p>真快呀，转眼三十了。依稀记得18岁生日的场景，好像也没啥感觉，不，还是有点emo，期待总是不可靠的，虽然期望已经很低了。</p>
+<p>不要抱怨，没有意义。</p>
+<p>努力、奋斗，做最好的自己。</p>
+<p>永远年轻，永远热泪盈眶。</p>
+<p>Best wish for me.</p>
 ]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>csapp</tag>
-      </tags>
   </entry>
   <entry>
     <title>csapp-p-26-2</title>
@@ -2982,18 +2888,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
-    <title>寻找数组里面出现一次的数字</title>
-    <url>/post/89251c68.html</url>
-    <content><![CDATA[<h1 id="给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置"><a href="#给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置" class="headerlink" title="给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置"></a>给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置</h1><h2 id="事例"><a href="#事例" class="headerlink" title="事例"></a>事例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [1,1,1,2,1,1]</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为数组里唯一一个2出现的位置是3。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [4,2,2,2,2,2,2]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 因为数组里唯一一个4出现的位置是0。</span><br></pre></td></tr></table></figure>
-<p>数组长度为10000</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> demo = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/**返回数组中不一样的元素**/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findDiff</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findDiff(arr));</span><br><span class="line"><span class="comment">// console.log(findDiff(demo));</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
     <title>小有感触</title>
     <url>/post/d7b1dab2.html</url>
     <content><![CDATA[<p>看到十年前自己写的一些东西，光阴似箭啊。。<br>一转眼十几年过去了。<br>好像自己从来没做出过什么emm 不知道该怎么形容。。<br>没有什么特别出彩的东西？<br>可能是吧。</p>
@@ -3015,6 +2909,18 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <tags>
         <tag>生活感想</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>寻找数组里面出现一次的数字</title>
+    <url>/post/89251c68.html</url>
+    <content><![CDATA[<h1 id="给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置"><a href="#给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置" class="headerlink" title="给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置"></a>给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置</h1><h2 id="事例"><a href="#事例" class="headerlink" title="事例"></a>事例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [1,1,1,2,1,1]</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为数组里唯一一个2出现的位置是3。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [4,2,2,2,2,2,2]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 因为数组里唯一一个4出现的位置是0。</span><br></pre></td></tr></table></figure>
+<p>数组长度为10000</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> demo = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/**返回数组中不一样的元素**/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findDiff</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findDiff(arr));</span><br><span class="line"><span class="comment">// console.log(findDiff(demo));</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
   </entry>
   <entry>
     <title>wsl2 局域网访问</title>
@@ -3326,6 +3232,145 @@ a++
       </tags>
   </entry>
   <entry>
+    <title>csapp-p-26-1</title>
+    <url>/post/b6263c9b.html</url>
+    <content><![CDATA[<h2 id="p-26-1"><a href="#p-26-1" class="headerlink" title="p-26-1"></a>p-26-1</h2><h3 id="将-0x39A7F8-转换为二进制"><a href="#将-0x39A7F8-转换为二进制" class="headerlink" title="将 0x39A7F8 转换为二进制"></a>将 0x39A7F8 转换为二进制</h3><table>
+<thead>
+<tr>
+<th>16</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3</td>
+<td>0011</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>A</td>
+<td>1010</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>F</td>
+<td>1111</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1000</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>001110011010011111111000</p>
+</blockquote>
+<h3 id="将二进制-1100100101111011-转化为十六进制"><a href="#将二进制-1100100101111011-转化为十六进制" class="headerlink" title="将二进制 1100100101111011 转化为十六进制"></a>将二进制 1100100101111011 转化为十六进制</h3><table>
+<thead>
+<tr>
+<th>16</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>B</td>
+<td>1011</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>0xC97b</p>
+</blockquote>
+<h3 id="将-0xD5E4C-转换为二进制"><a href="#将-0xD5E4C-转换为二进制" class="headerlink" title="将 0xD5E4C 转换为二进制"></a>将 0xD5E4C 转换为二进制</h3><table>
+<thead>
+<tr>
+<th>16</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D</td>
+<td>1101</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0101</td>
+</tr>
+<tr>
+<td>E</td>
+<td>1110</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0100</td>
+</tr>
+<tr>
+<td>C</td>
+<td>1100</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>11010101111001001011</p>
+</blockquote>
+<h3 id="将-1001101110011110110101-转化为十六进制"><a href="#将-1001101110011110110101-转化为十六进制" class="headerlink" title="将 1001101110011110110101 转化为十六进制"></a>将 1001101110011110110101 转化为十六进制</h3><table>
+<thead>
+<tr>
+<th>16</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>0010</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>E</td>
+<td>1110</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>B</td>
+<td>1011</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0101</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>0x26e7B5</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>记一次nuxt引入videojs的问题</title>
     <url>/post/1fa17b1.html</url>
     <content><![CDATA[<h1 id="记一次nuxt引入videojs排查问题经历"><a href="#记一次nuxt引入videojs排查问题经历" class="headerlink" title="记一次nuxt引入videojs排查问题经历"></a>记一次nuxt引入videojs排查问题经历</h1><h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>开发的项目是基于nuxt框架,项目中需要使用videojs,在开发阶段没有问题,使用与样式展示都没有问题.</p>
@@ -3361,21 +3406,6 @@ a++
       <tags>
         <tag>nuxt</tag>
         <tag>videoJs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谈谈你对TCP三次握手和四次挥手的理解</title>
-    <url>/post/7d1b1002.html</url>
-    <content><![CDATA[<h1 id="谈谈你对TCP三次握手和四次挥手的理解"><a href="#谈谈你对TCP三次握手和四次挥手的理解" class="headerlink" title="谈谈你对TCP三次握手和四次挥手的理解"></a>谈谈你对TCP三次握手和四次挥手的理解</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="tcp-三次握手"><a href="#tcp-三次握手" class="headerlink" title="tcp 三次握手"></a>tcp 三次握手</h3><p>1、客户端:发送报文到服务器,表示我要发送请求了<br>2、服务端:确认客户端请求,返回确认报文,表示可以接收数据<br>3、客户端:确认报文,建立tcp链接</p>
-<h3 id="tcp-三次挥手"><a href="#tcp-三次挥手" class="headerlink" title="tcp 三次挥手"></a>tcp 三次挥手</h3><p>1、客户端:发送断开链接报文,表示我要断开链接了<br>2、服务端:收到断开链接报文,确认信息包是否发送完毕<br>3、服务端:信息发送完毕,返回确认报文<br>4、客户端:收到服务端到确认消息,断开链接.服务端会等待一定时间,确认没有新的消息,然后断开链接.</p>
-<h2 id="高赞题解"><a href="#高赞题解" class="headerlink" title="高赞题解"></a>高赞题解</h2><p><img src="https://oss.wddv.com/www/article/20200907103418.png" alt="20200907103418"></p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/15" target="_blank" rel="noopener">第 16 题：谈谈你对 TCP 三次握手和四次挥手的理解 #15</a><br><a href="https://github.com/GuoYuFu123" target="_blank" rel="noopener">最高赞作者github</a></p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>https</tag>
       </tags>
   </entry>
   <entry>
@@ -3430,55 +3460,37 @@ a++
       </categories>
   </entry>
   <entry>
-    <title>20230716-随便写写</title>
-    <url>/post/c49bbcbd.html</url>
-    <content><![CDATA[]]></content>
+    <title>230407-分治-快排</title>
+    <url>/post/27259b04.html</url>
+    <content><![CDATA[<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">q_srot</span></span>(arr: &amp;<span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() &lt; <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arr.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> base = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> small: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.into_iter().filter(|x| *x &lt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> bigger: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.iter().filter(|x| *x &gt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> result: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = q_srot(&amp;small)</span><br><span class="line">        .into_iter()</span><br><span class="line">        .chain(<span class="built_in">vec!</span>[base])</span><br><span class="line">        .chain(q_srot(&amp;bigger))</span><br><span class="line">        .collect();</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="理解思路"><a href="#理解思路" class="headerlink" title="理解思路"></a>理解思路</h2><p>分治，就是把问题不断的分解，这个问题的最小解就是问题的答案。不是所有的问题都可以使用分治</p>
+<p>递归是实现分治的方案</p>
+<p>递归实现的两个重要条件</p>
+<ul>
+<li>基准条件，满足此条件相当于找到最小解，可以结束递归</li>
+<li>递归条件，如何递归能得到结果</li>
+</ul>
+<p>草，写这个东西是真的很困难。</p>
+<p>还是需要在理解一下分治</p>
+]]></content>
       <categories>
-        <category>生活感想</category>
+        <category>开发技术</category>
       </categories>
   </entry>
   <entry>
-    <title>20231007-随便写写</title>
-    <url>/post/9a30b515.html</url>
-    <content><![CDATA[<p>emmm，这次尝试用不那么杂乱的方式去记录。</p>
-<p>遇到一个小姑娘，人挺好，脾气也挺大，不太清楚什么原因，我挺喜欢跟她混在一起。</p>
-<h3 id="她是一个什么样子的人？"><a href="#她是一个什么样子的人？" class="headerlink" title="她是一个什么样子的人？"></a>她是一个什么样子的人？</h3><ul>
-<li>第一反应是奇怪，很多想法跟我差距蛮大的，有些东西我甚至难以理解，是不是年龄差距大，有代沟了。</li>
-<li>脾气，不太好，应该生过好多次气，大部分都是打哈哈就过去了。不过有一次，我也很生气，一个月互相都没联系。</li>
-<li>怕冷场，努力的说话，就是为了场面不那么尴尬。可能这对她来说，是一个不太想回忆的场景？</li>
-<li>可能是一个内向的人吧，我们俩人格测试的结果差不多，她比我严重点。纠结、内耗、讨好型、I还是E型来着，记不清楚了。。</li>
-<li>喜欢唱歌，唱的也好听，上次晚上吃完饭，一起散步，路灯下，桂花旁，两个人，她唱着歌，我在她身边晃悠的走着。我很喜欢这种感觉，内心有一丝悸动。</li>
-<li>emmm，不知道算不算，跟她在一起会感到快乐。</li>
-</ul>
-<h3 id="有想过追她吗"><a href="#有想过追她吗" class="headerlink" title="有想过追她吗"></a>有想过追她吗</h3><ul>
-<li>想过，但是每次都放弃了，很多原因</li>
-<li>我现在还没有结束，哪怕已经是这样子了，依然会有负罪感</li>
-<li>另外一个是自卑吧，年龄差距大，她也很受人喜欢，感觉我不太配</li>
-<li>另外的一些性格、尿性。感觉也不太适合。</li>
-<li>嗯，把上面这些写下来，感觉确实不应该追。</li>
-<li>总体来说，喜欢跟她在一起，但是种种原因又导致，不适合在一起。</li>
-</ul>
-<h3 id="她跟你的关系"><a href="#她跟你的关系" class="headerlink" title="她跟你的关系"></a>她跟你的关系</h3><ul>
-<li>她对我应该有些好感，类似大哥哥那种？或者大叔？我也是第一次遇到，很新奇的感觉</li>
-<li>不知道是不是喜欢，感觉像，又感觉不像。。。有人说过，当你有这种感觉的时候，那就不是。</li>
-</ul>
-<h3 id="你的打算"><a href="#你的打算" class="headerlink" title="你的打算"></a>你的打算</h3><p>维持现状吧，没有太多的想法，不要越界，享受现在拥有的，这对我来说已经够了。</p>
-<h3 id="随便写写"><a href="#随便写写" class="headerlink" title="随便写写"></a>随便写写</h3><p>感觉我自己是有点问题，太少与异性打交道了，导致稍微有一些好感，就会胡思乱想。</p>
-<p>需要调整一下这种心态，嗨，屌丝的命。。。</p>
-<p>挺羡慕朋友的风格，不管行不行，先去试试，万一成了呢</p>
-<p>考虑的太多，导致我不太愿意去改变，不想接受失败的后果，好吧，好像也没那么难以接受。。。性格使然吧</p>
-<p>就这。</p>
+    <title>谈谈你对TCP三次握手和四次挥手的理解</title>
+    <url>/post/7d1b1002.html</url>
+    <content><![CDATA[<h1 id="谈谈你对TCP三次握手和四次挥手的理解"><a href="#谈谈你对TCP三次握手和四次挥手的理解" class="headerlink" title="谈谈你对TCP三次握手和四次挥手的理解"></a>谈谈你对TCP三次握手和四次挥手的理解</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="tcp-三次握手"><a href="#tcp-三次握手" class="headerlink" title="tcp 三次握手"></a>tcp 三次握手</h3><p>1、客户端:发送报文到服务器,表示我要发送请求了<br>2、服务端:确认客户端请求,返回确认报文,表示可以接收数据<br>3、客户端:确认报文,建立tcp链接</p>
+<h3 id="tcp-三次挥手"><a href="#tcp-三次挥手" class="headerlink" title="tcp 三次挥手"></a>tcp 三次挥手</h3><p>1、客户端:发送断开链接报文,表示我要断开链接了<br>2、服务端:收到断开链接报文,确认信息包是否发送完毕<br>3、服务端:信息发送完毕,返回确认报文<br>4、客户端:收到服务端到确认消息,断开链接.服务端会等待一定时间,确认没有新的消息,然后断开链接.</p>
+<h2 id="高赞题解"><a href="#高赞题解" class="headerlink" title="高赞题解"></a>高赞题解</h2><p><img src="https://oss.wddv.com/www/article/20200907103418.png" alt="20200907103418"></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/15" target="_blank" rel="noopener">第 16 题：谈谈你对 TCP 三次握手和四次挥手的理解 #15</a><br><a href="https://github.com/GuoYuFu123" target="_blank" rel="noopener">最高赞作者github</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>20231013-生日</title>
-    <url>/post/fef49984.html</url>
-    <content><![CDATA[<p>生日快乐！</p>
-<p>真快呀，转眼三十了。依稀记得18岁生日的场景，好像也没啥感觉，不，还是有点emo，期待总是不可靠的，虽然期望已经很低了。</p>
-<p>不要抱怨，没有意义。</p>
-<p>努力、奋斗，做最好的自己。</p>
-<p>永远年轻，永远热泪盈眶。</p>
-<p>Best wish for me.</p>
-]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>https</tag>
+      </tags>
   </entry>
 </search>
