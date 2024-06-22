@@ -218,6 +218,134 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/74ffa402.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/74ffa402.html" class="post-title-link" itemprop="url">异步解决方案的发展历程以及优缺点。</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 11:58:29" itemprop="dateCreated datePublished" datetime="2020-08-24T11:58:29+08:00">2020-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点"><a href="#（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点" class="headerlink" title="（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点"></a>（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
+<li>callback-&gt;promise-&gt;generator/yield-&gt;async/await<h3 id="callback-最初的方案"><a href="#callback-最初的方案" class="headerlink" title="callback (最初的方案)"></a>callback (最初的方案)</h3><blockquote>
+<p>最开始使用的是callback,比如浏览器端的dom事件,ajax.node上的io事件等等,但是有定位问题困难,callback hell,异常处理等问题</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器端</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// nodejs</span></span><br><span class="line">fs.readFile(<span class="string">'path'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><blockquote>
+<p>相比callback的回调写法,链式调用的写法更优雅,异常处理变得友好.</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">demo()</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// something</span></span><br><span class="line">    <span class="keyword">return</span> res + <span class="string">"then"</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"err"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err.message); <span class="comment">// err</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="generator-yield"><a href="#generator-yield" class="headerlink" title="generator/yield"></a>generator/yield</h3><blockquote>
+<p>用的不多,不做评价.emmm 打扰了</p>
+</blockquote>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><blockquote>
+<p>异步终极解决方案,generator/yield语法糖,基于promise,同步的写法,同步代码的异常捕获能力.强!无敌!</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> demo();</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// some</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"error"</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e); <span class="comment">// error</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><p>JS 异步已经告一段落了，这里来一波小总结</p>
+<h3 id="1-回调函数（callback）"><a href="#1-回调函数（callback）" class="headerlink" title="1. 回调函数（callback）"></a>1. 回调函数（callback）</h3><p>setTimeout(() =&gt; {<br>    // callback 函数体<br>}, 1000)<br>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</p>
+<p>回调地狱的根本问题在于：</p>
+<ul>
+<li>缺乏顺序性： 回调地狱导致的调试困难，和大脑的思维方式不符</li>
+<li>嵌套函数存在耦合性，一旦有所改动，就会牵一发而动全身，即（控制反转）</li>
+<li>嵌套函数过多的多话，很难处理错误<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// callback 函数体</span></span><br><span class="line">    ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// callback 函数体</span></span><br><span class="line">        ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;</span><br><span class="line">            <span class="comment">// callback 函数体</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+优点：解决了同步的问题（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。）</li>
+</ul>
+<h3 id="2-Promise"><a href="#2-Promise" class="headerlink" title="2. Promise"></a>2. Promise</h3><p>Promise就是为了解决callback的问题而产生的。</p>
+<p>Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被 Promise.resolve() 包装</p>
+<p>优点：解决了回调地狱的问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX2'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX3'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>缺点：无法取消 Promise ，错误需要通过回调函数来捕获</p>
+<h3 id="3-Generator"><a href="#3-Generator" class="headerlink" title="3. Generator"></a>3. Generator</h3><p>特点：可以控制函数的执行，可以配合 co 函数库使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">fetch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> it = fetch()</span><br><span class="line"><span class="keyword">let</span> result1 = it.next()</span><br><span class="line"><span class="keyword">let</span> result2 = it.next()</span><br><span class="line"><span class="keyword">let</span> result3 = it.next()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">### 4. Async/await</span></span><br><span class="line"><span class="string">async、await 是异步的终极解决方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">优点是：代码清晰，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 以下代码没有依赖性的话，完全可以使用 Promise.all 的方式</span></span><br><span class="line">  <span class="comment">// 如果有依赖性的话，其实就是解决回调地狱的例子了</span></span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX1'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX2'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX3'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="下面来看一个使用-await-的例子："><a href="#下面来看一个使用-await-的例子：" class="headerlink" title="下面来看一个使用 await 的例子："></a>下面来看一个使用 await 的例子：</h3><pre><code class="javascript"><span class="keyword">let</span> a = <span class="number">0</span>
+<span class="keyword">let</span> b = <span class="keyword">async</span> () =&gt; {
+  a = a + <span class="keyword">await</span> <span class="number">10</span>
+  <span class="built_in">console</span>.log(<span class="string">'2'</span>, a) <span class="comment">// -&gt; '2' 10</span>
+}
+b()
+a++
+<span class="built_in">console</span>.log(<span class="string">'1'</span>, a) <span class="comment">// -&gt; '1' 1</span></code></pre>
+<p>对于以上代码你可能会有疑惑，让我来解释下原因</p>
+<p>首先函数 b 先执行，在执行到 await 10 之前变量 a 还是 0，因为 await 内部实现了 generator ，generator 会保留堆栈中东西，所以这时候 a = 0 被保存了下来<br>因为 await 是异步操作，后来的表达式不返回 Promise 的话，就会包装成 Promise.reslove(返回值)，然后会去执行函数外的同步代码<br>同步代码执行完毕后开始执行异步代码，将保存下来的值拿出来使用，这时候 a = 0 + 10<br>上述解释中提到了 await 内部实现了 generator，其实 await 就是 generator 加上 Promise的语法糖，且内部实现了自动执行 generator。如果你熟悉 co 的话，其实自己就可以实现这样的语法糖。</p>
+<p>本文首发于我的博客：JS异步解决方案的发展历程以及优缺点</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/11" target="_blank" rel="noopener">文章链接</a><br><a href="https://github.com/sisterAn" target="_blank" rel="noopener">最高赞作者github</a><br><a href="https://github.com/sisterAn/blog/issues/29" target="_blank" rel="noopener">最高赞作者地址 JS异步解决方案的发展历程以及优缺点 </a><br><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="noopener">阮一峰 Javascript异步编程的4种方法</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1942942a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +377,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -350,7 +478,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -468,7 +596,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -787,7 +915,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -903,7 +1031,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1009,7 +1137,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1111,7 +1239,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1211,7 +1339,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1314,7 +1442,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1379,118 +1507,6 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
         
           <div class="post-tags">
               <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 面试题</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/9dd65578.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/9dd65578.html" class="post-title-link" itemprop="url">使用hexo创建自己的个人博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-27 22:33:02" itemprop="dateCreated datePublished" datetime="2020-07-27T22:33:02+08:00">2020-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>mac电脑可能需要使用sudo权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h2 id="初始化项目，安装依赖"><a href="#初始化项目，安装依赖" class="headerlink" title="初始化项目，安装依赖"></a>初始化项目，安装依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>各类配置项参考<a href="https://hexo.bootcss.com/docs/configuration.html" target="_blank" rel="noopener">hexo中文文档</a></p>
-</blockquote>
-<h2 id="发布到github-pages"><a href="#发布到github-pages" class="headerlink" title="发布到github pages"></a>发布到github pages</h2><ol>
-<li>创建一个github仓库&lt;yourname&gt;.github.com，比如我的lampofaladdin.github.io</li>
-<li>在_config.yml中增加配置项<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> type: git</span><br><span class="line"> repo: &lt;github git地址&gt;</span><br><span class="line"> # 例如git@github.com:lampofaladdin&#x2F;lampofaladdin.github.io.git</span><br></pre></td></tr></table></figure></li>
-<li>发布到github <code>hexo deploy</code></li>
-</ol>
-<h2 id="使用阿里云oss静态页关联自己域名"><a href="#使用阿里云oss静态页关联自己域名" class="headerlink" title="使用阿里云oss静态页关联自己域名"></a>使用阿里云oss静态页关联自己域名</h2><ol>
-<li>创建阿里云Bucket,不开通版本控制，读写为公共读，其他默认</li>
-<li>创建ram用户，给用户oss的控制权限</li>
-<li>创建ram用户的AccessKey，获取到AccessKeyID，AccessKeySecret</li>
-<li>进入bucket,基础设置，静态页面，默认首页为<strong>index.html</strong>,子目录首页开通</li>
-<li>传输管理，绑定你已经购买备案好的域名。</li>
-<li>安装hexo-deployer-ali-oss，<code>npm i hexo-deployer-ali-oss --save</code></li>
-<li>在_config.yml中增加配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: ali-oss</span><br><span class="line">  region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">  accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">  accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">  bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure></li>
-<li><code>npm deploy</code></li>
-</ol>
-<h2 id="同时发布在githubPage-与-阿里云oss"><a href="#同时发布在githubPage-与-阿里云oss" class="headerlink" title="同时发布在githubPage 与 阿里云oss"></a>同时发布在githubPage 与 阿里云oss</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">-  type: git</span><br><span class="line">   repo: &lt;github git地址&gt;</span><br><span class="line">-  type: ali-oss</span><br><span class="line">   region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">   accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">   accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">   bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
-<li>git push的时候depoly</li>
-<li>标签分类怎么做</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><a href="https://hexo.bootcss.com/" target="_blank" rel="noopener">hexo官方文档</a></li>
-<li><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo主题 hexo-theme-next</a></li>
-<li><a href="https://github.com/wertycn/hexo-deployer-ali-oss" target="_blank" rel="noopener">阿里云上传插件 hexo-deployer-ali-oss </a></li>
-<li><a href="https://blog.csdn.net/youlin/article/details/107313287" target="_blank" rel="noopener">在gitpush的时候 depoly</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
             
           </div>
         
@@ -1571,7 +1587,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

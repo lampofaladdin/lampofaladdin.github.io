@@ -218,6 +218,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/27259b04.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/27259b04.html" class="post-title-link" itemprop="url">230407-分治-快排</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-04-07 11:50:58" itemprop="dateCreated datePublished" datetime="2023-04-07T11:50:58+08:00">2023-04-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">q_srot</span></span>(arr: &amp;<span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() &lt; <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arr.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> base = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> small: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.into_iter().filter(|x| *x &lt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> bigger: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.iter().filter(|x| *x &gt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> result: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = q_srot(&amp;small)</span><br><span class="line">        .into_iter()</span><br><span class="line">        .chain(<span class="built_in">vec!</span>[base])</span><br><span class="line">        .chain(q_srot(&amp;bigger))</span><br><span class="line">        .collect();</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="理解思路"><a href="#理解思路" class="headerlink" title="理解思路"></a>理解思路</h2><p>分治，就是把问题不断的分解，这个问题的最小解就是问题的答案。不是所有的问题都可以使用分治</p>
+<p>递归是实现分治的方案</p>
+<p>递归实现的两个重要条件</p>
+<ul>
+<li>基准条件，满足此条件相当于找到最小解，可以结束递归</li>
+<li>递归条件，如何递归能得到结果</li>
+</ul>
+<p>草，写这个东西是真的很困难。</p>
+<p>还是需要在理解一下分治</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e18fcdf5.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +333,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -327,7 +411,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -402,7 +486,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -488,7 +572,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -587,7 +671,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -660,7 +744,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -760,7 +844,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -852,7 +936,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -962,7 +1046,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
+                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1104,79 +1188,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/88b8ca93.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/88b8ca93.html" class="post-title-link" itemprop="url">20230228-二分查找问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-28 14:42:21" itemprop="dateCreated datePublished" datetime="2023-02-28T14:42:21+08:00">2023-02-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-21 19:03:20" itemprop="dateModified" datetime="2024-06-21T19:03:20+08:00">2024-06-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1248,7 +1259,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
