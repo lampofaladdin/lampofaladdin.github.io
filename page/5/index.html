@@ -218,6 +218,228 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/8696aaa8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/8696aaa8.html" class="post-title-link" itemprop="url">20221104-积分设计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-04 18:53:47" itemprop="dateCreated datePublished" datetime="2022-11-04T18:53:47+08:00">2022-11-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="积分表结构设计"><a href="#积分表结构设计" class="headerlink" title="积分表结构设计"></a>积分表结构设计</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>记录积分行为来源</li>
+<li>允许撤销用户积分</li>
+<li>个人中心有展示总积分</li>
+<li>未来积分可以兑换商品</li>
+<li>未来积分逐条过期机制</li>
+</ul>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="记录积分行为来源"><a href="#记录积分行为来源" class="headerlink" title="记录积分行为来源"></a>记录积分行为来源</h3><ul>
+<li>需要增加行为枚举类，并且记录该行为对应的表主键，比如发帖需要对应发帖的内容 id</li>
+<li>行为增加的分数，考虑到变动很少，可以放在代码中。如果后期确认该需求经常变动，需要建立对应的表结构，映射该枚举数据</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 积分枚举</span></span><br><span class="line"><span class="keyword">enum</span> ScoreSourceTypeEnum &#123;</span><br><span class="line">  LIKE = <span class="number">1</span>,</span><br><span class="line">  COMMENT = <span class="number">2</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 积分对应分数</span></span><br><span class="line"><span class="keyword">const</span> ScoreSourceTypeMap = <span class="keyword">new</span> Map(&#123;</span><br><span class="line">  [ScoreSourceTypeEnum.LIKE]: &#123; score: <span class="number">5</span>, title: <span class="string">"点赞"</span> &#125;,</span><br><span class="line">  [ScoreSourceTypeEnum.COMMENT]: &#123; score: <span class="number">10</span>, title: <span class="string">"评论"</span> &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="允许撤销用户积分"><a href="#允许撤销用户积分" class="headerlink" title="允许撤销用户积分"></a>允许撤销用户积分</h3><ul>
+<li>撤销用户积分不能修改原始数据，应增加一条新纪录记录该行为，积分记录表允许负值或新建一个表记录数据(先采用允许负值方案)</li>
+<li>撤销用户积分需要增加操作人，撤销的原因两个字段</li>
+<li>增加一个撤销用户积分的行为，行为对应的主键为对应的积分记录 ID</li>
+</ul>
+<h3 id="积分逐条过期机制"><a href="#积分逐条过期机制" class="headerlink" title="积分逐条过期机制"></a>积分逐条过期机制</h3><ul>
+<li>积分记录表增加剩余积分字段，默认等于当前积分</li>
+<li>用户消费积分时，判断剩余积分字段相加是否满足需求，如果满足，按时间倒序挨个去扣除剩余积分字段，直到扣除完毕</li>
+<li>统计用户积分时，SUM（剩余积分）</li>
+<li>每天跑一次定时任务，每次用户积分过期，剩余积分字段设置为 0</li>
+</ul>
+<h3 id="个人中心展示总积分"><a href="#个人中心展示总积分" class="headerlink" title="个人中心展示总积分"></a>个人中心展示总积分</h3><ul>
+<li>每次查询用户的积分数据，都需要 sum 方法，如果数据量多，性能会比较差</li>
+<li>是否需要直接统计用户的积分，每次插入或删除去修改该数据</li>
+<li>如果需要用户总积分，应独立于用户模块，新建一张表，统计用户总积分，以及用户积分相关数据</li>
+</ul>
+<h3 id="未来积分可以兑换商品"><a href="#未来积分可以兑换商品" class="headerlink" title="未来积分可以兑换商品"></a>未来积分可以兑换商品</h3><ul>
+<li>积分记录表增加商品兑换的行为，并记录订单 id</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>并发问题（如果用户同时访问数据，一边增加一边消费，是否需要在数据库加锁，或使用单个消息队列来实现）</li>
+<li>积分异常（如果突然出现大批量积分发放，每天应有积分监控功能，每日发放积分、扣减积分，总积分数据）</li>
+</ul>
+<h2 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h2><h3 id="用户积分记录表"><a href="#用户积分记录表" class="headerlink" title="用户积分记录表"></a>用户积分记录表</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>primary key</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>bigint</td>
+<td>用户 id</td>
+</tr>
+<tr>
+<td>source_type</td>
+<td>tinyint</td>
+<td>积分来源类型</td>
+</tr>
+<tr>
+<td>source_id</td>
+<td>int</td>
+<td>积分来源 id</td>
+</tr>
+<tr>
+<td>socre</td>
+<td>int</td>
+<td>分值</td>
+</tr>
+<tr>
+<td>rest_score</td>
+<td>datetime</td>
+<td>剩余积分</td>
+</tr>
+<tr>
+<td>action_uid</td>
+<td>bigint</td>
+<td>操作人</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>varchar</td>
+<td>原因</td>
+</tr>
+<tr>
+<td>exprie_time</td>
+<td>datetime</td>
+<td>过期时间</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>datetime</td>
+<td>更新时间</td>
+</tr>
+<tr>
+<td>delete_time</td>
+<td>datetime</td>
+<td>删除时间</td>
+</tr>
+</tbody></table>
+<h3 id="用户积分表-暂时不使用，数据库无法支撑再考虑"><a href="#用户积分表-暂时不使用，数据库无法支撑再考虑" class="headerlink" title="用户积分表(暂时不使用，数据库无法支撑再考虑)"></a>用户积分表(暂时不使用，数据库无法支撑再考虑)</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>primary key</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>bigint</td>
+<td>用户 id</td>
+</tr>
+<tr>
+<td>socre</td>
+<td>int</td>
+<td>分值</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>datetime</td>
+<td>更新时间</td>
+</tr>
+<tr>
+<td>delete_time</td>
+<td>datetime</td>
+<td>删除时间</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%AF%E5%88%86/" rel="tag"><i class="fa fa-tag"></i> 积分</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/64e8dabe.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +471,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -354,7 +576,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -429,7 +651,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -533,7 +755,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -666,7 +888,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -784,7 +1006,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -895,7 +1117,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1044,7 +1266,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1120,7 +1342,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
+                <time title="修改时间：2024-08-09 19:26:37" itemprop="dateModified" datetime="2024-08-09T19:26:37+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1147,90 +1369,6 @@
 <p>为大众谋福利者，不可使其孤军奋战；</p>
 <p>为自由开路者，不可使其困顿于荆棘。</p>
 <p>如果天空是黑暗的，那就摸黑生存；如果发出声音是危险的，那就保持沉默；如果自觉无力发光，那就蜷伏于墙角。但是，不要习惯了黑暗就为黑暗辩护，也不要为自己的苟且而得意，不要嘲讽那些比自己更勇敢的人。我们可以卑微如尘土，但不可扭曲如蛆虫</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/5fc2094e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/5fc2094e.html" class="post-title-link" itemprop="url">20220206</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-06 02:07:55" itemprop="dateCreated datePublished" datetime="2022-02-06T02:07:55+08:00">2022-02-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-22 20:23:33" itemprop="dateModified" datetime="2024-06-22T20:23:33+08:00">2024-06-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>原来，有你陪着已经这么开心<br>房间里，没有你，这么空旷<br>一边流泪，一边收拾衣服的感觉确实不好<br>有点怀疑，自己为什么会劝你回到哪里<br>我果然是个傻逼</p>
-<p>一直在身边的，才是最容易被忽视的。<br>有一天突然不见了。<br>原来是这么难受。</p>
-<p>嗯。</p>
-<p>有些不知所措</p>
-<p>跟自己想的那种情况 不太一样</p>
-<p>哭成了傻逼</p>
-<p>我以为我能很平静的接受这件事</p>
-<p>回到家里，看着熟悉的房间，总是感觉她在那里</p>
-<p>还没有离开</p>
-<p>一边写 一边哭</p>
-<p>不写了</p>
 
       
     </div>
@@ -1317,7 +1455,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
