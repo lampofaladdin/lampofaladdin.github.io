@@ -218,6 +218,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c680a8e9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/c680a8e9.html" class="post-title-link" itemprop="url">斐波那契额数列第n位</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-27 10:33:26" itemprop="dateCreated datePublished" datetime="2020-08-27T10:33:26+08:00">2020-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="斐波那契额数列第n位-算法题"><a href="#斐波那契额数列第n位-算法题" class="headerlink" title="斐波那契额数列第n位 算法题"></a>斐波那契额数列第n位 算法题</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="递归的方式"><a href="#递归的方式" class="headerlink" title="递归的方式"></a>递归的方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">40</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论:"></a>结论:</h4><ul>
+<li>运行时间为1360ms左右,性能比较差</li>
+<li>到45位的时候计算时间已经是15s</li>
+</ul>
+<h3 id="递归的方式-加一层缓存"><a href="#递归的方式-加一层缓存" class="headerlink" title="递归的方式,加一层缓存"></a>递归的方式,加一层缓存</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n, cache</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!cache) &#123;</span><br><span class="line">    cache = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (cache[n]) &#123;</span><br><span class="line">    <span class="keyword">return</span> cache[n];</span><br><span class="line">  &#125;</span><br><span class="line">  cache[n] = fibonacci(n - <span class="number">1</span>, cache) + fibonacci(n - <span class="number">2</span>, cache);</span><br><span class="line">  <span class="keyword">return</span> cache[n];</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">40</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="结论-1"><a href="#结论-1" class="headerlink" title="结论:"></a>结论:</h4><ul>
+<li>第5000位的时候是9ms,此时数值已经是超过js最大数值,为Infinity</li>
+<li>9000位左右递归栈会爆掉</li>
+</ul>
+<h3 id="循环的方式"><a href="#循环的方式" class="headerlink" title="循环的方式"></a>循环的方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arr = [<span class="number">0</span>, <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    arr.push(arr[arr.length - <span class="number">1</span>] + arr[arr.length - <span class="number">2</span>]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr[n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="结论-2"><a href="#结论-2" class="headerlink" title="结论:"></a>结论:</h4><ul>
+<li>性能最佳,5000位约7毫秒</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>递归一般情况下性能比普通循环要低</li>
+<li>递归可能会爆栈</li>
+<li>除非必须要递归的方式、其他方案成本过高、能确定递归次数较少,不然不建议用递归</li>
+<li>某些文档提到尾递归可以提高性能,但是这个斐波那契额数列,没有找到使用尾递归的方式,单独开一篇尾递归的内容</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6fa7f909.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +342,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -335,7 +428,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -409,7 +502,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -537,7 +630,7 @@ a++
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -638,7 +731,7 @@ a++
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -756,7 +849,7 @@ a++
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1075,7 +1168,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1191,7 +1284,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1297,7 +1390,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
+                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1355,106 +1448,6 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
         
           <div class="post-tags">
               <a href="/tags/%E7%BC%96%E7%A8%8B%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 编程题</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/a85052ac.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/a85052ac.html" class="post-title-link" itemprop="url">介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-06 11:28:43" itemprop="dateCreated datePublished" datetime="2020-08-06T11:28:43+08:00">2020-08-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-11 02:57:01" itemprop="dateModified" datetime="2024-10-11T02:57:01+08:00">2024-10-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="介绍下-Set、Map、WeakSet-和-WeakMap-的区别？"><a href="#介绍下-Set、Map、WeakSet-和-WeakMap-的区别？" class="headerlink" title="介绍下 Set、Map、WeakSet 和 WeakMap 的区别？"></a>介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><blockquote>
-<p>目前用到Set的功能,是用来去重</p>
-</blockquote>
-<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><blockquote>
-<p>跟object很像,比object多了一些实用的操作方法,object的key只能是字符串,这个的key值可以是对象,数字等</p>
-</blockquote>
-<h3 id="WeakSet-和-WeakMap"><a href="#WeakSet-和-WeakMap" class="headerlink" title="WeakSet 和 WeakMap"></a>WeakSet 和 WeakMap</h3><blockquote>
-<p>没用过</p>
-</blockquote>
-<h1 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h1><h3 id="Set-1"><a href="#Set-1" class="headerlink" title="Set"></a>Set</h3><ol>
-<li>成员不能重复</li>
-<li>只有健值，没有健名，有点类似数组。</li>
-<li>可以遍历，方法有add, delete,has</li>
-</ol>
-<h3 id="weakSet"><a href="#weakSet" class="headerlink" title="weakSet"></a>weakSet</h3><p>成员都是对象<br>成员都是弱引用，随时可以消失。 可以用来保存DOM节点，不容易造成内存泄漏<br>不能遍历，方法有add, delete,has</p>
-<h3 id="Map-1"><a href="#Map-1" class="headerlink" title="Map"></a>Map</h3><p>本质上是健值对的集合，类似集合<br>可以遍历，方法很多，可以干跟各种数据格式转换</p>
-<h3 id="weakMap"><a href="#weakMap" class="headerlink" title="weakMap"></a>weakMap</h3><ol>
-<li>直接受对象作为健名（null除外），不接受其他类型的值作为健名</li>
-<li>健名所指向的对象，不计入垃圾回收机制</li>
-<li>不能遍历，方法同get,set,has,delete</li>
-</ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/6" target="_blank" rel="noopener">第 4 题：介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</a><br><a href="https://es6.ruanyifeng.com/#docs/set-map" target="_blank" rel="noopener">ECMAScript 6 入门 – Set 和 Map 数据结构</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
             
           </div>
         
@@ -1535,7 +1528,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
