@@ -218,6 +218,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/fda03b62.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/fda03b62.html" class="post-title-link" itemprop="url">如何实现一个 new</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-01 10:23:19" itemprop="dateCreated datePublished" datetime="2020-09-01T10:23:19+08:00">2020-09-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="如何实现一个new"><a href="#如何实现一个new" class="headerlink" title="如何实现一个new"></a>如何实现一个new</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Demo</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = a;</span><br><span class="line">  <span class="keyword">this</span>.b = b;</span><br><span class="line">&#125;</span><br><span class="line">Demo.prototype.test = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newConstructor</span>(<span class="params">cons</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">    cons.apply(result, <span class="built_in">arguments</span>);</span><br><span class="line">    result.__proto__ = cons.prototype;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newDemo = newConstructor(Demo);</span><br><span class="line"><span class="keyword">let</span> a = newDemo(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">a.test();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>试了好一会试出来的</li>
+<li>一直用prototype方法不行,挠头….</li>
+<li><strong>proto</strong> 这个方法记得不是标准写法</li>
+<li>标准写法是contructor prototype?看答案吧</li>
+</ul>
+<h3 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_new</span>(<span class="params">fn, ...arg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(fn.prototype);</span><br><span class="line">    <span class="keyword">const</span> ret = fn.apply(obj, arg);</span><br><span class="line">    <span class="keyword">return</span> ret <span class="keyword">instanceof</span> <span class="built_in">Object</span> ? ret : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="先理清楚-new-关键字调用函数都的具体过程，那么写出来就很清楚了"><a href="#先理清楚-new-关键字调用函数都的具体过程，那么写出来就很清楚了" class="headerlink" title="先理清楚 new 关键字调用函数都的具体过程，那么写出来就很清楚了"></a>先理清楚 new 关键字调用函数都的具体过程，那么写出来就很清楚了</h4><ul>
+<li>首先创建一个空的对象，空对象的<strong>proto</strong>属性指向构造函数的原型对象</li>
+<li>把上面创建的空对象赋值构造函数内部的this，用构造函数内部的方法修改空对象</li>
+<li>如果构造函数返回一个非基本类型的值，则返回这个值，否则上面创建的对象</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
+<li><strong>proto</strong> 不是标准对象,使用<code>Object.create(fn.prototye)</code>创建原型对象</li>
+<li>需要判断传入的对象是不是null或者undefined来判断是否返回实例对象</li>
+<li>不需要使用必包的方式进行返回(单例模式或许可以)</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/12" target="_blank" rel="noopener">如何实现一个new</a><br><a href="https://github.com/zwmmm" target="_blank" rel="noopener">最高赞作者github</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c680a8e9.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +347,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,7 +440,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -428,7 +526,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -502,7 +600,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -630,7 +728,7 @@ a++
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -731,7 +829,7 @@ a++
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -849,7 +947,7 @@ a++
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1168,7 +1266,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1284,7 +1382,7 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
+                <time title="修改时间：2024-12-11 02:11:43" itemprop="dateModified" datetime="2024-12-11T02:11:43+08:00">2024-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1346,108 +1444,6 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
         
           <div class="post-tags">
               <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/946ca0ec.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/946ca0ec.html" class="post-title-link" itemprop="url">20200806每日一题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-07 11:41:44" itemprop="dateCreated datePublished" datetime="2020-08-07T11:41:44+08:00">2020-08-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-07 18:57:01" itemprop="dateModified" datetime="2024-11-07T18:57:01+08:00">2024-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="介绍下深度优先遍历和广度优先遍历，如何实现？"><a href="#介绍下深度优先遍历和广度优先遍历，如何实现？" class="headerlink" title="介绍下深度优先遍历和广度优先遍历，如何实现？"></a>介绍下深度优先遍历和广度优先遍历，如何实现？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><blockquote>
-<p>没有做过相关的内容,猜测</p>
-</blockquote>
-<h3 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><blockquote>
-<p>先找到一个节点, 遍历到当前节点最深的目录</p>
-</blockquote>
-<h3 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><blockquote>
-<p>优先遍历当前一级的节点,然后再遍历下一层节点</p>
-</blockquote>
-<h2 id="最高赞题"><a href="#最高赞题" class="headerlink" title="最高赞题"></a>最高赞题</h2><ul>
-<li>第五题问的是深度优先遍历和广度优先遍历，我是从dom节点的遍历来理解这个问题的</li>
-<li>html代码</li>
-<li><img src="https://oss.wddv.com/www/article/20200807134451.png" alt="20200807134451"></li>
-<li>我将用深度优先遍历和广度优先遍历对这个dom树进行查找</li>
-</ul>
-<h3 id="深度优先遍历-1"><a href="#深度优先遍历-1" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><hr>
-<p>深度优先遍历DFS 与树的先序遍历比较类似。<br>假设初始状态是图中所有顶点均未被访问，则从某个顶点v出发，首先访问该顶点然后依次从它的各个未被访问的邻接点出发深度优先搜索遍历图，直至图中所有和v有路径相通的顶点都被访问到。若此时尚有其他顶点未被访问到，则另选一个未被访问的顶点作起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*深度优先遍历三种方式*&#x2F;</span><br><span class="line">let deepTraversal1 &#x3D; (node, nodeList &#x3D; []) &#x3D;&gt; &#123;</span><br><span class="line">  if (node !&#x3D;&#x3D; null) &#123;</span><br><span class="line">    nodeList.push(node)</span><br><span class="line">    let children &#x3D; node.children</span><br><span class="line">    for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">      deepTraversal1(children[i], nodeList)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodeList</span><br><span class="line">&#125;</span><br><span class="line">let deepTraversal2 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">    let nodes &#x3D; []</span><br><span class="line">    if (node !&#x3D;&#x3D; null) &#123;</span><br><span class="line">      nodes.push(node)</span><br><span class="line">      let children &#x3D; node.children</span><br><span class="line">      for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        nodes &#x3D; nodes.concat(deepTraversal2(children[i]))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nodes</span><br><span class="line">  &#125;</span><br><span class="line">&#x2F;&#x2F; 非递归</span><br><span class="line">let deepTraversal3 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">  let stack &#x3D; []</span><br><span class="line">  let nodes &#x3D; []</span><br><span class="line">  if (node) &#123;</span><br><span class="line">    &#x2F;&#x2F; 推入当前处理的node</span><br><span class="line">    stack.push(node)</span><br><span class="line">    while (stack.length) &#123;</span><br><span class="line">      let item &#x3D; stack.pop()</span><br><span class="line">      let children &#x3D; item.children</span><br><span class="line">      nodes.push(item)</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [] stack &#x3D; [parent]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent] stack &#x3D; [child3,child2,child1]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent, child1] stack &#x3D; [child3,child2,child1-2,child1-1]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent, child1-1] stack &#x3D; [child3,child2,child1-2]</span><br><span class="line">      for (let i &#x3D; children.length - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">        stack.push(children[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><p><img src="https://oss.wddv.com/www/article/20200807134542.png" alt="20200807134542"></p>
-<h3 id="广度优先遍历-1"><a href="#广度优先遍历-1" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><hr>
-<p>广度优先遍历 BFS<br>从图中某顶点v出发，在访问了v之后依次访问v的各个未曾访问过的邻接点，然后分别从这些邻接点出发依次访问它们的邻接点，并使得“先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，直至图中所有已被访问的顶点的邻接点都被访问到。 如果此时图中尚有顶点未被访问，则需要另选一个未曾被访问过的顶点作为新的起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let widthTraversal2 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">  let nodes &#x3D; []</span><br><span class="line">  let stack &#x3D; []</span><br><span class="line">  if (node) &#123;</span><br><span class="line">    stack.push(node)</span><br><span class="line">    while (stack.length) &#123;</span><br><span class="line">      let item &#x3D; stack.shift()</span><br><span class="line">      let children &#x3D; item.children</span><br><span class="line">      nodes.push(item)</span><br><span class="line">        &#x2F;&#x2F; 队列，先进先出</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [] stack &#x3D; [parent]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent] stack &#x3D; [child1,child2,child3]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent, child1] stack &#x3D; [child2,child3,child1-1,child1-2]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent,child1,child2]</span><br><span class="line">      for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        stack.push(children[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="输出结果-1"><a href="#输出结果-1" class="headerlink" title="输出结果"></a>输出结果</h4><p><img src="https://oss.wddv.com/www/20200807134554.png" alt="20200807134554"></p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/9" target="_blank" rel="noopener">第 5 题：介绍下深度优先遍历和广度优先遍历，如何实现？ #9</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%BC%96%E7%A8%8B%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 编程题</a>
             
           </div>
         
@@ -1528,7 +1524,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
