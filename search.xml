@@ -2075,6 +2075,27 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>20231013-生日</title>
+    <url>/post/fef49984.html</url>
+    <content><![CDATA[<p>生日快乐！</p>
+<p>真快呀，转眼三十了。依稀记得18岁生日的场景，好像也没啥感觉，不，还是有点emo，期待总是不可靠的，虽然期望已经很低了。</p>
+<p>不要抱怨，没有意义。</p>
+<p>努力、奋斗，做最好的自己。</p>
+<p>永远年轻，永远热泪盈眶。</p>
+<p>Best wish for me.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>241212-信息系统开发方法</title>
+    <url>/post/1a37efca.html</url>
+    <content><![CDATA[<h1 id="信息系统开发方法"><a href="#信息系统开发方法" class="headerlink" title="信息系统开发方法"></a>信息系统开发方法</h1><h2 id="原型法"><a href="#原型法" class="headerlink" title="原型法"></a>原型法</h2><p>明确需求中的不确定性，分两种，一种是平面结构，主要用于界面，交互之类的功能。另外一种是垂直结构，主要用于复杂算法，比如头条的推荐功能。不好用平面结构进行表示</p>
+<h2 id="结构化方法"><a href="#结构化方法" class="headerlink" title="结构化方法"></a>结构化方法</h2><p>自顶而下，文档、流程规范化，开发过程相对固定，不灵活</p>
+<h2 id="面向对象的方法"><a href="#面向对象的方法" class="headerlink" title="面向对象的方法"></a>面向对象的方法</h2><p>自下而上，主要思想为，构建各种基础对象，把各种基础对象进行组装，得到最终的功能，更符合人类习惯。</p>
+<h2 id="面向服务方法"><a href="#面向服务方法" class="headerlink" title="面向服务方法"></a>面向服务方法</h2><p>粗颗粒，低耦合，标准化与结构化，将各种方法封装为一个服务，然后一个业务，通过调用各种服务实现所需要的功能。</p>
+<h2 id="形式化开发"><a href="#形式化开发" class="headerlink" title="形式化开发"></a>形式化开发</h2><p>比如净室软件开发，通过数学模型证明该方法的可行性，而不是通过测试。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>JS-MAP问题</title>
     <url>/post/284e9461.html</url>
     <content><![CDATA[<h1 id="JS-MAP问题"><a href="#JS-MAP问题" class="headerlink" title="JS-MAP问题"></a>JS-MAP问题</h1><h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><ul>
@@ -3254,6 +3275,16 @@ a++
       </tags>
   </entry>
   <entry>
+    <title>241212-信息系统建设原则</title>
+    <url>/post/d5a46717.html</url>
+    <content><![CDATA[<h1 id="信息系统建立原则"><a href="#信息系统建立原则" class="headerlink" title="信息系统建立原则"></a>信息系统建立原则</h1><h2 id="高层人员参与原则"><a href="#高层人员参与原则" class="headerlink" title="高层人员参与原则"></a>高层人员参与原则</h2><p>系统的建立会跟原业务流程产生一定影响，导致部分人的利益受损，如果没有高层参与，推进会变得困难</p>
+<h2 id="用于参与原则"><a href="#用于参与原则" class="headerlink" title="用于参与原则"></a>用于参与原则</h2><p>确定系统是给谁使用的，明确用户的范围，深度用户应全程参与，了解系统的运作</p>
+<h2 id="自顶而下原则"><a href="#自顶而下原则" class="headerlink" title="自顶而下原则"></a>自顶而下原则</h2><p>系统建立应有全局观念以及目标，保证系统建立的方向正确</p>
+<h2 id="工程化原则"><a href="#工程化原则" class="headerlink" title="工程化原则"></a>工程化原则</h2><p>系统工程是工程的一种，应有工程化观念</p>
+<h2 id="其他原则"><a href="#其他原则" class="headerlink" title="其他原则"></a>其他原则</h2><p>需要继续了解</p>
+]]></content>
+  </entry>
+  <entry>
     <title>有效的数独</title>
     <url>/post/181c4103.html</url>
     <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>请你判断一个 9x9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。</p>
@@ -3287,42 +3318,6 @@ a++
       </categories>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>每日一题</title>
-    <url>/post/54e1476d.html</url>
-    <content><![CDATA[<h2 id="什么是防抖和节流？有什么区别？如何实现？"><a href="#什么是防抖和节流？有什么区别？如何实现？" class="headerlink" title="什么是防抖和节流？有什么区别？如何实现？"></a>什么是防抖和节流？有什么区别？如何实现？</h2><h3 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h3><h4 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h4><blockquote>
-<p>在一个时间段内,如果有触发多次,只执行一次.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const debonce &#x3D; (fn, timer) &#x3D;&gt; &#123;</span><br><span class="line">  let loop &#x3D; null;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    if (loop) &#123;</span><br><span class="line">      clearTimeout(loop);</span><br><span class="line">    &#125;</span><br><span class="line">    loop &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      fn.apply(this, arguments);</span><br><span class="line">    &#125;, timer);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function demo(arg1, arg2) &#123;</span><br><span class="line">  console.log(arg1, arg2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let debonceDemo &#x3D; debonce(demo, 1000);</span><br><span class="line">let i &#x3D; 0;</span><br><span class="line">let test &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">  debonceDemo(1, 2);</span><br><span class="line">  if (++i &gt; 100) &#123;</span><br><span class="line">    clearInterval(test);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 10);</span><br></pre></td></tr></table></figure>
-<h4 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h4><blockquote>
-<p>不论执行速度有多快,固定时间内执行的次数只有一次</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const throttle &#x3D; (fn, timer) &#x3D;&gt; &#123;</span><br><span class="line">  let loop &#x3D; true;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    if (!loop) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    loop &#x3D; false;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      fn.apply(this, arguments);</span><br><span class="line">      loop &#x3D; true;</span><br><span class="line">    &#125;, timer);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function demo(arg1, arg2) &#123;</span><br><span class="line">  console.log(arg1, arg2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let throttleDemo &#x3D; throttle(demo, 1000);</span><br><span class="line">let i &#x3D; 0;</span><br><span class="line">let test &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">  throttleDemo(1, 2);</span><br><span class="line">  if (++i &gt; 100) &#123;</span><br><span class="line">    clearInterval(test);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 100);</span><br></pre></td></tr></table></figure>
-
-<h3 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h3><h4 id="防抖-1"><a href="#防抖-1" class="headerlink" title="防抖"></a>防抖</h4><blockquote>
-<p>触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</p>
-</blockquote>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><blockquote>
-<p>每次触发事件时都取消之前的延时调用方法</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function debounce(fn) &#123;</span><br><span class="line">      let timeout &#x3D; null; &#x2F;&#x2F; 创建一个标记用来存放定时器的返回值</span><br><span class="line">      return function () &#123;</span><br><span class="line">        clearTimeout(timeout); &#x2F;&#x2F; 每当用户输入的时候把前一个 setTimeout clear 掉</span><br><span class="line">        timeout &#x3D; setTimeout(() &#x3D;&gt; &#123; &#x2F;&#x2F; 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span><br><span class="line">          fn.apply(this, arguments);</span><br><span class="line">        &#125;, 500);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    function sayHi() &#123;</span><br><span class="line">      console.log(&#39;防抖成功&#39;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var inp &#x3D; document.getElementById(&#39;inp&#39;);</span><br><span class="line">    inp.addEventListener(&#39;input&#39;, debounce(sayHi)); &#x2F;&#x2F; 防抖</span><br></pre></td></tr></table></figure>
-<h4 id="节流-1"><a href="#节流-1" class="headerlink" title="节流"></a>节流</h4><blockquote>
-<p>高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-</blockquote>
-<h5 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h5><blockquote>
-<p>每次触发事件时都判断当前是否有等待执行的延时函数</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function throttle(fn) &#123;</span><br><span class="line">      let canRun &#x3D; true; &#x2F;&#x2F; 通过闭包保存一个标记</span><br><span class="line">      return function () &#123;</span><br><span class="line">        if (!canRun) return; &#x2F;&#x2F; 在函数开头判断标记是否为true，不为true则return</span><br><span class="line">        canRun &#x3D; false; &#x2F;&#x2F; 立即设置为false</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123; &#x2F;&#x2F; 将外部传入的函数的执行放在setTimeout中</span><br><span class="line">          fn.apply(this, arguments);</span><br><span class="line">          &#x2F;&#x2F; 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span><br><span class="line">          canRun &#x3D; true;</span><br><span class="line">        &#125;, 500);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    function sayHi(e) &#123;</span><br><span class="line">      console.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">    &#125;</span><br><span class="line">    window.addEventListener(&#39;resize&#39;, throttle(sayHi));</span><br></pre></td></tr></table></figure>
-
-<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5" target="_blank" rel="noopener">第 3 题：什么是防抖和节流？有什么区别？如何实现？</a></p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>JS基础</tag>
       </tags>
   </entry>
   <entry>
@@ -3527,15 +3522,40 @@ a++
       </categories>
   </entry>
   <entry>
-    <title>20231013-生日</title>
-    <url>/post/fef49984.html</url>
-    <content><![CDATA[<p>生日快乐！</p>
-<p>真快呀，转眼三十了。依稀记得18岁生日的场景，好像也没啥感觉，不，还是有点emo，期待总是不可靠的，虽然期望已经很低了。</p>
-<p>不要抱怨，没有意义。</p>
-<p>努力、奋斗，做最好的自己。</p>
-<p>永远年轻，永远热泪盈眶。</p>
-<p>Best wish for me.</p>
+    <title>每日一题</title>
+    <url>/post/54e1476d.html</url>
+    <content><![CDATA[<h2 id="什么是防抖和节流？有什么区别？如何实现？"><a href="#什么是防抖和节流？有什么区别？如何实现？" class="headerlink" title="什么是防抖和节流？有什么区别？如何实现？"></a>什么是防抖和节流？有什么区别？如何实现？</h2><h3 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h3><h4 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h4><blockquote>
+<p>在一个时间段内,如果有触发多次,只执行一次.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const debonce &#x3D; (fn, timer) &#x3D;&gt; &#123;</span><br><span class="line">  let loop &#x3D; null;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    if (loop) &#123;</span><br><span class="line">      clearTimeout(loop);</span><br><span class="line">    &#125;</span><br><span class="line">    loop &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      fn.apply(this, arguments);</span><br><span class="line">    &#125;, timer);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function demo(arg1, arg2) &#123;</span><br><span class="line">  console.log(arg1, arg2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let debonceDemo &#x3D; debonce(demo, 1000);</span><br><span class="line">let i &#x3D; 0;</span><br><span class="line">let test &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">  debonceDemo(1, 2);</span><br><span class="line">  if (++i &gt; 100) &#123;</span><br><span class="line">    clearInterval(test);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 10);</span><br></pre></td></tr></table></figure>
+<h4 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h4><blockquote>
+<p>不论执行速度有多快,固定时间内执行的次数只有一次</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const throttle &#x3D; (fn, timer) &#x3D;&gt; &#123;</span><br><span class="line">  let loop &#x3D; true;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    if (!loop) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    loop &#x3D; false;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      fn.apply(this, arguments);</span><br><span class="line">      loop &#x3D; true;</span><br><span class="line">    &#125;, timer);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function demo(arg1, arg2) &#123;</span><br><span class="line">  console.log(arg1, arg2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let throttleDemo &#x3D; throttle(demo, 1000);</span><br><span class="line">let i &#x3D; 0;</span><br><span class="line">let test &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">  throttleDemo(1, 2);</span><br><span class="line">  if (++i &gt; 100) &#123;</span><br><span class="line">    clearInterval(test);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 100);</span><br></pre></td></tr></table></figure>
+
+<h3 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h3><h4 id="防抖-1"><a href="#防抖-1" class="headerlink" title="防抖"></a>防抖</h4><blockquote>
+<p>触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</p>
+</blockquote>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><blockquote>
+<p>每次触发事件时都取消之前的延时调用方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function debounce(fn) &#123;</span><br><span class="line">      let timeout &#x3D; null; &#x2F;&#x2F; 创建一个标记用来存放定时器的返回值</span><br><span class="line">      return function () &#123;</span><br><span class="line">        clearTimeout(timeout); &#x2F;&#x2F; 每当用户输入的时候把前一个 setTimeout clear 掉</span><br><span class="line">        timeout &#x3D; setTimeout(() &#x3D;&gt; &#123; &#x2F;&#x2F; 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span><br><span class="line">          fn.apply(this, arguments);</span><br><span class="line">        &#125;, 500);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    function sayHi() &#123;</span><br><span class="line">      console.log(&#39;防抖成功&#39;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var inp &#x3D; document.getElementById(&#39;inp&#39;);</span><br><span class="line">    inp.addEventListener(&#39;input&#39;, debounce(sayHi)); &#x2F;&#x2F; 防抖</span><br></pre></td></tr></table></figure>
+<h4 id="节流-1"><a href="#节流-1" class="headerlink" title="节流"></a>节流</h4><blockquote>
+<p>高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p>
+</blockquote>
+<h5 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h5><blockquote>
+<p>每次触发事件时都判断当前是否有等待执行的延时函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function throttle(fn) &#123;</span><br><span class="line">      let canRun &#x3D; true; &#x2F;&#x2F; 通过闭包保存一个标记</span><br><span class="line">      return function () &#123;</span><br><span class="line">        if (!canRun) return; &#x2F;&#x2F; 在函数开头判断标记是否为true，不为true则return</span><br><span class="line">        canRun &#x3D; false; &#x2F;&#x2F; 立即设置为false</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123; &#x2F;&#x2F; 将外部传入的函数的执行放在setTimeout中</span><br><span class="line">          fn.apply(this, arguments);</span><br><span class="line">          &#x2F;&#x2F; 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span><br><span class="line">          canRun &#x3D; true;</span><br><span class="line">        &#125;, 500);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    function sayHi(e) &#123;</span><br><span class="line">      console.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">    &#125;</span><br><span class="line">    window.addEventListener(&#39;resize&#39;, throttle(sayHi));</span><br></pre></td></tr></table></figure>
+
+<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5" target="_blank" rel="noopener">第 3 题：什么是防抖和节流？有什么区别？如何实现？</a></p>
 ]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>JS基础</tag>
+      </tags>
   </entry>
   <entry>
     <title>20230716-随便写写</title>
