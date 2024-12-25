@@ -218,6 +218,314 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d9958b57.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/d9958b57.html" class="post-title-link" itemprop="url">20200817题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-17 10:53:43" itemprop="dateCreated datePublished" datetime="2020-08-17T10:53:43+08:00">2020-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ES5-ES6-的继承除了写法以外还有什么区别？"><a href="#ES5-ES6-的继承除了写法以外还有什么区别？" class="headerlink" title="ES5/ES6 的继承除了写法以外还有什么区别？"></a>ES5/ES6 的继承除了写法以外还有什么区别？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><p>都是基于原型链的写法,别的不知道.</p>
+<h2 id="最高题解"><a href="#最高题解" class="headerlink" title="最高题解"></a>最高题解</h2><h3 id="class-声明会提升，但不会初始化赋值。Foo-进入暂时性死区，类似于-let、const-声明变量。-没有变量提升"><a href="#class-声明会提升，但不会初始化赋值。Foo-进入暂时性死区，类似于-let、const-声明变量。-没有变量提升" class="headerlink" title="class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。(没有变量提升)"></a>class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。(没有变量提升)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar(); <span class="comment">// it's ok</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo(); <span class="comment">// ReferenceError: Foo is not defined</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="class-声明内部会启用严格模式。"><a href="#class-声明内部会启用严格模式。" class="headerlink" title="class 声明内部会启用严格模式。"></a>class 声明内部会启用严格模式。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用一个未声明的变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  baz = <span class="number">42</span>; <span class="comment">// it's ok</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    fol = <span class="number">42</span>; <span class="comment">// ReferenceError: fol is not defined</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+
+<h3 id="class-的所有方法（包括静态方法和实例方法）都是不可枚举的。"><a href="#class-的所有方法（包括静态方法和实例方法）都是不可枚举的。" class="headerlink" title="class 的所有方法（包括静态方法和实例方法）都是不可枚举的。"></a>class 的所有方法（包括静态方法和实例方法）都是不可枚举的。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用一个未声明的变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line">Bar.answer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Bar.prototype.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> barKeys = <span class="built_in">Object</span>.keys(Bar); <span class="comment">// ['answer']</span></span><br><span class="line"><span class="keyword">const</span> barProtoKeys = <span class="built_in">Object</span>.keys(Bar.prototype); <span class="comment">// ['print']</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> answer() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> fooKeys = <span class="built_in">Object</span>.keys(Foo); <span class="comment">// []</span></span><br><span class="line"><span class="keyword">const</span> fooProtoKeys = <span class="built_in">Object</span>.keys(Foo.prototype); <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="class-的所有方法（包括静态方法和实例方法）都没有原型对象-prototype，所以也没有-construct-，不能使用-new-来调用。"><a href="#class-的所有方法（包括静态方法和实例方法）都没有原型对象-prototype，所以也没有-construct-，不能使用-new-来调用。" class="headerlink" title="class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[[construct]]，不能使用 new 来调用。"></a>class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[[construct]]，不能使用 new 来调用。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line">Bar.prototype.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();</span><br><span class="line"><span class="keyword">const</span> barPrint = <span class="keyword">new</span> bar.print(); <span class="comment">// it's ok</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="keyword">const</span> fooPrint = <span class="keyword">new</span> foo.print(); <span class="comment">// TypeError: foo.print is not a constructor</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="必须使用-new-调用-class。"><a href="#必须使用-new-调用-class。" class="headerlink" title="必须使用 new 调用 class。"></a>必须使用 new 调用 class。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = Bar(); <span class="comment">// it's ok</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = Foo(); <span class="comment">// TypeError: Class constructor Foo cannot be invoked without 'new'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="class-内部无法重写类名。"><a href="#class-内部无法重写类名。" class="headerlink" title="class 内部无法重写类名。"></a>class 内部无法重写类名。</h3><pre><code class="javascript"> <span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>{
+  Bar = <span class="string">'Baz'</span>; <span class="comment">// it's ok</span>
+  <span class="keyword">this</span>.bar = <span class="number">42</span>;
+}
+<span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();
+<span class="comment">// Bar: 'Baz'</span>
+<span class="comment">// bar: Bar {bar: 42}  </span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>{
+  <span class="keyword">constructor</span>() {
+    <span class="keyword">this</span>.foo = <span class="number">42</span>;
+    Foo = <span class="string">'Fol'</span>; <span class="comment">// TypeError: Assignment to constant variable</span>
+  }
+}
+<span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();
+Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span></code></pre>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/20" target="_blank" rel="noopener">第 7 期：ES5/ES6 的继承除了写法以外还有什么区别？ #20</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/946ca0ec.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/946ca0ec.html" class="post-title-link" itemprop="url">20200806每日一题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-07 11:41:44" itemprop="dateCreated datePublished" datetime="2020-08-07T11:41:44+08:00">2020-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="介绍下深度优先遍历和广度优先遍历，如何实现？"><a href="#介绍下深度优先遍历和广度优先遍历，如何实现？" class="headerlink" title="介绍下深度优先遍历和广度优先遍历，如何实现？"></a>介绍下深度优先遍历和广度优先遍历，如何实现？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><blockquote>
+<p>没有做过相关的内容,猜测</p>
+</blockquote>
+<h3 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><blockquote>
+<p>先找到一个节点, 遍历到当前节点最深的目录</p>
+</blockquote>
+<h3 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><blockquote>
+<p>优先遍历当前一级的节点,然后再遍历下一层节点</p>
+</blockquote>
+<h2 id="最高赞题"><a href="#最高赞题" class="headerlink" title="最高赞题"></a>最高赞题</h2><ul>
+<li>第五题问的是深度优先遍历和广度优先遍历，我是从dom节点的遍历来理解这个问题的</li>
+<li>html代码</li>
+<li><img src="https://oss.wddv.com/www/article/20200807134451.png" alt="20200807134451"></li>
+<li>我将用深度优先遍历和广度优先遍历对这个dom树进行查找</li>
+</ul>
+<h3 id="深度优先遍历-1"><a href="#深度优先遍历-1" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><hr>
+<p>深度优先遍历DFS 与树的先序遍历比较类似。<br>假设初始状态是图中所有顶点均未被访问，则从某个顶点v出发，首先访问该顶点然后依次从它的各个未被访问的邻接点出发深度优先搜索遍历图，直至图中所有和v有路径相通的顶点都被访问到。若此时尚有其他顶点未被访问到，则另选一个未被访问的顶点作起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*深度优先遍历三种方式*&#x2F;</span><br><span class="line">let deepTraversal1 &#x3D; (node, nodeList &#x3D; []) &#x3D;&gt; &#123;</span><br><span class="line">  if (node !&#x3D;&#x3D; null) &#123;</span><br><span class="line">    nodeList.push(node)</span><br><span class="line">    let children &#x3D; node.children</span><br><span class="line">    for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">      deepTraversal1(children[i], nodeList)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodeList</span><br><span class="line">&#125;</span><br><span class="line">let deepTraversal2 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">    let nodes &#x3D; []</span><br><span class="line">    if (node !&#x3D;&#x3D; null) &#123;</span><br><span class="line">      nodes.push(node)</span><br><span class="line">      let children &#x3D; node.children</span><br><span class="line">      for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        nodes &#x3D; nodes.concat(deepTraversal2(children[i]))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nodes</span><br><span class="line">  &#125;</span><br><span class="line">&#x2F;&#x2F; 非递归</span><br><span class="line">let deepTraversal3 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">  let stack &#x3D; []</span><br><span class="line">  let nodes &#x3D; []</span><br><span class="line">  if (node) &#123;</span><br><span class="line">    &#x2F;&#x2F; 推入当前处理的node</span><br><span class="line">    stack.push(node)</span><br><span class="line">    while (stack.length) &#123;</span><br><span class="line">      let item &#x3D; stack.pop()</span><br><span class="line">      let children &#x3D; item.children</span><br><span class="line">      nodes.push(item)</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [] stack &#x3D; [parent]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent] stack &#x3D; [child3,child2,child1]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent, child1] stack &#x3D; [child3,child2,child1-2,child1-1]</span><br><span class="line">      &#x2F;&#x2F; node &#x3D; [parent, child1-1] stack &#x3D; [child3,child2,child1-2]</span><br><span class="line">      for (let i &#x3D; children.length - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">        stack.push(children[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><p><img src="https://oss.wddv.com/www/article/20200807134542.png" alt="20200807134542"></p>
+<h3 id="广度优先遍历-1"><a href="#广度优先遍历-1" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><hr>
+<p>广度优先遍历 BFS<br>从图中某顶点v出发，在访问了v之后依次访问v的各个未曾访问过的邻接点，然后分别从这些邻接点出发依次访问它们的邻接点，并使得“先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，直至图中所有已被访问的顶点的邻接点都被访问到。 如果此时图中尚有顶点未被访问，则需要另选一个未曾被访问过的顶点作为新的起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let widthTraversal2 &#x3D; (node) &#x3D;&gt; &#123;</span><br><span class="line">  let nodes &#x3D; []</span><br><span class="line">  let stack &#x3D; []</span><br><span class="line">  if (node) &#123;</span><br><span class="line">    stack.push(node)</span><br><span class="line">    while (stack.length) &#123;</span><br><span class="line">      let item &#x3D; stack.shift()</span><br><span class="line">      let children &#x3D; item.children</span><br><span class="line">      nodes.push(item)</span><br><span class="line">        &#x2F;&#x2F; 队列，先进先出</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [] stack &#x3D; [parent]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent] stack &#x3D; [child1,child2,child3]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent, child1] stack &#x3D; [child2,child3,child1-1,child1-2]</span><br><span class="line">        &#x2F;&#x2F; nodes &#x3D; [parent,child1,child2]</span><br><span class="line">      for (let i &#x3D; 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        stack.push(children[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="输出结果-1"><a href="#输出结果-1" class="headerlink" title="输出结果"></a>输出结果</h4><p><img src="https://oss.wddv.com/www/20200807134554.png" alt="20200807134554"></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/9" target="_blank" rel="noopener">第 5 题：介绍下深度优先遍历和广度优先遍历，如何实现？ #9</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 编程题</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/a85052ac.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/a85052ac.html" class="post-title-link" itemprop="url">介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-06 11:28:43" itemprop="dateCreated datePublished" datetime="2020-08-06T11:28:43+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="介绍下-Set、Map、WeakSet-和-WeakMap-的区别？"><a href="#介绍下-Set、Map、WeakSet-和-WeakMap-的区别？" class="headerlink" title="介绍下 Set、Map、WeakSet 和 WeakMap 的区别？"></a>介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><blockquote>
+<p>目前用到Set的功能,是用来去重</p>
+</blockquote>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><blockquote>
+<p>跟object很像,比object多了一些实用的操作方法,object的key只能是字符串,这个的key值可以是对象,数字等</p>
+</blockquote>
+<h3 id="WeakSet-和-WeakMap"><a href="#WeakSet-和-WeakMap" class="headerlink" title="WeakSet 和 WeakMap"></a>WeakSet 和 WeakMap</h3><blockquote>
+<p>没用过</p>
+</blockquote>
+<h1 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h1><h3 id="Set-1"><a href="#Set-1" class="headerlink" title="Set"></a>Set</h3><ol>
+<li>成员不能重复</li>
+<li>只有健值，没有健名，有点类似数组。</li>
+<li>可以遍历，方法有add, delete,has</li>
+</ol>
+<h3 id="weakSet"><a href="#weakSet" class="headerlink" title="weakSet"></a>weakSet</h3><p>成员都是对象<br>成员都是弱引用，随时可以消失。 可以用来保存DOM节点，不容易造成内存泄漏<br>不能遍历，方法有add, delete,has</p>
+<h3 id="Map-1"><a href="#Map-1" class="headerlink" title="Map"></a>Map</h3><p>本质上是健值对的集合，类似集合<br>可以遍历，方法很多，可以干跟各种数据格式转换</p>
+<h3 id="weakMap"><a href="#weakMap" class="headerlink" title="weakMap"></a>weakMap</h3><ol>
+<li>直接受对象作为健名（null除外），不接受其他类型的值作为健名</li>
+<li>健名所指向的对象，不计入垃圾回收机制</li>
+<li>不能遍历，方法同get,set,has,delete</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/6" target="_blank" rel="noopener">第 4 题：介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</a><br><a href="https://es6.ruanyifeng.com/#docs/set-map" target="_blank" rel="noopener">ECMAScript 6 入门 – Set 和 Map 数据结构</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/54e1476d.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +557,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -352,7 +660,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,7 +769,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -573,7 +881,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -656,7 +964,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -765,7 +1073,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

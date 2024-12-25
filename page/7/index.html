@@ -218,6 +218,342 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1dfaf386.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1dfaf386.html" class="post-title-link" itemprop="url">20220627</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-27 10:53:06" itemprop="dateCreated datePublished" datetime="2022-06-27T10:53:06+08:00">2022-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h1><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串  “”。</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：strs = [“flower”,”flow”,”flight”]</p>
+<p>输出：”fl”</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：strs = [“dog”,”racecar”,”car”]</p>
+<p>输出：””</p>
+<p>解释：输入不存在公共前缀。</p>
+</blockquote>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= strs.length &lt;= 200</li>
+<li>0 &lt;= strs[i].length &lt;= 200</li>
+<li>strs[i] 仅由小写英文字母组成</li>
+</ul>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">longest_common_prefix</span></span>(strs: <span class="built_in">Vec</span>&lt;<span class="built_in">String</span>&gt;) -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut</span> result = <span class="built_in">String</span>::from(<span class="string">""</span>);</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut</span> index = <span class="number">0</span>;</span><br><span class="line">            <span class="symbol">'looper</span>: <span class="keyword">loop</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> <span class="keyword">mut</span> _temp = <span class="string">""</span>;</span><br><span class="line">                <span class="keyword">for</span> <span class="built_in">str</span> <span class="keyword">in</span> &amp;strs &#123;</span><br><span class="line">                    <span class="keyword">if</span> <span class="built_in">str</span>.len() == <span class="number">0</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> index &gt;= <span class="built_in">str</span>.len() &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">let</span> c_val = &amp;<span class="built_in">str</span>[index..index + <span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> c_val == <span class="string">""</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> _temp == <span class="string">""</span> &#123;</span><br><span class="line">                        _temp = c_val;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> _temp != c_val &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    _temp = c_val;</span><br><span class="line">                &#125;</span><br><span class="line">                result.push_str(&amp;strs.get(<span class="number">0</span>).unwrap()[index..index + <span class="number">1</span>]);</span><br><span class="line">                index += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            result</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><ul>
+<li>找出所有字符串的第{index}个元素，判断是否全部相等。</li>
+<li>如果相等放入结果中，继续循环</li>
+<li>不相等跳出外层循环，返回结果</li>
+<li>0ms，2.1mb</li>
+</ul>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnmav1/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnmav1/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6570235f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/6570235f.html" class="post-title-link" itemprop="url">20220622 JS中数据结构的一些想法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 10:59:38" itemprop="dateCreated datePublished" datetime="2022-06-22T10:59:38+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS-中的数据结构"><a href="#JS-中的数据结构" class="headerlink" title="JS 中的数据结构"></a>JS 中的数据结构</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>原型方法较多，可以比较方便的实现各种功能</li>
+<li>JSON 支持</li>
+<li>相比 java，数组的长度不是固定的，不存在越界问题</li>
+<li>兼容性好</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>没有获取到索引的情况下，查询效率相对低，时间复杂度为 O(n)</li>
+<li>插入数据效率低O(n)</li>
+<li>删除数据效率O(n)</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>绝大部分数据处理</li>
+<li>JSON 支持，可以直接在接口中返回</li>
+<li>前端列表渲染</li>
+</ul>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>兼容性好</li>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>JSON 支持</li>
+<li>相对 Map 可以继承原型链上的属性</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>相对 MAP 键值只能是 string</li>
+<li>相对 MAP 顺序不确定</li>
+<li>相对 MAP 没有迭代属性</li>
+</ul>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>通用场景</li>
+<li>需要一个固定 key 来做区分数据内容</li>
+</ul>
+<h2 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h2><h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>相对对象这种结构，数据更清晰，效率更高</li>
+<li>相对 OBJECT，语义化更好，支持功能多</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>原型方法没有数组多</li>
+<li>JSON 不支持，如果作为接口数据返回，需要重新转换为数组或对象</li>
+</ul>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>需要一个固定格式的 key value</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>插入性能比数组高 O(1)</li>
+<li>删除性能比数组高 O(1)</li>
+</ul>
+<h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>索引效率低 O(n)</li>
+<li>原生不支持，需要自己实现链表结构</li>
+</ul>
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>动态插入与删除比较多的场景</li>
+</ul>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进后出</li>
+<li>JS 执行顺序</li>
+</ul>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进先出</li>
+<li>排队场景</li>
+<li>性能瓶颈的时候，使用队列，排队处理数据</li>
+</ul>
+<h2 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h2><h3 id="应用场景-6"><a href="#应用场景-6" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>打标签的场景</li>
+</ul>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="应用场景-7"><a href="#应用场景-7" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>DOM 树、CSS 树</li>
+<li>多层JSON</li>
+<li>级联菜单</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c1c2f028.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/c1c2f028.html" class="post-title-link" itemprop="url">20220605</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-05 20:02:58" itemprop="dateCreated datePublished" datetime="2022-06-05T20:02:58+08:00">2022-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>尝试着去分享更多的东西</p>
+<p>起码留下点什么</p>
+<p>加油</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/56e1d812.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +585,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -326,7 +662,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -410,7 +746,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -542,7 +878,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -642,7 +978,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -746,7 +1082,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -863,7 +1199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
+                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -915,304 +1251,6 @@
         
           <div class="post-tags">
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e1873048.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/e1873048.html" class="post-title-link" itemprop="url">初级算法-整数反转</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-07 23:49:31" itemprop="dateCreated datePublished" datetime="2021-11-07T23:49:31+08:00">2021-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。</p>
-<p>如果反转后整数超过 32 位的有符号整数的范围 [−231,  231 − 1] ，就返回 0。</p>
-<p>假设环境不允许存储 64 位整数（有符号或无符号）。</p>
-<p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 123</span><br><span class="line">输出：321</span><br></pre></td></tr></table></figure>
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; -123</span><br><span class="line">输出：-321</span><br></pre></td></tr></table></figure>
-<p>示例 3：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 120</span><br><span class="line">输出：21</span><br></pre></td></tr></table></figure>
-<p>示例 4：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 0</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
-
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  字符串反转</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>(<span class="params">x: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> isPositive = x &gt;= <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> reverseNumberString = <span class="string">`<span class="subst">$&#123;x&#125;</span>`</span>.replace(<span class="string">"-"</span>, <span class="string">""</span>).split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</span><br><span class="line">  <span class="keyword">const</span> result = isPositive ? +reverseNumberString : -reverseNumberString;</span><br><span class="line">  <span class="keyword">if</span> (result &lt;= (<span class="number">-2</span>) ** <span class="number">31</span> || result &gt;= <span class="number">2</span> ** <span class="number">31</span> - <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnx13t/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnx13t/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/acd5828c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/acd5828c.html" class="post-title-link" itemprop="url">看到了以前写的项目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-13 00:22:56" itemprop="dateCreated datePublished" datetime="2021-08-13T00:22:56+08:00">2021-08-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>啊，年轻时候的我，写的代码还挺规范的嘛。</p>
-<p>原来以为那个项目已经挂掉了，没想到现在还在运行。</p>
-<p>嗨，从16年开始学前端到现在。。快六年了。真特么快啊。。</p>
-<p>擦，刚找自己写的第一个项目竟然没有备案，挂掉了卧槽。</p>
-<p>没法装逼，可惜了。</p>
-<p>年轻真好…</p>
-<p>又想到了以前的很多事情，一个不到20平米的隔断间，住了四个人。</p>
-<p>床上睡不下，把床掀了大家一起打地铺。</p>
-<p>每天九点上班，五点九下班，下班就去网吧嗨。。</p>
-<p>租了一个两室一厅的房子，一个月1200？三个月交一次房租，结果三个月到了，我们没钱交房租了，emmm，直到现在我都不敢一次性交三个月房租。。</p>
-<p>啊，那时候是真穷啊。。</p>
-<p>不过真的挺快乐。</p>
-<p>几个吊毛，天天嗷嗷叫，一起看片，网吧通宵，真刺激</p>
-<p>回不去了。。</p>
-<p>还是有些对不住的人。。</p>
-<p>一时间想起来，有点难过。</p>
-<p>emmmm</p>
-<p>做的那些事情有用吗。</p>
-<p>二十岁的时候，买了十岁买不起的玩具，有什么意义吗</p>
-<p>终归是让自己心里好过一点</p>
-<p>好多事情，忍不住泪目</p>
-<p>果然，晚上不适合瞎J8想。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" rel="tag"><i class="fa fa-tag"></i> 生活感想</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6261c281.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/6261c281.html" class="post-title-link" itemprop="url">nestjs 类型导出引起的循环依赖问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-28 18:10:07" itemprop="dateCreated datePublished" datetime="2021-07-28T18:10:07+08:00">2021-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-19 02:30:10" itemprop="dateModified" datetime="2024-12-19T02:30:10+08:00">2024-12-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="nestjs-无法注入服务"><a href="#nestjs-无法注入服务" class="headerlink" title="nestjs 无法注入服务"></a>nestjs 无法注入服务</h1><h1 id="问题发现"><a href="#问题发现" class="headerlink" title="问题发现"></a>问题发现</h1><ul>
-<li>在 viewService 里面导入 UserService,发现一直提示错误，没有找到可以注入的内容</li>
-<li>检查了一遍代码，确认逻辑代码没有问题</li>
-<li>怀疑是不是循环依赖了，检查代码，发现代码基本与其他 Moduel 的服务相同，没有出现循环依赖的情况</li>
-<li>打印 ModuleContainer，在当前 ViewModule 里面找到了导入的 UserModule，也存在 UserService</li>
-</ul>
-<p>view.service.ts 尝试打印是否成功导入 UserModule</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ViewService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> modulesContainer: ModulesContainer,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> userService: UserService,</span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(ViewEntity)</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> viewEntityRepository: Repository&lt;ViewEntity&gt;</span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line">    [...modulesContainer.values()].map(<span class="function">(<span class="params"><span class="built_in">module</span></span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">module</span>.metatype.name === <span class="string">"ViewModule"</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======imports======="</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">module</span>.imports);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======providers======"</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">module</span>.providers);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======exports======"</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">module</span>.exports);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"\n\n\n\n\n"</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======UserModule exports======"</span>);</span><br><span class="line">        [...<span class="keyword">module</span>.imports.values()].map((innerModule) =&gt; &#123;</span><br><span class="line">          <span class="keyword">if</span> (innerModule.metatype.name === <span class="string">"UserModule"</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(innerModule.exports);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view.module.ts</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [TypeOrmModule.forFeature([ViewEntity, ViewLikeStatEntity]), UserModule],</span><br><span class="line">  controllers: [ViewController],</span><br><span class="line">  providers: [ViewService],</span><br><span class="line">  exports: [ViewService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ViewModule &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view.service.ts </p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> ViewRelationType = <span class="string">"topic"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> JoinListInterface &#123;</span><br><span class="line">  uid: <span class="built_in">string</span>;</span><br><span class="line">  avatar: <span class="built_in">string</span>;</span><br><span class="line">  nickname: <span class="built_in">string</span>;</span><br><span class="line">  roler: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ViewService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly userService: UserService, <span class="meta">@InjectRepository</span>(ViewEntity) <span class="keyword">private</span> readonly viewRepository: Repository&lt;ViewEntity&gt;</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  create(createViewDto: CreateViewDto) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"This action adds a new view"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>控制台</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[error] 2021-07-28 18:11:32.1 [ExceptionHandler] Nest can't resolve dependencies of the ViewService (?, ViewEntityRepository). Please make sure that the argument dependency at index [0] is available in the ViewModule context.</span><br><span class="line"></span><br><span class="line">Potential solutions:</span><br><span class="line">- If dependency is a provider, is it part of the current ViewModule?</span><br><span class="line">- If dependency is exported from a separate @Module, is that module imported within ViewModule?</span><br><span class="line">  @Module(&#123;</span><br><span class="line">    imports: [ /* the Module containing dependency */ ]</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><ul>
-<li>再次检查代码，发现 view.service.ts 导出了三个东西，一个 type，一个 interface，还有一个 viewService 服务</li>
-<li>全文查找导出的接口，发现在一个实体里面有这个类型的引入，就是 <strong>JoinListInterface</strong>.</li>
-</ul>
-<p>topic.entity.ts</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(<span class="string">"topics"</span>, &#123; schema: <span class="string">"42how"</span> &#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> TopicEntity &#123;</span><br><span class="line">  <span class="meta">@PrimaryGeneratedColumn</span>(&#123; <span class="keyword">type</span>: <span class="string">"bigint"</span>, name: <span class="string">"id"</span>, unsigned: <span class="literal">true</span> &#125;)</span><br><span class="line">  id: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  join: &#123;</span><br><span class="line">    count?: <span class="built_in">number</span>;</span><br><span class="line">    list?: JoinListInterface[];</span><br><span class="line">  &#125; = &#123; count: <span class="number">0</span>, list: [] &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>尝试删除 <strong>JoinListInterface</strong> ，服务注入成功</p>
-</li>
-<li><p>原本以为 ts 的 interface，type 是不参与到编译过后的 js 文件，检查编译后 topic.entity.js 文件，发现 <code>const view_service_1 = require(&quot;../modules/view/view.service&quot;);</code> 这一句，虽然 interface 没有被使用，但是这个 js 文件被引入了。因为这个实体类被引入的比较多，产生了循环依赖，在 nestjs 进行注入的时候，这个文件导出是 undefined，查找不到服务，无法注入。</p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>ts 中 export 的类型文件应该单独定义，不要跟逻辑代码放在一个文件。</li>
-<li>类型文件虽然没有参与编译，但是会引入文件，如果引用的过于复杂，会导致循环依赖的情况</li>
-<li>感谢青木大佬的帮助</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/nestjs/" rel="tag"><i class="fa fa-tag"></i> nestjs</a>
             
           </div>
         
@@ -1293,7 +1331,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
