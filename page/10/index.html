@@ -218,6 +218,417 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/7ac062ab.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/7ac062ab.html" class="post-title-link" itemprop="url">rust 学习记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-12 23:16:20" itemprop="dateCreated datePublished" datetime="2021-05-12T23:16:20+08:00">2021-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"猜一个数字！"</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"输出你猜的数字"</span>);</span><br><span class="line">    <span class="keyword">let</span> secret_number = rand::thread_rng().gen_range(<span class="number">1</span>, <span class="number">101</span>);</span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line">        io::stdin().read_line(&amp;<span class="keyword">mut</span> guess).expect(<span class="string">"读取错误"</span>);</span><br><span class="line">        <span class="keyword">let</span> guess: <span class="built_in">u32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">            <span class="literal">Ok</span>(num) =&gt; num,</span><br><span class="line">            <span class="literal">Err</span>(_) =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">"请输入数字"</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">match</span> guess.cmp(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">"小了"</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">"大了"</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">"对了"</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/Rust/" rel="tag"><i class="fa fa-tag"></i> Rust</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d7b1dab2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/d7b1dab2.html" class="post-title-link" itemprop="url">小有感触</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-19 18:09:31" itemprop="dateCreated datePublished" datetime="2021-04-19T18:09:31+08:00">2021-04-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>看到十年前自己写的一些东西，光阴似箭啊。。<br>一转眼十几年过去了。<br>好像自己从来没做出过什么emm 不知道该怎么形容。。<br>没有什么特别出彩的东西？<br>可能是吧。</p>
+<p>感觉浪费了很多时间，但是又没有毅力去改变。。<br>可怕的就是这种情况吧。</p>
+<p>也许可以定一个目标，做点什么东西，在这个世界留下点什么东西。<br>emmm，如果可以，我想这个东西会是好的。</p>
+<p>思绪有点乱。</p>
+<p>也有可能。。<br>emm 大概率。。<br>碌碌无为一生。</p>
+<p>上班，结婚，生子。</p>
+<p>快三十了呀。</p>
+<p>2008年。。</p>
+<p>你觉得很重要的事情。。<br>可能在大部分人看来。。em 也许都记不住。<br>人总是渺小的</p>
+<p>要做点什么。</p>
+<p>随便谢谢，记录一下。</p>
+<p>多年以后在看，也许有不一样的感觉。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" rel="tag"><i class="fa fa-tag"></i> 生活感想</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/61de2e1e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/61de2e1e.html" class="post-title-link" itemprop="url">鞭策一下自己</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-25 17:03:16" itemprop="dateCreated datePublished" datetime="2021-03-25T17:03:16+08:00">2021-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>被喷了呀，喷的好惨。。还是要努力学习啊。。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/284e9461.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/284e9461.html" class="post-title-link" itemprop="url">JS-MAP问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-15 17:27:51" itemprop="dateCreated datePublished" datetime="2021-01-15T17:27:51+08:00">2021-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS-MAP问题"><a href="#JS-MAP问题" class="headerlink" title="JS-MAP问题"></a>JS-MAP问题</h1><h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><ul>
+<li><p>定义了一个MAP,代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> QuestuibOptionHandlerMap = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="number">0</span>, getCommonOptions], <span class="comment">//单选题</span></span><br><span class="line">  [<span class="number">1</span>, getCommonOptions], <span class="comment">//多选题</span></span><br><span class="line">  [<span class="number">2</span>, () =&gt; &#123;&#125;], <span class="comment">//填空题</span></span><br><span class="line">  [<span class="number">3</span>, getCommonOptions], <span class="comment">//下拉题</span></span><br><span class="line">  [<span class="number">4</span>, () =&gt; &#123;&#125;], <span class="comment">//日期</span></span><br><span class="line">  [<span class="number">5</span>, () =&gt; &#123;&#125;], <span class="comment">//量表题</span></span><br><span class="line">  [<span class="number">6</span>, () =&gt; &#123;&#125;], <span class="comment">//AHP 题组</span></span><br><span class="line">  [<span class="number">7</span>, () =&gt; &#123;&#125;], <span class="comment">//图片上传题</span></span><br><span class="line">  [<span class="number">8</span>, () =&gt; &#123;&#125;], <span class="comment">//文件上传题</span></span><br><span class="line">  [<span class="number">9</span>, () =&gt; &#123;&#125;], <span class="comment">//城市</span></span><br><span class="line">  [<span class="number">1</span>, () =&gt; &#123;&#125;], <span class="comment">//车型</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出MAP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(QuestuibOptionHandlerMap);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.wddv.com/www/article/20210115173433.png" alt="20210115173433"><br>然后输出的……..</p>
+</li>
+</ul>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题."></a>解决问题.</h2><p>以后多动动脑子,求你了.<br>卧槽啊啊啊啊啊啊!!!!!!<br>第二个,跟最后一个竟然重复了!!!!!!!!!<br>改行吧</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+              <a href="/tags/MAP/" rel="tag"><i class="fa fa-tag"></i> MAP</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1ebb0fbc.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1ebb0fbc.html" class="post-title-link" itemprop="url">记一次Array.prototype.sort的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-17 16:30:41" itemprop="dateCreated datePublished" datetime="2020-11-17T16:30:41+08:00">2020-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Array-prototype-sort在不同的宿主环境-不同版本-排序方式会不同"><a href="#Array-prototype-sort在不同的宿主环境-不同版本-排序方式会不同" class="headerlink" title="Array.prototype.sort在不同的宿主环境,不同版本,排序方式会不同."></a>Array.prototype.sort在不同的宿主环境,不同版本,排序方式会不同.</h2><p>由于开发版本为nodev12,生产版本为nodev10,写了一个sort方法,两份代码,同样的数据,同样的代码内容.排序的内容确不一样.<br>v8引改变了sort方法的排序方式,导致两个版本排序的结果不一样.<br>最后使用lodash的orderby方法解决.<br>其实可以考虑自己写排序.后来感觉太麻烦了…<br>啊!!!我一定要把生产环境的node升级了!!!!!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e143266a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +660,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,7 +734,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -429,7 +840,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -506,7 +917,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -593,7 +1004,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -636,417 +1047,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c3a46aa1.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/c3a46aa1.html" class="post-title-link" itemprop="url">记一次域名解析问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-18 10:48:40" itemprop="dateCreated datePublished" datetime="2020-09-18T10:48:40+08:00">2020-09-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="域名解析问题"><a href="#域名解析问题" class="headerlink" title="域名解析问题"></a>域名解析问题</h1><p>这段时间在迁移服务器,发现网页再刷新对时候每次刷新数据都会不一样,检查完以后发现是域名解析的问题.<br>在阿里云域名进行解析都时候,在解析到新服务器的时候,老服务器域名的解析没有删除.(是否需要加一个弹窗?)<br>每一次请求都会请求到不同的服务器,导致每次的数据都不一样,emmmm(如果数据库同步了,是不是可以这么做负载均衡,笑..)</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>自己不仔细,删完老服务器绑定的域名以为可以了.域名解析页面没有注意到还有第二页</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E9%97%AE%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 问题</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/51bb67c3.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/51bb67c3.html" class="post-title-link" itemprop="url">介绍下重绘和回流</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 09:48:31" itemprop="dateCreated datePublished" datetime="2020-09-11T09:48:31+08:00">2020-09-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化"><a href="#介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化" class="headerlink" title="介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化"></a>介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="浏览器渲染主要经过三个阶段"><a href="#浏览器渲染主要经过三个阶段" class="headerlink" title="浏览器渲染主要经过三个阶段"></a>浏览器渲染主要经过三个阶段</h3><p>1、dom树与style树合成渲染树<br>2、计算节点的位置与大小的阶段叫回流<br>3、渲染计算好的节点叫重绘</p>
-<h3 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h3><p>1、减少dom插入次数,可以用虚拟的节点,计算好以后,一次性插入到dom中<br>2、动画可以使用绝对布局,脱离文档流<br>3、使用gpu加速相关的属性,比如transition<br>4、修改的节点可以先隐藏,修改完毕后再进行显示.</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/chenjigeng/blog/issues/4" target="_blank" rel="noopener">你真的了解回流和重绘吗 #4</a><br><a href="https://github.com/chenjigeng/blog/issues/4" target="_blank" rel="noopener">最高赞作者github</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/dom%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> dom优化</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e30667a1.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/e30667a1.html" class="post-title-link" itemprop="url">有以下3个判断数组的方法，请分别介绍它们之间的区别和优劣</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-09 10:50:44" itemprop="dateCreated datePublished" datetime="2020-09-09T10:50:44+08:00">2020-09-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="有以下-3-个判断数组的方法，请分别介绍它们之间的区别和优劣Object-prototype-toString-call-、-instanceof-以及-Array-isArray"><a href="#有以下-3-个判断数组的方法，请分别介绍它们之间的区别和优劣Object-prototype-toString-call-、-instanceof-以及-Array-isArray" class="headerlink" title="有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()"></a>有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><p>1、Object.prototype.toString.call(),是使用原型上的toString()方法,输出为[Object xxxxx],通过xxxxx的内容判断当前的类型.目前大部分判断类型都是基于此方法,比较准确</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">//[object Array]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="number">1</span>)); <span class="comment">//[object Number]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">NaN</span>)); <span class="comment">//[object String]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="string">"1"</span>)); <span class="comment">//[object Function]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;)); <span class="comment">//[object Number]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>)); <span class="comment">//[object Undefined]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>)); <span class="comment">//[object Null]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;)); <span class="comment">//[object Object]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="regexp">/reg/</span>)); <span class="comment">//[object RegExp]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>)); <span class="comment">//[object Boolean]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Symbol</span>)); <span class="comment">//[object Function]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Set</span>())); <span class="comment">//[object Set]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Map</span>())); <span class="comment">//[object Map]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Date</span>())); <span class="comment">//[object Date]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">WeakSet</span>())); <span class="comment">//[object WeakSet]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">WeakMap</span>())); <span class="comment">//[object WeakMap]</span></span><br><span class="line"><span class="comment">// ....</span></span><br></pre></td></tr></table></figure>
-<p>2、instanceof是基于原型链的判断方法,一个数组会找到他的原型是不是属于array,如果是返回true</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fsimpleStr = <span class="string">"This is a simple string"</span>; </span><br><span class="line"><span class="keyword">let</span> fmyString  = <span class="keyword">new</span> <span class="built_in">String</span>();</span><br><span class="line"><span class="keyword">let</span> fnewStr    = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"String created with LETructor"</span>);</span><br><span class="line"><span class="keyword">let</span> fmyDate    = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">let</span> fmyObj     = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> fmyNonObj  = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">simpleStr <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 false, 检查原型链会找到 undefined</span></span><br><span class="line">myString  <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 true</span></span><br><span class="line">newStr    <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 true</span></span><br><span class="line">myString  <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// 返回 true</span></span><br><span class="line"></span><br><span class="line">myObj <span class="keyword">instanceof</span> <span class="built_in">Object</span>;    <span class="comment">// 返回 true, 尽管原型没有定义</span></span><br><span class="line">(&#123;&#125;)  <span class="keyword">instanceof</span> <span class="built_in">Object</span>;    <span class="comment">// 返回 true, 同上</span></span><br><span class="line">myNonObj <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// 返回 false, 一种创建非 Object 实例的对象的方法</span></span><br><span class="line"></span><br><span class="line">myString <span class="keyword">instanceof</span> <span class="built_in">Date</span>; <span class="comment">//返回 false</span></span><br><span class="line"></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">Date</span>;     <span class="comment">// 返回 true</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">Object</span>;   <span class="comment">// 返回 true</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// 返回 false</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> demo = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> Child); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> Parent); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>3、Array.isArray(),Array对象上提供的判断是否是数组的方法,比较准确</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);  </span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123;<span class="attr">foo</span>: <span class="number">123</span>&#125;); </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="string">"foobar"</span>);   </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">undefined</span>);  </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的函数调用都返回 true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray([]);</span><br><span class="line"><span class="built_in">Array</span>.isArray([<span class="number">1</span>]);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Array</span>());</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>))</span><br><span class="line"><span class="comment">// 鲜为人知的事实：其实 Array.prototype 也是一个数组。</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="built_in">Array</span>.prototype); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的函数调用都返回 false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray();</span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123;&#125;);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">null</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">undefined</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="number">17</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="string">'Array'</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Uint8Array</span>(<span class="number">32</span>))</span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123; <span class="attr">__proto__</span>: <span class="built_in">Array</span>.prototype &#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/23" target="_blank" rel="noopener">第 21 题：有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray" target="_blank" rel="noopener">MDN isArray</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">MDN instanceof</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/51fa8c82.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/51fa8c82.html" class="post-title-link" itemprop="url">如何实现a=1a=2a=3</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-08 10:51:38" itemprop="dateCreated datePublished" datetime="2020-09-08T10:51:38+08:00">2020-09-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="如何实现a-1a-2a-3"><a href="#如何实现a-1a-2a-3" class="headerlink" title="如何实现a=1a=2a=3"></a>如何实现a=1a=2a=3</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// node</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(global, <span class="string">"a"</span>, &#123;</span><br><span class="line">  <span class="keyword">get</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> b++;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">2</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">3</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/7d1b1002.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/7d1b1002.html" class="post-title-link" itemprop="url">谈谈你对TCP三次握手和四次挥手的理解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-07 10:18:41" itemprop="dateCreated datePublished" datetime="2020-09-07T10:18:41+08:00">2020-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="谈谈你对TCP三次握手和四次挥手的理解"><a href="#谈谈你对TCP三次握手和四次挥手的理解" class="headerlink" title="谈谈你对TCP三次握手和四次挥手的理解"></a>谈谈你对TCP三次握手和四次挥手的理解</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="tcp-三次握手"><a href="#tcp-三次握手" class="headerlink" title="tcp 三次握手"></a>tcp 三次握手</h3><p>1、客户端:发送报文到服务器,表示我要发送请求了<br>2、服务端:确认客户端请求,返回确认报文,表示可以接收数据<br>3、客户端:确认报文,建立tcp链接</p>
-<h3 id="tcp-三次挥手"><a href="#tcp-三次挥手" class="headerlink" title="tcp 三次挥手"></a>tcp 三次挥手</h3><p>1、客户端:发送断开链接报文,表示我要断开链接了<br>2、服务端:收到断开链接报文,确认信息包是否发送完毕<br>3、服务端:信息发送完毕,返回确认报文<br>4、客户端:收到服务端到确认消息,断开链接.服务端会等待一定时间,确认没有新的消息,然后断开链接.</p>
-<h2 id="高赞题解"><a href="#高赞题解" class="headerlink" title="高赞题解"></a>高赞题解</h2><p><img src="https://oss.wddv.com/www/article/20200907103418.png" alt="20200907103418"></p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/15" target="_blank" rel="noopener">第 16 题：谈谈你对 TCP 三次握手和四次挥手的理解 #15</a><br><a href="https://github.com/GuoYuFu123" target="_blank" rel="noopener">最高赞作者github</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/https/" rel="tag"><i class="fa fa-tag"></i> https</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1114,7 +1118,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">123</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1164,7 +1168,7 @@
 <div class="copyright">
   
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

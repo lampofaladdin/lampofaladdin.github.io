@@ -218,6 +218,788 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/74ffa402.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/74ffa402.html" class="post-title-link" itemprop="url">异步解决方案的发展历程以及优缺点。</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 11:58:29" itemprop="dateCreated datePublished" datetime="2020-08-24T11:58:29+08:00">2020-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点"><a href="#（滴滴、挖财、微医、海康）JS-异步解决方案的发展历程以及优缺点" class="headerlink" title="（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点"></a>（滴滴、挖财、微医、海康）JS 异步解决方案的发展历程以及优缺点</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
+<li>callback-&gt;promise-&gt;generator/yield-&gt;async/await<h3 id="callback-最初的方案"><a href="#callback-最初的方案" class="headerlink" title="callback (最初的方案)"></a>callback (最初的方案)</h3><blockquote>
+<p>最开始使用的是callback,比如浏览器端的dom事件,ajax.node上的io事件等等,但是有定位问题困难,callback hell,异常处理等问题</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器端</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// nodejs</span></span><br><span class="line">fs.readFile(<span class="string">'path'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><blockquote>
+<p>相比callback的回调写法,链式调用的写法更优雅,异常处理变得友好.</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">demo()</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// something</span></span><br><span class="line">    <span class="keyword">return</span> res + <span class="string">"then"</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"err"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err.message); <span class="comment">// err</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="generator-yield"><a href="#generator-yield" class="headerlink" title="generator/yield"></a>generator/yield</h3><blockquote>
+<p>用的不多,不做评价.emmm 打扰了</p>
+</blockquote>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><blockquote>
+<p>异步终极解决方案,generator/yield语法糖,基于promise,同步的写法,同步代码的异常捕获能力.强!无敌!</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> demo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"something"</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> demo();</span><br><span class="line">    <span class="built_in">console</span>.log(res); <span class="comment">// some</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"error"</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e); <span class="comment">// error</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><p>JS 异步已经告一段落了，这里来一波小总结</p>
+<h3 id="1-回调函数（callback）"><a href="#1-回调函数（callback）" class="headerlink" title="1. 回调函数（callback）"></a>1. 回调函数（callback）</h3><p>setTimeout(() =&gt; {<br>    // callback 函数体<br>}, 1000)<br>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</p>
+<p>回调地狱的根本问题在于：</p>
+<ul>
+<li>缺乏顺序性： 回调地狱导致的调试困难，和大脑的思维方式不符</li>
+<li>嵌套函数存在耦合性，一旦有所改动，就会牵一发而动全身，即（控制反转）</li>
+<li>嵌套函数过多的多话，很难处理错误<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// callback 函数体</span></span><br><span class="line">    ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// callback 函数体</span></span><br><span class="line">        ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;</span><br><span class="line">            <span class="comment">// callback 函数体</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+优点：解决了同步的问题（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。）</li>
+</ul>
+<h3 id="2-Promise"><a href="#2-Promise" class="headerlink" title="2. Promise"></a>2. Promise</h3><p>Promise就是为了解决callback的问题而产生的。</p>
+<p>Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被 Promise.resolve() 包装</p>
+<p>优点：解决了回调地狱的问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ajax(<span class="string">'XXX1'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX2'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">      <span class="keyword">return</span> ajax(<span class="string">'XXX3'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 操作逻辑</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>缺点：无法取消 Promise ，错误需要通过回调函数来捕获</p>
+<h3 id="3-Generator"><a href="#3-Generator" class="headerlink" title="3. Generator"></a>3. Generator</h3><p>特点：可以控制函数的执行，可以配合 co 函数库使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">fetch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX1'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX2'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">    <span class="keyword">yield</span> ajax(<span class="string">'XXX3'</span>, () =&gt; &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> it = fetch()</span><br><span class="line"><span class="keyword">let</span> result1 = it.next()</span><br><span class="line"><span class="keyword">let</span> result2 = it.next()</span><br><span class="line"><span class="keyword">let</span> result3 = it.next()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">### 4. Async/await</span></span><br><span class="line"><span class="string">async、await 是异步的终极解决方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">优点是：代码清晰，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 以下代码没有依赖性的话，完全可以使用 Promise.all 的方式</span></span><br><span class="line">  <span class="comment">// 如果有依赖性的话，其实就是解决回调地狱的例子了</span></span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX1'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX2'</span>)</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'XXX3'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="下面来看一个使用-await-的例子："><a href="#下面来看一个使用-await-的例子：" class="headerlink" title="下面来看一个使用 await 的例子："></a>下面来看一个使用 await 的例子：</h3><pre><code class="javascript"><span class="keyword">let</span> a = <span class="number">0</span>
+<span class="keyword">let</span> b = <span class="keyword">async</span> () =&gt; {
+  a = a + <span class="keyword">await</span> <span class="number">10</span>
+  <span class="built_in">console</span>.log(<span class="string">'2'</span>, a) <span class="comment">// -&gt; '2' 10</span>
+}
+b()
+a++
+<span class="built_in">console</span>.log(<span class="string">'1'</span>, a) <span class="comment">// -&gt; '1' 1</span></code></pre>
+<p>对于以上代码你可能会有疑惑，让我来解释下原因</p>
+<p>首先函数 b 先执行，在执行到 await 10 之前变量 a 还是 0，因为 await 内部实现了 generator ，generator 会保留堆栈中东西，所以这时候 a = 0 被保存了下来<br>因为 await 是异步操作，后来的表达式不返回 Promise 的话，就会包装成 Promise.reslove(返回值)，然后会去执行函数外的同步代码<br>同步代码执行完毕后开始执行异步代码，将保存下来的值拿出来使用，这时候 a = 0 + 10<br>上述解释中提到了 await 内部实现了 generator，其实 await 就是 generator 加上 Promise的语法糖，且内部实现了自动执行 generator。如果你熟悉 co 的话，其实自己就可以实现这样的语法糖。</p>
+<p>本文首发于我的博客：JS异步解决方案的发展历程以及优缺点</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/11" target="_blank" rel="noopener">文章链接</a><br><a href="https://github.com/sisterAn" target="_blank" rel="noopener">最高赞作者github</a><br><a href="https://github.com/sisterAn/blog/issues/29" target="_blank" rel="noopener">最高赞作者地址 JS异步解决方案的发展历程以及优缺点 </a><br><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="noopener">阮一峰 Javascript异步编程的4种方法</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1942942a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1942942a.html" class="post-title-link" itemprop="url">算法手写题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-21 10:16:45" itemprop="dateCreated datePublished" datetime="2020-08-21T10:16:45+08:00">2020-08-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+<p>已知如下数组：<br>var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];<br>编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组</p>
+</blockquote>
+<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
+<li><p>递归;</p>
+<blockquote>
+<p>不想写</p>
+</blockquote>
+</li>
+<li><p>while循环遍历</p>
+<blockquote>
+<p>不想写</p>
+</blockquote>
+</li>
+<li><p>Array.prototype.flat</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayFlat</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr.flat(<span class="literal">Infinity</span>))).sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123; <span class="keyword">return</span> a-b&#125;);</span><br><span class="line">&#125;</span><br><span class="line">arrayFlat(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>骚操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saocaozuo</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [...new <span class="built_in">Set</span>(arr.toString().split(<span class="string">","</span>))].sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">&#125;</span><br><span class="line">saocaozuo(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/8" target="_blank" rel="noopener">第 11 题：将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/flat" target="_blank" rel="noopener">Array.prototype.flat() MDN</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/92bdb23a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/92bdb23a.html" class="post-title-link" itemprop="url">20200820题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-20 10:00:15" itemprop="dateCreated datePublished" datetime="2020-08-20T10:00:15+08:00">2020-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="异步笔试题"><a href="#异步笔试题" class="headerlink" title="异步笔试题"></a>异步笔试题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">    <span class="keyword">await</span> async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line">async1();</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="猜测"><a href="#猜测" class="headerlink" title="猜测"></a>猜测</h3><ul>
+<li>script start</li>
+<li>async1 start</li>
+<li>async2</li>
+<li>promise1</li>
+<li>script end</li>
+<li>promise2</li>
+<li>async1 end</li>
+<li>setTimeout</li>
+</ul>
+<h3 id="实际"><a href="#实际" class="headerlink" title="实际"></a>实际</h3><ul>
+<li>cript start</li>
+<li>async1 start</li>
+<li>async2</li>
+<li>promise1</li>
+<li>script end</li>
+<li>async1 end</li>
+<li>promise2</li>
+<li>setTimeout</li>
+</ul>
+<h3 id="错误的地方"><a href="#错误的地方" class="headerlink" title="错误的地方"></a>错误的地方</h3><ul>
+<li>微任务的顺序自己理解有问题,promise1 跟async1 end 这两个地方,我以为是应该先执行then里面的内容,但实际还是按照微任务的队列进行执行.</li>
+</ul>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ul>
+<li>js是单线程,会先执行script start</li>
+<li>settimeout 是宏任务,不会先执行,直接到async1(),输出async 1 start</li>
+<li>在async1 里面执行async2,输出async2,有await,让出线程</li>
+<li>执行new promise 输出 promise1</li>
+<li>then方法等待,输出 script end</li>
+<li>script宏任务队列清空,开始执行微任务,输出async1 end</li>
+<li>执行微任务队列,输出promise2</li>
+<li>微任务队列晴空,开始下一个宏任务 settimeout</li>
+</ul>
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><ul>
+<li><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/7" target="_blank" rel="noopener">第 10 题：常见异步笔试题，请写出代码的运行结果 #7</a></li>
+<li><a href="https://github.com/Mavericker-1996" target="_blank" rel="noopener">作者github</a></li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://es6.ruanyifeng.com/#docs/promise#Promise-resolve" target="_blank" rel="noopener">ECMAScript 6 入门</a><br><a href="https://github.com/dwqs/blog/issues/61" target="_blank" rel="noopener">从一道题浅说 JavaScript 的事件循环</a><br><a href="https://segmentfault.com/a/1190000011296839" target="_blank" rel="noopener">async/await 执行顺序详解</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/89aaf00a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/89aaf00a.html" class="post-title-link" itemprop="url">20200819题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-19 10:52:36" itemprop="dateCreated datePublished" datetime="2020-08-19T10:52:36+08:00">2020-08-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="（头条、微医）Async-Await-如何通过同步的方式实现异步"><a href="#（头条、微医）Async-Await-如何通过同步的方式实现异步" class="headerlink" title="（头条、微医）Async/Await 如何通过同步的方式实现异步"></a>（头条、微医）Async/Await 如何通过同步的方式实现异步</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
+<li>是promise的语法糖,async 返回的是promise,await 后面的语句相当于放在前一个promise的then 方法内.</li>
+<li>个人猜测是这样</li>
+</ul>
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><h3 id="本质是单向链表吧"><a href="#本质是单向链表吧" class="headerlink" title="本质是单向链表吧"></a>本质是单向链表吧</h3><p>Async/Await 如何通过同步的方式实现异步<br>作为前端人员要回答这个问题，需要了解这三个知识点：</p>
+<ul>
+<li>同步</li>
+<li>异步</li>
+<li>Async/Await<br>首先，js 是单线程的（重复三遍），所谓单线程，<br>通俗的讲就是，一根筋（比喻有点过分，哈哈）执行代码是一行一行的往下走（即所谓的同步），<br>如果上面的没执行完，就痴痴的等着（是不是很像恋爱中在路边等她/他的你，假装 new 了个对象，啊哈哈哈，调皮一下很开心），<br>还是举个 🌰 吧：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// chrome 75</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> d = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">1e8</span>; i++) &#123;&#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now() - d); <span class="comment">// 62ms左右</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> d = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now() - d); <span class="comment">// 0</span></span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line">test1();</span><br></pre></td></tr></table></figure>
+上面仅仅是一个 for 循环，而在实际应用中，会有大量的网络请求，它的响应时间是不确定的，这种情况下也要痴痴的等么？显然是不行的，因而 js 设计了异步，即 发起网络请求（诸如 IO 操作，定时器），由于需要等服务器响应，就先不理会，而是去做其他的事儿，等请求返回了结果的时候再说（即异步）。<br>那么如何实现异步呢？其实我们平时已经在大量使用了，那就是 callback，例如：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">'http://xxx'</span>,</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+success 作为函数传递过去并不会立即执行，而是等请求成功了才执行，即回调函数（callback）<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line">fs.rename(<span class="string">'旧文件.txt'</span>, <span class="string">'新文件.txt'</span>, err =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'重命名完成'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+和网络请求类似，等到 IO 操作有了结果（无论成功与否）才会执行第三个参数：(err)=&gt;{}</li>
+</ul>
+<p>从上面我们就可以看出，实现异步的核心就是回调钩子，将 cb 作为参数传递给异步执行函数，当有了结果后在触发 cb。想了解更多，去看看 event-loop 机制吧。</p>
+<p>至于 async/await 是如何出现的呢，在 es6 之前，大多 js 数项目中会有类似这样的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ajax1(url, () =&gt; &#123;</span><br><span class="line">  ajax2(url, () =&gt; &#123;</span><br><span class="line">    ajax3(url, () =&gt; &#123;</span><br><span class="line">      <span class="comment">// do something</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种函数嵌套，大量的回调函数，使代码阅读起来晦涩难懂，不直观，形象的称之为回调地狱（callback hell），所以为了在写法上能更通俗一点，es6+陆续出现了 Promise、Generator、Async/await，力求在写法上简洁明了，可读性强。</p>
+<p>=========================我是分割线==========================</p>
+<p>以上只是铺垫，下面在进入正题 👇，开始说道说道主角：async/await</p>
+<p>=========================我是分割线==========================</p>
+<p>async/await 是参照 Generator 封装的一套异步处理方案，可以理解为 Generator 的语法糖，</p>
+<p>所以了解 async/await 就不得不讲一讲 Generator,</p>
+<p>而 Generator 又依赖于迭代器Iterator，</p>
+<p>所以就得先讲一讲 Iterator,</p>
+<p>而 Iterator 的思想呢又来源于单向链表，</p>
+<p>终于找到源头了：单向链表</p>
+<h3 id="1-单向链表"><a href="#1-单向链表" class="headerlink" title="1. 单向链表"></a>1. 单向链表</h3><p>wiki：链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序储存数据，而是在每一个节点里存到下一个节点的指针（Pointer）。由于不必须按顺序储存，链表在插入的时候可以达到 o(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要 o(n)的时间，而顺序表响应的时间复杂度分别是 o(logn)和 o(1)。</p>
+<p>总结一下链表优点：</p>
+<p>无需预先分配内存<br>插入/删除节点不影响其他节点，效率高（典型的例子：git commit、dom 操作）<br>单向链表：是链表中最简单的一种，它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。<br><img src="https://oss.wddv.com/www/article/20200819112119.png" alt="20200819112119"><br>一个单向链表包含两个值: 当前节点的值和一个指向下一个节点的链接</p>
+<p>单链特点：节点的链接方向是单向的；相对于数组来说，单链表的的随机访问速度较慢，但是单链表删除/添加数据的效率很高。</p>
+<p>理解 js 原型链/作用域链的话，理解这个很容易，他们是相通的。编程语言中，数组的长度时固定的，所以数组中的增加和删除比较麻烦，需要频繁的移动数组中的其他元素，而 js 作为一门动态语言，数组本质是一个类似数组的对象，是动态的，不需要预先分配内存</p>
+<p>那么如何设计一个单向链表呢？这个取决于我们需要哪些操作，通常有：</p>
+<ul>
+<li>append(element)：追加节点</li>
+<li>insert(element,index)：在索引位置插入节点</li>
+<li>remove(element)：删除第一个匹配到的节点</li>
+<li>removeAt(index)：删除指定索引节点</li>
+<li>removeAll(element)：删除所有匹配的节点</li>
+<li>get(index)：获取指定索引的节点信息</li>
+<li>set(element,index)：修改指定索引的节点值</li>
+<li>indexOf(element)：获取某节点的索引位置</li>
+<li>clear()：清除所有节点</li>
+<li>length()：返回节点长度</li>
+<li>printf()：打印节点信息<br>看到这些方法是不是有些许熟悉，当你用原生 js 或 jq 时常会用上面类似的方法，现在根据上面列出的方法进行实现一个单向链：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 节点模型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(element, next) &#123;</span><br><span class="line">    <span class="keyword">this</span>.element = element;</span><br><span class="line">    <span class="keyword">this</span>.next = next;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>._head = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>._size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>._errorBoundary = <span class="keyword">this</span>._errorBoundary.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>._getNodeByIndex = <span class="keyword">this</span>._getNodeByIndex.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.append = <span class="keyword">this</span>.append.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.insert = <span class="keyword">this</span>.insert.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.remove = <span class="keyword">this</span>.remove.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.removeAt = <span class="keyword">this</span>.removeAt.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.removeAll = <span class="keyword">this</span>.removeAll.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.getElement = <span class="keyword">this</span>.getElement.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.setIndex = <span class="keyword">this</span>.setIndex.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.indexOf = <span class="keyword">this</span>.indexOf.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.clear = <span class="keyword">this</span>.clear.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.length = <span class="keyword">this</span>.length.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.printf = <span class="keyword">this</span>.printf.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 边界检验</span></span><br><span class="line">  _errorBoundary(index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= <span class="keyword">this</span>._size) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">`超出边界(<span class="subst">$&#123;<span class="number">0</span>&#125;</span>~<span class="subst">$&#123;<span class="keyword">this</span>._size&#125;</span>)，目标位置<span class="subst">$&#123;index&#125;</span>不存在！`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 根据索引获取目标对象</span></span><br><span class="line">  _getNodeByIndex(index) &#123;</span><br><span class="line">    <span class="keyword">this</span>._errorBoundary(index);</span><br><span class="line">    <span class="keyword">let</span> obj = <span class="keyword">this</span>._head;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">      obj = obj.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 追加节点</span></span><br><span class="line">  append(element) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._size === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>._head = <span class="keyword">new</span> LinkNode(element, <span class="literal">null</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> obj = <span class="keyword">this</span>._getNodeByIndex(<span class="keyword">this</span>._size - <span class="number">1</span>);</span><br><span class="line">      obj.next = <span class="keyword">new</span> LinkNode(element, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._size++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 在索引位置插入节点</span></span><br><span class="line">  insert(element, index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (index === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>._head = <span class="keyword">new</span> LinkNode(element, <span class="keyword">this</span>._head);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> obj = <span class="keyword">this</span>._getNodeByIndex(index - <span class="number">1</span>);</span><br><span class="line">      obj.next = <span class="keyword">new</span> LinkNode(element, obj.next);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._size++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 删除第一个匹配到的节点</span></span><br><span class="line">  remove(element) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._size &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._head.element == element) &#123;</span><br><span class="line">      <span class="keyword">this</span>._head.element = <span class="keyword">this</span>._head.next;</span><br><span class="line">      <span class="keyword">this</span>._size--;</span><br><span class="line">      <span class="keyword">return</span> element;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = <span class="keyword">this</span>._head;</span><br><span class="line">      <span class="keyword">while</span> (temp.next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (temp.next.element == element) &#123;</span><br><span class="line">          temp.next = temp.next.next;</span><br><span class="line">          <span class="keyword">this</span>._size--;</span><br><span class="line">          <span class="keyword">return</span> element;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 删除指定索引节点</span></span><br><span class="line">  removeAt(index) &#123;</span><br><span class="line">    <span class="keyword">this</span>._errorBoundary(index);</span><br><span class="line">    <span class="keyword">let</span> element = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (index === <span class="number">0</span>) &#123;</span><br><span class="line">      element = <span class="keyword">this</span>._head.element;</span><br><span class="line">      <span class="keyword">this</span>._head = <span class="keyword">this</span>._head.next;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> prev = <span class="keyword">this</span>._getNodeByIndex(index - <span class="number">1</span>);</span><br><span class="line">      element = prev.next.element;</span><br><span class="line">      prev.next = prev.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._size--;</span><br><span class="line">    <span class="keyword">return</span> element;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 删除所有匹配的节点</span></span><br><span class="line">  removeAll(element) &#123;</span><br><span class="line">    <span class="comment">// 创建虚拟头节点，</span></span><br><span class="line">    <span class="keyword">let</span> v_head = <span class="keyword">new</span> LinkNode(<span class="literal">null</span>, <span class="keyword">this</span>._head);</span><br><span class="line">    <span class="keyword">let</span> tempNode = v_head;</span><br><span class="line">    <span class="comment">// let tempEle = null;</span></span><br><span class="line">    <span class="keyword">while</span> (tempNode.next) &#123;</span><br><span class="line">      <span class="keyword">if</span> (tempNode.next.element == element) &#123;</span><br><span class="line">        tempNode.next = tempNode.next.next;</span><br><span class="line">        <span class="keyword">this</span>._size--;</span><br><span class="line">        <span class="comment">// tempEle = element;</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        tempNode = tempNode.next;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._head = v_head.next;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 获取指定索引的节点信息</span></span><br><span class="line">  getElement(index) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._getNodeByIndex(index).element;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 修改指定索引的节点值</span></span><br><span class="line">  setIndex(element, index) &#123;</span><br><span class="line">    <span class="keyword">this</span>._errorBoundary(index);</span><br><span class="line">    <span class="keyword">let</span> obj = <span class="keyword">this</span>._getNodeByIndex(index);</span><br><span class="line">    obj.element = element;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 获取某节点的索引位置</span></span><br><span class="line">  indexOf(element) &#123;</span><br><span class="line">    <span class="keyword">let</span> obj = <span class="keyword">this</span>._head;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>._size; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (obj.element == element) &#123;</span><br><span class="line">        index = i;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      obj = obj.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 清除所有节点</span></span><br><span class="line">  clear() &#123;</span><br><span class="line">    <span class="keyword">this</span>._head = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>._size = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回节点长度</span></span><br><span class="line">  length() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._size;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 打印节点信息</span></span><br><span class="line">  printf() &#123;</span><br><span class="line">    <span class="keyword">let</span> obj = <span class="keyword">this</span>._head;</span><br><span class="line">    <span class="keyword">const</span> arr = [];</span><br><span class="line">    <span class="keyword">while</span> (obj != <span class="literal">null</span>) &#123;</span><br><span class="line">      arr.push(obj.element);</span><br><span class="line">      obj = obj.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> str = arr.join(<span class="string">'-&gt;'</span>);</span><br><span class="line">    <span class="keyword">return</span> str || <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> LinkedList();</span><br><span class="line">obj.append(<span class="number">0</span>);</span><br><span class="line">obj.append(<span class="number">1</span>);</span><br><span class="line">obj.append(<span class="number">2</span>);</span><br><span class="line">obj.printf();</span><br><span class="line"><span class="comment">// "0-&gt;1-&gt;2"</span></span><br><span class="line"></span><br><span class="line">obj.insert(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">obj.printf();</span><br><span class="line"><span class="comment">// "0-&gt;1-&gt;2-&gt;3"</span></span><br><span class="line"></span><br><span class="line">obj.remove(<span class="number">3</span>);</span><br><span class="line">obj.printf();</span><br><span class="line"><span class="comment">// "0-&gt;1-&gt;2"</span></span><br><span class="line"></span><br><span class="line">obj.removeAt(<span class="number">0</span>);</span><br><span class="line">obj.printf();</span><br><span class="line"><span class="comment">// "1-&gt;2"</span></span><br><span class="line"></span><br><span class="line">obj.setIndex(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">obj.printf();</span><br><span class="line"><span class="comment">// "0-&gt;2"</span></span><br><span class="line"></span><br><span class="line">obj.indexOf(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">obj.length();</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">obj.clear();</span><br><span class="line">obj.printf();</span><br><span class="line"><span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>通过以上，我假装你明白什么是单向链表，并且能够用代码实现一个单向链表了，下一步开始说一说迭代器 Iterator</p>
+<h3 id="2-Iterator"><a href="#2-Iterator" class="headerlink" title="2. Iterator"></a>2. Iterator</h3><p>Iterator 翻译过来就是<strong>迭代器（遍历器）</strong>让我们先来看看它的遍历过程(类似于单向链表)：</p>
+<p>创建一个指针对象，指向当前数据结构的起始位置<br>第一次调用指针对象的 next 方法，将指针指向数据结构的第一个成员<br>第二次调用指针对象的 next 方法，将指针指向数据结构的第二个成员<br>不断的调用指针对象的 next 方法，直到它指向数据结构的结束位置<br>一个对象要变成可迭代的，必须实现 @@iterator 方法，即对象（或它原型链上的某个对象）必须有一个名字是 Symbol.iterator 的属性（原生具有该属性的有：字符串、数组、类数组的对象、Set 和 Map）：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[Symbol.iterator]</td>
+<td>返回一个对象的无参函数，被返回对象符合迭代器协议</td>
+</tr>
+</tbody></table>
+<p>当一个对象需要被迭代的时候（比如开始用于一个 for..of 循环中），它的 @@iterator 方法被调用并且无参数，然后返回一个用于在迭代中获得值的迭代器</p>
+<p>迭代器协议：产生一个有限或无限序列的值，并且当所有的值都已经被迭代后，就会有一个默认的返回值</p>
+<p>当一个对象只有满足下述条件才会被认为是一个迭代器：</p>
+<p>它实现了一个 next() 的方法，该方法必须返回一个对象,对象有两个必要的属性：</p>
+<p>done（bool）<br>true：迭代器已经超过了可迭代次数。这种情况下,value 的值可以被省略<br>如果迭代器可以产生序列中的下一个值，则为 false。这等效于没有指定 done 这个属性<br>value 迭代器返回的任何 JavaScript 值。done 为 true 时可省略<br>根据上面的规则，咱们来自定义一个简单的迭代器：</p>
+<pre><code class="javascript"><span class="keyword">const</span> makeIterator = <span class="function"><span class="params">arr</span> =&gt;</span> {
+  <span class="keyword">let</span> nextIndex = <span class="number">0</span>;
+  <span class="keyword">return</span> {
+    next: <span class="function"><span class="params">()</span> =&gt;</span>
+      nextIndex &lt; arr.length
+        ? { <span class="attr">value</span>: arr[nextIndex++], <span class="attr">done</span>: <span class="literal">false</span> }
+        : { <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> },
+  };
+};
+<span class="keyword">const</span> it = makeIterator([<span class="string">'人月'</span>, <span class="string">'神话'</span>]);
+<span class="built_in">console</span>.log(it.next()); <span class="comment">// { value: "人月", done: false }</span>
+<span class="built_in">console</span>.log(it.next()); <span class="comment">// { value: "神话", done: false }</span>
+<span class="built_in">console</span>.log(it.next()); <span class="comment">// {value: undefined, done: true }</span>
+我们还可以自定义一个可迭代对象：
+
+<span class="keyword">const</span> myIterable = {};
+myIterable[<span class="built_in">Symbol</span>.iterator] = <span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>{
+  <span class="keyword">yield</span> <span class="number">1</span>;
+  <span class="keyword">yield</span> <span class="number">2</span>;
+  <span class="keyword">yield</span> <span class="number">3</span>;
+};
+
+<span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> myIterable) {
+  <span class="built_in">console</span>.log(value);
+}
+<span class="comment">// 1</span>
+<span class="comment">// 2</span>
+<span class="comment">// 3</span>
+
+<span class="comment">//or</span>
+
+<span class="built_in">console</span>.log([...myIterable]); <span class="comment">// [1, 2, 3]</span></code></pre>
+<p>了解了迭代器，下面可以进一步了解生成器了</p>
+<h3 id="3-Generator"><a href="#3-Generator" class="headerlink" title="3. Generator"></a>3. Generator</h3><p>Generator：生成器对象是生成器函数（GeneratorFunction）返回的，它符合可迭代协议和迭代器协议，既是迭代器也是可迭代对象，可以调用 next 方法，但它不是函数，更不是构造函数</p>
+<p>生成器函数（GeneratorFunction）：</p>
+<blockquote>
+<p>function* name([param[, param[, … param]]]) { statements } –&gt;</p>
+</blockquote>
+<blockquote>
+<p>name：函数名<br>param：参数<br>statements：js 语句<br>调用一个生成器函数并不会马上执行它里面的语句，而是返回一个这个生成器的迭代器对象，当这个迭代器的 next() 方法被首次（后续）调用时，其内的语句会执行到第一个（后续）出现 yield 的位置为止（让执行处于暂停状），yield 后紧跟迭代器要返回的值。或者如果用的是 yield*（多了个星号），则表示将执行权移交给另一个生成器函数（当前生成器暂停执行），调用 next() （再启动）方法时，如果传入了参数，那么这个参数会作为上一条执行的 yield 语句的返回值，例如：</p>
+</blockquote>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span>* <span class="title">another</span>(<span class="params"></span>) </span>{
+  <span class="keyword">yield</span> <span class="string">'人月神话'</span>;
+}
+<span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>{
+  <span class="keyword">yield</span>* another(); <span class="comment">// 移交执行权</span>
+  <span class="keyword">const</span> a = <span class="keyword">yield</span> <span class="string">'hello'</span>;
+  <span class="keyword">const</span> b = <span class="keyword">yield</span> a; <span class="comment">// a='world' 是 next('world') 传参赋值给了上一个 yidle 'hello' 的左值</span>
+  <span class="keyword">yield</span> b; <span class="comment">// b=！ 是 next('！') 传参赋值给了上一个 yidle a 的左值</span>
+}
+<span class="keyword">const</span> g = gen();
+g.next(); <span class="comment">// {value: "人月神话", done: false}</span>
+g.next(); <span class="comment">// {value: "hello", done: false}</span>
+g.next(<span class="string">'world'</span>); <span class="comment">// {value: "world", done: false} 将 'world' 赋给上一条 yield 'hello' 的左值，即执行 a='world'，</span>
+g.next(<span class="string">'!'</span>); <span class="comment">// {value: "!", done: false} 将 '!' 赋给上一条 yield a 的左值，即执行 b='!'，返回 b</span>
+g.next(); <span class="comment">// {value: undefined, done: false}</span></code></pre>
+<p>看到这里，你可能会问，Generator 和 callback 有啥关系，如何处理异步呢？其实二者没有任何关系，我们只是通过一些方式强行的它们产生了关系，才会有 Generator 处理异步</p>
+<p>我们来总结一下 Generator 的本质，暂停，它会让程序执行到指定位置先暂停（yield），然后再启动（next），再暂停（yield），再启动（next），而这个暂停就很容易让它和异步操作产生联系，因为我们在处理异步时：开始异步处理（网络求情、IO 操作），然后暂停一下，等处理完了，再该干嘛干嘛。不过值得注意的是，js 是单线程的（又重复了三遍），异步还是异步，callback 还是 callback，不会因为 Generator 而有任何改变</p>
+<p>下面来看看，用 Generator 实现异步：</p>
+<pre><code class="javascript"><span class="keyword">const</span> promisify = <span class="built_in">require</span>(<span class="string">'util'</span>).promisify;
+<span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);
+<span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+<span class="keyword">const</span> readFile = promisify(fs.readFile);
+
+<span class="keyword">const</span> gen = <span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>{
+  <span class="keyword">const</span> res1 = <span class="keyword">yield</span> readFile(path.resolve(__dirname, <span class="string">'../data/a.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res1);
+  <span class="keyword">const</span> res2 = <span class="keyword">yield</span> readFile(path.resolve(__dirname, <span class="string">'../data/b.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res2);
+};
+
+<span class="keyword">const</span> g = gen();
+
+<span class="keyword">const</span> g1 = g.next();
+<span class="built_in">console</span>.log(<span class="string">'g1:'</span>, g1);
+
+g1.value
+  .then(<span class="function"><span class="params">res1</span> =&gt;</span> {
+    <span class="built_in">console</span>.log(<span class="string">'res1:'</span>, res1);
+    <span class="keyword">const</span> g2 = g.next(res1);
+    <span class="built_in">console</span>.log(<span class="string">'g2:'</span>, g2);
+    g2.value
+      .then(<span class="function"><span class="params">res2</span> =&gt;</span> {
+        <span class="built_in">console</span>.log(<span class="string">'res2:'</span>, res2);
+        g.next(res2);
+      })
+      .catch(<span class="function"><span class="params">err2</span> =&gt;</span> {
+        <span class="built_in">console</span>.log(err2);
+      });
+  })
+  .catch(<span class="function"><span class="params">err1</span> =&gt;</span> {
+    <span class="built_in">console</span>.log(err1);
+  });
+<span class="comment">// g1: { value: Promise { &lt;pending&gt; }, done: false }</span>
+<span class="comment">// res1: {</span>
+<span class="comment">//   "a": 1</span>
+<span class="comment">// }</span>
+
+<span class="comment">// {</span>
+<span class="comment">//   "a": 1</span>
+<span class="comment">// }</span>
+
+<span class="comment">// g2: { value: Promise { &lt;pending&gt; }, done: false }</span>
+<span class="comment">// res2: {</span>
+<span class="comment">//   "b": 2</span>
+<span class="comment">// }</span>
+
+<span class="comment">// {</span>
+<span class="comment">//   "b": 2</span>
+<span class="comment">// }</span></code></pre>
+<p>以上代码是 Generator 和 callback 结合实现的异步，可以看到，仍然需要手动执行 .then 层层添加回调，但由于 next() 方法返回对象 {value: xxx,done: true/false} 所以我们可以简化它，写一个自动执行器：</p>
+<pre><code class="javascript"><span class="keyword">const</span> promisify = <span class="built_in">require</span>(<span class="string">'util'</span>).promisify;
+<span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);
+<span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+<span class="keyword">const</span> readFile = promisify(fs.readFile);
+
+<span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">gen</span>) </span>{
+  <span class="keyword">const</span> g = gen();
+  <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">data</span>) </span>{
+    <span class="keyword">const</span> res = g.next(data);
+    <span class="comment">// 深度递归，只要 `Generator` 函数还没执行到最后一步，`next` 函数就调用自身</span>
+    <span class="keyword">if</span> (res.done) <span class="keyword">return</span> res.value;
+    res.value.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>{
+      next(data);
+    });
+  }
+  next();
+}
+run(<span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>{
+  <span class="keyword">const</span> res1 = <span class="keyword">yield</span> readFile(path.resolve(__dirname, <span class="string">'../data/a.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res1);
+  <span class="comment">// {</span>
+  <span class="comment">//   "a": 1</span>
+  <span class="comment">// }</span>
+  <span class="keyword">const</span> res2 = <span class="keyword">yield</span> readFile(path.resolve(__dirname, <span class="string">'../data/b.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res2);
+  <span class="comment">// {</span>
+  <span class="comment">//   "b": 2</span>
+  <span class="comment">// }</span>
+});
+说了这么多，怎么还没有到 <span class="keyword">async</span>/<span class="keyword">await</span>，客官别急，马上来了（其实我已经漏了一些内容没说：<span class="built_in">Promise</span> 和 callback 的关系，thunk 函数，co 库，感兴趣的可以去 google 一下，ruanyifeng 老师讲的es6 入门非常棒，我时不时的都会去看一看）
+
+<span class="number">4.</span> Async/Await
+首先，<span class="keyword">async</span>/<span class="keyword">await</span> 是 Generator 的语法糖，上面我是分割线下的第一句已经讲过，先来看一下二者的对比：
+
+<span class="comment">// Generator</span>
+run(<span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>{
+  <span class="keyword">const</span> res1 = <span class="keyword">yield</span> readFile(path.resolve(__dirname, <span class="string">'../data/a.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res1);
+  <span class="keyword">const</span> res2 = <span class="keyword">yield</span> readFile(path.resolve(__dirname, <span class="string">'../data/b.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res2);
+});
+
+<span class="comment">// async/await</span>
+<span class="keyword">const</span> readFile = <span class="keyword">async</span> ()=&gt;{
+  <span class="keyword">const</span> res1 = <span class="keyword">await</span> readFile(path.resolve(__dirname, <span class="string">'../data/a.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res1);
+  <span class="keyword">const</span> res2 = <span class="keyword">await</span> readFile(path.resolve(__dirname, <span class="string">'../data/b.json'</span>), { <span class="attr">encoding</span>: <span class="string">'utf8'</span> });
+  <span class="built_in">console</span>.log(res2);
+  <span class="keyword">return</span> <span class="string">'done'</span>；
+}
+<span class="keyword">const</span> res = readFile();</code></pre>
+<p>可以看到，async function 代替了 function*，await 代替了 yield，同时也无需自己手写一个自动执行器 run 了</p>
+<p>现在再来看看async/await 的特点：</p>
+<p>当 await 后面跟的是 Promise 对象时，才会异步执行，其它类型的数据会同步执行<br>执行 const res = readFile(); 返回的仍然是个 Promise 对象，上面代码中的 return ‘done’; 会直接被下面 then 函数接收到<br>res.then(data =&gt; {<br>  console.log(data); // done<br>});<br>啊，终于完了，一个 async-await 连带出来这么多知识点，以后面试被问到它的原理时，希望能够帮助到你</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/156" target="_blank" rel="noopener">第 9 题：Async/Await 如何通过同步的方式实现异步 #156</a></li>
+<li><a href="https://github.com/Mr-jiangzhiguo" target="_blank" rel="noopener">最高赞作者github</a></li>
+<li><a href="https://juejin.im/post/5d2c814c6fb9a07ecd3d8e43" target="_blank" rel="noopener">最高赞原文地址：https://juejin.im/post/5d2c814c6fb9a07ecd3d8e43</a></li>
+<li><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/156" target="_blank" rel="noopener">Async/Await 如何通过同步的方式实现异步 #156</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">MDN文档</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/iterator" target="_blank" rel="noopener">ECMAScript 6 入门 Iterator 和 for…of 循环 阮一峰</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/async" target="_blank" rel="noopener">ECMAScript 6 入门 Generator 函数的异步应用 阮一峰</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 异步</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/2fddfbbe.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/2fddfbbe.html" class="post-title-link" itemprop="url">20200818题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-18 11:34:33" itemprop="dateCreated datePublished" datetime="2020-08-18T11:34:33+08:00">2020-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="setTimeout、Promise、Async-Await-的区别"><a href="#setTimeout、Promise、Async-Await-的区别" class="headerlink" title="setTimeout、Promise、Async/Await 的区别"></a>setTimeout、Promise、Async/Await 的区别</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
+<li>setTimeout 只是一个异步的定时器,用来执行多少时间后的任务</li>
+<li>promise 是一个规范,用then,catch,all,race等方法更好的处理异步内容</li>
+<li>async/await 是一个promise的语法糖,不了解具体的实现</li>
+</ul>
+<blockquote>
+<p>没想到是考察宏任务,微任务的,打扰了.草.</p>
+</blockquote>
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><h3 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)	<span class="comment">//1. 打印 script start</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'settimeout'</span>)	<span class="comment">// 4. 打印 settimeout</span></span><br><span class="line">&#125;)	<span class="comment">// 2. 调用 setTimeout 函数，并定义其完成后执行的回调函数</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)	<span class="comment">//3. 打印 script start</span></span><br><span class="line"><span class="comment">// 输出顺序：script start-&gt;script end-&gt;settimeout</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Promise</li>
+</ol>
+<ul>
+<li><p>Promise本身是同步的立即执行函数， 当在executor中执行resolve或者reject的时候, 此时是异步操作， 会先执行then/catch等，当主栈完成后，才会去调用resolve/reject中存放的方法执行，打印p的时候，是打印的返回结果，一个Promise实例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)</span><br><span class="line"><span class="keyword">let</span> promise1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">    resolve()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1 end'</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'settimeout'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"><span class="comment">// 输出顺序: script start-&gt;promise1-&gt;promise1 end-&gt;script end-&gt;promise2-&gt;settimeout</span></span><br></pre></td></tr></table></figure></li>
+<li><p>当JS主线程执行到Promise对象时，</p>
+</li>
+<li><p>promise1.then() 的回调就是一个 task</p>
+</li>
+<li><p>promise1 是 resolved或rejected: 那这个 task 就会放入当前事件循环回合的 microtask queue</p>
+</li>
+<li><p>promise1 是 pending: 这个 task 就会放入 事件循环的未来的某个(可能下一个)回合的 microtask queue 中</p>
+</li>
+<li><p>setTimeout 的回调也是个 task ，它会被放入 macrotask queue 即使是 0ms 的情况</p>
+</li>
+</ul>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">    <span class="keyword">await</span> async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line">async1();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出顺序：script start-&gt;async1 start-&gt;async2-&gt;script end-&gt;async1 end</span></span><br></pre></td></tr></table></figure>
+<h4 id="async-函数返回一个-Promise-对象，当函数执行的时候，一旦遇到-await-就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了-async-函数体。"><a href="#async-函数返回一个-Promise-对象，当函数执行的时候，一旦遇到-await-就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了-async-函数体。" class="headerlink" title="async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。"></a>async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。</h4><ul>
+<li>举个例子：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(func1())</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在这里插入图片描述</li>
+<li>很显然，func1的运行结果其实就是一个Promise对象。因此我们也可以使用then来处理后续逻辑。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func1().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);  <span class="comment">// 30</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>await的含义为等待，也就是 async 函数需要等待await后的函数执行完成并且有了返回结果（Promise对象）之后，才能继续执行下面的代码。await通过返回一个Promise对象来实现同步的效果。</p>
+<p>更多可见setTimeout、Promise、Async/Await<br><a href="https://github.com/sisterAn/blog/issues/21" target="_blank" rel="noopener">浏览器的Tasks、microtasks、 queues 和 schedules #21</a><br><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/33" target="_blank" rel="noopener">第 8 题：setTimeout、Promise、Async/Await 的区别 #33</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d9958b57.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +1031,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -355,7 +1137,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -457,7 +1239,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -557,7 +1339,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -660,7 +1442,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
+                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -734,278 +1516,10 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/9dd65578.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/9dd65578.html" class="post-title-link" itemprop="url">使用hexo创建自己的个人博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-27 22:33:02" itemprop="dateCreated datePublished" datetime="2020-07-27T22:33:02+08:00">2020-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>mac电脑可能需要使用sudo权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h2 id="初始化项目，安装依赖"><a href="#初始化项目，安装依赖" class="headerlink" title="初始化项目，安装依赖"></a>初始化项目，安装依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>各类配置项参考<a href="https://hexo.bootcss.com/docs/configuration.html" target="_blank" rel="noopener">hexo中文文档</a></p>
-</blockquote>
-<h2 id="发布到github-pages"><a href="#发布到github-pages" class="headerlink" title="发布到github pages"></a>发布到github pages</h2><ol>
-<li>创建一个github仓库&lt;yourname&gt;.github.com，比如我的lampofaladdin.github.io</li>
-<li>在_config.yml中增加配置项<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> type: git</span><br><span class="line"> repo: &lt;github git地址&gt;</span><br><span class="line"> # 例如git@github.com:lampofaladdin&#x2F;lampofaladdin.github.io.git</span><br></pre></td></tr></table></figure></li>
-<li>发布到github <code>hexo deploy</code></li>
-</ol>
-<h2 id="使用阿里云oss静态页关联自己域名"><a href="#使用阿里云oss静态页关联自己域名" class="headerlink" title="使用阿里云oss静态页关联自己域名"></a>使用阿里云oss静态页关联自己域名</h2><ol>
-<li>创建阿里云Bucket,不开通版本控制，读写为公共读，其他默认</li>
-<li>创建ram用户，给用户oss的控制权限</li>
-<li>创建ram用户的AccessKey，获取到AccessKeyID，AccessKeySecret</li>
-<li>进入bucket,基础设置，静态页面，默认首页为<strong>index.html</strong>,子目录首页开通</li>
-<li>传输管理，绑定你已经购买备案好的域名。</li>
-<li>安装hexo-deployer-ali-oss，<code>npm i hexo-deployer-ali-oss --save</code></li>
-<li>在_config.yml中增加配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: ali-oss</span><br><span class="line">  region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">  accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">  accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">  bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure></li>
-<li><code>npm deploy</code></li>
-</ol>
-<h2 id="同时发布在githubPage-与-阿里云oss"><a href="#同时发布在githubPage-与-阿里云oss" class="headerlink" title="同时发布在githubPage 与 阿里云oss"></a>同时发布在githubPage 与 阿里云oss</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">-  type: git</span><br><span class="line">   repo: &lt;github git地址&gt;</span><br><span class="line">-  type: ali-oss</span><br><span class="line">   region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">   accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">   accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">   bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
-<li>git push的时候depoly</li>
-<li>标签分类怎么做</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><a href="https://hexo.bootcss.com/" target="_blank" rel="noopener">hexo官方文档</a></li>
-<li><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo主题 hexo-theme-next</a></li>
-<li><a href="https://github.com/wertycn/hexo-deployer-ali-oss" target="_blank" rel="noopener">阿里云上传插件 hexo-deployer-ali-oss </a></li>
-<li><a href="https://blog.csdn.net/youlin/article/details/107313287" target="_blank" rel="noopener">在gitpush的时候 depoly</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d89c3838.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/d89c3838.html" class="post-title-link" itemprop="url">20200729题目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-27 11:16:10" itemprop="dateCreated datePublished" datetime="2020-07-27T11:16:10+08:00">2020-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="第-160-题：输出以下代码运行结果，为什么？如果希望每隔-1s-输出一个结果，应该如何改造？注意不可改动-square-方法"><a href="#第-160-题：输出以下代码运行结果，为什么？如果希望每隔-1s-输出一个结果，应该如何改造？注意不可改动-square-方法" class="headerlink" title="第 160 题：输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法"></a>第 160 题：输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const list &#x3D; [1, 2, 3]</span><br><span class="line">const square &#x3D; num &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      resolve(num * num)</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function test() &#123;</span><br><span class="line">  list.forEach(async x&#x3D;&gt; &#123;</span><br><span class="line">    const res &#x3D; await square(x)</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
-
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
-<p>因为foreach是并行执行的,并不支持异步，需要改成for或者 for of </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">async function test() &#123;</span><br><span class="line">    for(let i &#x3D; 0 ;i &lt; list.length ; i++)&#123;</span><br><span class="line">        const res &#x3D; await square(list[i])</span><br><span class="line">        console.log(res)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function test() &#123;</span><br><span class="line">    for(let i of list)&#123;</span><br><span class="line">        let res &#x3D; await square(i)</span><br><span class="line">        console.log(res)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/3d2ca5d9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/3d2ca5d9.html" class="post-title-link" itemprop="url">第一天，随便写写</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-27 11:16:10" itemprop="dateCreated datePublished" datetime="2020-07-27T11:16:10+08:00">2020-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-26 01:49:37" itemprop="dateModified" datetime="2024-12-26T01:49:37+08:00">2024-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="聊聊生活-写写技术"><a href="#聊聊生活-写写技术" class="headerlink" title="聊聊生活,写写技术."></a>聊聊生活,写写技术.</h1><h3 id="欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769"><a href="#欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769" class="headerlink" title="欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769"></a>欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1073,7 +1587,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">123</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1123,7 +1637,7 @@ Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span>
 <div class="copyright">
   
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
