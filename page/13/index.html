@@ -218,6 +218,228 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/2fddfbbe.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/2fddfbbe.html" class="post-title-link" itemprop="url">20200818题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-18 11:34:33" itemprop="dateCreated datePublished" datetime="2020-08-18T11:34:33+08:00">2020-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="setTimeout、Promise、Async-Await-的区别"><a href="#setTimeout、Promise、Async-Await-的区别" class="headerlink" title="setTimeout、Promise、Async/Await 的区别"></a>setTimeout、Promise、Async/Await 的区别</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
+<li>setTimeout 只是一个异步的定时器,用来执行多少时间后的任务</li>
+<li>promise 是一个规范,用then,catch,all,race等方法更好的处理异步内容</li>
+<li>async/await 是一个promise的语法糖,不了解具体的实现</li>
+</ul>
+<blockquote>
+<p>没想到是考察宏任务,微任务的,打扰了.草.</p>
+</blockquote>
+<h2 id="最高赞题解"><a href="#最高赞题解" class="headerlink" title="最高赞题解"></a>最高赞题解</h2><h3 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)	<span class="comment">//1. 打印 script start</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'settimeout'</span>)	<span class="comment">// 4. 打印 settimeout</span></span><br><span class="line">&#125;)	<span class="comment">// 2. 调用 setTimeout 函数，并定义其完成后执行的回调函数</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)	<span class="comment">//3. 打印 script start</span></span><br><span class="line"><span class="comment">// 输出顺序：script start-&gt;script end-&gt;settimeout</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Promise</li>
+</ol>
+<ul>
+<li><p>Promise本身是同步的立即执行函数， 当在executor中执行resolve或者reject的时候, 此时是异步操作， 会先执行then/catch等，当主栈完成后，才会去调用resolve/reject中存放的方法执行，打印p的时候，是打印的返回结果，一个Promise实例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)</span><br><span class="line"><span class="keyword">let</span> promise1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">    resolve()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1 end'</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'settimeout'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"><span class="comment">// 输出顺序: script start-&gt;promise1-&gt;promise1 end-&gt;script end-&gt;promise2-&gt;settimeout</span></span><br></pre></td></tr></table></figure></li>
+<li><p>当JS主线程执行到Promise对象时，</p>
+</li>
+<li><p>promise1.then() 的回调就是一个 task</p>
+</li>
+<li><p>promise1 是 resolved或rejected: 那这个 task 就会放入当前事件循环回合的 microtask queue</p>
+</li>
+<li><p>promise1 是 pending: 这个 task 就会放入 事件循环的未来的某个(可能下一个)回合的 microtask queue 中</p>
+</li>
+<li><p>setTimeout 的回调也是个 task ，它会被放入 macrotask queue 即使是 0ms 的情况</p>
+</li>
+</ul>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">    <span class="keyword">await</span> async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line">async1();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出顺序：script start-&gt;async1 start-&gt;async2-&gt;script end-&gt;async1 end</span></span><br></pre></td></tr></table></figure>
+<h4 id="async-函数返回一个-Promise-对象，当函数执行的时候，一旦遇到-await-就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了-async-函数体。"><a href="#async-函数返回一个-Promise-对象，当函数执行的时候，一旦遇到-await-就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了-async-函数体。" class="headerlink" title="async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。"></a>async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。</h4><ul>
+<li>举个例子：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(func1())</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在这里插入图片描述</li>
+<li>很显然，func1的运行结果其实就是一个Promise对象。因此我们也可以使用then来处理后续逻辑。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func1().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);  <span class="comment">// 30</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>await的含义为等待，也就是 async 函数需要等待await后的函数执行完成并且有了返回结果（Promise对象）之后，才能继续执行下面的代码。await通过返回一个Promise对象来实现同步的效果。</p>
+<p>更多可见setTimeout、Promise、Async/Await<br><a href="https://github.com/sisterAn/blog/issues/21" target="_blank" rel="noopener">浏览器的Tasks、microtasks、 queues 和 schedules #21</a><br><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/33" target="_blank" rel="noopener">第 8 题：setTimeout、Promise、Async/Await 的区别 #33</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d9958b57.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/d9958b57.html" class="post-title-link" itemprop="url">20200817题目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-17 10:53:43" itemprop="dateCreated datePublished" datetime="2020-08-17T10:53:43+08:00">2020-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ES5-ES6-的继承除了写法以外还有什么区别？"><a href="#ES5-ES6-的继承除了写法以外还有什么区别？" class="headerlink" title="ES5/ES6 的继承除了写法以外还有什么区别？"></a>ES5/ES6 的继承除了写法以外还有什么区别？</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><p>都是基于原型链的写法,别的不知道.</p>
+<h2 id="最高题解"><a href="#最高题解" class="headerlink" title="最高题解"></a>最高题解</h2><h3 id="class-声明会提升，但不会初始化赋值。Foo-进入暂时性死区，类似于-let、const-声明变量。-没有变量提升"><a href="#class-声明会提升，但不会初始化赋值。Foo-进入暂时性死区，类似于-let、const-声明变量。-没有变量提升" class="headerlink" title="class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。(没有变量提升)"></a>class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。(没有变量提升)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar(); <span class="comment">// it's ok</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo(); <span class="comment">// ReferenceError: Foo is not defined</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="class-声明内部会启用严格模式。"><a href="#class-声明内部会启用严格模式。" class="headerlink" title="class 声明内部会启用严格模式。"></a>class 声明内部会启用严格模式。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用一个未声明的变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  baz = <span class="number">42</span>; <span class="comment">// it's ok</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    fol = <span class="number">42</span>; <span class="comment">// ReferenceError: fol is not defined</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+
+<h3 id="class-的所有方法（包括静态方法和实例方法）都是不可枚举的。"><a href="#class-的所有方法（包括静态方法和实例方法）都是不可枚举的。" class="headerlink" title="class 的所有方法（包括静态方法和实例方法）都是不可枚举的。"></a>class 的所有方法（包括静态方法和实例方法）都是不可枚举的。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用一个未声明的变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line">Bar.answer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Bar.prototype.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> barKeys = <span class="built_in">Object</span>.keys(Bar); <span class="comment">// ['answer']</span></span><br><span class="line"><span class="keyword">const</span> barProtoKeys = <span class="built_in">Object</span>.keys(Bar.prototype); <span class="comment">// ['print']</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> answer() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> fooKeys = <span class="built_in">Object</span>.keys(Foo); <span class="comment">// []</span></span><br><span class="line"><span class="keyword">const</span> fooProtoKeys = <span class="built_in">Object</span>.keys(Foo.prototype); <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="class-的所有方法（包括静态方法和实例方法）都没有原型对象-prototype，所以也没有-construct-，不能使用-new-来调用。"><a href="#class-的所有方法（包括静态方法和实例方法）都没有原型对象-prototype，所以也没有-construct-，不能使用-new-来调用。" class="headerlink" title="class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[[construct]]，不能使用 new 来调用。"></a>class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[[construct]]，不能使用 new 来调用。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line">Bar.prototype.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();</span><br><span class="line"><span class="keyword">const</span> barPrint = <span class="keyword">new</span> bar.print(); <span class="comment">// it's ok</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="keyword">const</span> fooPrint = <span class="keyword">new</span> foo.print(); <span class="comment">// TypeError: foo.print is not a constructor</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="必须使用-new-调用-class。"><a href="#必须使用-new-调用-class。" class="headerlink" title="必须使用 new 调用 class。"></a>必须使用 new 调用 class。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.bar = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = Bar(); <span class="comment">// it's ok</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = Foo(); <span class="comment">// TypeError: Class constructor Foo cannot be invoked without 'new'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="class-内部无法重写类名。"><a href="#class-内部无法重写类名。" class="headerlink" title="class 内部无法重写类名。"></a>class 内部无法重写类名。</h3><pre><code class="javascript"> <span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>{
+  Bar = <span class="string">'Baz'</span>; <span class="comment">// it's ok</span>
+  <span class="keyword">this</span>.bar = <span class="number">42</span>;
+}
+<span class="keyword">const</span> bar = <span class="keyword">new</span> Bar();
+<span class="comment">// Bar: 'Baz'</span>
+<span class="comment">// bar: Bar {bar: 42}  </span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>{
+  <span class="keyword">constructor</span>() {
+    <span class="keyword">this</span>.foo = <span class="number">42</span>;
+    Foo = <span class="string">'Fol'</span>; <span class="comment">// TypeError: Assignment to constant variable</span>
+  }
+}
+<span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();
+Foo = <span class="string">'Fol'</span>; <span class="comment">// it's ok</span></code></pre>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/20" target="_blank" rel="noopener">第 7 期：ES5/ES6 的继承除了写法以外还有什么区别？ #20</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/946ca0ec.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +471,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -351,7 +573,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -451,7 +673,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -554,7 +776,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -663,7 +885,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -775,7 +997,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -858,7 +1080,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -967,7 +1189,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
