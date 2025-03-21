@@ -218,6 +218,390 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/811925bd.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/811925bd.html" class="post-title-link" itemprop="url">初级算法-存在重复元素</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-07 10:23:27" itemprop="dateCreated datePublished" datetime="2021-06-07T10:23:27+08:00">2021-06-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组，判断是否存在重复元素。</p>
+<p>如果存在一值在数组中出现至少两次，函数返回 true 。如果数组中每个元素都不相同，则返回 false 。</p>
+<p>示例 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,3,1]</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+<p>示例 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,3,4]</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+<p>示例 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,1,1,3,3,4,3,2,4,2]</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">containsDuplicate</span>(<span class="params">nums: <span class="built_in">number</span>[]</span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> numSet = <span class="keyword">new</span> Set();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (numSet.has(nums[i])) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    numSet.add(nums[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x248f5/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x248f5/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/a06ec8e4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/a06ec8e4.html" class="post-title-link" itemprop="url">初级算法-买卖股票的最佳时机</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-04 11:05:46" itemprop="dateCreated datePublished" datetime="2021-06-04T11:05:46+08:00">2021-06-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个数组 prices ，其中 prices[i] 是一支给定股票第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p>示例 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: prices &#x3D; [7,1,5,3,6,4]</span><br><span class="line">输出: 7</span><br><span class="line">解释: 在第 2 天（股票价格 &#x3D; 1）的时候买入，在第 3 天（股票价格 &#x3D; 5）的时候卖出, 这笔交易所能获得利润 &#x3D; 5-1 &#x3D; 4 。</span><br><span class="line">     随后，在第 4 天（股票价格 &#x3D; 3）的时候买入，在第 5 天（股票价格 &#x3D; 6）的时候卖出, 这笔交易所能获得利润 &#x3D; 6-3 &#x3D; 3 。</span><br></pre></td></tr></table></figure>
+<p>示例 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: prices &#x3D; [1,2,3,4,5]</span><br><span class="line">输出: 4</span><br><span class="line">解释: 在第 1 天（股票价格 &#x3D; 1）的时候买入，在第 5 天 （股票价格 &#x3D; 5）的时候卖出, 这笔交易所能获得利润 &#x3D; 5-1 &#x3D; 4 。</span><br><span class="line">     注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。</span><br></pre></td></tr></table></figure>
+<p>示例 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: prices &#x3D; [7,6,4,3,1]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。</span><br></pre></td></tr></table></figure>
+
+
+<p>提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;&#x3D; prices.length &lt;&#x3D; 3 * 104</span><br><span class="line">0 &lt;&#x3D; prices[i] &lt;&#x3D; 104</span><br></pre></td></tr></table></figure>
+
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 贪心算法</span></span><br><span class="line"><span class="comment"> * @param prices </span></span><br><span class="line"><span class="comment"> * @returns </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">maxProfit</span>(<span class="params">prices: <span class="built_in">number</span>[]</span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    prices.reduce(<span class="function">(<span class="params">current, next</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> val = next - current;</span><br><span class="line">      i += val &gt; <span class="number">0</span> ? val : <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span> next;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2zsx1/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2zsx1/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/50c45396.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/50c45396.html" class="post-title-link" itemprop="url">初级算法-删除排序数组中的重复项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-03 12:10:25" itemprop="dateCreated datePublished" datetime="2021-06-03T12:10:25+08:00">2021-06-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
+<p>说明:</p>
+<p>为什么返回数值是整数，但输出的答案是数组呢?</p>
+<p>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝</span><br><span class="line">int len &#x3D; removeDuplicates(nums);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在函数里修改输入数组对于调用者是可见的。</span><br><span class="line">&#x2F;&#x2F; 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。</span><br><span class="line">for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">    print(nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>示例 1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [1,1,2]</span><br><span class="line">输出：2, nums &#x3D; [1,2]</span><br><span class="line">解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [0,0,1,1,1,2,2,3,3,4]</span><br><span class="line">输出：5, nums &#x3D; [0,1,2,3,4]</span><br><span class="line">解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+
+
+<p>提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 104</span><br><span class="line">-104 &lt;&#x3D; nums[i] &lt;&#x3D; 104</span><br><span class="line">nums 已按升序排列</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 个人题解</span></span><br><span class="line"><span class="comment"> * 双层遍历的解法，时间复杂度O(n2)</span></span><br><span class="line"><span class="comment"> * @param nums</span></span><br><span class="line"><span class="comment"> * @returns</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeDuplicates</span>(<span class="params">nums: <span class="built_in">number</span>[]</span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; ) &#123;</span><br><span class="line">    <span class="keyword">let</span> index = nums.findIndex(<span class="function">(<span class="params">cItem, cIndex</span>) =&gt;</span> i !== cIndex &amp;&amp; nums[i] === cItem);</span><br><span class="line">    <span class="keyword">if</span> (index !== <span class="number">-1</span>) &#123;</span><br><span class="line">      nums.splice(i, <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> nums.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="双指针解法"><a href="#双指针解法" class="headerlink" title="双指针解法"></a>双指针解法</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * @param nums</span></span><br><span class="line"><span class="comment"> * @returns</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeDuplicates</span>(<span class="params">nums: <span class="built_in">number</span>[]</span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> left = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> right = <span class="number">1</span>; right &lt; nums.length; right++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums[left] !== nums[right]) &#123;</span><br><span class="line">      nums[++left] = nums[right];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>看了题解，双指针办法</li>
+<li>因为数组是有序的，右边大于等于左边</li>
+<li>初始化左指针等于0，右指针等于1，</li>
+<li>循环右指针</li>
+<li>当右指针不等于左指针的时候，说明碰到了不一样的数值，将右指针赋值给左指针，左指向前移动一位，右指针继续循环</li>
+<li>不重复的值为左指针+1</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2gy9m/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2gy9m/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/dd074ae7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/dd074ae7.html" class="post-title-link" itemprop="url">rust版本 斐波那契额数列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-13 01:40:42" itemprop="dateCreated datePublished" datetime="2021-05-13T01:40:42+08:00">2021-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> ::std::io;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> n = <span class="built_in">String</span>::new();</span><br><span class="line">    io::stdin().read_line(&amp;<span class="keyword">mut</span> n).expect(<span class="string">"输入错误"</span>);</span><br><span class="line">    <span class="keyword">let</span> n: <span class="built_in">i64</span> = n.trim().parse().expect(<span class="string">"不是数字"</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> second = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> index &lt;= n &#123;</span><br><span class="line">        <span class="keyword">if</span> index == <span class="number">0</span> || index == <span class="number">1</span> &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"count &#123;&#125;"</span>, index);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> count: <span class="built_in">i64</span> = first + second;</span><br><span class="line">            first = second;</span><br><span class="line">            second = count;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"count &#123;&#125;"</span>, count);</span><br><span class="line">        &#125;</span><br><span class="line">        index += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag"><i class="fa fa-tag"></i> 斐波那契</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/7ac062ab.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +633,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -327,7 +711,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -417,7 +801,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -491,7 +875,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -581,7 +965,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -660,7 +1044,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
+                <time title="修改时间：2025-03-21 21:24:32" itemprop="dateModified" datetime="2025-03-21T21:24:32+08:00">2025-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -692,354 +1076,6 @@
     
     
       <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1fa17b1.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/1fa17b1.html" class="post-title-link" itemprop="url">记一次nuxt引入videojs的问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-11 16:17:37" itemprop="dateCreated datePublished" datetime="2020-11-11T16:17:37+08:00">2020-11-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="记一次nuxt引入videojs排查问题经历"><a href="#记一次nuxt引入videojs排查问题经历" class="headerlink" title="记一次nuxt引入videojs排查问题经历"></a>记一次nuxt引入videojs排查问题经历</h1><h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>开发的项目是基于nuxt框架,项目中需要使用videojs,在开发阶段没有问题,使用与样式展示都没有问题.</p>
-<p>在打包之后运行,发现videojs的样式不能正确展示.样式错误,发现样式没有被打包.</p>
-<h2 id="解决问题-阶段1"><a href="#解决问题-阶段1" class="headerlink" title="解决问题(阶段1)"></a>解决问题(阶段1)</h2><p>发现nuxt.config.js里面有一个配置<code>extractCSS</code>是用来提取css的,把css提取到一个文件里面,把这个配置设置为<code>false</code>就可以解决这个问题.</p>
-<p>但是有了新的问题,因为没有提取css,nuxt在服务端渲染的时候,会把所有的样式在html页面返回,导致html的文件比较大.</p>
-<p>当时花了一些时间,只找到这个解决办法,而且项目比较赶,暂时这样解决</p>
-<h2 id="解决问题-阶段2"><a href="#解决问题-阶段2" class="headerlink" title="解决问题(阶段2)"></a>解决问题(阶段2)</h2><p>网页需要seo,因为样式全在html里面,不相关内容太多,权重比较低.seo大佬建议去掉这些样式.</p>
-<p>找了好久,发现是因为用了<code>tailwindcss</code>这个ui框架,<code>tailwindcss</code>建议使用<code>purgecss</code>这个库来去除不需要的css,不然打包后的文件会比较大.</p>
-<p>videojs是在客户端使用js动态添加的class,导致<code>purgecss</code>匹配不到这些样式.所以就从打包后的css内删除.导致样式展示错误.</p>
-<p>去看官方文档,看到有一个safelist可以保留这些样式于是在nuxt.config.js内增加如下代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS:&#123;</span><br><span class="line">        safelist: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>发现不起作用,各种尝试,<code>safelist.deep</code>,<code>safelist.standard</code>属性,不使用正则等…还是不行,直到看到了一个tip</p>
-<p><img src="https://oss.wddv.com/www/article/20201111164002.png" alt="20201111164002"></p>
-<p>对比了一下自己的安装的依赖,发现nuxt使用的是老版本的purgecss,找到的相关的配置,代码如下.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS: &#123;</span><br><span class="line">        whitelistPatterns: [<span class="regexp">/vjs/</span>, /video/],</span><br><span class="line">        whitelistPatternsChildren: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>问题解决.</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>使用tailwindcss样式库,而且用到purgecss这个插件,要注意打包过后的样式是否正确,这个插件会删除不用的css(就是在页面中,没有匹配到相应的class名).</li>
-<li>在如上前提下,出现新引入的框架样式展示不正确,考虑在nuxt.config.js里面添加相应的配置.</li>
-<li>purgecss 3.0版本以上添加 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS:&#123;</span><br><span class="line">        safelist: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>purgecss 2.x 版本添加<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    purgeCSS: &#123;</span><br><span class="line">        whitelistPatterns: [<span class="regexp">/vjs/</span>, /video/],</span><br><span class="line">        whitelistPatternsChildren: [<span class="regexp">/vjs/</span>, /video/]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>发现问题要及时解决.不能有 <code>又不是不能用</code> 这个心态…55555.</li>
-</ul>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><a href="https://purgecss.com/safelisting.html#specific-selectors" target="_blank" rel="noopener">purgecss 最新文档</a></li>
-<li><a href="https://github.com/FullHuman/purgecss/tree/5314e41edf328e2ad2639549e1587b82a964a42e/docs" target="_blank" rel="noopener">purgecss 老版本文档</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/nuxt/" rel="tag"><i class="fa fa-tag"></i> nuxt</a>
-            
-              <a href="/tags/videoJs/" rel="tag"><i class="fa fa-tag"></i> videoJs</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/89251c68.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/89251c68.html" class="post-title-link" itemprop="url">寻找数组里面出现一次的数字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-26 19:01:56" itemprop="dateCreated datePublished" datetime="2020-10-26T19:01:56+08:00">2020-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置"><a href="#给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置" class="headerlink" title="给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置"></a>给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置</h1><h2 id="事例"><a href="#事例" class="headerlink" title="事例"></a>事例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,1,1,2,1,1]</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为数组里唯一一个2出现的位置是3。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [4,2,2,2,2,2,2]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 因为数组里唯一一个4出现的位置是0。</span><br></pre></td></tr></table></figure>
-<p>数组长度为10000</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> demo = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/**返回数组中不一样的元素**/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findDiff</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findDiff(arr));</span><br><span class="line"><span class="comment">// console.log(findDiff(demo));</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/a3ff59a0.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/a3ff59a0.html" class="post-title-link" itemprop="url">吐槽一下</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-12 15:32:26" itemprop="dateCreated datePublished" datetime="2020-10-12T15:32:26+08:00">2020-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <div style="display:none">
-卧槽啊!!!
-你要怎么样嘛!
-7000预算啊!!!大哥!!!
-我就是一个穷上班的!!!!!
-过个生日要7000!!!!!
-我有那么有钱嘛!!!!!
-大哥!!!!
-
-</div>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E5%90%90%E6%A7%BD/" rel="tag"><i class="fa fa-tag"></i> 吐槽</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/bc8a6d14.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/bc8a6d14.html" class="post-title-link" itemprop="url">实现一个观察者模式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-21 11:54:21" itemprop="dateCreated datePublished" datetime="2020-09-21T11:54:21+08:00">2020-09-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-13 14:14:03" itemprop="dateModified" datetime="2025-03-13T14:14:03+08:00">2025-03-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="实现一个基础当观察者模式-当被观察者变动当时候-通知观察者"><a href="#实现一个基础当观察者模式-当被观察者变动当时候-通知观察者" class="headerlink" title="实现一个基础当观察者模式,当被观察者变动当时候,通知观察者."></a>实现一个基础当观察者模式,当被观察者变动当时候,通知观察者.</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  update(updateInfo) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>更新,更新消息为<span class="subst">$&#123;updateInfo&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observerd</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.observerList = [];</span><br><span class="line">  &#125;</span><br><span class="line">  addObserve(observer) &#123;</span><br><span class="line">    <span class="keyword">this</span>.observerList.push(observer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notice(updateInfo = <span class="string">"更新消息"</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> observe <span class="keyword">of</span> <span class="keyword">this</span>.observerList) &#123;</span><br><span class="line">      observe.update(updateInfo);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> fooObserve = <span class="keyword">new</span> Observer(<span class="string">"foo"</span>);</span><br><span class="line"><span class="keyword">let</span> barObserve = <span class="keyword">new</span> Observer(<span class="string">"bar"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> observed = <span class="keyword">new</span> Observerd();</span><br><span class="line"></span><br><span class="line">observed.addObserve(fooObserve);</span><br><span class="line">observed.addObserve(barObserve);</span><br><span class="line">observed.notice(<span class="string">"测试消息"</span>);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
-            
-          </div>
         
       </footer>
   </article>
@@ -1118,7 +1154,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">123</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
