@@ -425,35 +425,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
-    <title>20211223-题目</title>
-    <url>/post/9cae03bf.html</url>
-    <content><![CDATA[<h1 id="字符串中的第一个唯一字符"><a href="#字符串中的第一个唯一字符" class="headerlink" title="字符串中的第一个唯一字符"></a>字符串中的第一个唯一字符</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">返回 0</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; s &#x3D; &quot;loveleetcode&quot;</span><br></pre></td></tr></table></figure>
-<p>返回 2</p>
-<p>提示：你可以假定该字符串只包含小写字母。</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
-<li>双重循环遍历<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">firstUniqChar</span>(<span class="params">s: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> strMap = <span class="keyword">new</span> Map&lt;<span class="built_in">string</span>, <span class="built_in">number</span>&gt;();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    strMap.set(s[i], (strMap.get(s[i]) || <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (strMap.get(s[i]) === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>索引一致方法</li>
-<li>如果找到的第一个索引与倒数找到的最后一个索引相同，代表是第一个<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">firstUniqChar</span>(<span class="params">s: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s.lastIndexOf(s[i]) === s.indexOf(s[i])) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn5z8r/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn5z8r/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>20200820题目</title>
     <url>/post/92bdb23a.html</url>
     <content><![CDATA[<h1 id="异步笔试题"><a href="#异步笔试题" class="headerlink" title="异步笔试题"></a>异步笔试题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">    <span class="keyword">await</span> async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line">async1();</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br></pre></td></tr></table></figure>
@@ -502,6 +473,35 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
       <tags>
         <tag>异步</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>20211223-题目</title>
+    <url>/post/9cae03bf.html</url>
+    <content><![CDATA[<h1 id="字符串中的第一个唯一字符"><a href="#字符串中的第一个唯一字符" class="headerlink" title="字符串中的第一个唯一字符"></a>字符串中的第一个唯一字符</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">返回 0</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; s &#x3D; &quot;loveleetcode&quot;</span><br></pre></td></tr></table></figure>
+<p>返回 2</p>
+<p>提示：你可以假定该字符串只包含小写字母。</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
+<li>双重循环遍历<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">firstUniqChar</span>(<span class="params">s: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> strMap = <span class="keyword">new</span> Map&lt;<span class="built_in">string</span>, <span class="built_in">number</span>&gt;();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    strMap.set(s[i], (strMap.get(s[i]) || <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (strMap.get(s[i]) === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>索引一致方法</li>
+<li>如果找到的第一个索引与倒数找到的最后一个索引相同，代表是第一个<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">firstUniqChar</span>(<span class="params">s: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s.lastIndexOf(s[i]) === s.indexOf(s[i])) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn5z8r/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn5z8r/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -858,57 +858,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
-    <title>20220629</title>
-    <url>/post/fa42de81.html</url>
-    <content><![CDATA[<h1 id="位-1-的个数"><a href="#位-1-的个数" class="headerlink" title="位 1 的个数"></a>位 1 的个数</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。</p>
-<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><ul>
-<li>请注意，在某些语言（如 Java）中，没有无符号整数类型。在这种情况下，输入和输出都将被指定为有符号整数类型，并且不应影响您的实现，因为无论整数是有符号的还是无符号的，其内部的二进制表示形式都是相同的。</li>
-<li>在 Java 中，编译器使用二进制补码记法来表示有符号整数。因此，在上面的   示例 3  中，输入表示有符号整数 -3。</li>
-</ul>
-<h3 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h3><blockquote>
-<p>输入：00000000000000000000000000001011</p>
-<p>输出：3</p>
-<p>解释：输入的二进制串 00000000000000000000000000001011  中，共有三位为 ‘1’。</p>
-</blockquote>
-<h3 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h3><blockquote>
-<p>输入：00000000000000000000000010000000</p>
-<p>输出：1</p>
-<p>解释：输入的二进制串 00000000000000000000000010000000  中，共有一位为 ‘1’。</p>
-</blockquote>
-<h3 id="示例-3："><a href="#示例-3：" class="headerlink" title="示例 3："></a>示例 3：</h3><blockquote>
-<p>输入：11111111111111111111111111111101</p>
-<p>输出：31</p>
-<p>解释：输入的二进制串 11111111111111111111111111111101 中，共有 31 位为 ‘1’。</p>
-</blockquote>
-<h3 id="提示：-1"><a href="#提示：-1" class="headerlink" title="提示："></a>提示：</h3><p>输入必须是长度为 32 的 二进制串 。</p>
-<h3 id="进阶："><a href="#进阶：" class="headerlink" title="进阶："></a>进阶：</h3><p>如果多次调用这个函数，你将如何优化你的算法？</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自己写的 0ms 2mb</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> i &lt;= n &amp;&amp; i != <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n &amp; i != <span class="number">0</span> &#123;</span><br><span class="line">                count += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i = i &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 构造32位蒙版（只有一个1），进行与操作</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> (<span class="keyword">mut</span> ret, <span class="keyword">mut</span> mask) = (<span class="number">0</span>, <span class="number">1u32</span>);</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">32</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n &amp; mask != <span class="number">0</span> &#123; ret += <span class="number">1</span>; &#125;</span><br><span class="line">            mask = mask &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ret</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// count_one 方法 可以直接获取数量</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        n.count_ones() <span class="keyword">as</span> <span class="built_in">i32</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
-<li>位的与方法判断是否是 1，是的话，数量加 1</li>
-<li>位移的方式变更 1 的位置</li>
-<li>位移可能会越界，超出最大值的时候位移数据就是 0，需要注意一下</li>
-<li>别人的操作是真的牛皮</li>
-</ul>
-<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xn1m0i/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xn1m0i/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>20220722</title>
     <url>/post/6c526d3e.html</url>
     <content><![CDATA[<h1 id="JS-中的设计模式"><a href="#JS-中的设计模式" class="headerlink" title="JS 中的设计模式"></a>JS 中的设计模式</h1><p>解决一些特定问题的方法，并总结起来，给一个名字。</p>
@@ -975,6 +924,57 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <categories>
         <category>开发技术</category>
       </categories>
+  </entry>
+  <entry>
+    <title>20220629</title>
+    <url>/post/fa42de81.html</url>
+    <content><![CDATA[<h1 id="位-1-的个数"><a href="#位-1-的个数" class="headerlink" title="位 1 的个数"></a>位 1 的个数</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。</p>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><ul>
+<li>请注意，在某些语言（如 Java）中，没有无符号整数类型。在这种情况下，输入和输出都将被指定为有符号整数类型，并且不应影响您的实现，因为无论整数是有符号的还是无符号的，其内部的二进制表示形式都是相同的。</li>
+<li>在 Java 中，编译器使用二进制补码记法来表示有符号整数。因此，在上面的   示例 3  中，输入表示有符号整数 -3。</li>
+</ul>
+<h3 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h3><blockquote>
+<p>输入：00000000000000000000000000001011</p>
+<p>输出：3</p>
+<p>解释：输入的二进制串 00000000000000000000000000001011  中，共有三位为 ‘1’。</p>
+</blockquote>
+<h3 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h3><blockquote>
+<p>输入：00000000000000000000000010000000</p>
+<p>输出：1</p>
+<p>解释：输入的二进制串 00000000000000000000000010000000  中，共有一位为 ‘1’。</p>
+</blockquote>
+<h3 id="示例-3："><a href="#示例-3：" class="headerlink" title="示例 3："></a>示例 3：</h3><blockquote>
+<p>输入：11111111111111111111111111111101</p>
+<p>输出：31</p>
+<p>解释：输入的二进制串 11111111111111111111111111111101 中，共有 31 位为 ‘1’。</p>
+</blockquote>
+<h3 id="提示：-1"><a href="#提示：-1" class="headerlink" title="提示："></a>提示：</h3><p>输入必须是长度为 32 的 二进制串 。</p>
+<h3 id="进阶："><a href="#进阶：" class="headerlink" title="进阶："></a>进阶：</h3><p>如果多次调用这个函数，你将如何优化你的算法？</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自己写的 0ms 2mb</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> i &lt;= n &amp;&amp; i != <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n &amp; i != <span class="number">0</span> &#123;</span><br><span class="line">                count += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i = i &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 构造32位蒙版（只有一个1），进行与操作</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> (<span class="keyword">mut</span> ret, <span class="keyword">mut</span> mask) = (<span class="number">0</span>, <span class="number">1u32</span>);</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">32</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n &amp; mask != <span class="number">0</span> &#123; ret += <span class="number">1</span>; &#125;</span><br><span class="line">            mask = mask &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ret</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// count_one 方法 可以直接获取数量</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        n.count_ones() <span class="keyword">as</span> <span class="built_in">i32</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>位的与方法判断是否是 1，是的话，数量加 1</li>
+<li>位移的方式变更 1 的位置</li>
+<li>位移可能会越界，超出最大值的时候位移数据就是 0，需要注意一下</li>
+<li>别人的操作是真的牛皮</li>
+</ul>
+<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xn1m0i/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xn1m0i/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
   </entry>
   <entry>
     <title>20220919服务进程停止原因</title>
@@ -1513,6 +1513,33 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>20230310-轮转数组</title>
+    <url>/post/34fcf8bc.html</url>
+    <content><![CDATA[<h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums，将数组中的元素向右轮转 k  个位置，其中  k  是非负数。</p>
+<p>示例 1:</p>
+<p>输入: nums = [1,2,3,4,5,6,7], k = 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右轮转 1 步: [7,1,2,3,4,5,6]<br>向右轮转 2 步: [6,7,1,2,3,4,5]<br>向右轮转 3 步: [5,6,7,1,2,3,4]<br>示例  2:</p>
+<p>输入：nums = [-1,-100,3,99], k = 2<br>输出：[3,99,-1,-100]<br>解释:<br>向右轮转 1 步: [99,-1,-100,3]<br>向右轮转 2 步: [3,99,-1,-100]</p>
+<p>提示：</p>
+<p>1 &lt;= nums.length &lt;= 105<br>-231 &lt;= nums[i] &lt;= 231 - 1<br>0 &lt;= k &lt;= 105</p>
+<p>进阶：</p>
+<p>尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。<br>你可以使用空间复杂度为  O(1) 的   原地   算法解决这个问题吗？</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="系统-api"><a href="#系统-api" class="headerlink" title="系统 api"></a>系统 api</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// rust api</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> len = nums.len();</span><br><span class="line">        nums.rotate_right(k <span class="keyword">as</span> <span class="built_in">usize</span> % len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="直觉实现，效率低到难以接受"><a href="#直觉实现，效率低到难以接受" class="headerlink" title="直觉实现，效率低到难以接受"></a>直觉实现，效率低到难以接受</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> _i <span class="keyword">in</span> <span class="number">0</span>..(k <span class="keyword">as</span> <span class="built_in">usize</span> % nums.len()) &#123;</span><br><span class="line">            <span class="keyword">let</span> v = nums.pop().unwrap();</span><br><span class="line">            nums.insert(<span class="number">0</span>, v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="优化后，仍效率不太高"><a href="#优化后，仍效率不太高" class="headerlink" title="优化后，仍效率不太高"></a>优化后，仍效率不太高</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> rotate_len = k <span class="keyword">as</span> <span class="built_in">usize</span>;</span><br><span class="line">        <span class="keyword">if</span> nums.len() &lt; rotate_len &#123;</span><br><span class="line">            rotate_len = rotate_len % nums.len();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, rotate_len);</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = nums.splice(<span class="number">0</span>..(nums.len() - rotate_len), <span class="built_in">vec!</span>[]).collect();</span><br><span class="line">        nums.append(&amp;<span class="keyword">mut</span> v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a href="https://leetcode.cn/problems/rotate-array" target="_blank" rel="noopener">https://leetcode.cn/problems/rotate-array</a></li>
+<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>20230311</title>
     <url>/post/e41fee2b.html</url>
     <content><![CDATA[<p>做了一件不太聪明的事</p>
@@ -1548,53 +1575,9 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>20230310-轮转数组</title>
-    <url>/post/34fcf8bc.html</url>
-    <content><![CDATA[<h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums，将数组中的元素向右轮转 k  个位置，其中  k  是非负数。</p>
-<p>示例 1:</p>
-<p>输入: nums = [1,2,3,4,5,6,7], k = 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右轮转 1 步: [7,1,2,3,4,5,6]<br>向右轮转 2 步: [6,7,1,2,3,4,5]<br>向右轮转 3 步: [5,6,7,1,2,3,4]<br>示例  2:</p>
-<p>输入：nums = [-1,-100,3,99], k = 2<br>输出：[3,99,-1,-100]<br>解释:<br>向右轮转 1 步: [99,-1,-100,3]<br>向右轮转 2 步: [3,99,-1,-100]</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 105<br>-231 &lt;= nums[i] &lt;= 231 - 1<br>0 &lt;= k &lt;= 105</p>
-<p>进阶：</p>
-<p>尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。<br>你可以使用空间复杂度为  O(1) 的   原地   算法解决这个问题吗？</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="系统-api"><a href="#系统-api" class="headerlink" title="系统 api"></a>系统 api</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// rust api</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> len = nums.len();</span><br><span class="line">        nums.rotate_right(k <span class="keyword">as</span> <span class="built_in">usize</span> % len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="直觉实现，效率低到难以接受"><a href="#直觉实现，效率低到难以接受" class="headerlink" title="直觉实现，效率低到难以接受"></a>直觉实现，效率低到难以接受</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> _i <span class="keyword">in</span> <span class="number">0</span>..(k <span class="keyword">as</span> <span class="built_in">usize</span> % nums.len()) &#123;</span><br><span class="line">            <span class="keyword">let</span> v = nums.pop().unwrap();</span><br><span class="line">            nums.insert(<span class="number">0</span>, v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="优化后，仍效率不太高"><a href="#优化后，仍效率不太高" class="headerlink" title="优化后，仍效率不太高"></a>优化后，仍效率不太高</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">rotate</span></span>(nums: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, k: <span class="built_in">i32</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> rotate_len = k <span class="keyword">as</span> <span class="built_in">usize</span>;</span><br><span class="line">        <span class="keyword">if</span> nums.len() &lt; rotate_len &#123;</span><br><span class="line">            rotate_len = rotate_len % nums.len();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, rotate_len);</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = nums.splice(<span class="number">0</span>..(nums.len() - rotate_len), <span class="built_in">vec!</span>[]).collect();</span><br><span class="line">        nums.append(&amp;<span class="keyword">mut</span> v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
-<li>来源：力扣（LeetCode）</li>
-<li>链接：<a href="https://leetcode.cn/problems/rotate-array" target="_blank" rel="noopener">https://leetcode.cn/problems/rotate-array</a></li>
-<li>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>20230315-移动0</title>
-    <url>/post/6ae72222.html</url>
+    <title>20230716-随便写写</title>
+    <url>/post/c49bbcbd.html</url>
     <content><![CDATA[]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>20240113</title>
-    <url>/post/bbb58779.html</url>
-    <content><![CDATA[<p>一个情绪崩溃的晚上</p>
-<p>茫然</p>
-<p>有些彷徨</p>
-<p>不知道该怎么办</p>
-<p>忍不住哭啊。</p>
-<p>哭啊</p>
-<p>嗯，又没忍住。。</p>
-<p>出去走走吧</p>
-<p>所以生命啊，它苦涩如歌</p>
-]]></content>
       <categories>
         <category>生活感想</category>
       </categories>
@@ -1633,6 +1616,39 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <p>贪婪、不自律、粗心、说大话、自私自立（不想承认，确实有），应该还有吧，暂时想不出来了？</p>
 <p>em</p>
 <p>如果还有机会的话，我还是想成为一个好人。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>20231007-随便写写</title>
+    <url>/post/9a30b515.html</url>
+    <content><![CDATA[<p>emmm，这次尝试用不那么杂乱的方式去记录。</p>
+<p>遇到一个小姑娘，人挺好，脾气也挺大，不太清楚什么原因，我挺喜欢跟她混在一起。</p>
+<h3 id="她是一个什么样子的人？"><a href="#她是一个什么样子的人？" class="headerlink" title="她是一个什么样子的人？"></a>她是一个什么样子的人？</h3><ul>
+<li>第一反应是奇怪，很多想法跟我差距蛮大的，有些东西我甚至难以理解，是不是年龄差距大，有代沟了。</li>
+<li>脾气，不太好，应该生过好多次气，大部分都是打哈哈就过去了。不过有一次，我也很生气，一个月互相都没联系。</li>
+<li>怕冷场，努力的说话，就是为了场面不那么尴尬。可能这对她来说，是一个不太想回忆的场景？</li>
+<li>可能是一个内向的人吧，我们俩人格测试的结果差不多，她比我严重点。纠结、内耗、讨好型、I还是E型来着，记不清楚了。。</li>
+<li>喜欢唱歌，唱的也好听，上次晚上吃完饭，一起散步，路灯下，桂花旁，两个人，她唱着歌，我在她身边晃悠的走着。我很喜欢这种感觉，内心有一丝悸动。</li>
+<li>emmm，不知道算不算，跟她在一起会感到快乐。</li>
+</ul>
+<h3 id="有想过追她吗"><a href="#有想过追她吗" class="headerlink" title="有想过追她吗"></a>有想过追她吗</h3><ul>
+<li>想过，但是每次都放弃了，很多原因</li>
+<li>我现在还没有结束，哪怕已经是这样子了，依然会有负罪感</li>
+<li>另外一个是自卑吧，年龄差距大，她也很受人喜欢，感觉我不太配</li>
+<li>另外的一些性格、尿性。感觉也不太适合。</li>
+<li>嗯，把上面这些写下来，感觉确实不应该追。</li>
+<li>总体来说，喜欢跟她在一起，但是种种原因又导致，不适合在一起。</li>
+</ul>
+<h3 id="她跟你的关系"><a href="#她跟你的关系" class="headerlink" title="她跟你的关系"></a>她跟你的关系</h3><ul>
+<li>她对我应该有些好感，类似大哥哥那种？或者大叔？我也是第一次遇到，很新奇的感觉</li>
+<li>不知道是不是喜欢，感觉像，又感觉不像。。。有人说过，当你有这种感觉的时候，那就不是。</li>
+</ul>
+<h3 id="你的打算"><a href="#你的打算" class="headerlink" title="你的打算"></a>你的打算</h3><p>维持现状吧，没有太多的想法，不要越界，享受现在拥有的，这对我来说已经够了。</p>
+<h3 id="随便写写"><a href="#随便写写" class="headerlink" title="随便写写"></a>随便写写</h3><p>感觉我自己是有点问题，太少与异性打交道了，导致稍微有一些好感，就会胡思乱想。</p>
+<p>需要调整一下这种心态，嗨，屌丝的命。。。</p>
+<p>挺羡慕朋友的风格，不管行不行，先去试试，万一成了呢</p>
+<p>考虑的太多，导致我不太愿意去改变，不想接受失败的后果，好吧，好像也没那么难以接受。。。性格使然吧</p>
+<p>就这。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1679,32 +1695,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>post</title>
-    <url>/post/5a8a6c8d.html</url>
-    <content><![CDATA[<p>心情不能平复</p>
-<p>感觉获得的少了，对方感觉可能又太多了。</p>
-<p>人之常情</p>
-<p>很合理，却不太好接受</p>
-<p>你只看到了自己想看到的东西</p>
-<p>对方也只能看到他觉得有意义的东西</p>
-<p>本来就是不对等的</p>
-<p>当地位不平等的时候，你很难去平衡这些东西</p>
-<p>你是有求于人的一方</p>
-<p>所以这些是应该的吗</p>
-<p>不！不应该！</p>
-<p>凭什么？</p>
-<p>去吧，追寻自己想要的结果</p>
-<p>是时候了</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>特么，又是蛋疼的一天。。</title>
-    <url>/post/122ea145.html</url>
-    <content><![CDATA[<p>明天还要上班啊，法克。。</p>
-<p>好烦</p>
-]]></content>
-  </entry>
-  <entry>
     <title>20240311</title>
     <url>/post/563f323b.html</url>
     <content><![CDATA[<p>有些emo</p>
@@ -1737,6 +1727,32 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>post</title>
+    <url>/post/5a8a6c8d.html</url>
+    <content><![CDATA[<p>心情不能平复</p>
+<p>感觉获得的少了，对方感觉可能又太多了。</p>
+<p>人之常情</p>
+<p>很合理，却不太好接受</p>
+<p>你只看到了自己想看到的东西</p>
+<p>对方也只能看到他觉得有意义的东西</p>
+<p>本来就是不对等的</p>
+<p>当地位不平等的时候，你很难去平衡这些东西</p>
+<p>你是有求于人的一方</p>
+<p>所以这些是应该的吗</p>
+<p>不！不应该！</p>
+<p>凭什么？</p>
+<p>去吧，追寻自己想要的结果</p>
+<p>是时候了</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>特么，又是蛋疼的一天。。</title>
+    <url>/post/122ea145.html</url>
+    <content><![CDATA[<p>明天还要上班啊，法克。。</p>
+<p>好烦</p>
+]]></content>
+  </entry>
+  <entry>
     <title>emmm</title>
     <url>/post/8ee38851.html</url>
     <content><![CDATA[<p>傻傻两个姑娘，婚姻幸福</p>
@@ -1759,18 +1775,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>好累的一周啊</title>
-    <url>/post/127cf4e9.html</url>
-    <content><![CDATA[<p>人麻了</p>
-<p>我特么图个啥啊。。</p>
-<p>脑壳疼</p>
-<p>emmmm</p>
-<p>当个独立开发者？</p>
-<p>没什么好点子。。</p>
-<p>嗨</p>
-]]></content>
-  </entry>
-  <entry>
     <title>20240527-youtube-dl</title>
     <url>/post/3dc2f85d.html</url>
     <content><![CDATA[<h1 id="youtube-dl-最新地址"><a href="#youtube-dl-最新地址" class="headerlink" title="youtube-dl 最新地址"></a>youtube-dl 最新地址</h1><p>因为违反了一些协议，所以不能在官方网站上下载地址，APT还有官网下载的都是老版本，无法使用。</p>
@@ -1785,6 +1789,18 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <categories>
         <category>开发技术</category>
       </categories>
+  </entry>
+  <entry>
+    <title>好累的一周啊</title>
+    <url>/post/127cf4e9.html</url>
+    <content><![CDATA[<p>人麻了</p>
+<p>我特么图个啥啊。。</p>
+<p>脑壳疼</p>
+<p>emmmm</p>
+<p>当个独立开发者？</p>
+<p>没什么好点子。。</p>
+<p>嗨</p>
+]]></content>
   </entry>
   <entry>
     <title>20240621-微软bing search 问题</title>
@@ -1827,6 +1843,48 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
+    <title>20231013-生日</title>
+    <url>/post/fef49984.html</url>
+    <content><![CDATA[<p>生日快乐！</p>
+<p>真快呀，转眼三十了。依稀记得18岁生日的场景，好像也没啥感觉，不，还是有点emo，期待总是不可靠的，虽然期望已经很低了。</p>
+<p>不要抱怨，没有意义。</p>
+<p>努力、奋斗，做最好的自己。</p>
+<p>永远年轻，永远热泪盈眶。</p>
+<p>Best wish for me.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>20240113</title>
+    <url>/post/bbb58779.html</url>
+    <content><![CDATA[<p>一个情绪崩溃的晚上</p>
+<p>茫然</p>
+<p>有些彷徨</p>
+<p>不知道该怎么办</p>
+<p>忍不住哭啊。</p>
+<p>哭啊</p>
+<p>嗯，又没忍住。。</p>
+<p>出去走走吧</p>
+<p>所以生命啊，它苦涩如歌</p>
+]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>20230315-移动0</title>
+    <url>/post/6ae72222.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>如果写不出来，那就是没想明白</title>
+    <url>/post/e6e078aa.html</url>
+    <content><![CDATA[<p>rt</p>
+]]></content>
+  </entry>
+  <entry>
     <title>230323-用两个栈实现队列</title>
     <url>/post/46bff899.html</url>
     <content><![CDATA[<h1 id="用两个栈实现队列"><a href="#用两个栈实现队列" class="headerlink" title="用两个栈实现队列"></a>用两个栈实现队列</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead  操作返回 -1 )</p>
@@ -1861,12 +1919,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>如果写不出来，那就是没想明白</title>
-    <url>/post/e6e078aa.html</url>
-    <content><![CDATA[<p>rt</p>
-]]></content>
-  </entry>
-  <entry>
     <title>230328-包含min函数的栈</title>
     <url>/post/7693c044.html</url>
     <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。</p>
@@ -1898,6 +1950,19 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>230403-分治</title>
+    <url>/post/e18fcdf5.html</url>
+    <content><![CDATA[<h2 id="重要的两点"><a href="#重要的两点" class="headerlink" title="重要的两点"></a>重要的两点</h2><ul>
+<li>如何找出基线条件</li>
+<li>如何缩小计算规模</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的和</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [c, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> c + sum(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a =  sum([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayLength</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> + ArrayLength(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = ArrayLength([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 找出元素中的最大值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">maxNumber</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="literal">Infinity</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">let</span> max = maxNumber(rest);</span><br><span class="line">  <span class="keyword">return</span> i &gt; max ? i : max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = maxNumber([<span class="number">-1</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二分查找，分治方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">midSearch</span>(<span class="params">arr: <span class="built_in">number</span>[], search: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr[<span class="number">0</span>] === search) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> mid = (arr.length - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (arr[mid] &gt; search) &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(<span class="number">0</span>, mid), search);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(mid, arr.length), search);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 分治，二分查找，Rust版本</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">mid_search</span></span>(arr: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, search: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> arr[<span class="number">0</span>] == search &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> mid = (arr.len() - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> arr[mid] &gt; search &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[<span class="number">0</span>..mid].to_vec(), search);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[mid..arr.len()].to_vec(), search);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>230407-分治-快排</title>
     <url>/post/27259b04.html</url>
     <content><![CDATA[<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">q_srot</span></span>(arr: &amp;<span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() &lt; <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arr.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> base = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> small: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.into_iter().filter(|x| *x &lt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> bigger: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = arr.iter().filter(|x| *x &gt; &amp;base).map(|x| *x).collect();</span><br><span class="line">    <span class="keyword">let</span> result: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = q_srot(&amp;small)</span><br><span class="line">        .into_iter()</span><br><span class="line">        .chain(<span class="built_in">vec!</span>[base])</span><br><span class="line">        .chain(q_srot(&amp;bigger))</span><br><span class="line">        .collect();</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1912,19 +1977,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <p>草，写这个东西是真的很困难。</p>
 <p>还是需要在理解一下分治</p>
 ]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>230403-分治</title>
-    <url>/post/e18fcdf5.html</url>
-    <content><![CDATA[<h2 id="重要的两点"><a href="#重要的两点" class="headerlink" title="重要的两点"></a>重要的两点</h2><ul>
-<li>如何找出基线条件</li>
-<li>如何缩小计算规模</li>
-</ul>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的和</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [c, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> c + sum(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a =  sum([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算元素的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayLength</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> + ArrayLength(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = ArrayLength([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 找出元素中的最大值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">maxNumber</span>(<span class="params">arr: <span class="built_in">number</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="literal">Infinity</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [i, ...rest] = arr;</span><br><span class="line">  <span class="keyword">let</span> max = maxNumber(rest);</span><br><span class="line">  <span class="keyword">return</span> i &gt; max ? i : max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = maxNumber([<span class="number">-1</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二分查找，分治方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">midSearch</span>(<span class="params">arr: <span class="built_in">number</span>[], search: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (arr[<span class="number">0</span>] === search) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> mid = (arr.length - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (arr[mid] &gt; search) &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(<span class="number">0</span>, mid), search);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> midSearch(arr.slice(mid, arr.length), search);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 分治，二分查找，Rust版本</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">mid_search</span></span>(arr: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, search: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.len() == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> arr[<span class="number">0</span>] == search &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> mid = (arr.len() - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> arr[mid] &gt; search &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[<span class="number">0</span>..mid].to_vec(), search);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mid_search(arr[mid..arr.len()].to_vec(), search);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>开发技术</category>
       </categories>
@@ -1961,50 +2013,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <categories>
         <category>开发技术</category>
       </categories>
-  </entry>
-  <entry>
-    <title>20231013-生日</title>
-    <url>/post/fef49984.html</url>
-    <content><![CDATA[<p>生日快乐！</p>
-<p>真快呀，转眼三十了。依稀记得18岁生日的场景，好像也没啥感觉，不，还是有点emo，期待总是不可靠的，虽然期望已经很低了。</p>
-<p>不要抱怨，没有意义。</p>
-<p>努力、奋斗，做最好的自己。</p>
-<p>永远年轻，永远热泪盈眶。</p>
-<p>Best wish for me.</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>20231007-随便写写</title>
-    <url>/post/9a30b515.html</url>
-    <content><![CDATA[<p>emmm，这次尝试用不那么杂乱的方式去记录。</p>
-<p>遇到一个小姑娘，人挺好，脾气也挺大，不太清楚什么原因，我挺喜欢跟她混在一起。</p>
-<h3 id="她是一个什么样子的人？"><a href="#她是一个什么样子的人？" class="headerlink" title="她是一个什么样子的人？"></a>她是一个什么样子的人？</h3><ul>
-<li>第一反应是奇怪，很多想法跟我差距蛮大的，有些东西我甚至难以理解，是不是年龄差距大，有代沟了。</li>
-<li>脾气，不太好，应该生过好多次气，大部分都是打哈哈就过去了。不过有一次，我也很生气，一个月互相都没联系。</li>
-<li>怕冷场，努力的说话，就是为了场面不那么尴尬。可能这对她来说，是一个不太想回忆的场景？</li>
-<li>可能是一个内向的人吧，我们俩人格测试的结果差不多，她比我严重点。纠结、内耗、讨好型、I还是E型来着，记不清楚了。。</li>
-<li>喜欢唱歌，唱的也好听，上次晚上吃完饭，一起散步，路灯下，桂花旁，两个人，她唱着歌，我在她身边晃悠的走着。我很喜欢这种感觉，内心有一丝悸动。</li>
-<li>emmm，不知道算不算，跟她在一起会感到快乐。</li>
-</ul>
-<h3 id="有想过追她吗"><a href="#有想过追她吗" class="headerlink" title="有想过追她吗"></a>有想过追她吗</h3><ul>
-<li>想过，但是每次都放弃了，很多原因</li>
-<li>我现在还没有结束，哪怕已经是这样子了，依然会有负罪感</li>
-<li>另外一个是自卑吧，年龄差距大，她也很受人喜欢，感觉我不太配</li>
-<li>另外的一些性格、尿性。感觉也不太适合。</li>
-<li>嗯，把上面这些写下来，感觉确实不应该追。</li>
-<li>总体来说，喜欢跟她在一起，但是种种原因又导致，不适合在一起。</li>
-</ul>
-<h3 id="她跟你的关系"><a href="#她跟你的关系" class="headerlink" title="她跟你的关系"></a>她跟你的关系</h3><ul>
-<li>她对我应该有些好感，类似大哥哥那种？或者大叔？我也是第一次遇到，很新奇的感觉</li>
-<li>不知道是不是喜欢，感觉像，又感觉不像。。。有人说过，当你有这种感觉的时候，那就不是。</li>
-</ul>
-<h3 id="你的打算"><a href="#你的打算" class="headerlink" title="你的打算"></a>你的打算</h3><p>维持现状吧，没有太多的想法，不要越界，享受现在拥有的，这对我来说已经够了。</p>
-<h3 id="随便写写"><a href="#随便写写" class="headerlink" title="随便写写"></a>随便写写</h3><p>感觉我自己是有点问题，太少与异性打交道了，导致稍微有一些好感，就会胡思乱想。</p>
-<p>需要调整一下这种心态，嗨，屌丝的命。。。</p>
-<p>挺羡慕朋友的风格，不管行不行，先去试试，万一成了呢</p>
-<p>考虑的太多，导致我不太愿意去改变，不想接受失败的后果，好吧，好像也没那么难以接受。。。性格使然吧</p>
-<p>就这。</p>
-]]></content>
   </entry>
   <entry>
     <title>240115</title>
@@ -2056,14 +2064,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
       <categories>
         <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>20230716-随便写写</title>
-    <url>/post/c49bbcbd.html</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>生活感想</category>
       </categories>
   </entry>
   <entry>
@@ -2137,6 +2137,27 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
+    <title>241212-信息系统开发方法</title>
+    <url>/post/1a37efca.html</url>
+    <content><![CDATA[<h1 id="信息系统开发方法"><a href="#信息系统开发方法" class="headerlink" title="信息系统开发方法"></a>信息系统开发方法</h1><h2 id="原型法"><a href="#原型法" class="headerlink" title="原型法"></a>原型法</h2><p>明确需求中的不确定性，分两种，一种是平面结构，主要用于界面，交互之类的功能。另外一种是垂直结构，主要用于复杂算法，比如头条的推荐功能。不好用平面结构进行表示</p>
+<h2 id="结构化方法"><a href="#结构化方法" class="headerlink" title="结构化方法"></a>结构化方法</h2><p>自顶而下，文档、流程规范化，开发过程相对固定，不灵活</p>
+<h2 id="面向对象的方法"><a href="#面向对象的方法" class="headerlink" title="面向对象的方法"></a>面向对象的方法</h2><p>自下而上，主要思想为，构建各种基础对象，把各种基础对象进行组装，得到最终的功能，更符合人类习惯。</p>
+<h2 id="面向服务方法"><a href="#面向服务方法" class="headerlink" title="面向服务方法"></a>面向服务方法</h2><p>粗颗粒，低耦合，标准化与结构化，将各种方法封装为一个服务，然后一个业务，通过调用各种服务实现所需要的功能。</p>
+<h2 id="形式化开发"><a href="#形式化开发" class="headerlink" title="形式化开发"></a>形式化开发</h2><p>比如净室软件开发，通过数学模型证明该方法的可行性，而不是通过测试。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>241213-信息系统的分类</title>
+    <url>/post/8fc1aa57.html</url>
+    <content><![CDATA[<h1 id="信息系统的分类"><a href="#信息系统的分类" class="headerlink" title="信息系统的分类"></a>信息系统的分类</h1><h2 id="业务处理系统（TPS）"><a href="#业务处理系统（TPS）" class="headerlink" title="业务处理系统（TPS）"></a>业务处理系统（TPS）</h2><p>比较早期的系统，主要处理简单的输入，与数据处理（批处理、OLTP），又叫电子数据处理系统，最低级，最基础的系统<br>开环结构，单向输入</p>
+<h2 id="管理信息系统（MIS）"><a href="#管理信息系统（MIS）" class="headerlink" title="管理信息系统（MIS）"></a>管理信息系统（MIS）</h2><p>高度集成化的人机系统，金字塔结构，有多个层级</p>
+<h2 id="决策支持系统（DSS）"><a href="#决策支持系统（DSS）" class="headerlink" title="决策支持系统（DSS）"></a>决策支持系统（DSS）</h2><p>由语言系统、知识系统、问题处理系统组成，用于辅助抉择</p>
+<h2 id="专家系统（ES）"><a href="#专家系统（ES）" class="headerlink" title="专家系统（ES）"></a>专家系统（ES）</h2><p>知识+推理 = 专家系统，人工智能的一个重要分支</p>
+<h2 id="办公自动化系统（OAS）"><a href="#办公自动化系统（OAS）" class="headerlink" title="办公自动化系统（OAS）"></a>办公自动化系统（OAS）</h2><p>将各种硬件设备与软件系统通过网络进行连接、交互，用于办公的系统，不是一个单独的系统</p>
+<h2 id="企业资源计划（ERP）"><a href="#企业资源计划（ERP）" class="headerlink" title="企业资源计划（ERP）"></a>企业资源计划（ERP）</h2><p>供应链的整合与管理，不是一个单独的系统</p>
+]]></content>
+  </entry>
+  <entry>
     <title>241213-软件开发方法习题</title>
     <url>/post/f1f71307.html</url>
     <content><![CDATA[<p>软件方法学是以软件开发方法为研究对象的学科。其中,()是先对最高层次中的问题进行定义、<br>设计、编程和测试,而将其中未解决的问题作为一个子任务放到下一层次中去解决。()是根据<br>系统功能要求,从具体的器件、逻辑部件或者相似系统开始,通过对其进行相互连接、修改和扩大,<br>构成所要求的系统。()是建立在严格数学基础上的软件开发方法。</p>
@@ -2166,17 +2187,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>241213-信息系统的分类</title>
-    <url>/post/8fc1aa57.html</url>
-    <content><![CDATA[<h1 id="信息系统的分类"><a href="#信息系统的分类" class="headerlink" title="信息系统的分类"></a>信息系统的分类</h1><h2 id="业务处理系统（TPS）"><a href="#业务处理系统（TPS）" class="headerlink" title="业务处理系统（TPS）"></a>业务处理系统（TPS）</h2><p>比较早期的系统，主要处理简单的输入，与数据处理（批处理、OLTP），又叫电子数据处理系统，最低级，最基础的系统<br>开环结构，单向输入</p>
-<h2 id="管理信息系统（MIS）"><a href="#管理信息系统（MIS）" class="headerlink" title="管理信息系统（MIS）"></a>管理信息系统（MIS）</h2><p>高度集成化的人机系统，金字塔结构，有多个层级</p>
-<h2 id="决策支持系统（DSS）"><a href="#决策支持系统（DSS）" class="headerlink" title="决策支持系统（DSS）"></a>决策支持系统（DSS）</h2><p>由语言系统、知识系统、问题处理系统组成，用于辅助抉择</p>
-<h2 id="专家系统（ES）"><a href="#专家系统（ES）" class="headerlink" title="专家系统（ES）"></a>专家系统（ES）</h2><p>知识+推理 = 专家系统，人工智能的一个重要分支</p>
-<h2 id="办公自动化系统（OAS）"><a href="#办公自动化系统（OAS）" class="headerlink" title="办公自动化系统（OAS）"></a>办公自动化系统（OAS）</h2><p>将各种硬件设备与软件系统通过网络进行连接、交互，用于办公的系统，不是一个单独的系统</p>
-<h2 id="企业资源计划（ERP）"><a href="#企业资源计划（ERP）" class="headerlink" title="企业资源计划（ERP）"></a>企业资源计划（ERP）</h2><p>供应链的整合与管理，不是一个单独的系统</p>
-]]></content>
-  </entry>
-  <entry>
     <title>241218-管理信息系统</title>
     <url>/post/cacb4331.html</url>
     <content><![CDATA[<h1 id="管理信息系统（MIS）"><a href="#管理信息系统（MIS）" class="headerlink" title="管理信息系统（MIS）"></a>管理信息系统（MIS）</h1><p>在基础的业务处理系统上扩展而来，跟企业信息管理有较高的关联性，高度集成化的人机系统，金字塔结构，有多个层级。<br>引进大量管理方法，对企业整体信息进行处理</p>
@@ -2188,16 +2198,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <p>输入后除了决策，其他情况不影响本次执行结果</p>
 <h2 id="闭环结构"><a href="#闭环结构" class="headerlink" title="闭环结构"></a>闭环结构</h2><p>事件，识别，记录，变换，存储，决策，执行，结果，评价。</p>
 <p>与开环结构类似，但是在决策后面的阶段（决策，执行，结果，评价）可以回到最开始的事件上，影响本次输入的执行结果。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>241212-信息系统开发方法</title>
-    <url>/post/1a37efca.html</url>
-    <content><![CDATA[<h1 id="信息系统开发方法"><a href="#信息系统开发方法" class="headerlink" title="信息系统开发方法"></a>信息系统开发方法</h1><h2 id="原型法"><a href="#原型法" class="headerlink" title="原型法"></a>原型法</h2><p>明确需求中的不确定性，分两种，一种是平面结构，主要用于界面，交互之类的功能。另外一种是垂直结构，主要用于复杂算法，比如头条的推荐功能。不好用平面结构进行表示</p>
-<h2 id="结构化方法"><a href="#结构化方法" class="headerlink" title="结构化方法"></a>结构化方法</h2><p>自顶而下，文档、流程规范化，开发过程相对固定，不灵活</p>
-<h2 id="面向对象的方法"><a href="#面向对象的方法" class="headerlink" title="面向对象的方法"></a>面向对象的方法</h2><p>自下而上，主要思想为，构建各种基础对象，把各种基础对象进行组装，得到最终的功能，更符合人类习惯。</p>
-<h2 id="面向服务方法"><a href="#面向服务方法" class="headerlink" title="面向服务方法"></a>面向服务方法</h2><p>粗颗粒，低耦合，标准化与结构化，将各种方法封装为一个服务，然后一个业务，通过调用各种服务实现所需要的功能。</p>
-<h2 id="形式化开发"><a href="#形式化开发" class="headerlink" title="形式化开发"></a>形式化开发</h2><p>比如净室软件开发，通过数学模型证明该方法的可行性，而不是通过测试。</p>
 ]]></content>
   </entry>
   <entry>
@@ -2319,6 +2319,43 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
+    <title>250303-规范化理论</title>
+    <url>/post/7dbcde9a.html</url>
+    <content><![CDATA[<h2 id="求候选键"><a href="#求候选键" class="headerlink" title="求候选键"></a>求候选键</h2><ul>
+<li>找入度为0的属性</li>
+<li>如果不满足上面的条件，则尝试便利中间节点（既有入度，也有出度），并入上面的条件，直至该集合能便利所有节点</li>
+</ul>
+<h2 id="部分函数依赖"><a href="#部分函数依赖" class="headerlink" title="部分函数依赖"></a>部分函数依赖</h2><p>如果候选键是一个合集，且一部分非主属性依赖于候选键的一部分，为部分函数依赖</p>
+<h2 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h2><p>A-&gt; B,B-&gt;C 则 A-&gt;C</p>
+<h2 id="Armstrong-公里"><a href="#Armstrong-公里" class="headerlink" title="Armstrong 公里"></a>Armstrong 公里</h2><h3 id="自反率"><a href="#自反率" class="headerlink" title="自反率"></a>自反率</h3><p>Y∈X∈U<br>U={ABC}<br>X={AB}<br>Y={A}<br>则，X-&gt; Y<br>身份证号与姓名 可以确认姓名，身份证号也可以确认姓名.</p>
+<h3 id="增广律"><a href="#增广律" class="headerlink" title="增广律"></a>增广律</h3><p>若 Z ∈ U 且 X-&gt;Y，则 XZ-&gt;YZ</p>
+<h3 id="传递率"><a href="#传递率" class="headerlink" title="传递率"></a>传递率</h3><p>A-&gt; B,B-&gt;C 则 A-&gt;C<br>学号可以推出系号，系号可以推出系名，那么学号可以推出系名</p>
+<h3 id="合并规则"><a href="#合并规则" class="headerlink" title="合并规则"></a>合并规则</h3><p>如果 X-&gt;Y，X-&gt;Z 则 X-&gt;YZ</p>
+<h3 id="伪传递规则"><a href="#伪传递规则" class="headerlink" title="伪传递规则"></a>伪传递规则</h3><p>如果 X-&gt;Y,WY-&gt;Z，则WX-&gt;Z</p>
+<h3 id="分解规则"><a href="#分解规则" class="headerlink" title="分解规则"></a>分解规则</h3><p>如果 X-Y 且 Z ∈ Y,则 X-&gt; Z</p>
+<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>属性都是不可分的原子值</p>
+<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>部份依赖</strong></p>
+<p>单属性候选键不会出现这类问题，只有候选键可能存在这种可能</p>
+<p>完全依赖于主键，不存在部分依赖</p>
+<p>学号、课程号、成绩、学分</p>
+<p>学号,课程号-&gt; 成绩</p>
+<p>课程号-&gt; 学分</p>
+<p>没有课程的情况下，无法插入学分信息</p>
+<p>如果课程没有人报名，那么没有课程信息</p>
+<p>解决办法：将课程号与学分单独提取到一张表</p>
+<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>传递依赖</strong></p>
+<p>学校、身份证号、系号、系名 满足第三范式，因为不存在对非主属性的传递依赖</p>
+<p>学号、姓名、系号、系名</p>
+<p>学号-&gt; 系号</p>
+<p>系号-&gt; 系名</p>
+<p>学号-&gt; 系名</p>
+<p>其中系名依赖于非主属性系号，所以存在对非主属性的传递依赖，不满足第三范式</p>
+<p>解决办法：系号、系名 单独组表</p>
+<h3 id="BC范式"><a href="#BC范式" class="headerlink" title="BC范式"></a>BC范式</h3><p>完全依赖于候选键</p>
+<p>不解决</p>
+]]></content>
+  </entry>
+  <entry>
     <title>250304-模式分解</title>
     <url>/post/44a7dc70.html</url>
     <content><![CDATA[<h1 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h1><h2 id="是否保持函数依赖"><a href="#是否保持函数依赖" class="headerlink" title="是否保持函数依赖"></a>是否保持函数依赖</h2><p>是否能复原为原本的函数依赖</p>
@@ -2389,43 +2426,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 <li>应用软件，连接池</li>
 <li>分布式数据库-通信代价</li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>250303-规范化理论</title>
-    <url>/post/7dbcde9a.html</url>
-    <content><![CDATA[<h2 id="求候选键"><a href="#求候选键" class="headerlink" title="求候选键"></a>求候选键</h2><ul>
-<li>找入度为0的属性</li>
-<li>如果不满足上面的条件，则尝试便利中间节点（既有入度，也有出度），并入上面的条件，直至该集合能便利所有节点</li>
-</ul>
-<h2 id="部分函数依赖"><a href="#部分函数依赖" class="headerlink" title="部分函数依赖"></a>部分函数依赖</h2><p>如果候选键是一个合集，且一部分非主属性依赖于候选键的一部分，为部分函数依赖</p>
-<h2 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h2><p>A-&gt; B,B-&gt;C 则 A-&gt;C</p>
-<h2 id="Armstrong-公里"><a href="#Armstrong-公里" class="headerlink" title="Armstrong 公里"></a>Armstrong 公里</h2><h3 id="自反率"><a href="#自反率" class="headerlink" title="自反率"></a>自反率</h3><p>Y∈X∈U<br>U={ABC}<br>X={AB}<br>Y={A}<br>则，X-&gt; Y<br>身份证号与姓名 可以确认姓名，身份证号也可以确认姓名.</p>
-<h3 id="增广律"><a href="#增广律" class="headerlink" title="增广律"></a>增广律</h3><p>若 Z ∈ U 且 X-&gt;Y，则 XZ-&gt;YZ</p>
-<h3 id="传递率"><a href="#传递率" class="headerlink" title="传递率"></a>传递率</h3><p>A-&gt; B,B-&gt;C 则 A-&gt;C<br>学号可以推出系号，系号可以推出系名，那么学号可以推出系名</p>
-<h3 id="合并规则"><a href="#合并规则" class="headerlink" title="合并规则"></a>合并规则</h3><p>如果 X-&gt;Y，X-&gt;Z 则 X-&gt;YZ</p>
-<h3 id="伪传递规则"><a href="#伪传递规则" class="headerlink" title="伪传递规则"></a>伪传递规则</h3><p>如果 X-&gt;Y,WY-&gt;Z，则WX-&gt;Z</p>
-<h3 id="分解规则"><a href="#分解规则" class="headerlink" title="分解规则"></a>分解规则</h3><p>如果 X-Y 且 Z ∈ Y,则 X-&gt; Z</p>
-<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>属性都是不可分的原子值</p>
-<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>部份依赖</strong></p>
-<p>单属性候选键不会出现这类问题，只有候选键可能存在这种可能</p>
-<p>完全依赖于主键，不存在部分依赖</p>
-<p>学号、课程号、成绩、学分</p>
-<p>学号,课程号-&gt; 成绩</p>
-<p>课程号-&gt; 学分</p>
-<p>没有课程的情况下，无法插入学分信息</p>
-<p>如果课程没有人报名，那么没有课程信息</p>
-<p>解决办法：将课程号与学分单独提取到一张表</p>
-<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>传递依赖</strong></p>
-<p>学校、身份证号、系号、系名 满足第三范式，因为不存在对非主属性的传递依赖</p>
-<p>学号、姓名、系号、系名</p>
-<p>学号-&gt; 系号</p>
-<p>系号-&gt; 系名</p>
-<p>学号-&gt; 系名</p>
-<p>其中系名依赖于非主属性系号，所以存在对非主属性的传递依赖，不满足第三范式</p>
-<p>解决办法：系号、系名 单独组表</p>
-<h3 id="BC范式"><a href="#BC范式" class="headerlink" title="BC范式"></a>BC范式</h3><p>完全依赖于候选键</p>
-<p>不解决</p>
 ]]></content>
   </entry>
   <entry>
@@ -2594,6 +2594,46 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
+    <title>250318-项目管理</title>
+    <url>/post/b07558da.html</url>
+    <content><![CDATA[<h1 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h1><h2 id="盈亏平衡分析"><a href="#盈亏平衡分析" class="headerlink" title="盈亏平衡分析"></a>盈亏平衡分析</h2><p>正常情况：销售额= 固定成本+可变成本+税费+利润</p>
+<p>盈亏平衡：销售额= 固定成本+可变成本+税费</p>
+<p>其中税费、可变成本是随销售额变化的</p>
+<p>可变成本比例 = (可变成本)/(销售额)</p>
+<p>税费= 销售额 * 税率</p>
+<h2 id="进度管理"><a href="#进度管理" class="headerlink" title="进度管理"></a>进度管理</h2><ul>
+<li>活动定义</li>
+<li>活动排序</li>
+<li>活动的资源估算</li>
+<li>活动历时估算</li>
+<li>制定计划</li>
+<li>进度控制</li>
+</ul>
+<p>三点估算法= (乐观时间 + 4 * 最可能时间 + 悲观时间) / 6<br><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-4.png" alt="alt text"></p>
+<h3 id="单代号网络图"><a href="#单代号网络图" class="headerlink" title="单代号网络图"></a>单代号网络图</h3><h3 id="质量管理"><a href="#质量管理" class="headerlink" title="质量管理"></a>质量管理</h3><ul>
+<li>质量保证：事前预防，审计</li>
+<li>质量控制：针对具体结果，测试<br><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image.png" alt="alt text"></li>
+</ul>
+<h3 id="软件能力成熟度模型集成-CMMI"><a href="#软件能力成熟度模型集成-CMMI" class="headerlink" title="软件能力成熟度模型集成(CMMI)"></a>软件能力成熟度模型集成(CMMI)</h3><ul>
+<li>初始级： 混乱</li>
+<li>已管理级： 项目级可重复</li>
+<li>已定义级：组织级，文档标准化</li>
+<li>定量管理级： 量化管理，过程可预测</li>
+<li>优化级：持续优化</li>
+</ul>
+<h3 id="数据管理能力成熟度评估模型（DCMM）"><a href="#数据管理能力成熟度评估模型（DCMM）" class="headerlink" title="数据管理能力成熟度评估模型（DCMM）"></a>数据管理能力成熟度评估模型（DCMM）</h3><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-1.png" alt="alt text"></p>
+<ul>
+<li>初始级</li>
+<li>受管理级</li>
+<li>稳健级</li>
+<li>量化管理级</li>
+<li>优化级</li>
+</ul>
+<h2 id="数据治理"><a href="#数据治理" class="headerlink" title="数据治理"></a>数据治理</h2><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-2.png" alt="alt text"></p>
+<h2 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h2><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-3.png" alt="alt text"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>250320-习题</title>
     <url>/post/7daaca66.html</url>
     <content><![CDATA[<h2 id="SDN网络在控制平面和转发平面分别采用了不同技术，以满足SDN网络控制的全局性和灵活性，业务转发的高效性及高性价比要求。主要关键技术不包括-。"><a href="#SDN网络在控制平面和转发平面分别采用了不同技术，以满足SDN网络控制的全局性和灵活性，业务转发的高效性及高性价比要求。主要关键技术不包括-。" class="headerlink" title="SDN网络在控制平面和转发平面分别采用了不同技术，以满足SDN网络控制的全局性和灵活性，业务转发的高效性及高性价比要求。主要关键技术不包括()。"></a>SDN网络在控制平面和转发平面分别采用了不同技术，以满足SDN网络控制的全局性和灵活性，业务转发的高效性及高性价比要求。主要关键技术不包括()。</h2><ul>
@@ -2740,46 +2780,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 ]]></content>
   </entry>
   <entry>
-    <title>250318-项目管理</title>
-    <url>/post/b07558da.html</url>
-    <content><![CDATA[<h1 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h1><h2 id="盈亏平衡分析"><a href="#盈亏平衡分析" class="headerlink" title="盈亏平衡分析"></a>盈亏平衡分析</h2><p>正常情况：销售额= 固定成本+可变成本+税费+利润</p>
-<p>盈亏平衡：销售额= 固定成本+可变成本+税费</p>
-<p>其中税费、可变成本是随销售额变化的</p>
-<p>可变成本比例 = (可变成本)/(销售额)</p>
-<p>税费= 销售额 * 税率</p>
-<h2 id="进度管理"><a href="#进度管理" class="headerlink" title="进度管理"></a>进度管理</h2><ul>
-<li>活动定义</li>
-<li>活动排序</li>
-<li>活动的资源估算</li>
-<li>活动历时估算</li>
-<li>制定计划</li>
-<li>进度控制</li>
-</ul>
-<p>三点估算法= (乐观时间 + 4 * 最可能时间 + 悲观时间) / 6<br><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-4.png" alt="alt text"></p>
-<h3 id="单代号网络图"><a href="#单代号网络图" class="headerlink" title="单代号网络图"></a>单代号网络图</h3><h3 id="质量管理"><a href="#质量管理" class="headerlink" title="质量管理"></a>质量管理</h3><ul>
-<li>质量保证：事前预防，审计</li>
-<li>质量控制：针对具体结果，测试<br><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image.png" alt="alt text"></li>
-</ul>
-<h3 id="软件能力成熟度模型集成-CMMI"><a href="#软件能力成熟度模型集成-CMMI" class="headerlink" title="软件能力成熟度模型集成(CMMI)"></a>软件能力成熟度模型集成(CMMI)</h3><ul>
-<li>初始级： 混乱</li>
-<li>已管理级： 项目级可重复</li>
-<li>已定义级：组织级，文档标准化</li>
-<li>定量管理级： 量化管理，过程可预测</li>
-<li>优化级：持续优化</li>
-</ul>
-<h3 id="数据管理能力成熟度评估模型（DCMM）"><a href="#数据管理能力成熟度评估模型（DCMM）" class="headerlink" title="数据管理能力成熟度评估模型（DCMM）"></a>数据管理能力成熟度评估模型（DCMM）</h3><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-1.png" alt="alt text"></p>
-<ul>
-<li>初始级</li>
-<li>受管理级</li>
-<li>稳健级</li>
-<li>量化管理级</li>
-<li>优化级</li>
-</ul>
-<h2 id="数据治理"><a href="#数据治理" class="headerlink" title="数据治理"></a>数据治理</h2><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-2.png" alt="alt text"></p>
-<h2 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h2><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-3.png" alt="alt text"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>250321-大数据</title>
     <url>/post/d51c5f51.html</url>
     <content><![CDATA[<h1 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h1><h2 id="特点-5V"><a href="#特点-5V" class="headerlink" title="特点 5V"></a>特点 5V</h2><ul>
@@ -2831,6 +2831,115 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
 </ul>
 <p><img src="../images/article/250321-%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E4%B8%8E%E6%A0%87%E5%87%86%E5%8C%96/image-2.png" alt="alt text"></p>
 <h2 id="侵权判定"><a href="#侵权判定" class="headerlink" title="侵权判定"></a>侵权判定</h2><p><img src="../images/article/250321-%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E4%B8%8E%E6%A0%87%E5%87%86%E5%8C%96/image-3.png" alt="alt text"><br><img src="../images/article/250321-%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E4%B8%8E%E6%A0%87%E5%87%86%E5%8C%96/image-4.png" alt="alt text"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>250324-软件工程</title>
+    <url>/post/ccbac791.html</url>
+    <content><![CDATA[<h1 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h1><h2 id="开发过程模型"><a href="#开发过程模型" class="headerlink" title="开发过程模型"></a>开发过程模型</h2><h3 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h3><ul>
+<li>需求分析</li>
+<li>软件设计</li>
+<li>程序设计</li>
+<li>编码实现</li>
+<li>单元测试</li>
+<li>集成测试</li>
+<li>系统测试</li>
+<li>运行维护</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>严格区分阶段，只适合需求明确的项目</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>正确性难以确定</li>
+<li>串行化，很长才能看到结果</li>
+<li>每个阶段完全解决这个阶段的问题（不现实）</li>
+</ul>
+<h3 id="原型模型"><a href="#原型模型" class="headerlink" title="原型模型"></a>原型模型</h3><ul>
+<li>需求分析（主要针对该项）</li>
+<li>软件涉及</li>
+<li>程序设计</li>
+</ul>
+<h4 id="两个阶段"><a href="#两个阶段" class="headerlink" title="两个阶段"></a>两个阶段</h4><ul>
+<li>原型开发阶段</li>
+<li>目标软件开发阶段</li>
+</ul>
+<h4 id="原型分类"><a href="#原型分类" class="headerlink" title="原型分类"></a>原型分类</h4><ul>
+<li>抛弃型原型</li>
+<li>演化型原型</li>
+</ul>
+<p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image.png" alt="alt text"></p>
+<h3 id="V-模型"><a href="#V-模型" class="headerlink" title="V 模型"></a>V 模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-2.png" alt="alt text"><br>测试贯穿于始终</p>
+<p>测试分阶段，测试计划提前</p>
+<h3 id="W-模型"><a href="#W-模型" class="headerlink" title="W 模型"></a>W 模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-3.png" alt="W模型"></p>
+<p>测试和开发进行</p>
+<h3 id="迭代和增量"><a href="#迭代和增量" class="headerlink" title="迭代和增量"></a>迭代和增量</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-4.png" alt="迭代与增量"></p>
+<h4 id="增量"><a href="#增量" class="headerlink" title="增量"></a>增量</h4><p>一块一块做增量</p>
+<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>逐步进化</p>
+<h3 id="螺旋模型"><a href="#螺旋模型" class="headerlink" title="螺旋模型"></a>螺旋模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-5.png" alt="螺旋模型"></p>
+<p>以快速原型模型为基础+瀑布模型</p>
+<p>考虑了风险问题</p>
+<h3 id="构建组装模型"><a href="#构建组装模型" class="headerlink" title="构建组装模型"></a>构建组装模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-6.png" alt="构建组装模型"><br>示例：方舱医院、积木 </p>
+<p>优点：易扩展、易重用、降低成本、安排任务更灵活</p>
+<p>缺点：需要经验丰富的架构师、设计不好的构建难重用、强调重用牺牲其他指标、第三方构建质量难控制</p>
+<h3 id="基于构建的软件工程（CBSE）"><a href="#基于构建的软件工程（CBSE）" class="headerlink" title="基于构建的软件工程（CBSE）"></a>基于构建的软件工程（CBSE）</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-7.png" alt="CBSE"></p>
+<ul>
+<li>购买而不是重新构造（不要重新造轮子 ）<br><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-8.png" alt="要素"></li>
+</ul>
+<h4 id="组装"><a href="#组装" class="headerlink" title="组装"></a>组装</h4><ul>
+<li>顺序组装 </li>
+<li>层次组装（必须分层，层次之间接口兼容）</li>
+<li>叠加组装（多个合并新的构建、对外提供接口，不需明确顺序）<h4 id="不兼容"><a href="#不兼容" class="headerlink" title="不兼容"></a>不兼容</h4></li>
+<li>参数不兼容(操作有相同的名字，但是参数类型和参数个数不相同)</li>
+<li>操作不兼容(操作名有不同)</li>
+<li>操作不完备(有些操作无法完成)</li>
+</ul>
+<h3 id="快速应用开发模型（RAD）"><a href="#快速应用开发模型（RAD）" class="headerlink" title="快速应用开发模型（RAD）"></a>快速应用开发模型（RAD）</h3><ul>
+<li>SDLC 瀑布</li>
+<li>CBSD 基于构建</li>
+</ul>
+<h3 id="统一过程（UP）"><a href="#统一过程（UP）" class="headerlink" title="统一过程（UP）"></a>统一过程（UP）</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-9.png" alt="核心工作流"></p>
+<h4 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h4><ul>
+<li>用例驱动</li>
+<li>以架构为中心</li>
+<li>迭代和增量<h4 id="阶段"><a href="#阶段" class="headerlink" title="阶段"></a>阶段</h4></li>
+<li>初始（需求）</li>
+<li>细化（设计确定系统架构）</li>
+<li>构造（构建的开发、构建）</li>
+<li>移交</li>
+</ul>
+<h4 id="核心工作流"><a href="#核心工作流" class="headerlink" title="核心工作流"></a>核心工作流</h4><ul>
+<li>业务建模</li>
+<li>需求</li>
+<li>分析与设计</li>
+<li>实现</li>
+<li>测试</li>
+<li>部署</li>
+<li>配置与变更管理</li>
+<li>项目管理</li>
+<li>环境</li>
+</ul>
+<h3 id="敏捷方法"><a href="#敏捷方法" class="headerlink" title="敏捷方法"></a>敏捷方法</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-10.png" alt="敏捷方法"></p>
+<h3 id="敏捷方法-XP"><a href="#敏捷方法-XP" class="headerlink" title="敏捷方法-XP"></a>敏捷方法-XP</h3><h4 id="价值观"><a href="#价值观" class="headerlink" title="价值观"></a>价值观</h4><ul>
+<li>沟通（加强面对面沟通）</li>
+<li>简单（不过度设计）</li>
+<li>反馈（及时反馈）</li>
+<li>勇气（接受变更的勇气）</li>
+</ul>
+<h3 id="敏捷方法（SCRUM）"><a href="#敏捷方法（SCRUM）" class="headerlink" title="敏捷方法（SCRUM）"></a>敏捷方法（SCRUM）</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-11.png" alt="SCRUM"><br><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-12.png" alt="alt text"></p>
+<h3 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-13.png" alt="alt text"></p>
+<ul>
+<li>实现级（语法树）</li>
+<li>结构级（程序分量之间相互联系关系）</li>
+<li>功能级（程序段）</li>
+<li>领域级（应用领域概念之间对应关系）</li>
+</ul>
+<p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-14.png" alt="alt text"></p>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>重构（同一抽象级别，例如算法重写，输入输出不变）</li>
+<li>设计恢复（借助工具抽象出有关数据设计）</li>
+<li>逆向工程（设计的恢复过程）</li>
+<li>正向工程（改变重构，改善整体质量）</li>
+<li>再工程（）</li>
+</ul>
+<h3 id="净室软件工程"><a href="#净室软件工程" class="headerlink" title="净室软件工程"></a>净室软件工程</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-15.png" alt="净室软件工程"></p>
 ]]></content>
   </entry>
   <entry>
@@ -3116,6 +3225,50 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
+    <title>csapp-p-36-1</title>
+    <url>/post/e9a5bfe.html</url>
+    <content><![CDATA[<h2 id="给出位向量的布尔运算"><a href="#给出位向量的布尔运算" class="headerlink" title="给出位向量的布尔运算"></a>给出位向量的布尔运算</h2><table>
+<thead>
+<tr>
+<th>运算</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>[01101001]</td>
+</tr>
+<tr>
+<td>b</td>
+<td>[01010101]</td>
+</tr>
+<tr>
+<td>~a</td>
+<td>[10010110]</td>
+</tr>
+<tr>
+<td>~b</td>
+<td>[10101010]</td>
+</tr>
+<tr>
+<td>a&amp;b</td>
+<td>[01000001]</td>
+</tr>
+<tr>
+<td>a|b</td>
+<td>[01111101]</td>
+</tr>
+<tr>
+<td>a^b</td>
+<td>[00111110]</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>csapp-p-40-1</title>
     <url>/post/97c01ff5.html</url>
     <content><![CDATA[<h2 id="x-0x66-y-0x39-计算下列值"><a href="#x-0x66-y-0x39-计算下列值" class="headerlink" title="x=0x66 y = 0x39 计算下列值"></a>x=0x66 y = 0x39 计算下列值</h2><table>
@@ -3238,50 +3391,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>csapp-p-36-1</title>
-    <url>/post/e9a5bfe.html</url>
-    <content><![CDATA[<h2 id="给出位向量的布尔运算"><a href="#给出位向量的布尔运算" class="headerlink" title="给出位向量的布尔运算"></a>给出位向量的布尔运算</h2><table>
-<thead>
-<tr>
-<th>运算</th>
-<th>二进制</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>a</td>
-<td>[01101001]</td>
-</tr>
-<tr>
-<td>b</td>
-<td>[01010101]</td>
-</tr>
-<tr>
-<td>~a</td>
-<td>[10010110]</td>
-</tr>
-<tr>
-<td>~b</td>
-<td>[10101010]</td>
-</tr>
-<tr>
-<td>a&amp;b</td>
-<td>[01000001]</td>
-</tr>
-<tr>
-<td>a|b</td>
-<td>[01111101]</td>
-</tr>
-<tr>
-<td>a^b</td>
-<td>[00111110]</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
     <title>nestjs 类型导出引起的循环依赖问题</title>
     <url>/post/6261c281.html</url>
     <content><![CDATA[<h1 id="nestjs-无法注入服务"><a href="#nestjs-无法注入服务" class="headerlink" title="nestjs 无法注入服务"></a>nestjs 无法注入服务</h1><h1 id="问题发现"><a href="#问题发现" class="headerlink" title="问题发现"></a>问题发现</h1><ul>
@@ -3329,6 +3438,17 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
+    <title>rust 学习记录</title>
+    <url>/post/7ac062ab.html</url>
+    <content><![CDATA[<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"猜一个数字！"</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"输出你猜的数字"</span>);</span><br><span class="line">    <span class="keyword">let</span> secret_number = rand::thread_rng().gen_range(<span class="number">1</span>, <span class="number">101</span>);</span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line">        io::stdin().read_line(&amp;<span class="keyword">mut</span> guess).expect(<span class="string">"读取错误"</span>);</span><br><span class="line">        <span class="keyword">let</span> guess: <span class="built_in">u32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">            <span class="literal">Ok</span>(num) =&gt; num,</span><br><span class="line">            <span class="literal">Err</span>(_) =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">"请输入数字"</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">match</span> guess.cmp(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">"小了"</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">"大了"</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">"对了"</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>rust版本 斐波那契额数列</title>
     <url>/post/dd074ae7.html</url>
     <content><![CDATA[<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> ::std::io;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> n = <span class="built_in">String</span>::new();</span><br><span class="line">    io::stdin().read_line(&amp;<span class="keyword">mut</span> n).expect(<span class="string">"输入错误"</span>);</span><br><span class="line">    <span class="keyword">let</span> n: <span class="built_in">i64</span> = n.trim().parse().expect(<span class="string">"不是数字"</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> second = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> index &lt;= n &#123;</span><br><span class="line">        <span class="keyword">if</span> index == <span class="number">0</span> || index == <span class="number">1</span> &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"count &#123;&#125;"</span>, index);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> count: <span class="built_in">i64</span> = first + second;</span><br><span class="line">            first = second;</span><br><span class="line">            second = count;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"count &#123;&#125;"</span>, count);</span><br><span class="line">        &#125;</span><br><span class="line">        index += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
@@ -3361,17 +3481,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
-    <title>rust 学习记录</title>
-    <url>/post/7ac062ab.html</url>
-    <content><![CDATA[<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"猜一个数字！"</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"输出你猜的数字"</span>);</span><br><span class="line">    <span class="keyword">let</span> secret_number = rand::thread_rng().gen_range(<span class="number">1</span>, <span class="number">101</span>);</span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line">        io::stdin().read_line(&amp;<span class="keyword">mut</span> guess).expect(<span class="string">"读取错误"</span>);</span><br><span class="line">        <span class="keyword">let</span> guess: <span class="built_in">u32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">            <span class="literal">Ok</span>(num) =&gt; num,</span><br><span class="line">            <span class="literal">Err</span>(_) =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">"请输入数字"</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">match</span> guess.cmp(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">"小了"</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">"大了"</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">"对了"</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>介绍下重绘和回流</title>
     <url>/post/51bb67c3.html</url>
     <content><![CDATA[<h1 id="介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化"><a href="#介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化" class="headerlink" title="介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化"></a>介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="浏览器渲染主要经过三个阶段"><a href="#浏览器渲染主要经过三个阶段" class="headerlink" title="浏览器渲染主要经过三个阶段"></a>浏览器渲染主要经过三个阶段</h3><p>1、dom树与style树合成渲染树<br>2、计算节点的位置与大小的阶段叫回流<br>3、渲染计算好的节点叫重绘</p>
@@ -3383,47 +3492,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
       <tags>
         <tag>dom优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>初级算法-两数之和</title>
-    <url>/post/86e6a746.html</url>
-    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
-<p>你可以按任意顺序返回答案。</p>
-<p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [2,7,11,15], target &#x3D; 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] &#x3D;&#x3D; 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
-
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [3,2,4], target &#x3D; 6</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
-<p>示例 3：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [3,3], target &#x3D; 6</span><br><span class="line">输出：[0,1]</span><br></pre></td></tr></table></figure>
-
-
-<p>提示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2 &lt;&#x3D; nums.length &lt;&#x3D; 104</span><br><span class="line">-109 &lt;&#x3D; nums[i] &lt;&#x3D; 109</span><br><span class="line">-109 &lt;&#x3D; target &lt;&#x3D; 109</span><br><span class="line">只会存在一个有效答案</span><br><span class="line">进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？</span><br></pre></td></tr></table></figure>
-
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">twoSum</span>(<span class="params">nums: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums[i] + nums[j] === target) &#123;</span><br><span class="line">        <span class="keyword">return</span> [i, j];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="双指针排序"><a href="#双指针排序" class="headerlink" title="双指针排序"></a>双指针排序</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">twoSum</span>(<span class="params">nums: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> numsMap = nums.reduce(<span class="function">(<span class="params">current, next, index</span>) =&gt;</span> &#123;</span><br><span class="line">    current.set(index, next);</span><br><span class="line">    <span class="keyword">return</span> current;</span><br><span class="line">  &#125;, <span class="keyword">new</span> Map());</span><br><span class="line">  nums = nums.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">  <span class="keyword">let</span> rightIndex = nums.findIndex(<span class="function">(<span class="params">item</span>) =&gt;</span> item &gt; target);</span><br><span class="line">  <span class="keyword">let</span> leftIndex = <span class="number">0</span>;</span><br><span class="line">  rightIndex = rightIndex === <span class="number">-1</span> ? nums.length - <span class="number">1</span> : rightIndex;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums[leftIndex] + nums[rightIndex] === target) &#123;</span><br><span class="line">      <span class="keyword">return</span> [numsMap.get(nums[leftIndex]), numsMap.get(nums[rightIndex])];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (leftIndex % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      leftIndex++;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      rightIndex--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="map表"><a href="#map表" class="headerlink" title="map表"></a>map表</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">twoSum</span>(<span class="params">nums: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sumMap = <span class="keyword">new</span> Map();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> indexObj = sumMap.get(target - nums[i]);</span><br><span class="line">    <span class="keyword">if</span> (indexObj) &#123;</span><br><span class="line">      <span class="keyword">return</span> [indexObj.index, i];</span><br><span class="line">    &#125;</span><br><span class="line">    sumMap.set(nums[i], &#123;</span><br><span class="line">      index: i,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>map表解法最优</li>
-<li></li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2jrse/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2jrse/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -3455,6 +3523,90 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <categories>
         <category>开发技术</category>
       </categories>
+  </entry>
+  <entry>
+    <title>使用hexo创建自己的个人博客</title>
+    <url>/post/9dd65578.html</url>
+    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>mac电脑可能需要使用sudo权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h2 id="初始化项目，安装依赖"><a href="#初始化项目，安装依赖" class="headerlink" title="初始化项目，安装依赖"></a>初始化项目，安装依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>各类配置项参考<a href="https://hexo.bootcss.com/docs/configuration.html" target="_blank" rel="noopener">hexo中文文档</a></p>
+</blockquote>
+<h2 id="发布到github-pages"><a href="#发布到github-pages" class="headerlink" title="发布到github pages"></a>发布到github pages</h2><ol>
+<li>创建一个github仓库&lt;yourname&gt;.github.com，比如我的lampofaladdin.github.io</li>
+<li>在_config.yml中增加配置项<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> type: git</span><br><span class="line"> repo: &lt;github git地址&gt;</span><br><span class="line"> # 例如git@github.com:lampofaladdin&#x2F;lampofaladdin.github.io.git</span><br></pre></td></tr></table></figure></li>
+<li>发布到github <code>hexo deploy</code></li>
+</ol>
+<h2 id="使用阿里云oss静态页关联自己域名"><a href="#使用阿里云oss静态页关联自己域名" class="headerlink" title="使用阿里云oss静态页关联自己域名"></a>使用阿里云oss静态页关联自己域名</h2><ol>
+<li>创建阿里云Bucket,不开通版本控制，读写为公共读，其他默认</li>
+<li>创建ram用户，给用户oss的控制权限</li>
+<li>创建ram用户的AccessKey，获取到AccessKeyID，AccessKeySecret</li>
+<li>进入bucket,基础设置，静态页面，默认首页为<strong>index.html</strong>,子目录首页开通</li>
+<li>传输管理，绑定你已经购买备案好的域名。</li>
+<li>安装hexo-deployer-ali-oss，<code>npm i hexo-deployer-ali-oss --save</code></li>
+<li>在_config.yml中增加配置<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: ali-oss</span><br><span class="line">  region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">  accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">  accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">  bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure></li>
+<li><code>npm deploy</code></li>
+</ol>
+<h2 id="同时发布在githubPage-与-阿里云oss"><a href="#同时发布在githubPage-与-阿里云oss" class="headerlink" title="同时发布在githubPage 与 阿里云oss"></a>同时发布在githubPage 与 阿里云oss</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">-  type: git</span><br><span class="line">   repo: &lt;github git地址&gt;</span><br><span class="line">-  type: ali-oss</span><br><span class="line">   region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">   accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">   accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">   bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li>git push的时候depoly</li>
+<li>标签分类怎么做</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="https://hexo.bootcss.com/" target="_blank" rel="noopener">hexo官方文档</a></li>
+<li><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo主题 hexo-theme-next</a></li>
+<li><a href="https://github.com/wertycn/hexo-deployer-ali-oss" target="_blank" rel="noopener">阿里云上传插件 hexo-deployer-ali-oss </a></li>
+<li><a href="https://blog.csdn.net/youlin/article/details/107313287" target="_blank" rel="noopener">在gitpush的时候 depoly</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级算法-加一</title>
+    <url>/post/ea13cbbf.html</url>
+    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。</p>
+<p>最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。</p>
+<p>你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
+<p>示例 1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：digits &#x3D; [1,2,3]</span><br><span class="line">输出：[1,2,4]</span><br><span class="line">解释：输入数组表示数字 123。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：digits &#x3D; [4,3,2,1]</span><br><span class="line">输出：[4,3,2,2]</span><br><span class="line">解释：输入数组表示数字 4321。</span><br></pre></td></tr></table></figure>
+
+<p>示例 3：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：digits &#x3D; [0]</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1 &lt;&#x3D; digits.l&#96;ength &lt;&#x3D; 100</span><br><span class="line">0 &lt;&#x3D; digits[i] &lt;&#x3D; 9</span><br></pre></td></tr></table></figure>
+
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
+<li>倒序循环该数组</li>
+<li>如果当前位+1 不等于10，跳出循环，返回数组</li>
+<li>如果当前位+1 等于10，当前位等于0，继续循环到下一位加1，判断是否等于10</li>
+<li>循环结束判断第一位是否等于0，如果等于0，第一位添加1<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">plusOne</span>(<span class="params">digits: <span class="built_in">number</span>[]</span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> index = digits.length - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (index &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> currentNum = digits[index] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (currentNum !== <span class="number">10</span>) &#123;</span><br><span class="line">      digits[index] = currentNum;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    digits[index] = <span class="number">0</span>;</span><br><span class="line">    index--;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (digits[<span class="number">0</span>] === <span class="number">0</span>) &#123;</span><br><span class="line">    digits.unshift(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> digits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2cv1c/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2cv1c/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
   </entry>
   <entry>
     <title>初级算法-只出现一次的数字</title>
@@ -3583,35 +3735,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
   </entry>
   <entry>
-    <title>吐槽一下</title>
-    <url>/post/a3ff59a0.html</url>
-    <content><![CDATA[<div style="display:none">
-卧槽啊!!!
-你要怎么样嘛!
-7000预算啊!!!大哥!!!
-我就是一个穷上班的!!!!!
-过个生日要7000!!!!!
-我有那么有钱嘛!!!!!
-大哥!!!!
-
-</div>]]></content>
-      <categories>
-        <category>生活感想</category>
-      </categories>
-      <tags>
-        <tag>吐槽</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>啊，又犯了一个低级错误</title>
-    <url>/post/e143266a.html</url>
-    <content><![CDATA[<h2 id="笨啊-卧槽"><a href="#笨啊-卧槽" class="headerlink" title="笨啊 卧槽"></a>笨啊 卧槽</h2><p>全等号写成了等于号…<br>我真是个人才…<br>找bug找了一个小时才发现哪里写错了…<br>别写bug了,回家养猪吧.</p>
-]]></content>
-      <categories>
-        <category>生活感想</category>
-      </categories>
-  </entry>
-  <entry>
     <title>初级算法-移动零</title>
     <url>/post/d710a96e.html</url>
     <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
@@ -3638,53 +3761,6 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <tags>
         <tag>算法</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>记一次域名解析问题</title>
-    <url>/post/c3a46aa1.html</url>
-    <content><![CDATA[<h1 id="域名解析问题"><a href="#域名解析问题" class="headerlink" title="域名解析问题"></a>域名解析问题</h1><p>这段时间在迁移服务器,发现网页再刷新对时候每次刷新数据都会不一样,检查完以后发现是域名解析的问题.<br>在阿里云域名进行解析都时候,在解析到新服务器的时候,老服务器域名的解析没有删除.(是否需要加一个弹窗?)<br>每一次请求都会请求到不同的服务器,导致每次的数据都不一样,emmmm(如果数据库同步了,是不是可以这么做负载均衡,笑..)</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>自己不仔细,删完老服务器绑定的域名以为可以了.域名解析页面没有注意到还有第二页</p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何实现a=1a=2a=3</title>
-    <url>/post/51fa8c82.html</url>
-    <content><![CDATA[<h1 id="如何实现a-1a-2a-3"><a href="#如何实现a-1a-2a-3" class="headerlink" title="如何实现a=1a=2a=3"></a>如何实现a=1a=2a=3</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// node</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(global, <span class="string">"a"</span>, &#123;</span><br><span class="line">  <span class="keyword">get</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> b++;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">2</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">3</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>JS基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实现一个观察者模式</title>
-    <url>/post/bc8a6d14.html</url>
-    <content><![CDATA[<h1 id="实现一个基础当观察者模式-当被观察者变动当时候-通知观察者"><a href="#实现一个基础当观察者模式-当被观察者变动当时候-通知观察者" class="headerlink" title="实现一个基础当观察者模式,当被观察者变动当时候,通知观察者."></a>实现一个基础当观察者模式,当被观察者变动当时候,通知观察者.</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  update(updateInfo) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>更新,更新消息为<span class="subst">$&#123;updateInfo&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observerd</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.observerList = [];</span><br><span class="line">  &#125;</span><br><span class="line">  addObserve(observer) &#123;</span><br><span class="line">    <span class="keyword">this</span>.observerList.push(observer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notice(updateInfo = <span class="string">"更新消息"</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> observe <span class="keyword">of</span> <span class="keyword">this</span>.observerList) &#123;</span><br><span class="line">      observe.update(updateInfo);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> fooObserve = <span class="keyword">new</span> Observer(<span class="string">"foo"</span>);</span><br><span class="line"><span class="keyword">let</span> barObserve = <span class="keyword">new</span> Observer(<span class="string">"bar"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> observed = <span class="keyword">new</span> Observerd();</span><br><span class="line"></span><br><span class="line">observed.addObserve(fooObserve);</span><br><span class="line">observed.addObserve(barObserve);</span><br><span class="line">observed.notice(<span class="string">"测试消息"</span>);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>寻找数组里面出现一次的数字</title>
-    <url>/post/89251c68.html</url>
-    <content><![CDATA[<h1 id="给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置"><a href="#给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置" class="headerlink" title="给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置"></a>给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置</h1><h2 id="事例"><a href="#事例" class="headerlink" title="事例"></a>事例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [1,1,1,2,1,1]</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为数组里唯一一个2出现的位置是3。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [4,2,2,2,2,2,2]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 因为数组里唯一一个4出现的位置是0。</span><br></pre></td></tr></table></figure>
-<p>数组长度为10000</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> demo = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/**返回数组中不一样的元素**/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findDiff</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findDiff(arr));</span><br><span class="line"><span class="comment">// console.log(findDiff(demo));</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
   </entry>
   <entry>
     <title>初级算法-删除排序数组中的重复项</title>
@@ -3735,78 +3811,35 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </tags>
   </entry>
   <entry>
-    <title>使用hexo创建自己的个人博客</title>
-    <url>/post/9dd65578.html</url>
-    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>mac电脑可能需要使用sudo权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h2 id="初始化项目，安装依赖"><a href="#初始化项目，安装依赖" class="headerlink" title="初始化项目，安装依赖"></a>初始化项目，安装依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>各类配置项参考<a href="https://hexo.bootcss.com/docs/configuration.html" target="_blank" rel="noopener">hexo中文文档</a></p>
-</blockquote>
-<h2 id="发布到github-pages"><a href="#发布到github-pages" class="headerlink" title="发布到github pages"></a>发布到github pages</h2><ol>
-<li>创建一个github仓库&lt;yourname&gt;.github.com，比如我的lampofaladdin.github.io</li>
-<li>在_config.yml中增加配置项<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> type: git</span><br><span class="line"> repo: &lt;github git地址&gt;</span><br><span class="line"> # 例如git@github.com:lampofaladdin&#x2F;lampofaladdin.github.io.git</span><br></pre></td></tr></table></figure></li>
-<li>发布到github <code>hexo deploy</code></li>
-</ol>
-<h2 id="使用阿里云oss静态页关联自己域名"><a href="#使用阿里云oss静态页关联自己域名" class="headerlink" title="使用阿里云oss静态页关联自己域名"></a>使用阿里云oss静态页关联自己域名</h2><ol>
-<li>创建阿里云Bucket,不开通版本控制，读写为公共读，其他默认</li>
-<li>创建ram用户，给用户oss的控制权限</li>
-<li>创建ram用户的AccessKey，获取到AccessKeyID，AccessKeySecret</li>
-<li>进入bucket,基础设置，静态页面，默认首页为<strong>index.html</strong>,子目录首页开通</li>
-<li>传输管理，绑定你已经购买备案好的域名。</li>
-<li>安装hexo-deployer-ali-oss，<code>npm i hexo-deployer-ali-oss --save</code></li>
-<li>在_config.yml中增加配置<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: ali-oss</span><br><span class="line">  region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">  accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">  accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">  bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure></li>
-<li><code>npm deploy</code></li>
-</ol>
-<h2 id="同时发布在githubPage-与-阿里云oss"><a href="#同时发布在githubPage-与-阿里云oss" class="headerlink" title="同时发布在githubPage 与 阿里云oss"></a>同时发布在githubPage 与 阿里云oss</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">-  type: git</span><br><span class="line">   repo: &lt;github git地址&gt;</span><br><span class="line">-  type: ali-oss</span><br><span class="line">   region: &lt;regionName&gt; # oss-cn-hangzhou oss-cn-beijing oss-cn-guangzhou 等</span><br><span class="line">   accessKeyId: &lt;AccessKeyID&gt; </span><br><span class="line">   accessKeySecret: &lt;AccessKeySecret&gt;</span><br><span class="line">   bucket: &lt;bucketName&gt; # wddv</span><br></pre></td></tr></table></figure>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
-<li>git push的时候depoly</li>
-<li>标签分类怎么做</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><a href="https://hexo.bootcss.com/" target="_blank" rel="noopener">hexo官方文档</a></li>
-<li><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo主题 hexo-theme-next</a></li>
-<li><a href="https://github.com/wertycn/hexo-deployer-ali-oss" target="_blank" rel="noopener">阿里云上传插件 hexo-deployer-ali-oss </a></li>
-<li><a href="https://blog.csdn.net/youlin/article/details/107313287" target="_blank" rel="noopener">在gitpush的时候 depoly</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>初级算法-加一</title>
-    <url>/post/ea13cbbf.html</url>
-    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。</p>
-<p>最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。</p>
-<p>你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
+    <title>初级算法-两数之和</title>
+    <url>/post/86e6a746.html</url>
+    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
+<p>你可以按任意顺序返回答案。</p>
 <p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：digits &#x3D; [1,2,3]</span><br><span class="line">输出：[1,2,4]</span><br><span class="line">解释：输入数组表示数字 123。</span><br></pre></td></tr></table></figure>
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：digits &#x3D; [4,3,2,1]</span><br><span class="line">输出：[4,3,2,2]</span><br><span class="line">解释：输入数组表示数字 4321。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [2,7,11,15], target &#x3D; 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] &#x3D;&#x3D; 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
 
+<p>示例 2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [3,2,4], target &#x3D; 6</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
 <p>示例 3：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：digits &#x3D; [0]</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [3,3], target &#x3D; 6</span><br><span class="line">输出：[0,1]</span><br></pre></td></tr></table></figure>
+
 
 <p>提示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1 &lt;&#x3D; digits.l&#96;ength &lt;&#x3D; 100</span><br><span class="line">0 &lt;&#x3D; digits[i] &lt;&#x3D; 9</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2 &lt;&#x3D; nums.length &lt;&#x3D; 104</span><br><span class="line">-109 &lt;&#x3D; nums[i] &lt;&#x3D; 109</span><br><span class="line">-109 &lt;&#x3D; target &lt;&#x3D; 109</span><br><span class="line">只会存在一个有效答案</span><br><span class="line">进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？</span><br></pre></td></tr></table></figure>
 
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
-<li>倒序循环该数组</li>
-<li>如果当前位+1 不等于10，跳出循环，返回数组</li>
-<li>如果当前位+1 等于10，当前位等于0，继续循环到下一位加1，判断是否等于10</li>
-<li>循环结束判断第一位是否等于0，如果等于0，第一位添加1<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">plusOne</span>(<span class="params">digits: <span class="built_in">number</span>[]</span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> index = digits.length - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (index &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> currentNum = digits[index] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (currentNum !== <span class="number">10</span>) &#123;</span><br><span class="line">      digits[index] = currentNum;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    digits[index] = <span class="number">0</span>;</span><br><span class="line">    index--;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (digits[<span class="number">0</span>] === <span class="number">0</span>) &#123;</span><br><span class="line">    digits.unshift(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> digits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">twoSum</span>(<span class="params">nums: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums[i] + nums[j] === target) &#123;</span><br><span class="line">        <span class="keyword">return</span> [i, j];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</li>
+<h3 id="双指针排序"><a href="#双指针排序" class="headerlink" title="双指针排序"></a>双指针排序</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">twoSum</span>(<span class="params">nums: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> numsMap = nums.reduce(<span class="function">(<span class="params">current, next, index</span>) =&gt;</span> &#123;</span><br><span class="line">    current.set(index, next);</span><br><span class="line">    <span class="keyword">return</span> current;</span><br><span class="line">  &#125;, <span class="keyword">new</span> Map());</span><br><span class="line">  nums = nums.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">  <span class="keyword">let</span> rightIndex = nums.findIndex(<span class="function">(<span class="params">item</span>) =&gt;</span> item &gt; target);</span><br><span class="line">  <span class="keyword">let</span> leftIndex = <span class="number">0</span>;</span><br><span class="line">  rightIndex = rightIndex === <span class="number">-1</span> ? nums.length - <span class="number">1</span> : rightIndex;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums[leftIndex] + nums[rightIndex] === target) &#123;</span><br><span class="line">      <span class="keyword">return</span> [numsMap.get(nums[leftIndex]), numsMap.get(nums[rightIndex])];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (leftIndex % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      leftIndex++;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      rightIndex--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="map表"><a href="#map表" class="headerlink" title="map表"></a>map表</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">twoSum</span>(<span class="params">nums: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sumMap = <span class="keyword">new</span> Map();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> indexObj = sumMap.get(target - nums[i]);</span><br><span class="line">    <span class="keyword">if</span> (indexObj) &#123;</span><br><span class="line">      <span class="keyword">return</span> [indexObj.index, i];</span><br><span class="line">    &#125;</span><br><span class="line">    sumMap.set(nums[i], &#123;</span><br><span class="line">      index: i,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>map表解法最优</li>
+<li></li>
 </ul>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2cv1c/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2cv1c/</a></li>
+<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2jrse/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2jrse/</a></li>
 <li>来源：力扣（LeetCode）</li>
 <li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
 </ul>
@@ -3816,6 +3849,59 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>吐槽一下</title>
+    <url>/post/a3ff59a0.html</url>
+    <content><![CDATA[<div style="display:none">
+卧槽啊!!!
+你要怎么样嘛!
+7000预算啊!!!大哥!!!
+我就是一个穷上班的!!!!!
+过个生日要7000!!!!!
+我有那么有钱嘛!!!!!
+大哥!!!!
+
+</div>]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
+      <tags>
+        <tag>吐槽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>啊，又犯了一个低级错误</title>
+    <url>/post/e143266a.html</url>
+    <content><![CDATA[<h2 id="笨啊-卧槽"><a href="#笨啊-卧槽" class="headerlink" title="笨啊 卧槽"></a>笨啊 卧槽</h2><p>全等号写成了等于号…<br>我真是个人才…<br>找bug找了一个小时才发现哪里写错了…<br>别写bug了,回家养猪吧.</p>
+]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>记一次域名解析问题</title>
+    <url>/post/c3a46aa1.html</url>
+    <content><![CDATA[<h1 id="域名解析问题"><a href="#域名解析问题" class="headerlink" title="域名解析问题"></a>域名解析问题</h1><p>这段时间在迁移服务器,发现网页再刷新对时候每次刷新数据都会不一样,检查完以后发现是域名解析的问题.<br>在阿里云域名进行解析都时候,在解析到新服务器的时候,老服务器域名的解析没有删除.(是否需要加一个弹窗?)<br>每一次请求都会请求到不同的服务器,导致每次的数据都不一样,emmmm(如果数据库同步了,是不是可以这么做负载均衡,笑..)</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>自己不仔细,删完老服务器绑定的域名以为可以了.域名解析页面没有注意到还有第二页</p>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何实现a=1a=2a=3</title>
+    <url>/post/51fa8c82.html</url>
+    <content><![CDATA[<h1 id="如何实现a-1a-2a-3"><a href="#如何实现a-1a-2a-3" class="headerlink" title="如何实现a=1a=2a=3"></a>如何实现a=1a=2a=3</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// node</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(global, <span class="string">"a"</span>, &#123;</span><br><span class="line">  <span class="keyword">get</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> b++;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">2</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a===<span class="number">3</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>JS基础</tag>
       </tags>
   </entry>
   <entry>
@@ -3848,6 +3934,29 @@ run(<span class="function"><span class="keyword">function</span>*(<span class="p
       <tags>
         <tag>JS基础</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>实现一个观察者模式</title>
+    <url>/post/bc8a6d14.html</url>
+    <content><![CDATA[<h1 id="实现一个基础当观察者模式-当被观察者变动当时候-通知观察者"><a href="#实现一个基础当观察者模式-当被观察者变动当时候-通知观察者" class="headerlink" title="实现一个基础当观察者模式,当被观察者变动当时候,通知观察者."></a>实现一个基础当观察者模式,当被观察者变动当时候,通知观察者.</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  update(updateInfo) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>更新,更新消息为<span class="subst">$&#123;updateInfo&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observerd</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.observerList = [];</span><br><span class="line">  &#125;</span><br><span class="line">  addObserve(observer) &#123;</span><br><span class="line">    <span class="keyword">this</span>.observerList.push(observer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notice(updateInfo = <span class="string">"更新消息"</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> observe <span class="keyword">of</span> <span class="keyword">this</span>.observerList) &#123;</span><br><span class="line">      observe.update(updateInfo);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> fooObserve = <span class="keyword">new</span> Observer(<span class="string">"foo"</span>);</span><br><span class="line"><span class="keyword">let</span> barObserve = <span class="keyword">new</span> Observer(<span class="string">"bar"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> observed = <span class="keyword">new</span> Observerd();</span><br><span class="line"></span><br><span class="line">observed.addObserve(fooObserve);</span><br><span class="line">observed.addObserve(barObserve);</span><br><span class="line">observed.notice(<span class="string">"测试消息"</span>);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>寻找数组里面出现一次的数字</title>
+    <url>/post/89251c68.html</url>
+    <content><![CDATA[<h1 id="给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置"><a href="#给定一个数字数组-数组里只会有两个数字-取出唯一一个数字的位置" class="headerlink" title="给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置"></a>给定一个数字数组, 数组里只会有两个数字, 取出唯一一个数字的位置</h1><h2 id="事例"><a href="#事例" class="headerlink" title="事例"></a>事例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [1,1,1,2,1,1]</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为数组里唯一一个2出现的位置是3。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [4,2,2,2,2,2,2]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 因为数组里唯一一个4出现的位置是0。</span><br></pre></td></tr></table></figure>
+<p>数组长度为10000</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> demo = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/**返回数组中不一样的元素**/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findDiff</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[i - <span class="number">1</span>] === arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findDiff(arr));</span><br><span class="line"><span class="comment">// console.log(findDiff(demo));</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
   </entry>
   <entry>
     <title>小有感触</title>
@@ -3994,6 +4103,25 @@ a++
       </tags>
   </entry>
   <entry>
+    <title>有以下3个判断数组的方法，请分别介绍它们之间的区别和优劣</title>
+    <url>/post/e30667a1.html</url>
+    <content><![CDATA[<h1 id="有以下-3-个判断数组的方法，请分别介绍它们之间的区别和优劣Object-prototype-toString-call-、-instanceof-以及-Array-isArray"><a href="#有以下-3-个判断数组的方法，请分别介绍它们之间的区别和优劣Object-prototype-toString-call-、-instanceof-以及-Array-isArray" class="headerlink" title="有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()"></a>有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><p>1、Object.prototype.toString.call(),是使用原型上的toString()方法,输出为[Object xxxxx],通过xxxxx的内容判断当前的类型.目前大部分判断类型都是基于此方法,比较准确</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">//[object Array]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="number">1</span>)); <span class="comment">//[object Number]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">NaN</span>)); <span class="comment">//[object String]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="string">"1"</span>)); <span class="comment">//[object Function]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;)); <span class="comment">//[object Number]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>)); <span class="comment">//[object Undefined]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>)); <span class="comment">//[object Null]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;)); <span class="comment">//[object Object]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="regexp">/reg/</span>)); <span class="comment">//[object RegExp]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>)); <span class="comment">//[object Boolean]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Symbol</span>)); <span class="comment">//[object Function]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Set</span>())); <span class="comment">//[object Set]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Map</span>())); <span class="comment">//[object Map]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Date</span>())); <span class="comment">//[object Date]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">WeakSet</span>())); <span class="comment">//[object WeakSet]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">WeakMap</span>())); <span class="comment">//[object WeakMap]</span></span><br><span class="line"><span class="comment">// ....</span></span><br></pre></td></tr></table></figure>
+<p>2、instanceof是基于原型链的判断方法,一个数组会找到他的原型是不是属于array,如果是返回true</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> fsimpleStr = <span class="string">"This is a simple string"</span>; </span><br><span class="line"><span class="keyword">let</span> fmyString  = <span class="keyword">new</span> <span class="built_in">String</span>();</span><br><span class="line"><span class="keyword">let</span> fnewStr    = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"String created with LETructor"</span>);</span><br><span class="line"><span class="keyword">let</span> fmyDate    = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">let</span> fmyObj     = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> fmyNonObj  = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">simpleStr <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 false, 检查原型链会找到 undefined</span></span><br><span class="line">myString  <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 true</span></span><br><span class="line">newStr    <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 true</span></span><br><span class="line">myString  <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// 返回 true</span></span><br><span class="line"></span><br><span class="line">myObj <span class="keyword">instanceof</span> <span class="built_in">Object</span>;    <span class="comment">// 返回 true, 尽管原型没有定义</span></span><br><span class="line">(&#123;&#125;)  <span class="keyword">instanceof</span> <span class="built_in">Object</span>;    <span class="comment">// 返回 true, 同上</span></span><br><span class="line">myNonObj <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// 返回 false, 一种创建非 Object 实例的对象的方法</span></span><br><span class="line"></span><br><span class="line">myString <span class="keyword">instanceof</span> <span class="built_in">Date</span>; <span class="comment">//返回 false</span></span><br><span class="line"></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">Date</span>;     <span class="comment">// 返回 true</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">Object</span>;   <span class="comment">// 返回 true</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// 返回 false</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> demo = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> Child); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> Parent); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>3、Array.isArray(),Array对象上提供的判断是否是数组的方法,比较准确</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);  </span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123;<span class="attr">foo</span>: <span class="number">123</span>&#125;); </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="string">"foobar"</span>);   </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">undefined</span>);  </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的函数调用都返回 true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray([]);</span><br><span class="line"><span class="built_in">Array</span>.isArray([<span class="number">1</span>]);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Array</span>());</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>))</span><br><span class="line"><span class="comment">// 鲜为人知的事实：其实 Array.prototype 也是一个数组。</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="built_in">Array</span>.prototype); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的函数调用都返回 false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray();</span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123;&#125;);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">null</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">undefined</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="number">17</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="string">'Array'</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Uint8Array</span>(<span class="number">32</span>))</span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123; <span class="attr">__proto__</span>: <span class="built_in">Array</span>.prototype &#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/23" target="_blank" rel="noopener">第 21 题：有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray" target="_blank" rel="noopener">MDN isArray</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">MDN instanceof</a></p>
+]]></content>
+      <categories>
+        <category>开发技术</category>
+      </categories>
+      <tags>
+        <tag>JS基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有效的数独</title>
     <url>/post/181c4103.html</url>
     <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>请你判断一个 9x9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。</p>
@@ -4027,25 +4155,6 @@ a++
       </categories>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>有以下3个判断数组的方法，请分别介绍它们之间的区别和优劣</title>
-    <url>/post/e30667a1.html</url>
-    <content><![CDATA[<h1 id="有以下-3-个判断数组的方法，请分别介绍它们之间的区别和优劣Object-prototype-toString-call-、-instanceof-以及-Array-isArray"><a href="#有以下-3-个判断数组的方法，请分别介绍它们之间的区别和优劣Object-prototype-toString-call-、-instanceof-以及-Array-isArray" class="headerlink" title="有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()"></a>有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><p>1、Object.prototype.toString.call(),是使用原型上的toString()方法,输出为[Object xxxxx],通过xxxxx的内容判断当前的类型.目前大部分判断类型都是基于此方法,比较准确</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">//[object Array]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="number">1</span>)); <span class="comment">//[object Number]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">NaN</span>)); <span class="comment">//[object String]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="string">"1"</span>)); <span class="comment">//[object Function]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;)); <span class="comment">//[object Number]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>)); <span class="comment">//[object Undefined]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>)); <span class="comment">//[object Null]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;)); <span class="comment">//[object Object]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="regexp">/reg/</span>)); <span class="comment">//[object RegExp]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>)); <span class="comment">//[object Boolean]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Symbol</span>)); <span class="comment">//[object Function]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Set</span>())); <span class="comment">//[object Set]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Map</span>())); <span class="comment">//[object Map]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Date</span>())); <span class="comment">//[object Date]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">WeakSet</span>())); <span class="comment">//[object WeakSet]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">WeakMap</span>())); <span class="comment">//[object WeakMap]</span></span><br><span class="line"><span class="comment">// ....</span></span><br></pre></td></tr></table></figure>
-<p>2、instanceof是基于原型链的判断方法,一个数组会找到他的原型是不是属于array,如果是返回true</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> fsimpleStr = <span class="string">"This is a simple string"</span>; </span><br><span class="line"><span class="keyword">let</span> fmyString  = <span class="keyword">new</span> <span class="built_in">String</span>();</span><br><span class="line"><span class="keyword">let</span> fnewStr    = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"String created with LETructor"</span>);</span><br><span class="line"><span class="keyword">let</span> fmyDate    = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">let</span> fmyObj     = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> fmyNonObj  = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">simpleStr <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 false, 检查原型链会找到 undefined</span></span><br><span class="line">myString  <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 true</span></span><br><span class="line">newStr    <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// 返回 true</span></span><br><span class="line">myString  <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// 返回 true</span></span><br><span class="line"></span><br><span class="line">myObj <span class="keyword">instanceof</span> <span class="built_in">Object</span>;    <span class="comment">// 返回 true, 尽管原型没有定义</span></span><br><span class="line">(&#123;&#125;)  <span class="keyword">instanceof</span> <span class="built_in">Object</span>;    <span class="comment">// 返回 true, 同上</span></span><br><span class="line">myNonObj <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// 返回 false, 一种创建非 Object 实例的对象的方法</span></span><br><span class="line"></span><br><span class="line">myString <span class="keyword">instanceof</span> <span class="built_in">Date</span>; <span class="comment">//返回 false</span></span><br><span class="line"></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">Date</span>;     <span class="comment">// 返回 true</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">Object</span>;   <span class="comment">// 返回 true</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// 返回 false</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> demo = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> Child); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> Parent); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(demo <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>3、Array.isArray(),Array对象上提供的判断是否是数组的方法,比较准确</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);  </span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123;<span class="attr">foo</span>: <span class="number">123</span>&#125;); </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="string">"foobar"</span>);   </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">undefined</span>);  </span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的函数调用都返回 true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray([]);</span><br><span class="line"><span class="built_in">Array</span>.isArray([<span class="number">1</span>]);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Array</span>());</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>))</span><br><span class="line"><span class="comment">// 鲜为人知的事实：其实 Array.prototype 也是一个数组。</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="built_in">Array</span>.prototype); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的函数调用都返回 false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray();</span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123;&#125;);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">null</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">undefined</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="number">17</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="string">'Array'</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">Array</span>.isArray(<span class="keyword">new</span> <span class="built_in">Uint8Array</span>(<span class="number">32</span>))</span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123; <span class="attr">__proto__</span>: <span class="built_in">Array</span>.prototype &#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/23" target="_blank" rel="noopener">第 21 题：有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray" target="_blank" rel="noopener">MDN isArray</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">MDN instanceof</a></p>
-]]></content>
-      <categories>
-        <category>开发技术</category>
-      </categories>
-      <tags>
-        <tag>JS基础</tag>
       </tags>
   </entry>
   <entry>
@@ -4115,6 +4224,14 @@ a++
       </tags>
   </entry>
   <entry>
+    <title>第一天，随便写写</title>
+    <url>/post/3d2ca5d9.html</url>
+    <content><![CDATA[<h1 id="聊聊生活-写写技术"><a href="#聊聊生活-写写技术" class="headerlink" title="聊聊生活,写写技术."></a>聊聊生活,写写技术.</h1><h3 id="欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769"><a href="#欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769" class="headerlink" title="欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769"></a>欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769</h3>]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
+  </entry>
+  <entry>
     <title>简单讲解一下http2的多路复用</title>
     <url>/post/50bdca19.html</url>
     <content><![CDATA[<h1 id="简单讲解一下http2的多路复用"><a href="#简单讲解一下http2的多路复用" class="headerlink" title="简单讲解一下http2的多路复用"></a>简单讲解一下http2的多路复用</h1><h2 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h2><p>不会</p>
@@ -4125,14 +4242,6 @@ a++
 ]]></content>
       <categories>
         <category>开发技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>第一天，随便写写</title>
-    <url>/post/3d2ca5d9.html</url>
-    <content><![CDATA[<h1 id="聊聊生活-写写技术"><a href="#聊聊生活-写写技术" class="headerlink" title="聊聊生活,写写技术."></a>聊聊生活,写写技术.</h1><h3 id="欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769"><a href="#欢迎加入前端交流群·VUE-JS-TS-全栈-前端交流·群号-318195769" class="headerlink" title="欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769"></a>欢迎加入前端交流群·VUE|JS|TS|全栈|前端交流·群号:318195769</h3>]]></content>
-      <categories>
-        <category>生活感想</category>
       </categories>
   </entry>
   <entry>
@@ -4235,15 +4344,6 @@ a++
       </tags>
   </entry>
   <entry>
-    <title>鞭策一下自己</title>
-    <url>/post/61de2e1e.html</url>
-    <content><![CDATA[<p>被喷了呀，喷的好惨。。还是要努力学习啊。。</p>
-]]></content>
-      <categories>
-        <category>生活感想</category>
-      </categories>
-  </entry>
-  <entry>
     <title>面试题 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</title>
     <url>/post/1cd2722b.html</url>
     <content><![CDATA[<h2 id="React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><a href="#React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？" class="headerlink" title="React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？"></a>React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</h2><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
@@ -4284,5 +4384,14 @@ a++
       <tags>
         <tag>面试题</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>鞭策一下自己</title>
+    <url>/post/61de2e1e.html</url>
+    <content><![CDATA[<p>被喷了呀，喷的好惨。。还是要努力学习啊。。</p>
+]]></content>
+      <categories>
+        <category>生活感想</category>
+      </categories>
   </entry>
 </search>

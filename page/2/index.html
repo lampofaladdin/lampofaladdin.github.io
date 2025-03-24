@@ -218,6 +218,102 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/7dbcde9a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/7dbcde9a.html" class="post-title-link" itemprop="url">250303-规范化理论</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-03 21:37:59" itemprop="dateCreated datePublished" datetime="2025-03-03T21:37:59+08:00">2025-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="求候选键"><a href="#求候选键" class="headerlink" title="求候选键"></a>求候选键</h2><ul>
+<li>找入度为0的属性</li>
+<li>如果不满足上面的条件，则尝试便利中间节点（既有入度，也有出度），并入上面的条件，直至该集合能便利所有节点</li>
+</ul>
+<h2 id="部分函数依赖"><a href="#部分函数依赖" class="headerlink" title="部分函数依赖"></a>部分函数依赖</h2><p>如果候选键是一个合集，且一部分非主属性依赖于候选键的一部分，为部分函数依赖</p>
+<h2 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h2><p>A-&gt; B,B-&gt;C 则 A-&gt;C</p>
+<h2 id="Armstrong-公里"><a href="#Armstrong-公里" class="headerlink" title="Armstrong 公里"></a>Armstrong 公里</h2><h3 id="自反率"><a href="#自反率" class="headerlink" title="自反率"></a>自反率</h3><p>Y∈X∈U<br>U={ABC}<br>X={AB}<br>Y={A}<br>则，X-&gt; Y<br>身份证号与姓名 可以确认姓名，身份证号也可以确认姓名.</p>
+<h3 id="增广律"><a href="#增广律" class="headerlink" title="增广律"></a>增广律</h3><p>若 Z ∈ U 且 X-&gt;Y，则 XZ-&gt;YZ</p>
+<h3 id="传递率"><a href="#传递率" class="headerlink" title="传递率"></a>传递率</h3><p>A-&gt; B,B-&gt;C 则 A-&gt;C<br>学号可以推出系号，系号可以推出系名，那么学号可以推出系名</p>
+<h3 id="合并规则"><a href="#合并规则" class="headerlink" title="合并规则"></a>合并规则</h3><p>如果 X-&gt;Y，X-&gt;Z 则 X-&gt;YZ</p>
+<h3 id="伪传递规则"><a href="#伪传递规则" class="headerlink" title="伪传递规则"></a>伪传递规则</h3><p>如果 X-&gt;Y,WY-&gt;Z，则WX-&gt;Z</p>
+<h3 id="分解规则"><a href="#分解规则" class="headerlink" title="分解规则"></a>分解规则</h3><p>如果 X-Y 且 Z ∈ Y,则 X-&gt; Z</p>
+<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>属性都是不可分的原子值</p>
+<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>部份依赖</strong></p>
+<p>单属性候选键不会出现这类问题，只有候选键可能存在这种可能</p>
+<p>完全依赖于主键，不存在部分依赖</p>
+<p>学号、课程号、成绩、学分</p>
+<p>学号,课程号-&gt; 成绩</p>
+<p>课程号-&gt; 学分</p>
+<p>没有课程的情况下，无法插入学分信息</p>
+<p>如果课程没有人报名，那么没有课程信息</p>
+<p>解决办法：将课程号与学分单独提取到一张表</p>
+<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>传递依赖</strong></p>
+<p>学校、身份证号、系号、系名 满足第三范式，因为不存在对非主属性的传递依赖</p>
+<p>学号、姓名、系号、系名</p>
+<p>学号-&gt; 系号</p>
+<p>系号-&gt; 系名</p>
+<p>学号-&gt; 系名</p>
+<p>其中系名依赖于非主属性系号，所以存在对非主属性的传递依赖，不满足第三范式</p>
+<p>解决办法：系号、系名 单独组表</p>
+<h3 id="BC范式"><a href="#BC范式" class="headerlink" title="BC范式"></a>BC范式</h3><p>完全依赖于候选键</p>
+<p>不解决</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/3d35343a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +345,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -348,7 +444,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -424,7 +520,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -490,7 +586,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -576,7 +672,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -645,7 +741,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -721,7 +817,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -800,7 +896,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -873,7 +969,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
+                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
               </span>
 
           
@@ -893,74 +989,6 @@
 <h2 id="专家系统（ES）"><a href="#专家系统（ES）" class="headerlink" title="专家系统（ES）"></a>专家系统（ES）</h2><p>知识+推理 = 专家系统，人工智能的一个重要分支</p>
 <h2 id="办公自动化系统（OAS）"><a href="#办公自动化系统（OAS）" class="headerlink" title="办公自动化系统（OAS）"></a>办公自动化系统（OAS）</h2><p>将各种硬件设备与软件系统通过网络进行连接、交互，用于办公的系统，不是一个单独的系统</p>
 <h2 id="企业资源计划（ERP）"><a href="#企业资源计划（ERP）" class="headerlink" title="企业资源计划（ERP）"></a>企业资源计划（ERP）</h2><p>供应链的整合与管理，不是一个单独的系统</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/f1f71307.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/f1f71307.html" class="post-title-link" itemprop="url">241213-软件开发方法习题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-12-12 17:36:12" itemprop="dateCreated datePublished" datetime="2024-12-12T17:36:12+08:00">2024-12-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-22 00:14:43" itemprop="dateModified" datetime="2025-03-22T00:14:43+08:00">2025-03-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>软件方法学是以软件开发方法为研究对象的学科。其中,()是先对最高层次中的问题进行定义、<br>设计、编程和测试,而将其中未解决的问题作为一个子任务放到下一层次中去解决。()是根据<br>系统功能要求,从具体的器件、逻辑部件或者相似系统开始,通过对其进行相互连接、修改和扩大,<br>构成所要求的系统。()是建立在严格数学基础上的软件开发方法。</p>
-<p>A面向对象开发方法 （面向对象是从下向上的开发方法）<br>B形式化开发方法 （以数学模型为基础的开发方法）<br>C非形式化开发方法（没有这种发开方法）<br>D自顶向下开发方法（结构法也是自顶向下的开发方法之一，应该选这条）</p>
-<p>A自底向上开发方法(面向对象的开发方法是自底向上的开发方法之一)<br>B形式化开发方法（以数学模型为基准的开放方法）<br>C非形式化开发方法<br>D原型开发方法（原型是明确目标的一种方法，一般是作为前置）</p>
-<p>A自底向上开发方法<br>B形式化开发方法<br>C非形式化开发方法<br>D自顶向下开发方法</p>
 
       
     </div>
@@ -1047,7 +1075,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">130</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
