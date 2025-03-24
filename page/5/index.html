@@ -218,6 +218,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/2bf35b22.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/2bf35b22.html" class="post-title-link" itemprop="url">240123</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-01-23 16:26:13" itemprop="dateCreated datePublished" datetime="2024-01-23T16:26:13+08:00">2024-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>遇到一次openclash无法打开部分网页的问题</p>
+<p>github，google正常访问</p>
+<p>但是部分网页比如githubusercontent.com 无法访问</p>
+<p>查了一下dns解析，发现dns解析的路径是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Server:  UnKnown</span><br><span class="line">Address:  fdab:bd6f:e5be::1</span><br><span class="line"></span><br><span class="line">DNS request timed out.</span><br><span class="line">    timeout was 2 seconds.</span><br><span class="line">DNS request timed out.</span><br><span class="line">    timeout was 2 seconds.</span><br><span class="line">*** Request to UnKnown timed-out</span><br></pre></td></tr></table></figure>
+
+<p>导致无法解析dns，尝试切换本地dns也不行。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>这个地址是ipv6的方式，是不是因为路由器上开了ipv6导致的。</p>
+<p>把路由器接口里面IPv6给关掉，然后尝试刷新dns，重新访问，还是不行。</p>
+<p>然后查openclash的问题</p>
+<p>找到一篇与我情况类似的问题 <a href="https://github.com/vernesong/OpenClash/wiki/%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%BC%82%E5%B8%B8%E6%97%B6%E6%8E%92%E6%9F%A5%E5%8E%9F%E5%9B%A0" target="_blank" rel="noopener">网络连接异常时排查原因</a></p>
+<p>按上面说的，切换到fake-ip的方式，然后重启openclash，恢复正常</p>
+<p>下次如果遇到类似问题，可以这么解决，记录一下</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e9bdadd4.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +335,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -366,7 +452,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -448,7 +534,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -535,7 +621,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
 
           
@@ -605,7 +691,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
 
           
@@ -697,7 +783,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -770,7 +856,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -846,7 +932,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -930,7 +1016,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -973,85 +1059,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/ca98f073.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/ca98f073.html" class="post-title-link" itemprop="url">230329--选择排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-29 11:46:31" itemprop="dateCreated datePublished" datetime="2023-03-29T11:46:31+08:00">2023-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 23:26:10" itemprop="dateModified" datetime="2025-03-24T23:26:10+08:00">2025-03-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>写一个选择排序</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">selection_sort</span></span>(arr: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> min = std::<span class="built_in">i32</span>::MIN;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> result = <span class="built_in">vec!</span>[];</span><br><span class="line">    <span class="keyword">for</span> _i <span class="keyword">in</span> &amp;arr &#123;</span><br><span class="line">        <span class="keyword">let</span> c_min = find_small(&amp;arr, min);</span><br><span class="line">        min = c_min;</span><br><span class="line">        result.push(c_min);</span><br><span class="line">    &#125;</span><br><span class="line">    result</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">find_small</span></span>(arr: &amp;<span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt;, min: <span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> c_min = std::<span class="built_in">i32</span>::MAX;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr &#123;</span><br><span class="line">        <span class="keyword">if</span> *i &lt;= min &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> *i &lt; c_min &#123;</span><br><span class="line">            c_min = *i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    c_min</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1119,7 +1130,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-count">131</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
