@@ -218,6 +218,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/51bb67c3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/51bb67c3.html" class="post-title-link" itemprop="url">介绍下重绘和回流</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 09:48:31" itemprop="dateCreated datePublished" datetime="2020-09-11T09:48:31+08:00">2020-09-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化"><a href="#介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化" class="headerlink" title="介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化"></a>介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化</h1><h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><h3 id="浏览器渲染主要经过三个阶段"><a href="#浏览器渲染主要经过三个阶段" class="headerlink" title="浏览器渲染主要经过三个阶段"></a>浏览器渲染主要经过三个阶段</h3><p>1、dom树与style树合成渲染树<br>2、计算节点的位置与大小的阶段叫回流<br>3、渲染计算好的节点叫重绘</p>
+<h3 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h3><p>1、减少dom插入次数,可以用虚拟的节点,计算好以后,一次性插入到dom中<br>2、动画可以使用绝对布局,脱离文档流<br>3、使用gpu加速相关的属性,比如transition<br>4、修改的节点可以先隐藏,修改完毕后再进行显示.</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/chenjigeng/blog/issues/4" target="_blank" rel="noopener">你真的了解回流和重绘吗 #4</a><br><a href="https://github.com/chenjigeng/blog/issues/4" target="_blank" rel="noopener">最高赞作者github</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/dom%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> dom优化</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e30667a1.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +330,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -335,7 +416,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -413,7 +494,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -495,7 +576,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -573,7 +654,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -671,7 +752,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -764,7 +845,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -850,7 +931,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -924,7 +1005,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1017,107 +1098,6 @@ a++
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1942942a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/1942942a.html" class="post-title-link" itemprop="url">算法手写题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-21 10:16:45" itemprop="dateCreated datePublished" datetime="2020-08-21T10:16:45+08:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>已知如下数组：<br>var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];<br>编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组</p>
-</blockquote>
-<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
-<li><p>递归;</p>
-<blockquote>
-<p>不想写</p>
-</blockquote>
-</li>
-<li><p>while循环遍历</p>
-<blockquote>
-<p>不想写</p>
-</blockquote>
-</li>
-<li><p>Array.prototype.flat</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayFlat</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr.flat(<span class="literal">Infinity</span>))).sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123; <span class="keyword">return</span> a-b&#125;);</span><br><span class="line">&#125;</span><br><span class="line">arrayFlat(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>骚操作</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saocaozuo</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [...new <span class="built_in">Set</span>(arr.toString().split(<span class="string">","</span>))].sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">&#125;</span><br><span class="line">saocaozuo(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/8" target="_blank" rel="noopener">第 11 题：将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/flat" target="_blank" rel="noopener">Array.prototype.flat() MDN</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1189,7 +1169,7 @@ a++
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

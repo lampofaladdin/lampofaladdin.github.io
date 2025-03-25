@@ -218,6 +218,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d1dbfb20.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/d1dbfb20.html" class="post-title-link" itemprop="url">20240621-微软bing search 问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-06-21 18:50:36" itemprop="dateCreated datePublished" datetime="2024-06-21T18:50:36+08:00">2024-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="问题经过"><a href="#问题经过" class="headerlink" title="问题经过"></a>问题经过</h1><p>在本机(windows)与开发机器(linux)在使用微软 Bing Search Api 搜索时，参数一致的情况下，返回的结果却不一致。</p>
+<p>最开始以为是 query 的编码问题</p>
+<ol>
+<li>本机apifox请求 <a href="https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89%20%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN" target="_blank" rel="noopener">https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89%20%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN</a>  </li>
+<li>开发机代码请求 <a href="https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89+%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN" target="_blank" rel="noopener">https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89+%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN</a> </li>
+</ol>
+<p>因为query里面有空格，一个是URL编码的 %20 ，一个是 + ，一开始以为是这个的问题，当我调整编码一致的时候，发现结果还是不一样</p>
+<p>在同事的电脑上搜索的结果与开发机器一致，怀疑是代理问题</p>
+<p>后来发现参数的 mtk 对区域有限制，比如你当前是在中国，搜索不到 mkt 为 en-US 的内容，反过来也是如此。</p>
+<p>本机服务器在杭州，所以直接请求 zh-CN 的结果</p>
+<p>en-US 必须是国外的服务器，所以在阿里云(香港)函数计算上搭建了一个代理服务，用于获取英文的搜索结果</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/127cf4e9.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +324,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
 
           
@@ -320,7 +395,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -401,7 +476,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
 
           
@@ -469,7 +544,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
 
           
@@ -541,7 +616,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
 
           
@@ -607,7 +682,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
 
           
@@ -685,7 +760,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -782,7 +857,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
 
           
@@ -852,7 +927,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
+                <time title="修改时间：2025-03-25 22:18:41" itemprop="dateModified" datetime="2025-03-25T22:18:41+08:00">2025-03-25</time>
               </span>
 
           
@@ -893,101 +968,6 @@
 <h1 id="安装nvidia驱动-可选"><a href="#安装nvidia驱动-可选" class="headerlink" title="安装nvidia驱动(可选)"></a>安装nvidia驱动(可选)</h1><ul>
 <li>不装了，可以直接用</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/704d3da4.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/704d3da4.html" class="post-title-link" itemprop="url">20240129</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-01-29 01:38:39" itemprop="dateCreated datePublished" datetime="2024-01-29T01:38:39+08:00">2024-01-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-25 00:15:06" itemprop="dateModified" datetime="2025-03-25T00:15:06+08:00">2025-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这个周末去看望她了</p>
-<p>我真特么是个five啊</p>
-<p>为什么 连这点勇气都没有，你到底在顾虑什么？</p>
-<p>顾虑当场翻脸吗？</p>
-<p>为什么她都可以</p>
-<p>也许她会很失望吧</p>
-<p>既想又想的典范</p>
-<p>希望 以后 我能清楚 我到底想要的是什么</p>
-<p>而不是，我不想要的是什么</p>
-<p>想的太多，做的太少。</p>
-<p>瞻前顾后，左思右滤</p>
-<p>十年前就知道的问题</p>
-<p>依然还是这个吊样子</p>
-<p>活该</p>
-<p>希望都会有一个好的结果，不是我也行。</p>
-<p>问心</p>
-<p>你想吗？</p>
-<p>确实很难回答，也许我心里已经有答案了，这才能解释为什么我的行为是这样子。</p>
-<p>为什么这么做？</p>
-<p>愧疚吗？不是，我觉得我应该这么做，我应该去看她，理所应当的事情。</p>
-<p>为什么不敢承认？</p>
-<p>担心会有不好的后果，害怕连说话的机会都没有。不想跟她父母有牵扯</p>
-<p>再来一次 还会这么做吗？</p>
-<p>以我现在心态，还会再来一次，我的目的是她，如果因为这件事，最重要的目的无法达成，那么就不应该这么做</p>
-<p>太多茫然，太多思绪，太多顾虑。</p>
-<p>辉哥说的对，思想太阴沉，无法开放自己的内心。。</p>
-<p>为什么我会变成这个样子。 。</p>
-<p>不，本性就是这个样子</p>
-<p>贪婪、不自律、粗心、说大话、自私自立（不想承认，确实有），应该还有吧，暂时想不出来了？</p>
-<p>em</p>
-<p>如果还有机会的话，我还是想成为一个好人。</p>
 
       
     </div>
@@ -1074,7 +1054,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
