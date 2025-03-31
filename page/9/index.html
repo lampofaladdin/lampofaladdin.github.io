@@ -218,6 +218,392 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6570235f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/6570235f.html" class="post-title-link" itemprop="url">20220622 JS中数据结构的一些想法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 10:59:38" itemprop="dateCreated datePublished" datetime="2022-06-22T10:59:38+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS-中的数据结构"><a href="#JS-中的数据结构" class="headerlink" title="JS 中的数据结构"></a>JS 中的数据结构</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>原型方法较多，可以比较方便的实现各种功能</li>
+<li>JSON 支持</li>
+<li>相比 java，数组的长度不是固定的，不存在越界问题</li>
+<li>兼容性好</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>没有获取到索引的情况下，查询效率相对低，时间复杂度为 O(n)</li>
+<li>插入数据效率低O(n)</li>
+<li>删除数据效率O(n)</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>绝大部分数据处理</li>
+<li>JSON 支持，可以直接在接口中返回</li>
+<li>前端列表渲染</li>
+</ul>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>兼容性好</li>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>JSON 支持</li>
+<li>相对 Map 可以继承原型链上的属性</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>相对 MAP 键值只能是 string</li>
+<li>相对 MAP 顺序不确定</li>
+<li>相对 MAP 没有迭代属性</li>
+</ul>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>通用场景</li>
+<li>需要一个固定 key 来做区分数据内容</li>
+</ul>
+<h2 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h2><h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>相对对象这种结构，数据更清晰，效率更高</li>
+<li>相对 OBJECT，语义化更好，支持功能多</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>原型方法没有数组多</li>
+<li>JSON 不支持，如果作为接口数据返回，需要重新转换为数组或对象</li>
+</ul>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>需要一个固定格式的 key value</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>插入性能比数组高 O(1)</li>
+<li>删除性能比数组高 O(1)</li>
+</ul>
+<h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>索引效率低 O(n)</li>
+<li>原生不支持，需要自己实现链表结构</li>
+</ul>
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>动态插入与删除比较多的场景</li>
+</ul>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进后出</li>
+<li>JS 执行顺序</li>
+</ul>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进先出</li>
+<li>排队场景</li>
+<li>性能瓶颈的时候，使用队列，排队处理数据</li>
+</ul>
+<h2 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h2><h3 id="应用场景-6"><a href="#应用场景-6" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>打标签的场景</li>
+</ul>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="应用场景-7"><a href="#应用场景-7" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>DOM 树、CSS 树</li>
+<li>多层JSON</li>
+<li>级联菜单</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c1c2f028.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/c1c2f028.html" class="post-title-link" itemprop="url">20220605</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-05 20:02:58" itemprop="dateCreated datePublished" datetime="2022-06-05T20:02:58+08:00">2022-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>尝试着去分享更多的东西</p>
+<p>起码留下点什么</p>
+<p>加油</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/56e1d812.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/56e1d812.html" class="post-title-link" itemprop="url">20220427-daily</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-27 20:47:54" itemprop="dateCreated datePublished" datetime="2022-04-27T20:47:54+08:00">2022-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>为众人抱薪者，不可使其冻毙于风雪；</p>
+<p>为大众谋福利者，不可使其孤军奋战；</p>
+<p>为自由开路者，不可使其困顿于荆棘。</p>
+<p>如果天空是黑暗的，那就摸黑生存；如果发出声音是危险的，那就保持沉默；如果自觉无力发光，那就蜷伏于墙角。但是，不要习惯了黑暗就为黑暗辩护，也不要为自己的苟且而得意，不要嘲讽那些比自己更勇敢的人。我们可以卑微如尘土，但不可扭曲如蛆虫</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/5fc2094e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/5fc2094e.html" class="post-title-link" itemprop="url">20220206</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-06 02:07:55" itemprop="dateCreated datePublished" datetime="2022-02-06T02:07:55+08:00">2022-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">生活感想</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原来，有你陪着已经这么开心<br>房间里，没有你，这么空旷<br>一边流泪，一边收拾衣服的感觉确实不好<br>有点怀疑，自己为什么会劝你回到哪里<br>我果然是个傻逼</p>
+<p>一直在身边的，才是最容易被忽视的。<br>有一天突然不见了。<br>原来是这么难受。</p>
+<p>嗯。</p>
+<p>有些不知所措</p>
+<p>跟自己想的那种情况 不太一样</p>
+<p>哭成了傻逼</p>
+<p>我以为我能很平静的接受这件事</p>
+<p>回到家里，看着熟悉的房间，总是感觉她在那里</p>
+<p>还没有离开</p>
+<p>一边写 一边哭</p>
+<p>不写了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e5758cc4.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +635,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -381,7 +767,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -481,7 +867,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -585,7 +971,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -702,7 +1088,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -798,7 +1184,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
+                <time title="修改时间：2025-04-01 02:18:11" itemprop="dateModified" datetime="2025-04-01T02:18:11+08:00">2025-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -849,379 +1235,6 @@
     
     
       <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/acd5828c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/acd5828c.html" class="post-title-link" itemprop="url">看到了以前写的项目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-13 00:22:56" itemprop="dateCreated datePublished" datetime="2021-08-13T00:22:56+08:00">2021-08-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>啊，年轻时候的我，写的代码还挺规范的嘛。</p>
-<p>原来以为那个项目已经挂掉了，没想到现在还在运行。</p>
-<p>嗨，从16年开始学前端到现在。。快六年了。真特么快啊。。</p>
-<p>擦，刚找自己写的第一个项目竟然没有备案，挂掉了卧槽。</p>
-<p>没法装逼，可惜了。</p>
-<p>年轻真好…</p>
-<p>又想到了以前的很多事情，一个不到20平米的隔断间，住了四个人。</p>
-<p>床上睡不下，把床掀了大家一起打地铺。</p>
-<p>每天九点上班，五点九下班，下班就去网吧嗨。。</p>
-<p>租了一个两室一厅的房子，一个月1200？三个月交一次房租，结果三个月到了，我们没钱交房租了，emmm，直到现在我都不敢一次性交三个月房租。。</p>
-<p>啊，那时候是真穷啊。。</p>
-<p>不过真的挺快乐。</p>
-<p>几个吊毛，天天嗷嗷叫，一起看片，网吧通宵，真刺激</p>
-<p>回不去了。。</p>
-<p>还是有些对不住的人。。</p>
-<p>一时间想起来，有点难过。</p>
-<p>emmmm</p>
-<p>做的那些事情有用吗。</p>
-<p>二十岁的时候，买了十岁买不起的玩具，有什么意义吗</p>
-<p>终归是让自己心里好过一点</p>
-<p>好多事情，忍不住泪目</p>
-<p>果然，晚上不适合瞎J8想。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" rel="tag"><i class="fa fa-tag"></i> 生活感想</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6261c281.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/6261c281.html" class="post-title-link" itemprop="url">nestjs 类型导出引起的循环依赖问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-28 18:10:07" itemprop="dateCreated datePublished" datetime="2021-07-28T18:10:07+08:00">2021-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="nestjs-无法注入服务"><a href="#nestjs-无法注入服务" class="headerlink" title="nestjs 无法注入服务"></a>nestjs 无法注入服务</h1><h1 id="问题发现"><a href="#问题发现" class="headerlink" title="问题发现"></a>问题发现</h1><ul>
-<li>在 viewService 里面导入 UserService,发现一直提示错误，没有找到可以注入的内容</li>
-<li>检查了一遍代码，确认逻辑代码没有问题</li>
-<li>怀疑是不是循环依赖了，检查代码，发现代码基本与其他 Moduel 的服务相同，没有出现循环依赖的情况</li>
-<li>打印 ModuleContainer，在当前 ViewModule 里面找到了导入的 UserModule，也存在 UserService</li>
-</ul>
-<p>view.service.ts 尝试打印是否成功导入 UserModule</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ViewService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> modulesContainer: ModulesContainer,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> userService: UserService,</span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(ViewEntity)</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> viewEntityRepository: Repository&lt;ViewEntity&gt;</span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line">    [...modulesContainer.values()].map(<span class="function">(<span class="params"><span class="built_in">module</span></span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">module</span>.metatype.name === <span class="string">"ViewModule"</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======imports======="</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">module</span>.imports);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======providers======"</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">module</span>.providers);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======exports======"</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">module</span>.exports);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"\n\n\n\n\n"</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"=======UserModule exports======"</span>);</span><br><span class="line">        [...<span class="keyword">module</span>.imports.values()].map((innerModule) =&gt; &#123;</span><br><span class="line">          <span class="keyword">if</span> (innerModule.metatype.name === <span class="string">"UserModule"</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(innerModule.exports);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view.module.ts</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [TypeOrmModule.forFeature([ViewEntity, ViewLikeStatEntity]), UserModule],</span><br><span class="line">  controllers: [ViewController],</span><br><span class="line">  providers: [ViewService],</span><br><span class="line">  exports: [ViewService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ViewModule &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view.service.ts </p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> ViewRelationType = <span class="string">"topic"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> JoinListInterface &#123;</span><br><span class="line">  uid: <span class="built_in">string</span>;</span><br><span class="line">  avatar: <span class="built_in">string</span>;</span><br><span class="line">  nickname: <span class="built_in">string</span>;</span><br><span class="line">  roler: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ViewService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly userService: UserService, <span class="meta">@InjectRepository</span>(ViewEntity) <span class="keyword">private</span> readonly viewRepository: Repository&lt;ViewEntity&gt;</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  create(createViewDto: CreateViewDto) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"This action adds a new view"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>控制台</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[error] 2021-07-28 18:11:32.1 [ExceptionHandler] Nest can't resolve dependencies of the ViewService (?, ViewEntityRepository). Please make sure that the argument dependency at index [0] is available in the ViewModule context.</span><br><span class="line"></span><br><span class="line">Potential solutions:</span><br><span class="line">- If dependency is a provider, is it part of the current ViewModule?</span><br><span class="line">- If dependency is exported from a separate @Module, is that module imported within ViewModule?</span><br><span class="line">  @Module(&#123;</span><br><span class="line">    imports: [ /* the Module containing dependency */ ]</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><ul>
-<li>再次检查代码，发现 view.service.ts 导出了三个东西，一个 type，一个 interface，还有一个 viewService 服务</li>
-<li>全文查找导出的接口，发现在一个实体里面有这个类型的引入，就是 <strong>JoinListInterface</strong>.</li>
-</ul>
-<p>topic.entity.ts</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(<span class="string">"topics"</span>, &#123; schema: <span class="string">"42how"</span> &#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> TopicEntity &#123;</span><br><span class="line">  <span class="meta">@PrimaryGeneratedColumn</span>(&#123; <span class="keyword">type</span>: <span class="string">"bigint"</span>, name: <span class="string">"id"</span>, unsigned: <span class="literal">true</span> &#125;)</span><br><span class="line">  id: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  join: &#123;</span><br><span class="line">    count?: <span class="built_in">number</span>;</span><br><span class="line">    list?: JoinListInterface[];</span><br><span class="line">  &#125; = &#123; count: <span class="number">0</span>, list: [] &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>尝试删除 <strong>JoinListInterface</strong> ，服务注入成功</p>
-</li>
-<li><p>原本以为 ts 的 interface，type 是不参与到编译过后的 js 文件，检查编译后 topic.entity.js 文件，发现 <code>const view_service_1 = require(&quot;../modules/view/view.service&quot;);</code> 这一句，虽然 interface 没有被使用，但是这个 js 文件被引入了。因为这个实体类被引入的比较多，产生了循环依赖，在 nestjs 进行注入的时候，这个文件导出是 undefined，查找不到服务，无法注入。</p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>ts 中 export 的类型文件应该单独定义，不要跟逻辑代码放在一个文件。</li>
-<li>类型文件虽然没有参与编译，但是会引入文件，如果引用的过于复杂，会导致循环依赖的情况</li>
-<li>感谢青木大佬的帮助</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/nestjs/" rel="tag"><i class="fa fa-tag"></i> nestjs</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/f8d8bb21.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/f8d8bb21.html" class="post-title-link" itemprop="url">wsl2 局域网访问</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-21 00:14:49" itemprop="dateCreated datePublished" datetime="2021-07-21T00:14:49+08:00">2021-07-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="想在局域网内访问-wsl-端口"><a href="#想在局域网内访问-wsl-端口" class="headerlink" title="想在局域网内访问 wsl 端口"></a>想在局域网内访问 wsl 端口</h1><p>主要工作环境都在wsl里面，有时候想用真机调试，需要局域网访问</p>
-<p>TODO<br>有空写吧</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/wsl/" rel="tag"><i class="fa fa-tag"></i> wsl</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/dae7eff7.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/dae7eff7.html" class="post-title-link" itemprop="url">wsl2 默认启动服务</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-20 23:59:50" itemprop="dateCreated datePublished" datetime="2021-07-20T23:59:50+08:00">2021-07-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 23:37:16" itemprop="dateModified" datetime="2025-03-26T23:37:16+08:00">2025-03-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="wsl-默认服务启动"><a href="#wsl-默认服务启动" class="headerlink" title="wsl 默认服务启动"></a>wsl 默认服务启动</h1><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p> 习惯了linux的命令行，在windows开发环境下装了wsl2的环境,但是每次windows重启，再打开wsl，服务全都挂了，而且wsl2也没有systemd这种服务，所以想每次打开wsl2的时候，服务都是启动状态</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>看到印度老哥写的一个脚本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/init.wsl</span></span><br><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">lsof -i:9000 &gt; /dev/null || systemctl start php-fpm</span><br><span class="line">lsof -i:80 &gt; /dev/null || systemctl start nginx</span><br><span class="line">lsof -i:3306 &gt; /dev/null || systemctl start mysqld</span><br><span class="line">lsof -i:6379 &gt; /dev/null || redis-server /etc/redis.conf</span><br><span class="line"><span class="comment"># systemctl 是使用的github上一个老哥写的python脚本，好像是这个</span></span><br><span class="line"><span class="comment"># 地址：https://github.com/gdraheim/docker-systemctl-replacement</span></span><br></pre></td></tr></table></figure>
-
-<p>找个地方保存</p>
-<p>然后再打开 <code>.zshrc</code> 或者 <code>.bashrc</code> 再里面把文件的路径填到里面</p>
-<p>我的是放再<code>.zshrc</code>里面</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.wsl</span><br></pre></td></tr></table></figure>
-
-<p>这样子每次启动wsl的时候就会启动这些服务</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/wsl/" rel="tag"><i class="fa fa-tag"></i> wsl</a>
-            
-          </div>
         
       </footer>
   </article>
@@ -1300,7 +1313,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-count">137</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
