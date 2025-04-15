@@ -218,6 +218,527 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/cbcd97c9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/cbcd97c9.html" class="post-title-link" itemprop="url">241225-总线</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-25 00:25:51" itemprop="dateCreated datePublished" datetime="2024-12-25T00:25:51+08:00">2024-12-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h1><p>分时共享的半双工 传送线路</p>
+<p>可以同时接收数据，但是发送只能分时发送</p>
+<p>通过总线复用可以减少信号线数量，用较少的信号线传输更多的数据</p>
+<p>芯片内总线</p>
+<p>系统总线（数据总线、控制总线、地址总线）</p>
+<h1 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h1><h2 id="并行传输"><a href="#并行传输" class="headerlink" title="并行传输"></a>并行传输</h2><p>短距离</p>
+<h2 id="串行传输"><a href="#串行传输" class="headerlink" title="串行传输"></a>串行传输</h2><p>长距离，多种传输方式，可以调整比特率，正确方式靠校验码完成</p>
+<h1 id="计算机传输方式"><a href="#计算机传输方式" class="headerlink" title="计算机传输方式"></a>计算机传输方式</h1><h2 id="程序查询"><a href="#程序查询" class="headerlink" title="程序查询"></a>程序查询</h2><p>分为全量发送与程序查询，会一直占用CPU，无法做别的事情，实现简单，硬件开销小，CPU利用率低，IO效率低。</p>
+<h2 id="中断方式"><a href="#中断方式" class="headerlink" title="中断方式"></a>中断方式</h2><p>相比于程序查询，使用CPU中断的方式可以减轻CPU的压力，IO传输完成后，CPU再恢复现场，继续执行后面的步骤。CPU跟IO可以同步执行，一般类似键盘鼠标</p>
+<h2 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h2><p>CPU与IO之间增加一个DMA控制器，IO不直接与CPU打交道，而是跟主存，CPU跟IO可以同步执行，极大提高了效率，一般认为硬盘是DMA的方式 </p>
+<h1 id="CPU-处理器结构"><a href="#CPU-处理器结构" class="headerlink" title="CPU 处理器结构"></a>CPU 处理器结构</h1><p>冯诺依曼结构，指令与数据不区分，用同样的总线，一般的通用电脑</p>
+<p>哈佛结构，区分指令与数据，使用4条总线，可以并行传输，较高的数据吞吐率，主要用于嵌入式。DSP</p>
+<h1 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h1><h2 id="复杂指令集"><a href="#复杂指令集" class="headerlink" title="复杂指令集"></a>复杂指令集</h2><p>数量多，可变长格式，使用微码控制，支持多种寻址方式，代表为X86</p>
+<h2 id="精简指令集"><a href="#精简指令集" class="headerlink" title="精简指令集"></a>精简指令集</h2><p>数量少，定长格式，使用硬件电路实现，适合流水线，增加了通用寄存器，比较少的寻址方式，大部分为单周期操作，代表为arm</p>
+<h1 id="操作系统分类"><a href="#操作系统分类" class="headerlink" title="操作系统分类"></a>操作系统分类</h1><h2 id="批处理系统"><a href="#批处理系统" class="headerlink" title="批处理系统"></a>批处理系统</h2><p>单道批，多道批，输入一个或多个文档，宏观上可以并行，围观是穿行</p>
+<h2 id="分时操作系统"><a href="#分时操作系统" class="headerlink" title="分时操作系统"></a>分时操作系统</h2><p>CPU事件分片的方式去运行，每个用户感觉自己都拥有完整的操作系统</p>
+<h2 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h2><p>高可靠的系统，一般用于嵌入式，需要在规定事件内相应</p>
+<h2 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h2><p>linux、windows server，在网络上共享内容的操作系统</p>
+<h2 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h2><p>网络操作系统的进阶，透明、高可靠、高性能</p>
+<h2 id="微机操作系统"><a href="#微机操作系统" class="headerlink" title="微机操作系统"></a>微机操作系统</h2><p>windows、linux，多进行、多用户、多CPU的操作系统</p>
+<h2 id="嵌入式操作系统"><a href="#嵌入式操作系统" class="headerlink" title="嵌入式操作系统"></a>嵌入式操作系统</h2><p>高可靠，可移植性，硬件定制</p>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>程序块、数据块、PCB（进程信息）<br>表舒服、状态、等一列东西</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/5276e5d2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/5276e5d2.html" class="post-title-link" itemprop="url">241219-电子政务</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-19 01:54:08" itemprop="dateCreated datePublished" datetime="2024-12-19T01:54:08+08:00">2024-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="电子政务"><a href="#电子政务" class="headerlink" title="电子政务"></a>电子政务</h1><p>电子政务的主体主要有 政府（Govment），企事业单位（Business），民众(Citizen)，公务员(Emplyee) ，确认一下单词拼写是否有错误</p>
+<p>一些特殊情况，比如人口信息，地理信息等，基本都为政府与政府。其他情况，要看谁是主动方</p>
+<p>G2G: 政府对政府，主要业务可能会涉及到人口信息，地理信息采集等<br>G2B: 发放各种证照，例如营业执照，许可证<br>B2G: 缴税，向政府提供服务等<br>G2E: 政府内部系统<br>G2C: 发放各种执照，提供公共信息，比如天气<br>C2G: 公民对政府，主要是纳税，报警灯</p>
+<h1 id="第二版"><a href="#第二版" class="headerlink" title="第二版"></a>第二版</h1><p>电子政务的主体有：政府（Government）、企事业单位(Business)、公民（Citizen）、公务员（Employee）</p>
+<p>除了人口信息与地理信息外，对应关系主要看谁是主体<br>G2E: 政府对公务员，主要是政府内部系统<br>G2G: 政府对政府，主要是基础信息采集，比如人口信息，地理信息。各级政府之间的决策与汇报<br>G2B: 政府对企业，发放各种证照，比如营业执照，各类许可证<br>B2G: 企业对政府，缴税、承接政府工程、向政府提建议、申诉<br>G2C: 政府对公民，提供社区公安，水、火、天灾等信息，发放各类牌照，比如户口，驾驶证（信息主要是公共安全信息，包括水、火、天灾等）<br>C2G: 公民对政府，向政府纳税与各类费用，向政府提建议，报警等</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/faa82b71.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/faa82b71.html" class="post-title-link" itemprop="url">241219-专家系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-19 01:16:46" itemprop="dateCreated datePublished" datetime="2024-12-19T01:16:46+08:00">2024-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="专家系统-ES"><a href="#专家系统-ES" class="headerlink" title="专家系统(ES)"></a>专家系统(ES)</h1><p>人工智能的一个分支，录入专家的知识与经验，处理该领域的问题，并决策。</p>
+<p>专家系统可以自己做决策<br>与一般通用系统不一样的地方在于，不仅可以处理字符还能处理符号，结果一些非结构性问题。因知识库的不同，解决的问题领域也不同。</p>
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><p>知识库：存储该领域的知识与经验<br>推理机： 推理系统，主要用于规则解释<br>综合数据库：辅助功能，主要解决一些中间状态，比如推理过程中的结果<br>知识获取：知识库通过知识获取功能得到专家的知识与经验<br>解释器：主要面向人机接口</p>
+<h2 id="第二遍"><a href="#第二遍" class="headerlink" title="第二遍"></a>第二遍</h2><p>专家系统是一个具有专家知识和经验的人工只能系统，可以帮助用户决策并解决问题</p>
+<p>与通用系统不一样的点</p>
+<p>该系统不光可以解决问题，而且可以还可以分析结果，并做决策</p>
+<p>除了数字还可以分析符号</p>
+<p>不光解决结构化问题，有可以解决非结构化问题，且能解决不确定的问题</p>
+<p>跟通用系统不太一样的地方，因知识库的不同，针对的领域也会不同</p>
+<p>核心</p>
+<p>知识库：存储专家知识经验<br>推理机：规则解释器<br>综合知识库：辅助功能，比如用于存放推理过程中的状态，中间结果等<br>知识录入：知识库通过该接口获得专家的知识与经验，主要有内容的编辑还有自学习功能（获取，不是录入）<br>解释器：主要面向与人机接口</p>
+<p>更正：知识获取，而不是知识录入。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/9dc82db1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/9dc82db1.html" class="post-title-link" itemprop="url">241218-决策支持系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-18 01:47:47" itemprop="dateCreated datePublished" datetime="2024-12-18T01:47:47+08:00">2024-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="决策支持系统-（DDS）"><a href="#决策支持系统-（DDS）" class="headerlink" title="决策支持系统 （DDS）"></a>决策支持系统 （DDS）</h1><p>主要又语言系统、知识系统、问题处理系统组成，经典场景比如医院</p>
+<h2 id="主要特征-记忆版，有个没记住"><a href="#主要特征-记忆版，有个没记住" class="headerlink" title="主要特征(记忆版，有个没记住)"></a>主要特征(记忆版，有个没记住)</h2><ul>
+<li>主要资源为数据与模型，用于辅助决策</li>
+<li>主要解决的是半机构化与非结构化的问题</li>
+<li>系统主要是提高决策的有效性，而不是决策的效率</li>
+<li>主要是辅助决策，而不是代替用户做决策（这条没记住，再来一遍）</li>
+</ul>
+<h2 id="主要特征（2）"><a href="#主要特征（2）" class="headerlink" title="主要特征（2）"></a>主要特征（2）</h2><ul>
+<li>主要资源是数据与模型</li>
+<li>系统主要用于辅助决策，而不是代替决策</li>
+<li>主要解决半结构化与非结构化的问题，比如，出具一些可行的选项，可能各有优劣，让用户去决定，应该使用哪种抉择</li>
+<li>该系统主要提高决策的有效性，而不是决策的效率</li>
+</ul>
+<h2 id="再次整理一遍"><a href="#再次整理一遍" class="headerlink" title="再次整理一遍"></a>再次整理一遍</h2><p>决策支持系统，DDS，主要由 语言系统、知识系统、问题处理系统组成，类似的如 医院的处理系统</p>
+<p>主要特称有，数据和模型是该系统的主要资源，用于辅助用户决策，而不是代替用户做决策，主要解决半结构化问题与非结构化问题，比如系统给出解决该问题的方法可能各有优劣，用户需要找出适合当前方案的解决办法，该系统主要提高用户决策的有效性而不是决策的效率。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/cacb4331.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/cacb4331.html" class="post-title-link" itemprop="url">241218-管理信息系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-18 01:36:32" itemprop="dateCreated datePublished" datetime="2024-12-18T01:36:32+08:00">2024-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="管理信息系统（MIS）"><a href="#管理信息系统（MIS）" class="headerlink" title="管理信息系统（MIS）"></a>管理信息系统（MIS）</h1><p>在基础的业务处理系统上扩展而来，跟企业信息管理有较高的关联性，高度集成化的人机系统，金字塔结构，有多个层级。<br>引进大量管理方法，对企业整体信息进行处理</p>
+<!-- 4大部件分别为，信息源，信息处理器，用户管理，信息管 这个错了 -->
+<p>4大部分为，信息源，信息处理器，信息用户，信息管理者（者，不是员）</p>
+<p>是一种闭环结构</p>
+<p>整体路径为 事件，记录，变换，存储，决策，执行，结果，评价（少了一个识别）</p>
+<h2 id="开环结构"><a href="#开环结构" class="headerlink" title="开环结构"></a>开环结构</h2><p>整体路径为 事件，识别，记录，变化 存储，决策，执行，结果，评价</p>
+<p>输入后除了决策，其他情况不影响本次执行结果</p>
+<h2 id="闭环结构"><a href="#闭环结构" class="headerlink" title="闭环结构"></a>闭环结构</h2><p>事件，识别，记录，变换，存储，决策，执行，结果，评价。</p>
+<p>与开环结构类似，但是在决策后面的阶段（决策，执行，结果，评价）可以回到最开始的事件上，影响本次输入的执行结果。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/8fc1aa57.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/8fc1aa57.html" class="post-title-link" itemprop="url">241213-信息系统的分类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-12 18:01:09" itemprop="dateCreated datePublished" datetime="2024-12-12T18:01:09+08:00">2024-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="信息系统的分类"><a href="#信息系统的分类" class="headerlink" title="信息系统的分类"></a>信息系统的分类</h1><h2 id="业务处理系统（TPS）"><a href="#业务处理系统（TPS）" class="headerlink" title="业务处理系统（TPS）"></a>业务处理系统（TPS）</h2><p>比较早期的系统，主要处理简单的输入，与数据处理（批处理、OLTP），又叫电子数据处理系统，最低级，最基础的系统<br>开环结构，单向输入</p>
+<h2 id="管理信息系统（MIS）"><a href="#管理信息系统（MIS）" class="headerlink" title="管理信息系统（MIS）"></a>管理信息系统（MIS）</h2><p>高度集成化的人机系统，金字塔结构，有多个层级</p>
+<h2 id="决策支持系统（DSS）"><a href="#决策支持系统（DSS）" class="headerlink" title="决策支持系统（DSS）"></a>决策支持系统（DSS）</h2><p>由语言系统、知识系统、问题处理系统组成，用于辅助抉择</p>
+<h2 id="专家系统（ES）"><a href="#专家系统（ES）" class="headerlink" title="专家系统（ES）"></a>专家系统（ES）</h2><p>知识+推理 = 专家系统，人工智能的一个重要分支</p>
+<h2 id="办公自动化系统（OAS）"><a href="#办公自动化系统（OAS）" class="headerlink" title="办公自动化系统（OAS）"></a>办公自动化系统（OAS）</h2><p>将各种硬件设备与软件系统通过网络进行连接、交互，用于办公的系统，不是一个单独的系统</p>
+<h2 id="企业资源计划（ERP）"><a href="#企业资源计划（ERP）" class="headerlink" title="企业资源计划（ERP）"></a>企业资源计划（ERP）</h2><p>供应链的整合与管理，不是一个单独的系统</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/f1f71307.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/f1f71307.html" class="post-title-link" itemprop="url">241213-软件开发方法习题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-12 17:36:12" itemprop="dateCreated datePublished" datetime="2024-12-12T17:36:12+08:00">2024-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>软件方法学是以软件开发方法为研究对象的学科。其中,()是先对最高层次中的问题进行定义、<br>设计、编程和测试,而将其中未解决的问题作为一个子任务放到下一层次中去解决。()是根据<br>系统功能要求,从具体的器件、逻辑部件或者相似系统开始,通过对其进行相互连接、修改和扩大,<br>构成所要求的系统。()是建立在严格数学基础上的软件开发方法。</p>
+<p>A面向对象开发方法 （面向对象是从下向上的开发方法）<br>B形式化开发方法 （以数学模型为基础的开发方法）<br>C非形式化开发方法（没有这种发开方法）<br>D自顶向下开发方法（结构法也是自顶向下的开发方法之一，应该选这条）</p>
+<p>A自底向上开发方法(面向对象的开发方法是自底向上的开发方法之一)<br>B形式化开发方法（以数学模型为基准的开放方法）<br>C非形式化开发方法<br>D原型开发方法（原型是明确目标的一种方法，一般是作为前置）</p>
+<p>A自底向上开发方法<br>B形式化开发方法<br>C非形式化开发方法<br>D自顶向下开发方法</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1a37efca.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +770,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
               </span>
 
           
@@ -318,7 +839,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
               </span>
 
           
@@ -387,7 +908,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
               </span>
 
           
@@ -450,503 +971,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e6e078aa.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/e6e078aa.html" class="post-title-link" itemprop="url">如果写不出来，那就是没想明白</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-11-07 10:56:30" itemprop="dateCreated datePublished" datetime="2024-11-07T10:56:30+08:00">2024-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>rt</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1d5c2f78.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/1d5c2f78.html" class="post-title-link" itemprop="url">凌晨这个时间点啊</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-10-10 18:56:30" itemprop="dateCreated datePublished" datetime="2024-10-10T18:56:30+08:00">2024-10-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>难顶哟</p>
-<p>嗨</p>
-<p>对的起自己的良心</p>
-<p>快乐的生活下去</p>
-<p>捋顺自己</p>
-<p>蓦然回首，我心依旧</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/fdd024ba.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/fdd024ba.html" class="post-title-link" itemprop="url">“不要责怪以前的自己，他一个人站在雾里也很迷茫”</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-08-09 11:26:08" itemprop="dateCreated datePublished" datetime="2024-08-09T11:26:08+08:00">2024-08-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>特么，正大口吃着饭呢。。</p>
-<p>看到这句，突然泪崩。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/fb833248.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/fb833248.html" class="post-title-link" itemprop="url">法克鱿，抖音又刷了一天</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-22 12:23:02" itemprop="dateCreated datePublished" datetime="2024-06-22T12:23:02+08:00">2024-06-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>抖音！卸载！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/d1dbfb20.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/d1dbfb20.html" class="post-title-link" itemprop="url">20240621-微软bing search 问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-21 18:50:36" itemprop="dateCreated datePublished" datetime="2024-06-21T18:50:36+08:00">2024-06-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="问题经过"><a href="#问题经过" class="headerlink" title="问题经过"></a>问题经过</h1><p>在本机(windows)与开发机器(linux)在使用微软 Bing Search Api 搜索时，参数一致的情况下，返回的结果却不一致。</p>
-<p>最开始以为是 query 的编码问题</p>
-<ol>
-<li>本机apifox请求 <a href="https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89%20%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN" target="_blank" rel="noopener">https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89%20%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN</a>  </li>
-<li>开发机代码请求 <a href="https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89+%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN" target="_blank" rel="noopener">https://api.bing.microsoft.com/v7.0/news/search?q=%E7%89%B9%E6%96%AF%E6%8B%89+%E6%B5%8B%E8%AF%95&amp;mkt=zh-CN</a> </li>
-</ol>
-<p>因为query里面有空格，一个是URL编码的 %20 ，一个是 + ，一开始以为是这个的问题，当我调整编码一致的时候，发现结果还是不一样</p>
-<p>在同事的电脑上搜索的结果与开发机器一致，怀疑是代理问题</p>
-<p>后来发现参数的 mtk 对区域有限制，比如你当前是在中国，搜索不到 mkt 为 en-US 的内容，反过来也是如此。</p>
-<p>本机服务器在杭州，所以直接请求 zh-CN 的结果</p>
-<p>en-US 必须是国外的服务器，所以在阿里云(香港)函数计算上搭建了一个代理服务，用于获取英文的搜索结果</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/127cf4e9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/127cf4e9.html" class="post-title-link" itemprop="url">好累的一周啊</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-14 11:58:21" itemprop="dateCreated datePublished" datetime="2024-06-14T11:58:21+08:00">2024-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>人麻了</p>
-<p>我特么图个啥啊。。</p>
-<p>脑壳疼</p>
-<p>emmmm</p>
-<p>当个独立开发者？</p>
-<p>没什么好点子。。</p>
-<p>嗨</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/3dc2f85d.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/3dc2f85d.html" class="post-title-link" itemprop="url">20240527-youtube-dl</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-05-27 18:38:18" itemprop="dateCreated datePublished" datetime="2024-05-27T18:38:18+08:00">2024-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="youtube-dl-最新地址"><a href="#youtube-dl-最新地址" class="headerlink" title="youtube-dl 最新地址"></a>youtube-dl 最新地址</h1><p>因为违反了一些协议，所以不能在官方网站上下载地址，APT还有官网下载的都是老版本，无法使用。</p>
-<p>使用下面的地址</p>
-<p><a href="https://github.com/ytdl-org/ytdl-nightly/releases/" target="_blank" rel="noopener">下载地址</a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>找到命令行工具 </p>
-<p>就是 youtube-dl</p>
-<p>点击下载</p>
-<p>下载的链接大概是下面这个样子<br> <a href="https://objects.githubusercontent.com/github-production-release-asset-2e65be/661290495/8f2110dc-9005-4c88-8b83-e3950cb32f7f?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=releaseassetproduction%2F20240527%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240527T104040Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=23f814aed43bc16a8799862fba5b299ef1d4aeed29998a94c913be45a4311de8&amp;X-Amz-SignedHeaders=host&amp;actor_id=26974584&amp;key_id=0&amp;repo_id=661290495&amp;response-content-disposition=attachment%3B%20filename%3Dyoutube-dl&amp;response-content-type=application%2Foctet-stream" target="_blank" rel="noopener">https://objects.githubusercontent.com/github-production-release-asset-2e65be/661290495/8f2110dc-9005-4c88-8b83-e3950cb32f7f?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=releaseassetproduction%2F20240527%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240527T104040Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=23f814aed43bc16a8799862fba5b299ef1d4aeed29998a94c913be45a4311de8&amp;X-Amz-SignedHeaders=host&amp;actor_id=26974584&amp;key_id=0&amp;repo_id=661290495&amp;response-content-disposition=attachment%3B%20filename%3Dyoutube-dl&amp;response-content-type=application%2Foctet-stream</a></p>
-<p>sudo curl -L {上面的链接} -o /usr/local/bin/youtube-dl<br>sudo chmod a+rx /usr/local/bin/youtube-dl</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1014,7 +1042,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">146</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

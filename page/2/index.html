@@ -218,6 +218,895 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/3388e677.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/3388e677.html" class="post-title-link" itemprop="url">250328-案例技巧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-28 21:54:35" itemprop="dateCreated datePublished" datetime="2025-03-28T21:54:35+08:00">2025-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="结构化需求分析"><a href="#结构化需求分析" class="headerlink" title="结构化需求分析"></a>结构化需求分析</h2><h3 id="数据流图"><a href="#数据流图" class="headerlink" title="数据流图"></a>数据流图</h3><p><img src="../images/article/250328-%E6%A1%88%E4%BE%8B%E6%8A%80%E5%B7%A7/image.png" alt="数据流图"></p>
+<h4 id="四要素"><a href="#四要素" class="headerlink" title="四要素"></a>四要素</h4><ul>
+<li>数据流：数据流向，没有控制信息 </li>
+<li>加工：功能块</li>
+<li>数据存储：数据库、数据表</li>
+<li>外部实体：使用这个系统的实体</li>
+</ul>
+<h4 id="数据平衡"><a href="#数据平衡" class="headerlink" title="数据平衡"></a>数据平衡</h4><ul>
+<li>父子平衡</li>
+<li>没有输入有输出</li>
+<li>没有输出有输入</li>
+<li>输入输入不对版</li>
+</ul>
+<h2 id="面向对象分析-UML"><a href="#面向对象分析-UML" class="headerlink" title="面向对象分析 UML"></a>面向对象分析 UML</h2><h3 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h3><p><img src="../images/article/250328-%E6%A1%88%E4%BE%8B%E6%8A%80%E5%B7%A7/image-1.png" alt="用例图"></p>
+<ul>
+<li>参与者（使用者，外部实体）</li>
+<li>用例（加工，功能块）</li>
+<li><h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4></li>
+<li>识别参与者</li>
+<li>合并需求获得用例</li>
+<li>细化用例描述(需要细节才知道做什么)</li>
+<li>调整用例模型（包含、扩展、泛化关系优化）</li>
+</ul>
+<h4 id="用例关系"><a href="#用例关系" class="headerlink" title="用例关系"></a>用例关系</h4><p><img src="../images/article/250328-%E6%A1%88%E4%BE%8B%E6%8A%80%E5%B7%A7/image-2.png" alt="用例关系"><br><img src="../images/article/250328-%E6%A1%88%E4%BE%8B%E6%8A%80%E5%B7%A7/image-3.png" alt="用例关系"></p>
+<ul>
+<li>包含（使用关系）：多个功能的共性抽取出来，都涉及到公共用例，必然</li>
+<li>扩展关系: 有时要用到某种职能，可选</li>
+<li>泛化：提高通用性，父子关系，如果没有父子关系就是包含</li>
+</ul>
+<h3 id="类图和对象图"><a href="#类图和对象图" class="headerlink" title="类图和对象图"></a>类图和对象图</h3><p><img src="../images/article/250328-%E6%A1%88%E4%BE%8B%E6%8A%80%E5%B7%A7/image-4.png" alt="类图与对象图"></p>
+<ul>
+<li>类名</li>
+<li>多重度</li>
+<li>关系</li>
+</ul>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p><img src="../images/article/250328-%E6%A1%88%E4%BE%8B%E6%8A%80%E5%B7%A7/image-5.png" alt="alt text"><br>语义强度（两者之间关系的稳定度），从弱到强</p>
+<ul>
+<li>依赖关系：一个事物影响到另外一个事物</li>
+<li>关联关系：描述了一组链，链是对象之间的连接</li>
+<li><ul>
+<li>聚合关系：部分与整体生命周期不同</li>
+</ul>
+</li>
+<li><ul>
+<li>组合关系：部分和整体生命周期相同</li>
+</ul>
+</li>
+<li>实现关系：接口和类的关系，父类改成给你了接口（抽象类，实现类的关系）</li>
+<li>泛化关系：特殊（子类）和一般（父类）关系</li>
+</ul>
+<p>菱形，箭头部分是整体，另外一遍是部分</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e64f56bc.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/e64f56bc.html" class="post-title-link" itemprop="url">250328-软件工程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-28 21:32:51" itemprop="dateCreated datePublished" datetime="2025-03-28T21:32:51+08:00">2025-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h1><h2 id="系统运行与软件维护"><a href="#系统运行与软件维护" class="headerlink" title="系统运行与软件维护"></a>系统运行与软件维护</h2><h3 id="遗留系统演化策略"><a href="#遗留系统演化策略" class="headerlink" title="遗留系统演化策略"></a>遗留系统演化策略</h3><p><img src="../images/article/250328-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-3.png" alt="演化策略"></p>
+<h4 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h4><ul>
+<li>技术水平</li>
+<li>业务价值</li>
+</ul>
+<h4 id="四个象限"><a href="#四个象限" class="headerlink" title="四个象限"></a>四个象限</h4><ul>
+<li>淘汰：低水平、低价值 </li>
+<li>集成：高水平、低价值，针对信息孤岛</li>
+<li>继承：低水平、高价值，意味着完全兼容遗留的功能模型、数据模型。集成的是模型，不是系统</li>
+<li>改造：高水平、高价值，增强现有系统</li>
+</ul>
+<h3 id="转换策略"><a href="#转换策略" class="headerlink" title="转换策略"></a>转换策略</h3><ul>
+<li>直接转换策略：停掉老的，开始新的，风险高</li>
+<li>并行转换策略：有一段时间，两个系统并行运行，新系统稳定后，关闭老系统，成本高</li>
+<li>分段转换策略：一段一段进行转换，或者分试点</li>
+</ul>
+<h3 id="影响可软件维护的因素"><a href="#影响可软件维护的因素" class="headerlink" title="影响可软件维护的因素"></a>影响可软件维护的因素</h3><p><img src="../images/article/250328-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-4.png" alt="可维护性的因素"></p>
+<h4 id="一组"><a href="#一组" class="headerlink" title="一组"></a>一组</h4><ul>
+<li>可理解性：源码与相关文档是否容易理解</li>
+<li>可修改性：修改的难易程度</li>
+<li>可测试性：验证软件程序的难易程度</li>
+</ul>
+<h4 id="二组"><a href="#二组" class="headerlink" title="二组"></a>二组</h4><ul>
+<li>可靠性</li>
+<li>可移植性</li>
+</ul>
+<h3 id="软件维护类型"><a href="#软件维护类型" class="headerlink" title="软件维护类型"></a>软件维护类型</h3><ul>
+<li>正确性维护：修 BUG</li>
+<li>适应性维护：应变，适应环境变化</li>
+<li>完善性维护：新需求，扩展功能，改善性能</li>
+<li>预防性维护：针对未来，专用改通用</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/f6c777c5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/f6c777c5.html" class="post-title-link" itemprop="url">250328-软件架构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-28 20:53:49" itemprop="dateCreated datePublished" datetime="2025-03-28T20:53:49+08:00">2025-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="架构描述语言-ADL"><a href="#架构描述语言-ADL" class="headerlink" title="架构描述语言 ADL"></a>架构描述语言 ADL</h2><p><img src="../images/article/250328-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image.png" alt="ADL"></p>
+<h3 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h3><ul>
+<li>构件：用来实现功能的单元</li>
+<li>连接件：连接构件的部件</li>
+<li>架构配置：描述体系结构的构建与连接件的连接图</li>
+</ul>
+<h2 id="4-1-视图"><a href="#4-1-视图" class="headerlink" title="4+1 视图"></a>4+1 视图</h2><p><img src="../images/article/250328-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-1.png" alt="4+1视图"></p>
+<ul>
+<li>逻辑视图：最终用户、主要表示功能（类与对象）</li>
+<li>开发视图：开发软院、软件管理（源代码结构，软件之间的配合、组装）</li>
+<li>进程视图（过程视图）：继承人员、性能</li>
+<li>物理视图：系统工程人员(安装、拓扑、通信)</li>
+</ul>
+<h2 id="基于架构的软件开发方法"><a href="#基于架构的软件开发方法" class="headerlink" title="基于架构的软件开发方法"></a>基于架构的软件开发方法</h2><p><img src="../images/article/250328-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-2.png" alt="基于架构的软件开发方法"></p>
+<ul>
+<li>ABSD 方法是架构驱动，即去强调</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/33695863.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/33695863.html" class="post-title-link" itemprop="url">250326-嵌入式技术</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-26 21:49:03" itemprop="dateCreated datePublished" datetime="2025-03-26T21:49:03+08:00">2025-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="嵌入式技术"><a href="#嵌入式技术" class="headerlink" title="嵌入式技术"></a>嵌入式技术</h1><h2 id="层级"><a href="#层级" class="headerlink" title="层级"></a>层级</h2><p><img src="../images/article/250326-%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%8A%80%E6%9C%AF/image.png" alt=" "></p>
+<ul>
+<li>应用层</li>
+<li>中间件层</li>
+<li>操作系统层</li>
+<li>抽象层</li>
+<li>硬件层</li>
+</ul>
+<h2 id="初始化过程"><a href="#初始化过程" class="headerlink" title="初始化过程"></a>初始化过程</h2><ul>
+<li>片级初始化</li>
+<li>版级初始化</li>
+<li>系统初始化</li>
+</ul>
+<h2 id="系统部件"><a href="#系统部件" class="headerlink" title="系统部件"></a>系统部件</h2><ul>
+<li>嵌入式微处理器</li>
+<li>存储器</li>
+<li>内外总线逻辑</li>
+<li>定时计数器</li>
+<li>看门狗电路</li>
+<li>IO 接口</li>
+<li>外部设备</li>
+<li>其他部件</li>
+</ul>
+<h2 id="典型架构"><a href="#典型架构" class="headerlink" title="典型架构"></a>典型架构</h2><h3 id="层次化模式架构"><a href="#层次化模式架构" class="headerlink" title="层次化模式架构"></a>层次化模式架构</h3><p>层次化模式，<br>调用方式分两种</p>
+<p>封闭型，智能调用同层、下一层，封装，移植性好。</p>
+<p>快放型，可以调用任意一层，性能好</p>
+<h3 id="递归模式架构"><a href="#递归模式架构" class="headerlink" title="递归模式架构"></a>递归模式架构</h3><ul>
+<li>自顶向下，没有便宜用例中规定的需求</li>
+<li>自底向上，最终开发者会达到子系统级的抽象</li>
+</ul>
+<h2 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h2><ul>
+<li>单片微型计算机</li>
+<li>微控制器</li>
+<li>片上系统</li>
+<li>以 Internet 为基础的嵌入式系统</li>
+<li>智能化、云技术推动下的嵌入式系统</li>
+</ul>
+<h2 id="微处理器"><a href="#微处理器" class="headerlink" title="微处理器"></a>微处理器</h2><ul>
+<li>微处理器 MPU</li>
+<li>微控制器 单片机 MCU</li>
+<li>信号处理器 DSP</li>
+<li>图形处理器 GPU</li>
+<li>片上系统 SOC</li>
+</ul>
+<h2 id="嵌入式操作系统定义及特点"><a href="#嵌入式操作系统定义及特点" class="headerlink" title="嵌入式操作系统定义及特点"></a>嵌入式操作系统定义及特点</h2><h3 id="时间敏感程度"><a href="#时间敏感程度" class="headerlink" title="时间敏感程度"></a>时间敏感程度</h3><ul>
+<li>嵌入式非实时系统</li>
+<li>嵌入式实时操作系统</li>
+</ul>
+<h3 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h3><ul>
+<li>非安全攸关系统</li>
+<li>安全攸关系统</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>微型化</li>
+<li>代码质量高</li>
+<li>实时性强</li>
+<li>专业化</li>
+<li>实时性强</li>
+<li>可裁剪、可配置（可定制）</li>
+</ul>
+<h2 id="操作系统内核架构"><a href="#操作系统内核架构" class="headerlink" title="操作系统内核架构"></a>操作系统内核架构</h2><h3 id="宏内核"><a href="#宏内核" class="headerlink" title="宏内核"></a>宏内核</h3><p>内核实现的功能复杂度高，用户空间只放应用程序</p>
+<p>运行效率高，占用资源多，不易裁剪，稳定性安全性相对差</p>
+<h3 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h3><p>内核实现的功能简洁，大部分服务放在用户空间，服务使用C/S架构</p>
+<p>结构清晰，有利于协作开发，方便裁剪移植，可靠性安全性高，适用于分布式系统(C/S架构)，性能相对差</p>
+<h2 id="嵌入式数据库分类"><a href="#嵌入式数据库分类" class="headerlink" title="嵌入式数据库分类"></a>嵌入式数据库分类</h2><ul>
+<li>内存方式</li>
+<li>文件方式</li>
+<li>网络方式</li>
+</ul>
+<h2 id="嵌入式软件开发"><a href="#嵌入式软件开发" class="headerlink" title="嵌入式软件开发"></a>嵌入式软件开发</h2><p><img src="../images/article/250326-%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%8A%80%E6%9C%AF/image-1.png" alt="alt text"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c3ecee8d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/c3ecee8d.html" class="post-title-link" itemprop="url">250325-系统涉及</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-25 20:01:22" itemprop="dateCreated datePublished" datetime="2025-03-25T20:01:22+08:00">2025-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h1><h2 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h2><p><img src="../images/article/250325-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image.png" alt="界面设计"></p>
+<ul>
+<li>置于用户控制之下（典型反例：各种广告）</li>
+<li>减少用户的记忆负担（默认的一些图标，X是关闭，之类）</li>
+<li>保持界面的一致性（）</li>
+</ul>
+<h2 id="结构化设计"><a href="#结构化设计" class="headerlink" title="结构化设计"></a>结构化设计</h2><p><img src="../images/article/250325-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-1.png" alt="alt text"></p>
+<p>自顶向下，逐步分解求精</p>
+<ul>
+<li>概要设计（分解模块，模块之间的关系）</li>
+<li>详细设计（具体任务选择合适的处理办法）<h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3></li>
+<li>模块独立性原则;高内聚(只做一件事)，低耦合()</li>
+<li>模块保持的大小适中</li>
+<li>多扇入，少扇出(自己本身是高度复用，少调用别人)</li>
+<li>深度和宽度均不宜过高</li>
+</ul>
+<h3 id="内聚程度（从高到低）"><a href="#内聚程度（从高到低）" class="headerlink" title="内聚程度（从高到低）"></a>内聚程度（从高到低）</h3><p><img src="../images/article/250325-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-2.png" alt="内聚"></p>
+<ul>
+<li><strong>功能内聚</strong>（单一功能）</li>
+<li><strong>顺序内聚</strong>（顺序执行）</li>
+<li>通信内聚（一个数据结构）</li>
+<li>过程内聚(特定次序执行，不可以调整)</li>
+<li><strong>时间内聚</strong>（数据初始化，在同一段时间内完成）</li>
+<li>逻辑内聚（一组任务）</li>
+<li><strong>偶然内聚</strong></li>
+</ul>
+<h3 id="低耦合（从低到高）"><a href="#低耦合（从低到高）" class="headerlink" title="低耦合（从低到高）"></a>低耦合（从低到高）</h3><ul>
+<li><strong>非直接耦合</strong> (与其他模块没有直接关系)</li>
+<li><strong>数据耦合</strong>（传递简单参数）</li>
+<li><strong>标记耦合</strong>(传递结构体)</li>
+<li><strong>控制耦合</strong>(传递控制流程信息，比如 传递了5，但是5是用来做判断流程)</li>
+<li>外部耦合（全局变量）</li>
+<li>公共耦合（公共数据区域）</li>
+<li><strong>内容耦合</strong> （访问另一模块的内部数据）</li>
+</ul>
+<h2 id="面向对象设计"><a href="#面向对象设计" class="headerlink" title="面向对象设计"></a>面向对象设计</h2><h3 id="类的分类"><a href="#类的分类" class="headerlink" title="类的分类"></a>类的分类</h3><p><img src="../images/article/250325-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-3.png" alt="alt text"></p>
+<ul>
+<li>边界类（interface）</li>
+<li>控制类（应用逻辑、业务逻辑、数据库访问逻辑）</li>
+<li>实体类（用户类）<h3 id="原则-1"><a href="#原则-1" class="headerlink" title="原则"></a>原则</h3><img src="../images/article/250325-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-4.png" alt="alt text"></li>
+</ul>
+<h1 id="软件测试"><a href="#软件测试" class="headerlink" title="软件测试"></a>软件测试</h1><p><img src="../images/article/250325-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-5.png" alt="alt text"></p>
+<h3 id="白盒测试与黑盒测试"><a href="#白盒测试与黑盒测试" class="headerlink" title="白盒测试与黑盒测试"></a>白盒测试与黑盒测试</h3><ul>
+<li>白盒测试（结构测试）</li>
+<li><ul>
+<li>路径覆盖</li>
+</ul>
+</li>
+<li><ul>
+<li>逻辑覆盖</li>
+</ul>
+</li>
+<li>黑盒测试（功能测试）</li>
+<li><ul>
+<li>等价类划分（不同类的问题）</li>
+</ul>
+</li>
+<li><ul>
+<li>边界值分析</li>
+</ul>
+</li>
+</ul>
+<h3 id="执行方式"><a href="#执行方式" class="headerlink" title="执行方式"></a>执行方式</h3><ul>
+<li>人工</li>
+<li>自动化</li>
+<li><ul>
+<li>先写脚本-&gt; 自动化执行</li>
+</ul>
+</li>
+<li><ul>
+<li>不适合项目周期短，需求变动频繁</li>
+</ul>
+</li>
+<li><ul>
+<li>单元自动化测试、接口自动化测试、UI 自动化测试</li>
+</ul>
+</li>
+</ul>
+<h3 id="软件测试阶段"><a href="#软件测试阶段" class="headerlink" title="软件测试阶段"></a>软件测试阶段</h3><ul>
+<li>单元测试(详细设计,内部模块的测试)</li>
+<li>集成测试(概要设计，模块之间的测试)</li>
+<li>系统测试(需求分档，功能测试、性能测试、验收测试、压力测试等)</li>
+<li>确认测试（需求文档，新版教程移除）</li>
+</ul>
+<h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><ul>
+<li>一次性组装(风险高)</li>
+<li><ul>
+<li>自顶向下(可能需要加桩模块)</li>
+</ul>
+</li>
+<li><ul>
+<li>自底向下(模拟数据)</li>
+</ul>
+</li>
+<li>增量式组装(测试全面)</li>
+</ul>
+<h3 id="系统测试"><a href="#系统测试" class="headerlink" title="系统测试"></a>系统测试</h3><ul>
+<li>功能测试</li>
+<li>性能测试</li>
+<li><ul>
+<li>负载测试（各种工作负载性能）</li>
+</ul>
+</li>
+<li><ul>
+<li>压力测试(测上线，极值，系统瓶颈)</li>
+</ul>
+</li>
+<li><ul>
+<li>强度测试(测下线，极值，资源特别低情况运行)</li>
+</ul>
+</li>
+<li><ul>
+<li>容量测试（并发测试）</li>
+</ul>
+</li>
+<li><ul>
+<li>可靠性测试(MTTF之类的参数)</li>
+</ul>
+</li>
+<li>健壮性测试</li>
+<li>用户界面测试</li>
+<li>安全性测试</li>
+<li>安装与反安装测试</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/4d4136bb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/4d4136bb.html" class="post-title-link" itemprop="url">250324-需求工程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-24 23:25:36" itemprop="dateCreated datePublished" datetime="2025-03-24T23:25:36+08:00">2025-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="需求工程"><a href="#需求工程" class="headerlink" title="需求工程"></a>需求工程</h1><h2 id="阶段"><a href="#阶段" class="headerlink" title="阶段"></a>阶段</h2><p><img src="../images/article/250324-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/image.png" alt="需求阶段"></p>
+<ul>
+<li>需求获取</li>
+<li>需求分析</li>
+<li>形成需求规格</li>
+<li>需求确认与验证(形成需求基线)</li>
+<li>需求管理(对基线的管理)</li>
+</ul>
+<h3 id="需求获取"><a href="#需求获取" class="headerlink" title="需求获取"></a>需求获取</h3><p><img src="../images/article/250324-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/image-1.png" alt="需求获取"></p>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>用户面谈（成本高，需要专业领域知识支撑）</li>
+<li>联合需求计划（高度组织的群体会议，消除分歧，做好交互）</li>
+<li>问卷调查(用户多，成本低)</li>
+<li>现场观察（针对较为复杂的流程和操作）</li>
+<li>原型化方法（解决早期需求不确定问题）</li>
+<li>头脑风暴法(发散思维，产生新的观点)</li>
+</ul>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p><img src="../images/article/250324-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/image-2.png" alt="需求分析"></p>
+<ul>
+<li>功能模型（数据流图 DFD）</li>
+<li>数据模型（关系模型ER）</li>
+<li>行为模型(状态转换图)<br>通过数据字典进行联系</li>
+</ul>
+<h4 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h4><p><img src="../images/article/250324-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/image-3.png" alt="UML"></p>
+<h5 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h5><ul>
+<li>结构事务（静态部分） </li>
+<li>行为事务（时间和空间上的动作）</li>
+<li>分组事务（文件夹）</li>
+<li>注释事务</li>
+</ul>
+<h5 id="图"><a href="#图" class="headerlink" title="图"></a>图</h5><p><img src="../images/article/250324-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/image-4.png" alt="UML图"></p>
+<p>需要熟记</p>
+<ul>
+<li>静态图</li>
+<li>行为图</li>
+</ul>
+<h1 id="需求跟踪"><a href="#需求跟踪" class="headerlink" title="需求跟踪"></a>需求跟踪</h1><h2 id="跟踪矩阵"><a href="#跟踪矩阵" class="headerlink" title="跟踪矩阵"></a>跟踪矩阵</h2><p><img src="../images/article/250325-%E9%9C%80%E6%B1%82%E8%B7%9F%E8%B8%AA/image.png" alt="alt text"></p>
+<h2 id="需求变更管理"><a href="#需求变更管理" class="headerlink" title="需求变更管理"></a>需求变更管理</h2><p><img src="../images/article/250325-%E9%9C%80%E6%B1%82%E8%B7%9F%E8%B8%AA/image-1.png" alt="alt text"></p>
+<ul>
+<li>问题分析和变更描述</li>
+<li>变更分析和成本计算</li>
+<li>变更实现</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/ccbac791.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/ccbac791.html" class="post-title-link" itemprop="url">250324-软件工程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-24 21:15:01" itemprop="dateCreated datePublished" datetime="2025-03-24T21:15:01+08:00">2025-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h1><h2 id="开发过程模型"><a href="#开发过程模型" class="headerlink" title="开发过程模型"></a>开发过程模型</h2><h3 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h3><ul>
+<li>需求分析</li>
+<li>软件设计</li>
+<li>程序设计</li>
+<li>编码实现</li>
+<li>单元测试</li>
+<li>集成测试</li>
+<li>系统测试</li>
+<li>运行维护</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>严格区分阶段，只适合需求明确的项目</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>正确性难以确定</li>
+<li>串行化，很长才能看到结果</li>
+<li>每个阶段完全解决这个阶段的问题（不现实）</li>
+</ul>
+<h3 id="原型模型"><a href="#原型模型" class="headerlink" title="原型模型"></a>原型模型</h3><ul>
+<li>需求分析（主要针对该项）</li>
+<li>软件涉及</li>
+<li>程序设计</li>
+</ul>
+<h4 id="两个阶段"><a href="#两个阶段" class="headerlink" title="两个阶段"></a>两个阶段</h4><ul>
+<li>原型开发阶段</li>
+<li>目标软件开发阶段</li>
+</ul>
+<h4 id="原型分类"><a href="#原型分类" class="headerlink" title="原型分类"></a>原型分类</h4><ul>
+<li>抛弃型原型</li>
+<li>演化型原型</li>
+</ul>
+<p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image.png" alt="alt text"></p>
+<h3 id="V-模型"><a href="#V-模型" class="headerlink" title="V 模型"></a>V 模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-2.png" alt="alt text"><br>测试贯穿于始终</p>
+<p>测试分阶段，测试计划提前</p>
+<h3 id="W-模型"><a href="#W-模型" class="headerlink" title="W 模型"></a>W 模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-3.png" alt="W模型"></p>
+<p>测试和开发进行</p>
+<h3 id="迭代和增量"><a href="#迭代和增量" class="headerlink" title="迭代和增量"></a>迭代和增量</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-4.png" alt="迭代与增量"></p>
+<h4 id="增量"><a href="#增量" class="headerlink" title="增量"></a>增量</h4><p>一块一块做增量</p>
+<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>逐步进化</p>
+<h3 id="螺旋模型"><a href="#螺旋模型" class="headerlink" title="螺旋模型"></a>螺旋模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-5.png" alt="螺旋模型"></p>
+<p>以快速原型模型为基础+瀑布模型</p>
+<p>考虑了风险问题</p>
+<h3 id="构建组装模型"><a href="#构建组装模型" class="headerlink" title="构建组装模型"></a>构建组装模型</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-6.png" alt="构建组装模型"><br>示例：方舱医院、积木 </p>
+<p>优点：易扩展、易重用、降低成本、安排任务更灵活</p>
+<p>缺点：需要经验丰富的架构师、设计不好的构建难重用、强调重用牺牲其他指标、第三方构建质量难控制</p>
+<h3 id="基于构建的软件工程（CBSE）"><a href="#基于构建的软件工程（CBSE）" class="headerlink" title="基于构建的软件工程（CBSE）"></a>基于构建的软件工程（CBSE）</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-7.png" alt="CBSE"></p>
+<ul>
+<li>购买而不是重新构造（不要重新造轮子 ）<br><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-8.png" alt="要素"></li>
+</ul>
+<h4 id="组装"><a href="#组装" class="headerlink" title="组装"></a>组装</h4><ul>
+<li>顺序组装 </li>
+<li>层次组装（必须分层，层次之间接口兼容）</li>
+<li>叠加组装（多个合并新的构建、对外提供接口，不需明确顺序）<h4 id="不兼容"><a href="#不兼容" class="headerlink" title="不兼容"></a>不兼容</h4></li>
+<li>参数不兼容(操作有相同的名字，但是参数类型和参数个数不相同)</li>
+<li>操作不兼容(操作名有不同)</li>
+<li>操作不完备(有些操作无法完成)</li>
+</ul>
+<h3 id="快速应用开发模型（RAD）"><a href="#快速应用开发模型（RAD）" class="headerlink" title="快速应用开发模型（RAD）"></a>快速应用开发模型（RAD）</h3><ul>
+<li>SDLC 瀑布</li>
+<li>CBSD 基于构建</li>
+</ul>
+<h3 id="统一过程（UP）"><a href="#统一过程（UP）" class="headerlink" title="统一过程（UP）"></a>统一过程（UP）</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-9.png" alt="核心工作流"></p>
+<h4 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h4><ul>
+<li>用例驱动</li>
+<li>以架构为中心</li>
+<li>迭代和增量<h4 id="阶段"><a href="#阶段" class="headerlink" title="阶段"></a>阶段</h4></li>
+<li>初始（需求）</li>
+<li>细化（设计确定系统架构）</li>
+<li>构造（构建的开发、构建）</li>
+<li>移交</li>
+</ul>
+<h4 id="核心工作流"><a href="#核心工作流" class="headerlink" title="核心工作流"></a>核心工作流</h4><ul>
+<li>业务建模</li>
+<li>需求</li>
+<li>分析与设计</li>
+<li>实现</li>
+<li>测试</li>
+<li>部署</li>
+<li>配置与变更管理</li>
+<li>项目管理</li>
+<li>环境</li>
+</ul>
+<h3 id="敏捷方法"><a href="#敏捷方法" class="headerlink" title="敏捷方法"></a>敏捷方法</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-10.png" alt="敏捷方法"></p>
+<h3 id="敏捷方法-XP"><a href="#敏捷方法-XP" class="headerlink" title="敏捷方法-XP"></a>敏捷方法-XP</h3><h4 id="价值观"><a href="#价值观" class="headerlink" title="价值观"></a>价值观</h4><ul>
+<li>沟通（加强面对面沟通）</li>
+<li>简单（不过度设计）</li>
+<li>反馈（及时反馈）</li>
+<li>勇气（接受变更的勇气）</li>
+</ul>
+<h3 id="敏捷方法（SCRUM）"><a href="#敏捷方法（SCRUM）" class="headerlink" title="敏捷方法（SCRUM）"></a>敏捷方法（SCRUM）</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-11.png" alt="SCRUM"><br><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-12.png" alt="alt text"></p>
+<h3 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-13.png" alt="alt text"></p>
+<ul>
+<li>实现级（语法树）</li>
+<li>结构级（程序分量之间相互联系关系）</li>
+<li>功能级（程序段）</li>
+<li>领域级（应用领域概念之间对应关系）</li>
+</ul>
+<p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-14.png" alt="alt text"></p>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>重构（同一抽象级别，例如算法重写，输入输出不变）</li>
+<li>设计恢复（借助工具抽象出有关数据设计）</li>
+<li>逆向工程（设计的恢复过程）</li>
+<li>正向工程（改变重构，改善整体质量）</li>
+<li>再工程（）</li>
+</ul>
+<h3 id="净室软件工程"><a href="#净室软件工程" class="headerlink" title="净室软件工程"></a>净室软件工程</h3><p><img src="../images/article/250324-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/image-15.png" alt="净室软件工程"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/db086a0a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +1138,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
               </span>
 
           
@@ -329,7 +1218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
               </span>
 
           
@@ -421,7 +1310,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
               </span>
 
           
@@ -591,738 +1480,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/b07558da.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/b07558da.html" class="post-title-link" itemprop="url">250318-项目管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-03-18 19:52:25" itemprop="dateCreated datePublished" datetime="2025-03-18T19:52:25+08:00">2025-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h1><h2 id="盈亏平衡分析"><a href="#盈亏平衡分析" class="headerlink" title="盈亏平衡分析"></a>盈亏平衡分析</h2><p>正常情况：销售额= 固定成本+可变成本+税费+利润</p>
-<p>盈亏平衡：销售额= 固定成本+可变成本+税费</p>
-<p>其中税费、可变成本是随销售额变化的</p>
-<p>可变成本比例 = (可变成本)/(销售额)</p>
-<p>税费= 销售额 * 税率</p>
-<h2 id="进度管理"><a href="#进度管理" class="headerlink" title="进度管理"></a>进度管理</h2><ul>
-<li>活动定义</li>
-<li>活动排序</li>
-<li>活动的资源估算</li>
-<li>活动历时估算</li>
-<li>制定计划</li>
-<li>进度控制</li>
-</ul>
-<p>三点估算法= (乐观时间 + 4 * 最可能时间 + 悲观时间) / 6<br><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-4.png" alt="alt text"></p>
-<h3 id="单代号网络图"><a href="#单代号网络图" class="headerlink" title="单代号网络图"></a>单代号网络图</h3><h3 id="质量管理"><a href="#质量管理" class="headerlink" title="质量管理"></a>质量管理</h3><ul>
-<li>质量保证：事前预防，审计</li>
-<li>质量控制：针对具体结果，测试<br><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image.png" alt="alt text"></li>
-</ul>
-<h3 id="软件能力成熟度模型集成-CMMI"><a href="#软件能力成熟度模型集成-CMMI" class="headerlink" title="软件能力成熟度模型集成(CMMI)"></a>软件能力成熟度模型集成(CMMI)</h3><ul>
-<li>初始级： 混乱</li>
-<li>已管理级： 项目级可重复</li>
-<li>已定义级：组织级，文档标准化</li>
-<li>定量管理级： 量化管理，过程可预测</li>
-<li>优化级：持续优化</li>
-</ul>
-<h3 id="数据管理能力成熟度评估模型（DCMM）"><a href="#数据管理能力成熟度评估模型（DCMM）" class="headerlink" title="数据管理能力成熟度评估模型（DCMM）"></a>数据管理能力成熟度评估模型（DCMM）</h3><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-1.png" alt="alt text"></p>
-<ul>
-<li>初始级</li>
-<li>受管理级</li>
-<li>稳健级</li>
-<li>量化管理级</li>
-<li>优化级</li>
-</ul>
-<h2 id="数据治理"><a href="#数据治理" class="headerlink" title="数据治理"></a>数据治理</h2><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-2.png" alt="alt text"></p>
-<h2 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h2><p><img src="../images/article/250318-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-3.png" alt="alt text"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/78c40a8f.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/78c40a8f.html" class="post-title-link" itemprop="url">250317-系统工程2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-03-17 19:53:04" itemprop="dateCreated datePublished" datetime="2025-03-17T19:53:04+08:00">2025-03-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="系统工程2"><a href="#系统工程2" class="headerlink" title="系统工程2"></a>系统工程2</h1><h2 id="企业信息化方法"><a href="#企业信息化方法" class="headerlink" title="企业信息化方法"></a>企业信息化方法</h2><ul>
-<li>业务流程重构方法</li>
-<li>核心业务应用方法</li>
-<li>信息系统建设方法</li>
-<li>主题数据库方法</li>
-<li>资源管理方法</li>
-<li>人力资本投资方法</li>
-</ul>
-<h2 id="信息系统战略规划方法"><a href="#信息系统战略规划方法" class="headerlink" title="信息系统战略规划方法"></a>信息系统战略规划方法</h2><h3 id="关键成功因素法"><a href="#关键成功因素法" class="headerlink" title="关键成功因素法"></a>关键成功因素法</h3><p>抓主要矛盾，确定开发优先级</p>
-<h3 id="战略集合转换"><a href="#战略集合转换" class="headerlink" title="战略集合转换"></a>战略集合转换</h3><p>企业战略与信息系统做映射，一一对应</p>
-<h3 id="企业系统规划法"><a href="#企业系统规划法" class="headerlink" title="企业系统规划法"></a>企业系统规划法</h3><p>自上而下规划，自下而上实现，U（使用）C（创建） 矩阵</p>
-<h2 id="商业智能"><a href="#商业智能" class="headerlink" title="商业智能"></a>商业智能</h2><h3 id="数据仓库"><a href="#数据仓库" class="headerlink" title="数据仓库"></a>数据仓库</h3><ul>
-<li>面向主题</li>
-<li>集成的，整个企业对应一个数据仓库</li>
-<li>基本以查询为主</li>
-<li>反应历史变化</li>
-</ul>
-<h4 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><ul>
-<li>关联分析： 挖掘出隐藏在数据间的关系</li>
-<li>序列模式分析：按照时间线进行分析</li>
-<li>分类分析： 为记录打标记，然后俺标记分类</li>
-<li>聚类分析：起始先聚合，然后再打抱歉</li>
-</ul>
-<h3 id="数据湖"><a href="#数据湖" class="headerlink" title="数据湖"></a>数据湖</h3><p>未清洗数据，是数据就像里面扔，支持业务处理，分析处理</p>
-<h2 id="业务流程"><a href="#业务流程" class="headerlink" title="业务流程"></a>业务流程</h2><p>BPR 业务流程重组：颠覆原有设计<br>BPM 业务流程管理： P（plan）D(DO)C(check)A(act)</p>
-<h2 id="企业应用集成"><a href="#企业应用集成" class="headerlink" title="企业应用集成"></a>企业应用集成</h2><ul>
-<li>界面集成：统一一个入口</li>
-<li>数据集成：不同数据源逻辑或者物理上集成</li>
-<li>控制集成：可以调用其他系统方法，有 API</li>
-<li>业务流程集成（过程集成）：跨企业，优化流程而非直接调用</li>
-<li>门户集成： 将内部系统对接到互联网</li>
-</ul>
-<h2 id="企业门户"><a href="#企业门户" class="headerlink" title="企业门户"></a>企业门户</h2><ul>
-<li>信息门户：网络上的人可以通过一个统一入口访问所需要的信息</li>
-<li>知识门户：信息门户的基础上，增加帮助文档，知识库</li>
-<li>应用门户：企业信息系统模块放到网络上集成界面</li>
-<li>垂直门户：特定行业服务</li>
-</ul>
-<h2 id="电子商务"><a href="#电子商务" class="headerlink" title="电子商务"></a>电子商务</h2><ul>
-<li>B2B: 1688</li>
-<li>C2C: 咸鱼</li>
-<li>B2C: 京东、天猫</li>
-<li>C2B: 个人对企业提供咨询服务</li>
-<li>O2O: 团购</li>
-</ul>
-<h2 id="智能制造体系"><a href="#智能制造体系" class="headerlink" title="智能制造体系"></a>智能制造体系</h2><ul>
-<li>设备层：传感器</li>
-<li>单元层：单个流程，局部的自动化控制</li>
-<li>车间层</li>
-<li>企业级</li>
-<li>协同层：跨企业共享</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/346b16ea.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/346b16ea.html" class="post-title-link" itemprop="url">250311-系统工程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-03-11 19:40:17" itemprop="dateCreated datePublished" datetime="2025-03-11T19:40:17+08:00">2025-03-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="系统工程"><a href="#系统工程" class="headerlink" title="系统工程"></a>系统工程</h1><h2 id="系统工程方法"><a href="#系统工程方法" class="headerlink" title="系统工程方法"></a>系统工程方法</h2><p><img src="../images/article/250311-%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B/image.png" alt="系统工程方法"></p>
-<h3 id="霍尔三维结构"><a href="#霍尔三维结构" class="headerlink" title="霍尔三维结构"></a>霍尔三维结构</h3><p>适合大型工程建设项目</p>
-<ul>
-<li>逻辑维</li>
-<li>时间维</li>
-<li>知识维</li>
-</ul>
-<h3 id="切克兰德方法"><a href="#切克兰德方法" class="headerlink" title="切克兰德方法"></a>切克兰德方法</h3><p>核心不是最优化</p>
-<ul>
-<li>比较</li>
-<li>探寻</li>
-</ul>
-<h3 id="并行工程方法"><a href="#并行工程方法" class="headerlink" title="并行工程方法"></a>并行工程方法</h3><ul>
-<li>制造过程</li>
-<li>支持过程</li>
-</ul>
-<h3 id="综合集成法"><a href="#综合集成法" class="headerlink" title="综合集成法"></a>综合集成法</h3><ul>
-<li>简单系统</li>
-<li>巨系统</li>
-</ul>
-<h3 id="WSR（物理、事理、人理）-系统方法"><a href="#WSR（物理、事理、人理）-系统方法" class="headerlink" title="WSR（物理、事理、人理） 系统方法"></a>WSR（物理、事理、人理） 系统方法</h3><ul>
-<li>懂物理</li>
-<li>明事理</li>
-<li>通人理</li>
-</ul>
-<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><h3 id="生命周期阶段"><a href="#生命周期阶段" class="headerlink" title="生命周期阶段"></a>生命周期阶段</h3><ul>
-<li>探索性研究</li>
-<li>概念阶段</li>
-<li>开发阶段</li>
-<li>生产阶段</li>
-<li>使用阶段</li>
-<li>保障阶段</li>
-<li>退役阶段</li>
-</ul>
-<h3 id="生命周期方法"><a href="#生命周期方法" class="headerlink" title="生命周期方法"></a>生命周期方法</h3><ul>
-<li>计划驱动方法</li>
-<li>渐进迭代是开发</li>
-<li>精益开发</li>
-<li>敏捷开发</li>
-</ul>
-<h2 id="信息系统生命周期"><a href="#信息系统生命周期" class="headerlink" title="信息系统生命周期"></a>信息系统生命周期</h2><ul>
-<li>生产阶段: 提出想法，对需求进行调研分析</li>
-<li>开发阶段: 总体规划-&gt;系统分析-&gt;系统设计-&gt;系统实施-&gt;系统验收</li>
-<li>运行阶段: 运行及维护</li>
-<li>消亡阶段: 更新改造、功能扩展、报废重建</li>
-</ul>
-<h2 id="信息系统建设原则"><a href="#信息系统建设原则" class="headerlink" title="信息系统建设原则"></a>信息系统建设原则</h2><ul>
-<li>高层管理人员接入原则</li>
-<li>用户参与开发原则</li>
-<li>自顶向下规划原则</li>
-<li>工程化原则</li>
-</ul>
-<h2 id="信息系统开发方法"><a href="#信息系统开发方法" class="headerlink" title="信息系统开发方法"></a>信息系统开发方法</h2><ul>
-<li>结构化法: 自顶向下，逐步求精，面向过程，流程化，改变困难</li>
-<li>面向对象法: 自底向上，符合人们的思维习惯</li>
-<li>面向服务法：粗粒度、松耦合，标准化、构建化；抽象级别：操作【低】-&gt; 服务【中】-&gt; 业务流程【高】</li>
-<li>原型法：针对需求不明确；功能分：水平原型（界面）、垂直原型（发杂算法）；结果分：抛弃式原型、演化式原型</li>
-<li>形式化：数学模型化；净室软件工程</li>
-</ul>
-<h2 id="信息系统的分类"><a href="#信息系统的分类" class="headerlink" title="信息系统的分类"></a>信息系统的分类</h2><ul>
-<li>业务处理系统（TPS）: 早期最初期信息系统，数据处理</li>
-<li>管理信息系统（MIS）：xx管理系统，开环闭环结构</li>
-<li>决策支持系统（DSS）：语言系统、知识系统、问题处理。辅助决策，不做决定</li>
-<li>专家系统（ES）：大模型；自动驾驶；做决定；核心：知识库、推理机</li>
-<li>办公自动化系统（OAS）：办公用的</li>
-<li>企业资源计划（ERP）：供应链集成</li>
-</ul>
-<h2 id="电子政府"><a href="#电子政府" class="headerlink" title="电子政府"></a>电子政府</h2><ul>
-<li>政府（G） 人口是政府对政府的</li>
-<li>企业（B）</li>
-<li>公民（C）</li>
-<li>公务员（E）</li>
-</ul>
-<h2 id="企业信息化"><a href="#企业信息化" class="headerlink" title="企业信息化"></a>企业信息化</h2><ul>
-<li>战略需求</li>
-<li>运作需求</li>
-<li>技术需求</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/bf05ca28.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/bf05ca28.html" class="post-title-link" itemprop="url">250310-未来信息技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-03-10 21:16:22" itemprop="dateCreated datePublished" datetime="2025-03-10T21:16:22+08:00">2025-03-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="信息物理系统-CPS"><a href="#信息物理系统-CPS" class="headerlink" title="信息物理系统 CPS"></a>信息物理系统 CPS</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>CPS通过集成先进的感知、计算、通信、空制等信息技术和自动控制技术，构建了物理空间与信息空间中人、机、物、环境、信息等要素相互映射、适时交互、高的按需响应、快速迭代、动态优化。效协同的复杂系统实现系统内资源配置和运行</p>
-<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>实现资源优化配置</p>
-<h2 id="关键目标"><a href="#关键目标" class="headerlink" title="关键目标"></a>关键目标</h2><p>数据的自动流动</p>
-<h2 id="体系架构"><a href="#体系架构" class="headerlink" title="体系架构"></a>体系架构</h2><p><img src="../images/article/250310-%E6%9C%AA%E6%9D%A5%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF/image.png" alt="alt text"></p>
-<h3 id="单元级"><a href="#单元级" class="headerlink" title="单元级"></a>单元级</h3><p>一个智能部件，最小单元</p>
-<h3 id="系统级"><a href="#系统级" class="headerlink" title="系统级"></a>系统级</h3><p>多个最小单元通过工业网络连接起来的系统</p>
-<h3 id="SoS-级"><a href="#SoS-级" class="headerlink" title="SoS 级"></a>SoS 级</h3><p>多个系统级CPS的有机组合构成</p>
-<h2 id="技术体系"><a href="#技术体系" class="headerlink" title="技术体系"></a>技术体系</h2><h3 id="总体技术"><a href="#总体技术" class="headerlink" title="总体技术"></a>总体技术</h3><p>全局相关的</p>
-<h3 id="支撑技术"><a href="#支撑技术" class="headerlink" title="支撑技术"></a>支撑技术</h3><p>环境相关的</p>
-<h3 id="核心技术"><a href="#核心技术" class="headerlink" title="核心技术"></a>核心技术</h3><p>业务场景相关</p>
-<h3 id="核心要素"><a href="#核心要素" class="headerlink" title="核心要素"></a>核心要素</h3><p>一硬、一软、一网、一平台</p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>智能设计、智能生产、智能服务、智能应用</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/4c13f9cb.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/4c13f9cb.html" class="post-title-link" itemprop="url">250309-习题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-03-09 14:33:38" itemprop="dateCreated datePublished" datetime="2025-03-09T14:33:38+08:00">2025-03-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h1><h2 id="单缓冲区"><a href="#单缓冲区" class="headerlink" title="单缓冲区"></a>单缓冲区</h2><p>（各步骤时间之和） + （块数 - 1） * 缓冲区时间</p>
-<h2 id="双缓冲区"><a href="#双缓冲区" class="headerlink" title="双缓冲区"></a>双缓冲区</h2><p>（各个骤时间之和） + （块数 - 1）* 最长时间</p>
-<p>50 + 80 + 10 + （9） * 80</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/44a7dc70.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/44a7dc70.html" class="post-title-link" itemprop="url">250304-模式分解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-03-04 19:56:18" itemprop="dateCreated datePublished" datetime="2025-03-04T19:56:18+08:00">2025-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h1><h2 id="是否保持函数依赖"><a href="#是否保持函数依赖" class="headerlink" title="是否保持函数依赖"></a>是否保持函数依赖</h2><p>是否能复原为原本的函数依赖</p>
-<ul>
-<li>冗余依赖不进行推导 </li>
-</ul>
-<h2 id="是否无损"><a href="#是否无损" class="headerlink" title="是否无损"></a>是否无损</h2><p>分解后是否能还原</p>
-<ul>
-<li>还原必须包括同名属性列</li>
-<li>同名属性列是决定属性</li>
-</ul>
-<h2 id="表格法"><a href="#表格法" class="headerlink" title="表格法"></a>表格法</h2><p>有一行全为钩的就认为还原</p>
-<p>公式法</p>
-<h2 id="交集推差集"><a href="#交集推差集" class="headerlink" title="交集推差集"></a>交集推差集</h2><p>只适用于两个表</p>
-<p>R = ABC</p>
-<p>F = {A-&gt;B}</p>
-<p>分解 = {R1(AB),R2(AC)} </p>
-<p>R1 ∩ R2 = A</p>
-<p>R1 - R2 = B</p>
-<p>R2 - R1 = C</p>
-<p>得出 A-&gt;B 和 A-&gt;C </p>
-<p>其中 A-&gt;B 满足原本的函数依赖，所以无损</p>
-<h1 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h1><h2 id="事务-ACID"><a href="#事务-ACID" class="headerlink" title="事务 ACID"></a>事务 ACID</h2><ul>
-<li>原子性</li>
-<li>一致性</li>
-<li>隔离性</li>
-<li>持久性</li>
-</ul>
-<h2 id="产生的并发问题"><a href="#产生的并发问题" class="headerlink" title="产生的并发问题"></a>产生的并发问题</h2><ul>
-<li>丢失更新   一级封锁协议预防 加写锁</li>
-<li>脏读 二级封锁协议预防 加读锁，读取完毕释放</li>
-<li>不可重复读 三级封锁协议预防  加读锁，事务完毕后释放</li>
-</ul>
-<h1 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h1><ul>
-<li>用户标识与鉴定</li>
-<li>存取控制（权限控制）</li>
-<li>密码存储与传输</li>
-<li>视图的保护</li>
-<li>审计</li>
-</ul>
-<h1 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h1><ul>
-<li>完全备份</li>
-<li>增量备份：比上次备份增加的内容</li>
-<li>差量备份：比上次完全备份增加的内容</li>
-</ul>
-<h1 id="故障与恢复"><a href="#故障与恢复" class="headerlink" title="故障与恢复"></a>故障与恢复</h1><ul>
-<li>事物本身的可预期故障</li>
-<li>事务本身的不可预期故障</li>
-<li>系统故障 ，扫描检查点，已提交的事务 放入 redo，未完成 undo 撤销</li>
-<li>介质故障</li>
-</ul>
-<h1 id="数据库优化"><a href="#数据库优化" class="headerlink" title="数据库优化"></a>数据库优化</h1><ul>
-<li>硬件， CPU、内存、硬盘等</li>
-<li>系统软件，各种参数，进程优先级</li>
-<li>数据库设计</li>
-<li><ul>
-<li>表与视图，规范化与反规范化</li>
-</ul>
-</li>
-<li><ul>
-<li>索引，提高查询效率，减少插入修改删除效率</li>
-</ul>
-</li>
-<li><ul>
-<li>SQL语句，各类操作</li>
-</ul>
-</li>
-<li>应用软件，连接池</li>
-<li>分布式数据库-通信代价</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/7dbcde9a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/7dbcde9a.html" class="post-title-link" itemprop="url">250303-规范化理论</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-03-03 21:37:59" itemprop="dateCreated datePublished" datetime="2025-03-03T21:37:59+08:00">2025-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-03 11:02:59" itemprop="dateModified" datetime="2025-04-03T11:02:59+08:00">2025-04-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="求候选键"><a href="#求候选键" class="headerlink" title="求候选键"></a>求候选键</h2><ul>
-<li>找入度为0的属性</li>
-<li>如果不满足上面的条件，则尝试便利中间节点（既有入度，也有出度），并入上面的条件，直至该集合能便利所有节点</li>
-</ul>
-<h2 id="部分函数依赖"><a href="#部分函数依赖" class="headerlink" title="部分函数依赖"></a>部分函数依赖</h2><p>如果候选键是一个合集，且一部分非主属性依赖于候选键的一部分，为部分函数依赖</p>
-<h2 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h2><p>A-&gt; B,B-&gt;C 则 A-&gt;C</p>
-<h2 id="Armstrong-公里"><a href="#Armstrong-公里" class="headerlink" title="Armstrong 公里"></a>Armstrong 公里</h2><h3 id="自反率"><a href="#自反率" class="headerlink" title="自反率"></a>自反率</h3><p>Y∈X∈U<br>U={ABC}<br>X={AB}<br>Y={A}<br>则，X-&gt; Y<br>身份证号与姓名 可以确认姓名，身份证号也可以确认姓名.</p>
-<h3 id="增广律"><a href="#增广律" class="headerlink" title="增广律"></a>增广律</h3><p>若 Z ∈ U 且 X-&gt;Y，则 XZ-&gt;YZ</p>
-<h3 id="传递率"><a href="#传递率" class="headerlink" title="传递率"></a>传递率</h3><p>A-&gt; B,B-&gt;C 则 A-&gt;C<br>学号可以推出系号，系号可以推出系名，那么学号可以推出系名</p>
-<h3 id="合并规则"><a href="#合并规则" class="headerlink" title="合并规则"></a>合并规则</h3><p>如果 X-&gt;Y，X-&gt;Z 则 X-&gt;YZ</p>
-<h3 id="伪传递规则"><a href="#伪传递规则" class="headerlink" title="伪传递规则"></a>伪传递规则</h3><p>如果 X-&gt;Y,WY-&gt;Z，则WX-&gt;Z</p>
-<h3 id="分解规则"><a href="#分解规则" class="headerlink" title="分解规则"></a>分解规则</h3><p>如果 X-Y 且 Z ∈ Y,则 X-&gt; Z</p>
-<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>属性都是不可分的原子值</p>
-<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>部份依赖</strong></p>
-<p>单属性候选键不会出现这类问题，只有候选键可能存在这种可能</p>
-<p>完全依赖于主键，不存在部分依赖</p>
-<p>学号、课程号、成绩、学分</p>
-<p>学号,课程号-&gt; 成绩</p>
-<p>课程号-&gt; 学分</p>
-<p>没有课程的情况下，无法插入学分信息</p>
-<p>如果课程没有人报名，那么没有课程信息</p>
-<p>解决办法：将课程号与学分单独提取到一张表</p>
-<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>消除<strong>非主属性</strong>对<strong>候选键</strong>的<strong>传递依赖</strong></p>
-<p>学校、身份证号、系号、系名 满足第三范式，因为不存在对非主属性的传递依赖</p>
-<p>学号、姓名、系号、系名</p>
-<p>学号-&gt; 系号</p>
-<p>系号-&gt; 系名</p>
-<p>学号-&gt; 系名</p>
-<p>其中系名依赖于非主属性系号，所以存在对非主属性的传递依赖，不满足第三范式</p>
-<p>解决办法：系号、系名 单独组表</p>
-<h3 id="BC范式"><a href="#BC范式" class="headerlink" title="BC范式"></a>BC范式</h3><p>完全依赖于候选键</p>
-<p>不解决</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1390,7 +1551,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">146</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

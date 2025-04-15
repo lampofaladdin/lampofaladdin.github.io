@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/global/apple-touch-icon-wen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/global/favicon-32x32-wen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/global/favicon-16x16-wen.png">
+  <link rel="mask-icon" href="/images/global/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wddv.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="论文题 示例试题:论软件架构风格软件体系结构风格是描述某一特定应用领域中系统组织方式的惯用模式。体系结构风格定义一个系统家族，即一个体系结构定义一个词汇表和一组约束。词汇表中包含一些构件和连接件类型，而这组约束指出系统是如何将这些构件和连接件组合起来的。体系结构风格反应了领域中众多系统所共有的结构和语义特性，并指导如何将各个模块和子系统有效地组织成一个完整的系统。请围绕“论软件架构风格”论题，依次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="250407-论架构风格论文">
+<meta property="og:url" content="https://wddv.com/post/ff1675b1.html">
+<meta property="og:site_name" content="灯的个人博客">
+<meta property="og:description" content="论文题 示例试题:论软件架构风格软件体系结构风格是描述某一特定应用领域中系统组织方式的惯用模式。体系结构风格定义一个系统家族，即一个体系结构定义一个词汇表和一组约束。词汇表中包含一些构件和连接件类型，而这组约束指出系统是如何将这些构件和连接件组合起来的。体系结构风格反应了领域中众多系统所共有的结构和语义特性，并指导如何将各个模块和子系统有效地组织成一个完整的系统。请围绕“论软件架构风格”论题，依次">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-07T11:42:50.000Z">
+<meta property="article:modified_time" content="2025-04-15T08:13:22.813Z">
+<meta property="article:author" content="aladdin">
+<meta property="article:tag" content="神灯">
+<meta property="article:tag" content="阿拉丁神灯">
+<meta property="article:tag" content="生活">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="typescript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wddv.com/post/ff1675b1.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>250407-论架构风格论文 | 灯的个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF61CEVEDP"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MF61CEVEDP');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4c10b4eeaaf8f221e2681c804ada3926";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">灯的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">forever young,forever weeping.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/lampofaladdin" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/ff1675b1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          250407-论架构风格论文
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-04-07 19:42:50" itemprop="dateCreated datePublished" datetime="2025-04-07T19:42:50+08:00">2025-04-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="论文题-示例"><a href="#论文题-示例" class="headerlink" title="论文题 示例"></a>论文题 示例</h1><h2 id="试题"><a href="#试题" class="headerlink" title="试题:"></a>试题:</h2><p>论软件架构风格软件体系结构风格是描述某一特定应用领域中系统组织方式的惯用模式。体系结构风格定义一个系统家族，即一个体系结构定义一个词汇表和一组约束。词汇表中包含一些构件和连接件类型，而这组约束指出系统是如何将这些构件和连接件组合起来的。体系结构风格反应了领域中众多系统所共有的结构和语义特性，并指导如何将各个模块和子系统有效地组织成一个完整的系统。<br>请围绕“论软件架构风格”论题，依次从以下三个方面进行论述。</p>
+<ol>
+<li>概要叙述你参与分析和设计的软件系统开发项目以及你所担任的主要工作。</li>
+<li>软件系统开发中常用的软件架构风格有哪些?详细阐述每种风格的具体含义。</li>
+<li>详细说明你所参与分析和设计的软件系统是采用什么软件架构风格的，并分析采用该架构风格设计的原因。</li>
+</ol>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文描述了一个新能源汽车媒体、社区、选车等一体化平台的架构分析与设计过程。该项目始于 2020 年，弥补了当时市面上没有新能源汽车平台的空缺，响应了国家对于新能源汽车的政策向导。本文介绍了 C/S架构风格，B/S架构风格，分层架构风格等常用软甲架构风格。详细说明了该系统软件组成部分的架构分析与设计，其中应用系统采用 B/S 架构，前后端分离的服务端渲染模式，满足了推广、跨平台等需求，降低了开发成本，明确了职责与分工。后端服务采用分层架构，通过划分不同的层，实现了一种明确自责，耦合性低，方便测试的应用程序。前后端通讯采用 REST 架构风格，一种约定大于配置的架构风格，降低了学习与开发成本，减轻了开发人员的心智负担。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>2020年，新能源汽车开始蓬勃发展，国务院发布了《新能源汽车产业规划通知（2021-2035）》。此时，市面上并没有专门针对新能源汽车的平台，于是，我司决定开发一个关于新能源汽车的一体化平台，其中包括媒体、社区、选车等功能。该项目于 2020 年 10 月开始规划，系统主要分为三个部分，其中前端应用采用 B/S 架构风格，后端服务采用分层架构风格，前端与后端通信采用 REST 架构风格。我在该项目中担任技术经理，负责架构设计与技术选型工作。</p>
+<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>在日常实践中，系统常用的软件风格有：C/S 架构风格，B/S 架构风格，分层架构风格等。C/S 架构风格，该架构分为客户端与服务端，使用约定的协议进行通信，具有分工明确、耦合度低、客户端性能好等优点，但同时因为需要开发两个端，会出现开发成本高，升级维护困难等缺点。B/S 架构风格，主要使用浏览器，传统 B/S 架构会在一个服务端进行渲染，现代开发流程中，考虑到分工问题，会分为浏览器客户端与服务端，是一种瘦客户端模式，具有开发成本低，跨平台等优点，但因为需要浏览器支持，所以可能出现兼容性问题。分层架构风格，该模式约定不同的层级，每个层级只做一类事情，一般只调用下一层，具有结构明确、耦合度低、维护方便等优点，同时分层过多也会带来性能降低等问题。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>该项目立项后进行需求分析，为了通用性，应用系统使用 B/S 架构，优先满足推广与跨平台等需求并保留未来的扩展性。服务端采用分层架构，明确责任并解耦。同时约定使用类 REST 架构风格进行通讯。</p>
+<ol>
+<li>应用系统<br>该系统主要采用 B/S 架构风格，传统 B/S 架构中，客户端与服务端开发人员往往是不同的人，但是要在一个项目中进行开发，会出现分工不明确，责任不清晰等问题，所以使用前后端分离的方式进行架构设计，客户端开发人员可以专注于 UI 的交互，数据通过 http 协议与后端进行通讯，后端开发人员可以专注于业务流程的开发，明确责任，方便维护。一般前后端分离，前端只负责 UI 的交互，数据通过 AJAX 等技术去后端获取，展示效果通过 JavaScript 进行操作渲染，导致最终呈现在浏览器源码上的 HTML 是一个固定的结构，没有业务的相关数据，无法进行 SEO。因为该项目有推广需求，所以决定使用 SSR(服务端渲染)同构技术，客户端服务端都采用相同的 JavaScript 语言，客户端使用浏览器提供的 JS 引擎，服务端使用 NodeJS 运行时。用户或者爬虫初次访问页面的时候，NodeJS 会执行对应的 JavaScript 代码，生成对应的 HTML 与运行上下文返回给客户端，客户端拿到后，可以在客户端进行 UI 展示、路由控制等功能。按照该方案，可以做 SEO，满足推广需求，使用同构模式，同一套代码运行在两端，降低了开发成本。同时前后端分离，明确职责与分工。</li>
+<li>后端服务<br>该部分主要采用分层架构，主要包括的层包括：中间件层，守卫层，拦截器层，管道层，控制器层，服务层，数据访问层，数据实体层。其中中间件层用来处理日志，包括用户请求信息，系统响应时间等。项目使用Json Web Token 进行登录验证，当中用户权限验证在守卫层。拦截器层用于数据的接口统一返回处理，其中包括 http 状态码的处理，返回体数据的格式标准化等功能。管道层用于数据转换与验证，比如一些数据类型的转换映射，还有用户输入参数验证、XSS 预防等功能。控制器层用于处理路由响应，委托给服务层处理业务。服务层为主要的业务逻辑处理空间，提供可复用的功能模块，做好封装，方便调用。数据访问层，主要是针对数据的操作，项目中用到的数据库、缓存的操作都在该层。数据库实体层是对数据库实体的映射，标识数据库实体字段与格式等。该架构风格可以提供一种职责清晰，低耦合，方便测试的应用程序。</li>
+<li>前后端通讯<br>考虑到通用性，通讯协议使用 http，架构采用 REST 风格。REST 风格是一种以资源为中心的架构风格，所有的操作均是对资源的控制。REST 对应的 http 控制操作有 GET、POST、PATCH、PUT、DELETE 等方法，GET 表示对资源的获取，POST 表示对资源的新增，PATCH 表示对资源的部分更新，PUT 表示对资源的整体替换，DEL 表示删除资源。REST 标准中要求使用 HTTP 状态码来表示对操作资源的响应，同时在返回体中标记该资源的状态。但是实际开发中会发现 HTTP 状态码过少，且有些复杂状态需要通过响应体里面的内容去判断如何继续交互。所以我们对 REST 做了一些改动，请求分为是否到达业务层，如果没有达到业务层，按照标准 REST 风格进行响应。如果达到业务层那么统一状态码为 200，表示操作已经发生，在响应体里面以约定的标准格式表示本次处理的状态。项目中约定，业务状态码为 0，那么表示此次交互成功。如果业务状态码非 0，表示业务处理异常，客户端需要根据响应体里面的状态码、错误信息、参考文档链接等信息定位异常确定后续操作逻辑。这种以约定大于配置的方式降低学习和实现成本，极大简化了开发人员的心智负担。</li>
+</ol>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>该项目于 2022 年 7 月上线，项目在运行过程中，遇到过数据库压力比较大的情况，我们在调用较为频繁的流程上增加了缓存，并在数据库上做了读写分离、分库分表等操作后趋于稳定。后续为了部署扩容方便，增加了 CI/CD 流程，因为服务端在设计之初是无状态的，方便横向扩展，我们将所有的应用都打包为 Docker 镜像，部署在云服务平台的 ServerLess 上，使用后才付费，极大降低了运行成本。但同时也遇到了 ServerLess 的冷启动慢的问题，目前方案是根据日常流量大小，预留启动实例并适当裁剪镜像。目前该项目已运行三年多，未出现严重生产事故，后续二期工程增加了移动平台适配，由于该项目架构扩展性良好，目前已成功上线运行。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/706fce25.html" rel="prev" title="250402-软件架构评估">
+      <i class="fa fa-chevron-left"></i> 250402-软件架构评估
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/post/277a6e1b.html" rel="next" title="250408-软件架构评估">
+      250408-软件架构评估 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#论文题-示例"><span class="nav-number">1.</span> <span class="nav-text">论文题 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#试题"><span class="nav-number">1.1.</span> <span class="nav-text">试题:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.3.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">1.4.</span> <span class="nav-text">理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">1.5.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-number">1.6.</span> <span class="nav-text">结束</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aladdin"
+      src="https://oss.wddv.com/www/assets/pic/avatar.png">
+  <p class="site-author-name" itemprop="name">aladdin</p>
+  <div class="site-description" itemprop="description">记录生活，前端技术</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lampofaladdin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lampofaladdin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d@wddv.com" title="E-Mail → mailto:d@wddv.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备17024143号-2 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aladdin</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '91a75e9a1fc9fd7df302',
+      clientSecret: 'ff120bf7925caa97693d5f77b10ca285845c291e',
+      repo        : 'blog-comment',
+      owner       : 'lampofaladdin',
+      admin       : ['lampofaladdin'],
+      id          : 'b5a05ed551e29a99e158e3baa441c130',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
