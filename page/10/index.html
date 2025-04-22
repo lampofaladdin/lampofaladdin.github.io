@@ -218,6 +218,517 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6c526d3e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/6c526d3e.html" class="post-title-link" itemprop="url">20220722</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-22 10:58:02" itemprop="dateCreated datePublished" datetime="2022-07-22T10:58:02+08:00">2022-07-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS-中的设计模式"><a href="#JS-中的设计模式" class="headerlink" title="JS 中的设计模式"></a>JS 中的设计模式</h1><p>解决一些特定问题的方法，并总结起来，给一个名字。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在面向对象软件设计过程中针对特定的问题简洁而优雅的解决方案。</p>
+<h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><p>找出程序中变化的地方，并将变化封装起来</p>
+<h2 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h2><p>如果它走起路来像鸭子，叫起来也是鸭子，那么它就是鸭子。</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>同一操作作用于不同的对象上面，可以产生不同的解释和不同的执行结果。换句话说，给不同的对象发送同一个消息的时候，这些对象会根据这个消息分别给出不同的反馈。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chicken</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">const</span> makeSound = <span class="function"><span class="keyword">function</span> (<span class="params">animal</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (animal <span class="keyword">instanceof</span> Duck) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"嘎嘎嘎"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (animal <span class="keyword">instanceof</span> Chicken) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"咯咯咯"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span> (animal instansof Dog)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"汪汪汪"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">makeSound(<span class="keyword">new</span> Duck()); <span class="comment">// 嘎嘎嘎</span></span><br><span class="line">makeSound(<span class="keyword">new</span> Chicken()); <span class="comment">// 咯咯咯</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeSound = <span class="function"><span class="keyword">function</span> (<span class="params">animal: Animal</span>) </span>&#123;</span><br><span class="line">  animal.sound();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  sound() &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"不存在sound"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Duck <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  sound() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"嘎嘎嘎"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Chicken <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  sound() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"嘎嘎嘎"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Dog <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  sound()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"汪汪汪"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">makeSound(<span class="keyword">new</span> Duck()); <span class="comment">// 嘎嘎嘎</span></span><br><span class="line">makeSound(<span class="keyword">new</span> Chicken()); <span class="comment">// 咯咯咯</span></span><br><span class="line">makeSound(<span class="keyword">new</span> Dog()); <span class="comment">// 咯咯咯</span></span><br><span class="line"><span class="comment">// 更多...</span></span><br><span class="line"><span class="comment">// class Chicken extends Animal &#123;</span></span><br><span class="line"><span class="comment">//   sound() &#123;</span></span><br><span class="line"><span class="comment">// console.log("嘎嘎嘎");</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>多态最根本的作用就是通过把过程化的条件分支语句转化为对象的多态性，从而消除这些条件分支语句</p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>考虑你的设计中哪些地方可能变化，这种方式与关注会导致重新设计的原因相反。它不是考虑什么时候会迫使你的设计改变，而是考虑你怎样才能够在不重新设计的情况下进行改变。这里的关键在于封装发生变化的概念，这是许多设计模式的主题</p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>基于原型链</p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>需要频繁实例化然后销毁的对象</li>
+<li>创建对象时耗时过多或者耗资源过多，但又经常用到的对象</li>
+<li>有状态的工具类对象</li>
+<li>繁访问数据库或文件的对象</li>
+</ul>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
+<li>window 对象</li>
+<li>日志文件</li>
+<li>应用配置</li>
+<li>线程池</li>
+</ul>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>代理模式是为一个对象提供一个代替品或占位符，以便控制对他的访问</p>
+<h3 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>明星的经纪人</li>
+<li>生产数据库访问</li>
+<li>翻墙</li>
+</ul>
+<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><p>顺序访问一个聚合对象的元素，而不需要暴露对象的内部表示。</p>
+<p>基本不需要自己实现，大部分语言内置了迭代器</p>
+<h3 id="场景-2"><a href="#场景-2" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>Array.prototype.forEach</li>
+</ul>
+<h2 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>对象间的一对多的依赖关系，当一个对象的状态发生改变时，所以依赖于他的对象都能接受到通知</p>
+<h3 id="场景-3"><a href="#场景-3" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>JS 事件模型</li>
+</ul>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h3 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h3><p>命令是对命令的封装，每一个命令都是一个操作，请求方发出请求，接收方接收请求，并执行操作。命令模式解耦了请求方和接收方，命令模式属于行为型模式</p>
+<h3 id="场景-4"><a href="#场景-4" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>处理一些功能，但是不知道请求的接收者是谁，操作是什么，希望以一种松耦合的方式来设计程序。</li>
+<li>JS 高阶函数</li>
+</ul>
+<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><h3 id="定义-6"><a href="#定义-6" class="headerlink" title="定义"></a>定义</h3><p>组合模式（Composite Pattern），又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结</p>
+<h3 id="场景-5"><a href="#场景-5" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>树形菜单</li>
+<li>文件</li>
+<li>文件夹的管理</li>
+</ul>
+<h2 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h2><h3 id="定义-7"><a href="#定义-7" class="headerlink" title="定义"></a>定义</h3><p>在模板模式（Template Pattern）中，一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。这种类型的设计模式属于行为型模式。</p>
+<h3 id="场景-6"><a href="#场景-6" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>造房子</li>
+<li>泡茶还是泡咖啡</li>
+</ul>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。</p>
+<p>计算绩效</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> calculateBonus = <span class="function"><span class="keyword">function</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  performanceLevel: "S" | "A" | "B",</span></span></span><br><span class="line"><span class="function"><span class="params">  salary: <span class="built_in">number</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (performanceLevel === <span class="string">"S"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> salary * <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (performanceLevel === <span class="string">"A"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> salary * <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (performanceLevel === <span class="string">"B"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> salary * <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">calculateBonus(<span class="string">"B"</span>, <span class="number">20000</span>); <span class="comment">// 输出：40000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ts实现</span></span><br><span class="line"><span class="keyword">const</span> bounsMap = <span class="keyword">new</span> Map([</span><br><span class="line">  [<span class="string">"S"</span>, <span class="function">(<span class="params">salary: <span class="built_in">number</span></span>) =&gt;</span> salary * <span class="number">4</span>],</span><br><span class="line">  [<span class="string">"A"</span>, <span class="function">(<span class="params">salary: <span class="built_in">number</span></span>) =&gt;</span> salary * <span class="number">3</span>],</span><br><span class="line">  [<span class="string">"B"</span>, <span class="function">(<span class="params">salary: <span class="built_in">number</span></span>) =&gt;</span> salary * <span class="number">2</span>],</span><br><span class="line">]);</span><br><span class="line">bounsMap.get(<span class="string">"S"</span>)?.(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 完整实现</span></span><br><span class="line"><span class="keyword">enum</span> strategyEnum &#123;</span><br><span class="line">  S = <span class="string">"S"</span>,</span><br><span class="line">  A = <span class="string">"A"</span>,</span><br><span class="line">  B = <span class="string">"B"</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bounsMap = <span class="keyword">new</span> Map&lt;strategyEnum, &#123; times: <span class="built_in">number</span> &#125;&gt;([</span><br><span class="line">  [strategyEnum.S, &#123; times: <span class="number">4</span> &#125;],</span><br><span class="line">  [strategyEnum.B, &#123; times: <span class="number">3</span> &#125;],</span><br><span class="line">  [strategyEnum.B, &#123; times: <span class="number">2</span> &#125;],</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getBouns = <span class="function">(<span class="params">strategy: strategyEnum, salary: <span class="built_in">number</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> bouns = bounsMap.get(strategy);</span><br><span class="line">  <span class="keyword">if</span> (!bouns) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bouns.times * salary;</span><br><span class="line">&#125;;</span><br><span class="line">getBouns(strategyEnum.S, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/fa42de81.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/fa42de81.html" class="post-title-link" itemprop="url">20220629</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-29 11:50:27" itemprop="dateCreated datePublished" datetime="2022-06-29T11:50:27+08:00">2022-06-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="位-1-的个数"><a href="#位-1-的个数" class="headerlink" title="位 1 的个数"></a>位 1 的个数</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。</p>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><ul>
+<li>请注意，在某些语言（如 Java）中，没有无符号整数类型。在这种情况下，输入和输出都将被指定为有符号整数类型，并且不应影响您的实现，因为无论整数是有符号的还是无符号的，其内部的二进制表示形式都是相同的。</li>
+<li>在 Java 中，编译器使用二进制补码记法来表示有符号整数。因此，在上面的   示例 3  中，输入表示有符号整数 -3。</li>
+</ul>
+<h3 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h3><blockquote>
+<p>输入：00000000000000000000000000001011</p>
+<p>输出：3</p>
+<p>解释：输入的二进制串 00000000000000000000000000001011  中，共有三位为 ‘1’。</p>
+</blockquote>
+<h3 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h3><blockquote>
+<p>输入：00000000000000000000000010000000</p>
+<p>输出：1</p>
+<p>解释：输入的二进制串 00000000000000000000000010000000  中，共有一位为 ‘1’。</p>
+</blockquote>
+<h3 id="示例-3："><a href="#示例-3：" class="headerlink" title="示例 3："></a>示例 3：</h3><blockquote>
+<p>输入：11111111111111111111111111111101</p>
+<p>输出：31</p>
+<p>解释：输入的二进制串 11111111111111111111111111111101 中，共有 31 位为 ‘1’。</p>
+</blockquote>
+<h3 id="提示：-1"><a href="#提示：-1" class="headerlink" title="提示："></a>提示：</h3><p>输入必须是长度为 32 的 二进制串 。</p>
+<h3 id="进阶："><a href="#进阶：" class="headerlink" title="进阶："></a>进阶：</h3><p>如果多次调用这个函数，你将如何优化你的算法？</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自己写的 0ms 2mb</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> i &lt;= n &amp;&amp; i != <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n &amp; i != <span class="number">0</span> &#123;</span><br><span class="line">                count += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i = i &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造32位蒙版（只有一个1），进行与操作</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> (<span class="keyword">mut</span> ret, <span class="keyword">mut</span> mask) = (<span class="number">0</span>, <span class="number">1u32</span>);</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">32</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n &amp; mask != <span class="number">0</span> &#123; ret += <span class="number">1</span>; &#125;</span><br><span class="line">            mask = mask &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ret</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// count_one 方法 可以直接获取数量</span></span><br><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hammingWeight</span> </span>(n: <span class="built_in">u32</span>) -&gt; <span class="built_in">i32</span> &#123;</span><br><span class="line">        n.count_ones() <span class="keyword">as</span> <span class="built_in">i32</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>位的与方法判断是否是 1，是的话，数量加 1</li>
+<li>位移的方式变更 1 的位置</li>
+<li>位移可能会越界，超出最大值的时候位移数据就是 0，需要注意一下</li>
+<li>别人的操作是真的牛皮</li>
+</ul>
+<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xn1m0i/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xn1m0i/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1dfaf386.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1dfaf386.html" class="post-title-link" itemprop="url">20220627</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-27 10:53:06" itemprop="dateCreated datePublished" datetime="2022-06-27T10:53:06+08:00">2022-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h1><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串  “”。</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：strs = [“flower”,”flow”,”flight”]</p>
+<p>输出：”fl”</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：strs = [“dog”,”racecar”,”car”]</p>
+<p>输出：””</p>
+<p>解释：输入不存在公共前缀。</p>
+</blockquote>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= strs.length &lt;= 200</li>
+<li>0 &lt;= strs[i].length &lt;= 200</li>
+<li>strs[i] 仅由小写英文字母组成</li>
+</ul>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> Solution &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">longest_common_prefix</span></span>(strs: <span class="built_in">Vec</span>&lt;<span class="built_in">String</span>&gt;) -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut</span> result = <span class="built_in">String</span>::from(<span class="string">""</span>);</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut</span> index = <span class="number">0</span>;</span><br><span class="line">            <span class="symbol">'looper</span>: <span class="keyword">loop</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> <span class="keyword">mut</span> _temp = <span class="string">""</span>;</span><br><span class="line">                <span class="keyword">for</span> <span class="built_in">str</span> <span class="keyword">in</span> &amp;strs &#123;</span><br><span class="line">                    <span class="keyword">if</span> <span class="built_in">str</span>.len() == <span class="number">0</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> index &gt;= <span class="built_in">str</span>.len() &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">let</span> c_val = &amp;<span class="built_in">str</span>[index..index + <span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> c_val == <span class="string">""</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> _temp == <span class="string">""</span> &#123;</span><br><span class="line">                        _temp = c_val;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> _temp != c_val &#123;</span><br><span class="line">                        <span class="keyword">break</span> <span class="symbol">'looper</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    _temp = c_val;</span><br><span class="line">                &#125;</span><br><span class="line">                result.push_str(&amp;strs.get(<span class="number">0</span>).unwrap()[index..index + <span class="number">1</span>]);</span><br><span class="line">                index += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            result</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><ul>
+<li>找出所有字符串的第{index}个元素，判断是否全部相等。</li>
+<li>如果相等放入结果中，继续循环</li>
+<li>不相等跳出外层循环，返回结果</li>
+<li>0ms，2.1mb</li>
+</ul>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li>作者：力扣 (LeetCode)</li>
+<li>链接：<a href="https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnmav1/" target="_blank" rel="noopener">https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnmav1/</a></li>
+<li>来源：力扣（LeetCode）</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/6570235f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
+      <meta itemprop="name" content="aladdin">
+      <meta itemprop="description" content="记录生活，前端技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="灯的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/6570235f.html" class="post-title-link" itemprop="url">20220622 JS中数据结构的一些想法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 10:59:38" itemprop="dateCreated datePublished" datetime="2022-06-22T10:59:38+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS-中的数据结构"><a href="#JS-中的数据结构" class="headerlink" title="JS 中的数据结构"></a>JS 中的数据结构</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>原型方法较多，可以比较方便的实现各种功能</li>
+<li>JSON 支持</li>
+<li>相比 java，数组的长度不是固定的，不存在越界问题</li>
+<li>兼容性好</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>没有获取到索引的情况下，查询效率相对低，时间复杂度为 O(n)</li>
+<li>插入数据效率低O(n)</li>
+<li>删除数据效率O(n)</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>绝大部分数据处理</li>
+<li>JSON 支持，可以直接在接口中返回</li>
+<li>前端列表渲染</li>
+</ul>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>兼容性好</li>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>JSON 支持</li>
+<li>相对 Map 可以继承原型链上的属性</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>相对 MAP 键值只能是 string</li>
+<li>相对 MAP 顺序不确定</li>
+<li>相对 MAP 没有迭代属性</li>
+</ul>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>通用场景</li>
+<li>需要一个固定 key 来做区分数据内容</li>
+</ul>
+<h2 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h2><h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>查询效率高，时间复杂度为 O(1)</li>
+<li>相对对象这种结构，数据更清晰，效率更高</li>
+<li>相对 OBJECT，语义化更好，支持功能多</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>原型方法没有数组多</li>
+<li>JSON 不支持，如果作为接口数据返回，需要重新转换为数组或对象</li>
+</ul>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>需要一个固定格式的 key value</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>插入性能比数组高 O(1)</li>
+<li>删除性能比数组高 O(1)</li>
+</ul>
+<h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>索引效率低 O(n)</li>
+<li>原生不支持，需要自己实现链表结构</li>
+</ul>
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>动态插入与删除比较多的场景</li>
+</ul>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进后出</li>
+<li>JS 执行顺序</li>
+</ul>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>先进先出</li>
+<li>排队场景</li>
+<li>性能瓶颈的时候，使用队列，排队处理数据</li>
+</ul>
+<h2 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h2><h3 id="应用场景-6"><a href="#应用场景-6" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>打标签的场景</li>
+</ul>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="应用场景-7"><a href="#应用场景-7" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>DOM 树、CSS 树</li>
+<li>多层JSON</li>
+<li>级联菜单</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> JS基础</a>
+            
+          </div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wddv.com/post/c1c2f028.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,7 +760,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,7 +836,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -402,7 +913,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -486,7 +997,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -618,7 +1129,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -718,7 +1229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
+                <time title="修改时间：2025-04-22 12:12:24" itemprop="dateModified" datetime="2025-04-22T12:12:24+08:00">2025-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -778,403 +1289,6 @@
         
           <div class="post-tags">
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/b66fe035.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/b66fe035.html" class="post-title-link" itemprop="url">有效的字母异位词</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-24 10:40:07" itemprop="dateCreated datePublished" datetime="2021-12-24T10:40:07+08:00">2021-12-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="有效的字母异位词"><a href="#有效的字母异位词" class="headerlink" title="有效的字母异位词"></a>有效的字母异位词</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。</p>
-<p>注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。</p>
-<p>示例 1:</p>
-<blockquote>
-<p>输入: s = “anagram”, t = “nagaram”</p>
-<p>输出: true</p>
-<p>示例 2:</p>
-</blockquote>
-<blockquote>
-<p>输入: s = “rat”, t = “car”</p>
-<p>输出: false</p>
-</blockquote>
-<p>提示:</p>
-<blockquote>
-<p>1 &lt;= s.length, t.length &lt;= 5 * 104</p>
-<p>s 和 t 仅包含小写字母</p>
-</blockquote>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
-<li><p>两个map比较字母数是否相同</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isAnagram</span>(<span class="params">s: <span class="built_in">string</span>, t: <span class="built_in">string</span></span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> strToMap = <span class="function">(<span class="params">s: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> strMap = <span class="keyword">new</span> Map&lt;<span class="built_in">string</span>, <span class="built_in">number</span>&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">      strMap.set(s[i], (strMap.get(s[i]) || <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> strMap;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> sMap = strToMap(s);</span><br><span class="line">  <span class="keyword">const</span> tMap = strToMap(t);</span><br><span class="line">  <span class="keyword">if</span> (sMap.size !== tMap.size) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i of sMap.keys()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (sMap.get(i) !== tMap.get(i)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>便利第一个字符串为map，便利第二个字符串，如果第一个map有，就减去1，最后看smap的数字是否都是0</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isAnagram</span>(<span class="params">s: <span class="built_in">string</span>, t: <span class="built_in">string</span></span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> strToMap = <span class="function">(<span class="params">s: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> strMap = <span class="keyword">new</span> Map&lt;<span class="built_in">string</span>, <span class="built_in">number</span>&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">      strMap.set(s[i], (strMap.get(s[i]) || <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> strMap;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> sMap = strToMap(s);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; t.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!sMap.get(t[i])) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sMap.set(t[i], sMap.get(t[i])! - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> [, v] of sMap) &#123;</span><br><span class="line">    <span class="keyword">if</span> (v !== <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>排序后遍历</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isAnagram</span>(<span class="params">s: <span class="built_in">string</span>, t: <span class="built_in">string</span></span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s.length !== t.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> sArr = s.split(<span class="string">""</span>).sort();</span><br><span class="line">  <span class="keyword">const</span> tArr = t.split(<span class="string">""</span>).sort();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; sArr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (sArr[i] !== tArr[i]) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字符替换法，耗时比较长</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isAnagram</span>(<span class="params">s: <span class="built_in">string</span>, t: <span class="built_in">string</span></span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s.length !== t.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    t = t.replace(s[i], <span class="string">""</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(t);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> !t.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2></li>
-<li><p>作者：力扣 (LeetCode)</p>
-</li>
-<li><p>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn96us/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn96us/</a></p>
-</li>
-<li><p>来源：力扣（LeetCode）</p>
-</li>
-<li><p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/9cae03bf.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/9cae03bf.html" class="post-title-link" itemprop="url">20211223-题目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-23 10:49:13" itemprop="dateCreated datePublished" datetime="2021-12-23T10:49:13+08:00">2021-12-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="字符串中的第一个唯一字符"><a href="#字符串中的第一个唯一字符" class="headerlink" title="字符串中的第一个唯一字符"></a>字符串中的第一个唯一字符</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">返回 0</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; s &#x3D; &quot;loveleetcode&quot;</span><br></pre></td></tr></table></figure>
-<p>返回 2</p>
-<p>提示：你可以假定该字符串只包含小写字母。</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
-<li>双重循环遍历<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">firstUniqChar</span>(<span class="params">s: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> strMap = <span class="keyword">new</span> Map&lt;<span class="built_in">string</span>, <span class="built_in">number</span>&gt;();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    strMap.set(s[i], (strMap.get(s[i]) || <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (strMap.get(s[i]) === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>索引一致方法</li>
-<li>如果找到的第一个索引与倒数找到的最后一个索引相同，代表是第一个<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">firstUniqChar</span>(<span class="params">s: <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s.lastIndexOf(s[i]) === s.indexOf(s[i])) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn5z8r/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn5z8r/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-            
-          </div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/e1873048.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/e1873048.html" class="post-title-link" itemprop="url">初级算法-整数反转</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-07 23:49:31" itemprop="dateCreated datePublished" datetime="2021-11-07T23:49:31+08:00">2021-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。</p>
-<p>如果反转后整数超过 32 位的有符号整数的范围 [−231,  231 − 1] ，就返回 0。</p>
-<p>假设环境不允许存储 64 位整数（有符号或无符号）。</p>
-<p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 123</span><br><span class="line">输出：321</span><br></pre></td></tr></table></figure>
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; -123</span><br><span class="line">输出：-321</span><br></pre></td></tr></table></figure>
-<p>示例 3：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 120</span><br><span class="line">输出：21</span><br></pre></td></tr></table></figure>
-<p>示例 4：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 0</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
-
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  字符串反转</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>(<span class="params">x: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> isPositive = x &gt;= <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> reverseNumberString = <span class="string">`<span class="subst">$&#123;x&#125;</span>`</span>.replace(<span class="string">"-"</span>, <span class="string">""</span>).split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</span><br><span class="line">  <span class="keyword">const</span> result = isPositive ? +reverseNumberString : -reverseNumberString;</span><br><span class="line">  <span class="keyword">if</span> (result &lt;= (<span class="number">-2</span>) ** <span class="number">31</span> || result &gt;= <span class="number">2</span> ** <span class="number">31</span> - <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li>作者：力扣 (LeetCode)</li>
-<li>链接：<a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnx13t/" target="_blank" rel="noopener">https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnx13t/</a></li>
-<li>来源：力扣（LeetCode）</li>
-<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/acd5828c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
-      <meta itemprop="name" content="aladdin">
-      <meta itemprop="description" content="记录生活，前端技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="灯的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/acd5828c.html" class="post-title-link" itemprop="url">看到了以前写的项目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-13 00:22:56" itemprop="dateCreated datePublished" datetime="2021-08-13T00:22:56+08:00">2021-08-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-15 16:13:22" itemprop="dateModified" datetime="2025-04-15T16:13:22+08:00">2025-04-15</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>啊，年轻时候的我，写的代码还挺规范的嘛。</p>
-<p>原来以为那个项目已经挂掉了，没想到现在还在运行。</p>
-<p>嗨，从16年开始学前端到现在。。快六年了。真特么快啊。。</p>
-<p>擦，刚找自己写的第一个项目竟然没有备案，挂掉了卧槽。</p>
-<p>没法装逼，可惜了。</p>
-<p>年轻真好…</p>
-<p>又想到了以前的很多事情，一个不到20平米的隔断间，住了四个人。</p>
-<p>床上睡不下，把床掀了大家一起打地铺。</p>
-<p>每天九点上班，五点九下班，下班就去网吧嗨。。</p>
-<p>租了一个两室一厅的房子，一个月1200？三个月交一次房租，结果三个月到了，我们没钱交房租了，emmm，直到现在我都不敢一次性交三个月房租。。</p>
-<p>啊，那时候是真穷啊。。</p>
-<p>不过真的挺快乐。</p>
-<p>几个吊毛，天天嗷嗷叫，一起看片，网吧通宵，真刺激</p>
-<p>回不去了。。</p>
-<p>还是有些对不住的人。。</p>
-<p>一时间想起来，有点难过。</p>
-<p>emmmm</p>
-<p>做的那些事情有用吗。</p>
-<p>二十岁的时候，买了十岁买不起的玩具，有什么意义吗</p>
-<p>终归是让自己心里好过一点</p>
-<p>好多事情，忍不住泪目</p>
-<p>果然，晚上不适合瞎J8想。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-              <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3/" rel="tag"><i class="fa fa-tag"></i> 生活感想</a>
             
           </div>
         
@@ -1255,7 +1369,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">150</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
