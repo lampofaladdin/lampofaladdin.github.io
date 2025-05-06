@@ -20,20 +20,26 @@
     var CONFIG = {"hostname":"wddv.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="题目 已知如下数组：var arr &#x3D; [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组  个人题解 递归;  不想写   while循环遍历  不想写   Array.prototype.flat 12345var arr &#x3D;">
+  <meta name="description" content="题目论云原生架构及其应用近年来，随着数字化转型不断深入，科技创新与业务发展不断融合，各行各业正在从大工业时代的固化范式进化成面向创新型组织与灵活型业务的崭新模式。在这一背景下，以容器和微服务架构为代表的云原生技术作为云计算服务的新模式，已经逐渐成为企业持续发展的主流选择。云原生架构是基于云原生技术的一组架构原则和设计模式的集合，旨在将云应用中的非业务代码部分进行最大化剥离，从而让云设施接管应用中原">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法手写题">
-<meta property="og:url" content="https://wddv.com/post/1942942a.html">
+<meta property="og:title" content="250506-云原生架构论文">
+<meta property="og:url" content="https://wddv.com/post/3aa97788.html">
 <meta property="og:site_name" content="灯的个人博客">
-<meta property="og:description" content="题目 已知如下数组：var arr &#x3D; [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组  个人题解 递归;  不想写   while循环遍历  不想写   Array.prototype.flat 12345var arr &#x3D;">
+<meta property="og:description" content="题目论云原生架构及其应用近年来，随着数字化转型不断深入，科技创新与业务发展不断融合，各行各业正在从大工业时代的固化范式进化成面向创新型组织与灵活型业务的崭新模式。在这一背景下，以容器和微服务架构为代表的云原生技术作为云计算服务的新模式，已经逐渐成为企业持续发展的主流选择。云原生架构是基于云原生技术的一组架构原则和设计模式的集合，旨在将云应用中的非业务代码部分进行最大化剥离，从而让云设施接管应用中原">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-21T02:16:45.000Z">
-<meta property="article:modified_time" content="2025-05-06T15:07:41.241Z">
+<meta property="article:published_time" content="2025-05-06T11:50:33.000Z">
+<meta property="article:modified_time" content="2025-05-06T15:07:41.239Z">
 <meta property="article:author" content="aladdin">
-<meta property="article:tag" content="算法">
+<meta property="article:tag" content="神灯">
+<meta property="article:tag" content="阿拉丁神灯">
+<meta property="article:tag" content="生活">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="typescript">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wddv.com/post/1942942a.html">
+<link rel="canonical" href="https://wddv.com/post/3aa97788.html">
 
 
 <script id="page-configurations">
@@ -46,7 +52,7 @@
   };
 </script>
 
-  <title>算法手写题 | 灯的个人博客</title>
+  <title>250506-云原生架构论文 | 灯的个人博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF61CEVEDP"></script>
     <script>
@@ -215,7 +221,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/1942942a.html">
+    <link itemprop="mainEntityOfPage" href="https://wddv.com/post/3aa97788.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://oss.wddv.com/www/assets/pic/avatar.png">
@@ -228,7 +234,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          算法手写题
+          250506-云原生架构论文
         </h1>
 
         <div class="post-meta">
@@ -237,24 +243,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-08-21 10:16:45" itemprop="dateCreated datePublished" datetime="2020-08-21T10:16:45+08:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-06 23:07:41" itemprop="dateModified" datetime="2025-05-06T23:07:41+08:00">2025-05-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">开发技术</span></a>
-                </span>
+              <time title="创建时间：2025-05-06 19:50:33 / 修改时间：23:07:41" itemprop="dateCreated datePublished" datetime="2025-05-06T19:50:33+08:00">2025-05-06</time>
             </span>
 
           
@@ -275,29 +266,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>已知如下数组：<br>var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];<br>编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组</p>
-</blockquote>
-<h2 id="个人题解"><a href="#个人题解" class="headerlink" title="个人题解"></a>个人题解</h2><ul>
-<li><p>递归;</p>
-<blockquote>
-<p>不想写</p>
-</blockquote>
-</li>
-<li><p>while循环遍历</p>
-<blockquote>
-<p>不想写</p>
-</blockquote>
-</li>
-<li><p>Array.prototype.flat</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayFlat</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr.flat(<span class="literal">Infinity</span>))).sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123; <span class="keyword">return</span> a-b&#125;);</span><br><span class="line">&#125;</span><br><span class="line">arrayFlat(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>骚操作</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saocaozuo</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [...new <span class="built_in">Set</span>(arr.toString().split(<span class="string">","</span>))].sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">&#125;</span><br><span class="line">saocaozuo(arr) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/8" target="_blank" rel="noopener">第 11 题：将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/flat" target="_blank" rel="noopener">Array.prototype.flat() MDN</a></p>
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>论云原生架构及其应用<br>近年来，随着数字化转型不断深入，科技创新与业务发展不断融合，各行各业正在从大工业时代的固化范式进化成面向创新型组织与灵活型业务的崭新模式。在这一背景下，以容器和微服务架构为代表的云原生技术作为云计算服务的新模式，已经逐渐成为企业持续发展的主流选择。云原生架构是基于云原生技术的一组架构原则和设计模式的集合，旨在将云应用中的非业务代码部分进行最大化剥离，从而让云设施接管应用中原有的大量非功能特性(如弹性、韧性、安全、可观测性、灰度等)，使业务不再有非功能性业务中断困扰的同时，具备轻量、敏捷、高度自动化的特点。云原生架构有利于各组织在公有云、私有云和混合云等新型动态环境中，构建和运行可弹性扩展的应用，其代表技术包括容器、服务网格、微服务、不可变基础设施和声明式API等。请围绕“论云原生架构及其应用”论题，依次从以下三个方面进行论述:<br>1.概要叙述你参与管理和开发的软件项目以及承担的主要工作。<br>2.服务化、弹性、可观测性和自动化是云原生架构的四类设计原则，请简要对这四类设计原则的内涵进行阐述。<br>3.具体阐述你参与管理和开发的项目是如何采用云原生架构的，并且围绕上述四类设计原则，详细论述在项目设计与实现过程中遇到了哪些实际问题，是如何解决的。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>近些年，新能源汽车蓬勃发展，我司开发了一个针对新能源汽车的一体化平台，该平台主要包括新闻、社区、车型库等主要模块。我在该项目中担任技术经理，负责系统方案定制与技术指导工作。本文描述了该项目中云原生架构的实施过程与解决方案，主要分三个部分，?</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>2022 年，新能源汽车蓬勃发展，国家也出台了相应政策法规予以支持，但市面上并没有针对新能源汽车的平台，用户在搜索新能源车型的时候，无法快速准确的找到相关信息。为响应国家号召，满足用户需求，于是我司决定开发一个针对新能源汽车的一体化平台。<br>该项目于 2022 年 6 月开始，团队成员共 17 人，我在该项目中担任技术经理，主要负责系统方案定制与技术指导工作。项目主要有三个主要模块：新闻、社区、车型库。其中新闻模块是为用户提供最新的新能源汽车消息，主要功能有：图文、视频、简讯、最新车型等。社区模块为用户提供一个讨论新能源车型的渠道，主要功能有：话题、帖子、车友圈、车型打分等。其中车型库是该项目的核心，我们在传统汽车平台的基础上增加了许多新能源汽车特有功能，比如辅助驾驶、智能座舱、三电系统等，并对这些功能做了相应评测，建立了对应的评测系统。以此为基础，建立了车型榜单、选车等功能。</p>
+<h1 id="回应"><a href="#回应" class="headerlink" title="回应"></a>回应</h1><p>云原生架构由于其轻量、敏捷、高度自动化且成本相比传统方式更低等特点，已是目前企业发展的主流选择。云原生架构的设计原则有服务化、弹性、可观测性、自动化，其中服务化原则，是将整体业务拆分为大小适中的服务，解决大型项目中单体架构，开发难，部署难等问题。弹性原则，充分利用云服务的计算资源，动态伸缩，满足用户高峰时段的访问需求，降低低谷时段的成本，做到即用即申请，解决传统方式中扩容难，成本高等问题。可观测性原则，因为服务微型化，用户的请求会经过多个服务，当出现问题的时候，定位排查较为困难，需要提高其可观测行，一般使用链路追踪技术解决。自动化原则，当服务不断增长，人工部署成本较高，此时需引入自动化运维等相关技术，降低运维成本，提高运维效率。</p>
+<h1 id="过度"><a href="#过度" class="headerlink" title="过度"></a>过度</h1><p>一个良好的云原生架构应是结构清晰、扩展方便、高度自动化的，以下就该系统的设计、开发、运行三个阶段论述该项目的实施过程与解决方案。<br>// serverless<br>// devops<br>// 微服务<br>// 服务端架构<br>// </p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p>该项目是一个针对 C 端用户的一体化平台，考虑到应用推广、开发成本等因素，应用部分采用 B/S 架构。传统 B/S 架构一般为单体架构，用 MVC 模式进行开发，这种架构在复杂应用上的缺点较多，开发人员需要在一个代码仓库内进行修改，且每次更新都需要重新启动，牵一发而动全身，项目的维护成本较高。所以我们采用前后端分离的 B/S 架构，前端部分使用基于 React 的全栈框架 NextJS，方便 SEO，满足推广需求，业务人员可以专注于自己擅长的领域，提高开发效率。后端业务部分为微服务架构，将应用拆解为不同的服务，使用公司提供的 DevOps 工具平台，自动化独立部署项目，方便业务拆解分配到各个项目组，提高开发运维效率，满足自动化要求。数据库部分，独立于业务系统，主要分两个部分，缓存部分使用 Redis 数据库，提高系统的并发吞吐。业务数据使用 Mysql 数据库，保证数据的原子性、一致性、持久性、隔离性。用户请求到达防火墙后，进入 VPC 内网，依次通过负载均衡、API 网关、微服务集群、数据库集群，返回响应内容。该方案整体结构清晰、高度自动化，服务拆分明确，满足云原生架构的自动化、服务化原则。</p>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>后端服务采用业务拆分的方式，主要包括：新闻、社区、车型库、用户、搜索等服务。服务之间采用 http 协议在 VPC 内网中通信，使用 REST 风格，该风格以资源为中心，请求方式作为对资源的操作，GET 表示对资源的获取，POST 表示对资源的新增，PUT 表示对资源的全量更新，PATCH 表示对资源的部分更新，DELETE 表示删除资源，可以有效的降低沟通成本。每个微服务部署在 ServerLess 上，</p>
+<h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>该项目于 2023 年 10 月上线，稳定运行至今，未出现重大事故。由于项目扩展性良好，于二期工程增加了移动设备适配，服务端少量修改后顺利上线安卓与 IOS 平台。项目运行过程中也遇到了一些问题，比如 Serverless 冷启动问题，当已有实例无法满足用户访问需求的时候，需要动态扩容，增加实例。这时云厂商会创建 VPC，拉取镜像，成功启动后才能响应用户请求，整个过程耗时数秒，用户体验较差。由于大部分环节由云厂商控制，我们无法直接参与，所以采取的方案主要有两个，一个是将镜像服务放在同一个可用区，从内网进行拉取，并精简镜像体积，提高镜像拉取速度。二是在用户访问高峰时段，预留一部分启动实例，减少冷启动次数。目前冷启动概率已明显降低，镜像裁剪还有优化空间。</p>
 
     </div>
 
@@ -306,9 +282,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
-          </div>
 
         
 
@@ -316,13 +289,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/post/92bdb23a.html" rel="prev" title="20200820题目">
-      <i class="fa fa-chevron-left"></i> 20200820题目
+    <a href="/post/cfdc50e2.html" rel="prev" title="250429-可维护性">
+      <i class="fa fa-chevron-left"></i> 250429-可维护性
     </a></div>
-      <div class="post-nav-item">
-    <a href="/post/74ffa402.html" rel="next" title="异步解决方案的发展历程以及优缺点。">
-      异步解决方案的发展历程以及优缺点。 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -382,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人题解"><span class="nav-number">1.1.</span> <span class="nav-text">个人题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">1.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">3.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回应"><span class="nav-number">4.</span> <span class="nav-text">回应</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过度"><span class="nav-number">5.</span> <span class="nav-text">过度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">6.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体架构"><span class="nav-number">6.1.</span> <span class="nav-text">整体架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">6.2.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DevOps"><span class="nav-number">6.3.</span> <span class="nav-text">DevOps</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -566,7 +536,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blog-comment',
       owner       : 'lampofaladdin',
       admin       : ['lampofaladdin'],
-      id          : 'fbaa3cdf02672ce9688c7f147895dda3',
+      id          : '97f806e4c635538e3e0de6241c3f1dca',
         language: 'zh-CN',
       distractionFreeMode: true
     });
